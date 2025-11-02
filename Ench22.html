@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Thief – Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #ff6f61;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #ff3b2e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Thief – Notes</h1>
+
+    <section>
+        <h2>Introduction</h2>
+        <ul>
+            <li><strong>The story</strong> “The Thief” is about a man who struggles with poverty.</li>
+            <li>He lives in a small, poor neighborhood with his family.</li>
+            <li>The thief is desperate to survive and feed his family.</li>
+            <li>He believes stealing is his only option.</li>
+            <li>Despite being a criminal, he has a kind heart.</li>
+            <li>The story explores human morality and choices.</li>
+            <li>It shows how circumstances can push someone toward crime.</li>
+            <li>The thief is clever and careful while stealing.</li>
+            <li>He faces fear of being caught by the police.</li>
+            <li>The story teaches lessons about honesty and consequences.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Key Points Explanation</h2>
+        <ul>
+            <li>The thief lives in extreme poverty and struggles daily.</li>
+            <li>He wants to provide food and necessities for his family.</li>
+            <li>Stealing seems to be his only way to survive.</li>
+            <li>He plans his thefts carefully to avoid getting caught.</li>
+            <li>Despite being a thief, he sometimes feels guilty.</li>
+            <li>He learns to differentiate right from wrong.</li>
+            <li>He faces moral dilemmas during his acts of theft.</li>
+            <li>The story highlights the consequences of crime.</li>
+            <li>It shows society’s role in pushing people toward crime.</li>
+            <li>The thief sometimes shows generosity to others.</li>
+            <li>He fears punishment and tries to escape capture.</li>
+            <li>The story emphasizes empathy for those in need.</li>
+            <li>It shows human weaknesses under pressure.</li>
+            <li>The thief struggles with internal conflict.</li>
+            <li>He is resourceful and intelligent.</li>
+            <li>Family responsibilities motivate his actions.</li>
+            <li>The story depicts real-life challenges of the poor.</li>
+            <li>It teaches that desperation does not justify wrongdoing.</li>
+            <li>The thief's experiences teach moral lessons.</li>
+            <li>It encourages readers to understand and forgive human mistakes.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Conclusion</h2>
+        <p>
+            The story of “The Thief” teaches us that poverty and desperation can force people into crime. 
+            Despite being a criminal, the thief has a human side and experiences guilt and fear. 
+            It shows how circumstances and family responsibilities can influence decisions. 
+            Readers learn about morality, empathy, and the consequences of one’s actions. 
+            Ultimately, it emphasizes that honesty is always the best path, no matter how difficult life becomes.
+        </p>
+    </section>
+
+    <section>
+        <h2>Moral of the Story</h2>
+        <p>
+            <strong>Desperation may lead to wrong choices, but honesty and empathy are always the right path.</strong>
+        </p>
+    </section>
+
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">↑</button>
+
+    <script>
+        // Show button when scrolling down
+        window.onscroll = function() {toggleScrollButton()};
+        
+        function toggleScrollButton() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

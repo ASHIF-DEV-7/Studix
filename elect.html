@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Notes</title>
+    <style>
+        :root {
+            --bg-color: #e3f2fd;
+            --text-color: #1a1a1a;
+            --primary: #0288d1;
+            --secondary: #ff4081;
+            --box-bg: #ffffff;
+            --box-border: #4fc3f7;
+            --box-hover-shadow: rgba(2, 136, 209, 0.4);
+            --header-bg: #f5faff;
+            --footer-bg: #1a1a1a;
+            --sidenav-bg: #f5faff;
+            --sidenav-dark-bg: #212121;
+        }
+
+        .dark {
+            --bg-color: #1e272e;
+            --text-color: #e0e7ff;
+            --primary: #29b6f6;
+            --secondary: #f06292;
+            --box-bg: #2d3748;
+            --box-border: #80deea;
+            --box-hover-shadow: rgba(41, 182, 246, 0.4);
+            --header-bg: #212121;
+            --footer-bg: #1a1a1a;
+            --sidenav-bg: #212121;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: var(--primary);
+        }
+
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 60px;
+            width: 200px;
+            height: calc(100% - 60px);
+            background-color: var(--sidenav-bg);
+            padding: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 900;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        .dark .side-nav {
+            background-color: var(--sidenav-dark-bg);
+        }
+
+        .side-nav.open {
+            transform: translateX(0);
+        }
+
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-nav li {
+            margin-bottom: 15px;
+        }
+
+        .side-nav button {
+            text-decoration: none;
+            color: var(--text-color);
+            background: none;
+            border: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .side-nav button:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        #side-toggle {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.6em;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 5px 10px;
+            transition: color 0.3s;
+            z-index: 1100;
+        }
+
+        #side-toggle:hover {
+            color: var(--secondary);
+        }
+
+        #close-nav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #close-nav:hover {
+            color: var(--primary);
+        }
+
+        main {
+            margin-top: 70px;
+            padding: 20px;
+            margin-left: 0;
+            transition: margin-left 0.3s;
+            flex: 1;
+        }
+
+        .notes-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .topic {
+            margin-bottom: 15px;
+            background-color: var(--box-bg);
+            border: 2px solid var(--box-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .topic:hover {
+            box-shadow: 0 4px 15px var(--box-hover-shadow);
+        }
+
+        .topic-header {
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--box-bg);
+        }
+
+        .topic-header::after {
+            content: '▼';
+            font-size: 0.9em;
+            transition: transform 0.3s;
+        }
+
+        .topic-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .topic-content {
+            display: none;
+            padding: 15px;
+            font-size: 1em;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        .topic-content.active {
+            display: block;
+        }
+
+        .topic-content ul {
+            list-style-type: disc;
+            margin: 10px 0 0 20px;
+            padding: 0;
+        }
+
+        .topic-content li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--footer-bg);
+            color: #ffffff;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (min-width: 768px) {
+            .side-nav {
+                transform: translateX(0);
+            }
+
+            #side-toggle {
+                display: none;
+            }
+
+            main {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .notes-section {
+                padding: 10px;
+            }
+
+            .topic-header {
+                font-size: 1.1em;
+            }
+
+            .topic-content {
+                font-size: 0.95em;
+            }
+
+            .side-nav.open + main {
+                pointer-events: none;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="side-toggle" onclick="toggleSideNav()">☰</button>
+        <h1>Electricity</h1>
+    </header>
+
+    <aside class="side-nav">
+        <button id="close-nav" onclick="toggleSideNav()">✖</button>
+        <ul>
+            <li><button onclick="toggleMode()">Dark/Light Mode Toggle</button></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="notes-section">
+            <div class="topic">
+                <div class="topic-header">Electric Current</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Flow of electric charge (electrons) through a conductor.</li>
+                        <li>Unit: Ampere (A), measured by ammeter.</li>
+                        <li>Formula: I = Q/t (Current = Charge/Time).</li>
+                        <li>Examples:
+                            <ul>
+                                <li>2 C charge flows in 1 s: I = 2/1 = 2 A.</li>
+                                <li>10 C in 5 s: I = 10/5 = 2 A.</li>
+                                <li>6 C in 3 s: I = 6/3 = 2 A.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Electric Potential and Potential Difference</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Electric potential: Work done per unit charge (V = W/Q).</li>
+                        <li>Potential difference: Voltage across a circuit (unit: Volt, V).</li>
+                        <li>Measured by voltmeter, connected in parallel.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>10 J work moves 2 C: V = 10/2 = 5 V.</li>
+                                <li>20 J for 4 C: V = 20/4 = 5 V.</li>
+                                <li>15 J for 3 C: V = 15/3 = 5 V.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Electric Circuit</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Closed path for current flow (source, conductor, load).</li>
+                        <li>Components: Battery, wires, resistor, switch.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Battery + bulb + switch circuit.</li>
+                                <li>Resistor + ammeter + voltmeter circuit.</li>
+                                <li>LED + battery + wires circuit.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Ohm's Law</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>V = IR (Voltage = Current × Resistance).</li>
+                        <li>Resistance (R): Opposition to current flow, unit: Ohm (Ω).</li>
+                        <li>Examples:
+                            <ul>
+                                <li>V = 12 V, I = 4 A: R = 12/4 = 3 Ω.</li>
+                                <li>V = 6 V, R = 2 Ω: I = 6/2 = 3 A.</li>
+                                <li>I = 2 A, R = 5 Ω: V = 2 × 5 = 10 V.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Resistance and Resistivity</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Resistance: R = ρL/A (ρ = resistivity, L = length, A = area).</li>
+                        <li>Resistivity: Property of material, unit: Ω·m.</li>
+                        <li>Factors: Material, length, area, temperature.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Copper wire: ρ = 1.68 × 10⁻⁸ Ω·m, low resistance.</li>
+                                <li>Nichrome wire: High ρ, used in heaters.</li>
+                                <li>Longer wire (L doubles): R doubles.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Series and Parallel Circuits</div>
+                <div class="topic-content">
+                    <ul>
+                        <li><strong>Series</strong>: Same current, total R = R₁ + R₂ + ... </li>
+                        <li><strong>Parallel</strong>: Same voltage, 1/R = 1/R₁ + 1/R₂ + ... </li>
+                        <li>Examples:
+                            <ul>
+                                <li>Series: R₁ = 2 Ω, R₂ = 3 Ω, Total R = 5 Ω.</li>
+                                <li>Parallel: R₁ = 4 Ω, R₂ = 4 Ω, Total R = 2 Ω.</li>
+                                <li>Parallel: R₁ = 6 Ω, R₂ = 3 Ω, Total R = 2 Ω.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Electric Power</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Rate of energy consumption, P = VI = I²R = V²/R.</li>
+                        <li>Unit: Watt (W), 1 kW = 1000 W.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>V = 220 V, I = 2 A: P = 220 × 2 = 440 W.</li>
+                                <li>I = 5 A, R = 10 Ω: P = 5² × 10 = 250 W.</li>
+                                <li>V = 12 V, R = 3 Ω: P = 12²/3 = 48 W.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Electric Energy</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Energy = Power × Time (E = P × t).</li>
+                        <li>Unit: Joule (J), commercial unit: kWh (1 kWh = 3.6 × 10⁶ J).</li>
+                        <li>Examples:
+                            <ul>
+                                <li>P = 1000 W, t = 1 h: E = 1 kWh.</li>
+                                <li>P = 500 W, t = 2 h: E = 1 kWh.</li>
+                                <li>P = 200 W, t = 5 h: E = 1 kWh.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Heating Effect of Electric Current</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Heat produced: H = I²Rt (Joule’s law).</li>
+                        <li>Applications: Electric iron, heater, bulb.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>I = 2 A, R = 5 Ω, t = 60 s: H = 2² × 5 × 60 = 1200 J.</li>
+                                <li>I = 3 A, R = 4 Ω, t = 30 s: H = 3² × 4 × 30 = 1080 J.</li>
+                                <li>I = 1 A, R = 10 Ω, t = 100 s: H = 1² × 10 × 100 = 1000 J.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Domestic Electric Circuits</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Main supply: 220–240 V, 50 Hz AC.</li>
+                        <li>Components: Fuse, MCB, earthing, live/neutral/earth wires.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Fuse prevents overload in home wiring.</li>
+                                <li>MCB trips during short circuit.</li>
+                                <li>Earthing protects from electric shock.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © 2025. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark');
+        }
+
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            sideNav.classList.toggle('open');
+            if (sideNav.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Toggle topic content visibility
+        document.querySelectorAll('.topic-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = content.classList.contains('active');
+                
+                // Close all other sections
+                document.querySelectorAll('.topic-content').forEach(c => {
+                    c.classList.remove('active');
+                });
+                document.querySelectorAll('.topic-header').forEach(h => {
+                    h.classList.remove('active');
+                });
+
+                // Toggle current section
+                if (!isActive) {
+                    content.classList.add('active');
+                    header.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+<script src="script.js"></script>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon and Its Compounds - Class 10 Notes</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .chapter-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .important {
+            background: #fff9e6;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .definition {
+            background: #e8f4fc;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example {
+            background: #e6f7ee;
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .chemical-structure {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .structure-formula {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .index-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .index-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .index-list {
+            list-style: none;
+        }
+        
+        .index-list li {
+            margin-bottom: 10px;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .index-list li:hover {
+            background: #f0f5ff;
+        }
+        
+        .index-list a {
+            text-decoration: none;
+            color: #555;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .index-list a:hover {
+            color: var(--secondary);
+        }
+        
+        .chemical-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .chemical-table th, .chemical-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .chemical-table th {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .chemical-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .chemical-table tr:hover {
+            background-color: #e6f7ff;
+        }
+        
+        .key-terms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .term {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Carbon and Its Compounds</h1>
+            <p class="subtitle">Class 10 NCERT Science Chapter 4 - Comprehensive Notes</p>
+            <div class="chapter-info">
+                <span>Chapter 4</span>
+                <span>Science</span>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="content">
+                <div class="content-card">
+                    <h2>Introduction to Carbon</h2>
+                    <p>Carbon is a versatile element that forms the basis of all living organisms and many of the materials we use daily. The atomic number of carbon is 6 and its electronic configuration is 2,4.</p>
+                    
+                    <div class="important">
+                        <h3>Why Carbon is Unique</h3>
+                        <p>Carbon exhibits unique properties due to:</p>
+                        <ul>
+                            <li><strong>Catenation:</strong> Ability to form bonds with other carbon atoms</li>
+                            <li><strong>Tetravalency:</strong> Has 4 valence electrons, allowing formation of 4 covalent bonds</li>
+                            <li><strong>Formation of multiple bonds:</strong> Can form single, double, and triple bonds</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Versatile Nature of Carbon</h2>
+                    
+                    <h3>1. Catenation</h3>
+                    <p>The ability of carbon to form bonds with other atoms of carbon, giving rise to large molecules.</p>
+                    
+                    <h3>2. Tetravalency</h3>
+                    <p>Since carbon has a valency of 4, it is capable of bonding with four other atoms of carbon or atoms of some other monovalent elements.</p>
+                    
+                    <h3>3. Isomerism</h3>
+                    <p>Compounds with identical molecular formulas but different structures are called isomers. This property is called isomerism.</p>
+                    
+                    <div class="example">
+                        <h4>Example: Isomers of Butane (C₄H₁₀)</h4>
+                        <p>n-Butane and iso-Butane have the same molecular formula but different structures.</p>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Allotropes of Carbon</h2>
+                    <p>Different forms of the same element having different physical properties but similar chemical properties are called allotropes.</p>
+                    
+                    <h3>1. Diamond</h3>
+                    <p>Each carbon atom is bonded to four other carbon atoms forming a rigid three-dimensional structure. It is the hardest natural substance.</p>
+                    
+                    <h3>2. Graphite</h3>
+                    <p>Each carbon atom is bonded to three other carbon atoms in the same plane giving a hexagonal array. One of these bonds is a double bond.</p>
+                    
+                    <h3>3. Fullerenes</h3>
+                    <p>Spherical molecules of carbon atoms arranged in pentagons and hexagons (like a soccer ball). C₆₀ is the most common fullerene.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Covalent Bonds in Carbon Compounds</h2>
+                    <p>Carbon forms covalent bonds by sharing electrons with other atoms to achieve noble gas configuration.</p>
+                    
+                    <div class="chemical-structure">
+                        <h3>Formation of Covalent Bond in Methane (CH₄)</h3>
+                        <p class="structure-formula">C (2,4) + 4H (1) → CH₄</p>
+                        <p>Carbon shares its 4 electrons with 4 hydrogen atoms</p>
+                    </div>
+                    
+                    <h3>Types of Covalent Bonds</h3>
+                    <ul>
+                        <li><strong>Single Bond:</strong> Sharing of one pair of electrons (e.g., Ethane C₂H₆)</li>
+                        <li><strong>Double Bond:</strong> Sharing of two pairs of electrons (e.g., Ethene C₂H₄)</li>
+                        <li><strong>Triple Bond:</strong> Sharing of three pairs of electrons (e.g., Ethyne C₂H₂)</li>
+                    </ul>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Hydrocarbons</h2>
+                    <p>Compounds made up of hydrogen and carbon only are called hydrocarbons.</p>
+                    
+                    <h3>1. Saturated Hydrocarbons (Alkanes)</h3>
+                    <p>Hydrocarbons with single bonds between carbon atoms. General formula: CₙH₂ₙ₊₂</p>
+                    
+                    <h3>2. Unsaturated Hydrocarbons</h3>
+                    <p>Hydrocarbons with double or triple bonds between carbon atoms.</p>
+                    <ul>
+                        <li><strong>Alkenes:</strong> Contain at least one double bond. General formula: CₙH₂ₙ</li>
+                        <li><strong>Alkynes:</strong> Contain at least one triple bond. General formula: CₙH₂ₙ₋₂</li>
+                    </ul>
+                    
+                    <div class="chemical-table">
+                        <table>
+                            <tr>
+                                <th>Compound</th>
+                                <th>Molecular Formula</th>
+                                <th>Structural Formula</th>
+                            </tr>
+                            <tr>
+                                <td>Methane</td>
+                                <td>CH₄</td>
+                                <td>H | H-C-H | H</td>
+                            </tr>
+                            <tr>
+                                <td>Ethene</td>
+                                <td>C₂H₄</td>
+                                <td>H₂C=CH₂</td>
+                            </tr>
+                            <tr>
+                                <td>Ethyne</td>
+                                <td>C₂H₂</td>
+                                <td>HC≡CH</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Functional Groups</h2>
+                    <p>An atom or group of atoms that determines the properties of a carbon compound is called a functional group.</p>
+                    
+                    <div class="chemical-table">
+                        <table>
+                            <tr>
+                                <th>Functional Group</th>
+                                <th>Prefix/Suffix</th>
+                                <th>Example</th>
+                            </tr>
+                            <tr>
+                                <td>Halogen (-X)</td>
+                                <td>Halo-</td>
+                                <td>Chloromethane (CH₃Cl)</td>
+                            </tr>
+                            <tr>
+                                <td>Alcohol (-OH)</td>
+                                <td>-ol</td>
+                                <td>Ethanol (CH₃CH₂OH)</td>
+                            </tr>
+                            <tr>
+                                <td>Aldehyde (-CHO)</td>
+                                <td>-al</td>
+                                <td>Ethanal (CH₃CHO)</td>
+                            </tr>
+                            <tr>
+                                <td>Ketone (-CO-)</td>
+                                <td>-one</td>
+                                <td>Propanone (CH₃COCH₃)</td>
+                            </tr>
+                            <tr>
+                                <td>Carboxylic Acid (-COOH)</td>
+                                <td>-oic acid</td>
+                                <td>Ethanoic acid (CH₃COOH)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Homologous Series</h2>
+                    <p>A series of compounds in which the same functional group substitutes for hydrogen in a carbon chain is called a homologous series.</p>
+                    
+                    <div class="definition">
+                        <h3>Characteristics of Homologous Series</h3>
+                        <ul>
+                            <li>Same general formula</li>
+                            <li>Successive members differ by -CH₂ group</li>
+                            <li>Physical properties change regularly with increasing molecular mass</li>
+                            <li>Similar chemical properties</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Example: Alkane Series</h3>
+                    <p>General formula: CₙH₂ₙ₊₂</p>
+                    <ul>
+                        <li>Methane: CH₄</li>
+                        <li>Ethane: C₂H₆</li>
+                        <li>Propane: C₃H₈</li>
+                        <li>Butane: C₄H₁₀</li>
+                    </ul>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Chemical Properties of Carbon Compounds</h2>
+                    
+                    <h3>1. Combustion</h3>
+                    <p>Carbon compounds burn in oxygen to produce CO₂, H₂O, heat and light.</p>
+                    <p class="structure-formula">CH₄ + 2O₂ → CO₂ + 2H₂O + Heat and light</p>
+                    
+                    <h3>2. Oxidation</h3>
+                    <p>Alcohols can be oxidized to carboxylic acids using oxidizing agents like alkaline KMnO₄ or K₂Cr₂O₇.</p>
+                    
+                    <h3>3. Addition Reaction</h3>
+                    <p>Unsaturated hydrocarbons add hydrogen in the presence of catalysts to form saturated hydrocarbons.</p>
+                    <p class="structure-formula">CH₂=CH₂ + H₂ → CH₃-CH₃</p>
+                    
+                    <h3>4. Substitution Reaction</h3>
+                    <p>Saturated hydrocarbons undergo substitution reactions with chlorine in the presence of sunlight.</p>
+                    <p class="structure-formula">CH₄ + Cl₂ → CH₃Cl + HCl (in presence of sunlight)</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Important Carbon Compounds</h2>
+                    
+                    <h3>Ethanol (C₂H₅OH)</h3>
+                    <p>Properties:</p>
+                    <ul>
+                        <li>Liquid at room temperature</li>
+                        <li>Soluble in water</li>
+                        <li>Undergoes dehydration to form ethene</li>
+                        <li>Reacts with sodium to form sodium ethoxide and hydrogen</li>
+                    </ul>
+                    
+                    <h3>Ethanoic Acid (CH₃COOH)</h3>
+                    <p>Properties:</p>
+                    <ul>
+                        <li>Vinegar contains about 5-8% ethanoic acid</li>
+                        <li>Melting point 290K, hence often freezes during winter</li>
+                        <li>Reacts with bases to form salt and water</li>
+                        <li>Reacts with alcohols in presence of acid catalyst to form esters</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <h4>Esterification Reaction</h4>
+                        <p class="structure-formula">CH₃COOH + C₂H₅OH → CH₃COOC₂H₅ + H₂O</p>
+                        <p>(Ethanoic acid) (Ethanol) (Ester)</p>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Soaps and Detergents</h2>
+                    
+                    <h3>Soaps</h3>
+                    <p>Soaps are sodium or potassium salts of long chain carboxylic acids.</p>
+                    <p>Preparation: Formed by saponification reaction where fats/oils are hydrolyzed with NaOH.</p>
+                    
+                    <h3>Cleaning Action of Soap</h3>
+                    <p>Soap molecules form micelles that trap oily dirt. The micelles stay suspended in water and get washed away.</p>
+                    
+                    <div class="important">
+                        <h3>Limitations of Soap</h3>
+                        <p>Soaps don't work well in hard water because they form insoluble precipitates (scum) with calcium and magnesium ions.</p>
+                    </div>
+                    
+                    <h3>Detergents</h3>
+                    <p>Detergents are ammonium or sulphonate salts of long chain carboxylic acids. They work well in both soft and hard water.</p>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="index-box">
+                    <h3 class="index-title">Chapter Index</h3>
+                    <ul class="index-list">
+                        <li><a href="#intro">Introduction to Carbon</a></li>
+                        <li><a href="#versatile">Versatile Nature of Carbon</a></li>
+                        <li><a href="#allotropes">Allotropes of Carbon</a></li>
+                        <li><a href="#bonds">Covalent Bonds</a></li>
+                        <li><a href="#hydrocarbons">Hydrocarbons</a></li>
+                        <li><a href="#functional">Functional Groups</a></li>
+                        <li><a href="#homologous">Homologous Series</a></li>
+                        <li><a href="#properties">Chemical Properties</a></li>
+                        <li><a href="#compounds">Important Compounds</a></li>
+                        </div>
+                        </body>
+                        <script src="script.js"></script>
+                        </html>
+  

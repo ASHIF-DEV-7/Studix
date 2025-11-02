@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Notes - Studix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #3498DB;
+        }
+
+        body.dark-mode {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #2a2a2a;
+            --card-bg: #1a1a1a;
+            --shadow: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            padding-bottom: 70px;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+        }
+
+        .top-nav-main {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .top-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s, background 0.2s;
+            color: var(--text-primary);
+            border-radius: 8px;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .top-nav-center {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 50px;
+            height: 50px;
+            background: none;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            color: #f59e0b;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon.sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .theme-icon.moon {
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+            position: absolute;
+            color: #60a5fa;
+        }
+
+        body.dark-mode .theme-icon-wrapper {
+            background: #1e3a5f;
+        }
+
+        body.dark-mode .theme-icon.sun {
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+        }
+
+        body.dark-mode .theme-icon.moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Subject Chips */
+        .subject-chips-container {
+            padding: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .subject-chips-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .subject-chip {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 8px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .subject-chip:active {
+            transform: scale(0.95);
+        }
+
+        .subject-chip.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 112px;
+            padding: 0 16px 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--text-secondary);
+        }
+
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Subject Section */
+        .subject-section {
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .subject-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-count {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 12px;
+            padding-bottom: 8px;
+        }
+
+        .note-card {
+            flex: 0 0 280px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .note-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .chapter-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(52, 152, 219, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .read-time {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        /* See More Card */
+        .see-more-card {
+            background: linear-gradient(135deg, var(--accent), #2980B9);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .see-more-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .see-more-card .card-title {
+            color: white;
+            text-align: center;
+        }
+
+        /* Bottom Navigation - WhatsApp Style */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 90;
+            padding: 0 8px;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .bottom-nav-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 12px;
+            opacity: 0.1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .bottom-nav-item:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-item.active {
+            color: var(--accent);
+        }
+
+        .bottom-nav-item.active::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bottom-nav-item.active .bottom-nav-icon {
+            transform: scale(1.1);
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1.1); }
+            50% { transform: scale(1.25); }
+        }
+
+        .bottom-nav-label {
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-item.active .bottom-nav-label {
+            font-weight: 600;
+        }
+
+        /* Subject Colors */
+        .math-card {
+            border-left: 3px solid #FF6B6B;
+        }
+
+        .english-card {
+            border-left: 3px solid #4ECDC4;
+        }
+
+        .science-card {
+            border-left: 3px solid #45B7D1;
+        }
+
+        .sst-card {
+            border-left: 3px solid #96CEB4;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 24px;
+            }
+
+            .note-card {
+                flex: 0 0 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .note-card {
+                flex: 0 0 220px;
+                padding: 14px;
+            }
+
+            .card-title {
+                font-size: 14px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="top-nav-main">
+            <div class="top-nav-left">
+                <button class="icon-btn" onclick="goBack()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="top-nav-center">All Notes</div>
+            <div class="top-nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <div class="theme-icon-wrapper">
+                        <svg class="theme-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <svg class="theme-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <!-- Subject Chips -->
+        <div class="subject-chips-container">
+            <a href="#" class="subject-chip active" data-filter="all">🏠 All</a>
+            <a href="#" class="subject-chip" data-filter="math">🔢 Math</a>
+            <a href="#" class="subject-chip" data-filter="english">📖 English</a>
+            <a href="#" class="subject-chip" data-filter="science">🧪 Science</a>
+            <a href="#" class="subject-chip" data-filter="sst">🌍 SST</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">📚 Complete Study Notes</h1>
+            <p class="page-subtitle">Access all Class 10 notes organized by subject</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search notes by chapter or topic...">
+        </div>
+
+        <!-- Mathematics Section -->
+        <div class="subject-section visible" data-subject="math">
+            <div class="section-header">
+                <div class="section-title">
+                    🔢 Mathematics
+                </div>
+                <div class="section-count">15 Chapters</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="mathRow"></div>
+            </div>
+        </div>
+
+        <!-- English Section -->
+        <div class="subject-section visible" data-subject="english">
+            <div class="section-header">
+                <div class="section-title">
+                    📖 English
+                </div>
+                <div class="section-count">30 Chapters</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="englishRow"></div>
+            </div>
+        </div>
+
+        <!-- Science Section -->
+        <div class="subject-section visible" data-subject="science">
+            <div class="section-header">
+                <div class="section-title">
+                    🧪 Science
+                </div>
+                <div class="section-count">13 Chapters</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="scienceRow"></div>
+            </div>
+        </div>
+
+        <!-- SST Section -->
+        <div class="subject-section visible" data-subject="sst">
+            <div class="section-header">
+                <div class="section-title">
+                    🌍 Social Science
+                </div>
+                <div class="section-count">17 Chapters</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="sstRow"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="main.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+        <a href="all-notes.html" class="bottom-nav-item active">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            <span class="bottom-nav-label">Notes</span>
+        </a>
+        <a href="library.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            <span class="bottom-nav-label">Keep</span>
+        </a>
+        <a href="quizopt.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            <span class="bottom-nav-label">Quiz</span>
+        </a>
+        <a href="chatbot.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                <path d="M9 14c.5.5 1.5 1 3 1s2.5-.5 3-1"/>
+            </svg>
+            <span class="bottom-nav-label">Chatbot</span>
+        </a>
+    </div>
+
+    <script>
+        // Notes Data
+        const notesData = {
+            math: [
+                { title: "Real Numbers", url: "mch1.html", description: "Natural numbers, integers, rational & irrational numbers", icon: "🔢", readTime: "15 min", chapter: "Ch 1" },
+                { title: "Polynomials", url: "mch2.html", description: "Degree, zeros, relationship between coefficients", icon: "📊", readTime: "20 min", chapter: "Ch 2" },
+                { title: "Linear Equations", url: "mch3.html", description: "Graphical and algebraic solving methods", icon: "📈", readTime: "25 min", chapter: "Ch 3" },
+                { title: "Quadratic Equations", url: "mch4.html", description: "Standard form, nature of roots, solving methods", icon: "📐", readTime: "18 min", chapter: "Ch 4" },
+                { title: "AP", url: "mch5.html", description: "Common difference, nth term, sum of n terms", icon: "🔢", readTime: "22 min", chapter: "Ch 5" },
+                { title: "Triangles", url: "mch6.html", description: "Similarity, proportionality, Pythagoras theorem", icon: "📐", readTime: "30 min", chapter: "Ch 6" },
+                { title: "Coordinate Geometry", url: "mch7.html", description: "Distance formula, section formula, area", icon: "📊", readTime: "25 min", chapter: "Ch 7" },
+                { title: "Trigonometry", url: "mch8.html", description: "Ratios, identities, applications", icon: "📐", readTime: "28 min", chapter: "Ch 8" },
+                { title: "Applications of Trigo", url: "mch9.html", description: "Heights, distances, elevation angles", icon: "🏢", readTime: "20 min", chapter: "Ch 9" },
+                { title: "Circles", url: "mch10.html", description: "Tangent properties and constructions", icon: "⭕", readTime: "18 min", chapter: "Ch 10" },
+                { title: "Constructions", url: "mch11.html", description: "Line division, tangent construction", icon: "📐", readTime: "15 min", chapter: "Ch 11" },
+                { title: "Areas Related to Circles", url: "mch12.html", description: "Circle area, sector, segment, combinations", icon: "🔵", readTime: "22 min", chapter: "Ch 12" },
+                { title: "Surface Areas & Volumes", url: "mch13.html", description: "Combination of solids, applications", icon: "📦", readTime: "25 min", chapter: "Ch 13" },
+                { title: "Statistics", url: "mch14.html", description: "Mean, median, mode, cumulative frequency", icon: "📊", readTime: "20 min", chapter: "Ch 14" },
+                { title: "Probability", url: "mch15.html", description: "Classical definition, simple problems", icon: "🎲", readTime: "18 min", chapter: "Ch 15" }
+            ],
+            english: [
+                { title: "Letter to God", url: "Ench1.html", description: "Lencho's faith and letter asking for help", icon: "💌", readTime: "12 min", chapter: "Ch 1" },
+                { title: "Nelson Mandela", url: "Ench2.html", description: "South Africa's first democratic election", icon: "🕊️", readTime: "15 min", chapter: "Ch 2" },
+                { title: "Flying Stories", url: "Ench3.html", description: "His first flight and black aeroplane", icon: "✈️", readTime: "18 min", chapter: "Ch 3" },
+                { title: "Anne Frank", url: "Ench4.html", description: "Diary entries during World War II", icon: "📔", readTime: "14 min", chapter: "Ch 4" },
+                { title: "Glimpses of India", url: "Ench5.html", description: "Tea from Assam, Coorg culture", icon: "🍃", readTime: "20 min", chapter: "Ch 5" },
+                { title: "Dust of Snow", url: "Ench10.html", description: "Nature's healing power by Robert Frost", icon: "❄️", readTime: "5 min", chapter: "Poem 1" },
+                { title: "Fire and Ice", url: "Ench11.html", description: "End of the world poem", icon: "🔥", readTime: "6 min", chapter: "Poem 2" },
+                { title: "A Tiger in the Zoo", url: "Ench12.html", description: "Caged tiger's frustration", icon: "🐅", readTime: "8 min", chapter: "Poem 3" }
+            ],
+            science: [
+                { title: "Chemical Reactions", url: "chem01.html", description: "Types, balancing, oxidation effects", icon: "⚗️", readTime: "25 min", chapter: "Ch 1" },
+                { title: "Acids, Bases & Salts", url: "acid.html", description: "Properties, pH scale, salt preparation", icon: "🧪", readTime: "28 min", chapter: "Ch 2" },
+                { title: "Metals & Non-metals", url: "metal.html", description: "Properties, extraction, corrosion", icon: "⚙️", readTime: "30 min", chapter: "Ch 3" },
+                { title: "Carbon Compounds", url: "carbon.html", description: "Bonding, saturated & unsaturated", icon: "💎", readTime: "32 min", chapter: "Ch 4" },
+                { title: "Life Processes", url: "bione.html", description: "Nutrition, respiration, transportation", icon: "🌱", readTime: "35 min", chapter: "Ch 6" },
+                { title: "Light", url: "lite.html", description: "Reflection, refraction, lenses", icon: "💡", readTime: "30 min", chapter: "Ch 10" },
+                { title: "Human Eye", url: "heacw.html", description: "Eye structure, defects, refraction", icon: "👁️", readTime: "25 min", chapter: "Ch 11" },
+                { title: "Electricity", url: "elect.html", description: "Current, Ohm's law, power", icon: "⚡", readTime: "28=min", chapter: "Ch 12" },
+                { title: "Magnetic Effects", url: "magnet.html", description: "Magnetic field, induction, motor", icon: "🧲", readTime: "26 min", chapter: "Ch 13" },
+                { title: "Our Environment", url: "ouren.html", description: "Ecosystem, waste, ozone depletion", icon: "🌍", readTime: "22 min", chapter: "Ch 15" }
+            ],
+            sst: [
+                { title: "Rise of Nationalism", url: "hch1.html", description: "French Revolution, unification", icon: "🏛️", readTime: "35 min", chapter: "History 1" },
+                { title: "Nationalism in India", url: "hch2.html", description: "Non-cooperation, civil disobedience", icon: "🇮🇳", readTime: "40 min", chapter: "History 2" },
+                { title: "Global World", url: "hch3.html", description: "Trade, migration, capital flows", icon: "🌐", readTime: "32 min", chapter: "History 3" },
+                { title: "Resources", url: "geoch1.html", description: "Types, planning, land resources", icon: "🗺️", readTime: "28 min", chapter: "Geography 1" },
+                { title: "Forest & Wildlife", url: "geoch2.html", description: "Biodiversity, conservation", icon: "🌲", readTime: "26 min", chapter: "Geography 2" },
+                { title: "Water Resources", url: "geoch3.html", description: "Scarcity, projects, harvesting", icon: "💧", readTime: "30 min", chapter: "Geography 3" },
+                { title: "Power Sharing", url: "cch1.html", description: "Why and how power is shared", icon: "⚖️", readTime: "25 min", chapter: "Civics 1" },
+                { title: "Federalism", url: "cch2.html", description: "Federal features, decentralization", icon: "🏛️", readTime: "28 min", chapter: "Civics 2" },
+                { title: "Development", url: "ecoch1.html", description: "Promises, income, other goals", icon: "📈", readTime: "24 min", chapter: "Economics 1" },
+                { title: "Indian Economy Sectors", url: "ecoch2.html", description: "Primary, secondary, tertiary sectors", icon: "🏢", readTime: "28 min", chapter: "Economics 2" }
+            ]
+        };
+
+        // Create Note Card
+        function createNoteCard(note, subject, isLastCard = false) {
+            const card = document.createElement('a');
+            card.className = isLastCard ? 'note-card see-more-card' : `note-card ${subject}-card`;
+            card.href = isLastCard ? '#' : note.url;
+            
+            if (isLastCard) {
+                card.innerHTML = `
+                    <div class="card-icon">➕</div>
+                    <div class="card-title">See More Chapters</div>
+                `;
+                card.onclick = (e) => {
+                    e.preventDefault();
+                    loadMoreCards(subject);
+                };
+            } else {
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-icon">${note.icon}</div>
+                        <div class="card-title">${note.title}</div>
+                    </div>
+                    <div class="card-description">${note.description}</div>
+                    <div class="card-footer">
+                        <div class="chapter-badge">${note.chapter}</div>
+                        <div class="read-time">${note.readTime}</div>
+                    </div>
+                `;
+            }
+            
+            return card;
+        }
+
+        // Load More Cards
+        function loadMoreCards(subject) {
+            const rowId = subject + 'Row';
+            const row = document.getElementById(rowId);
+            const seeMoreCard = row.querySelector('.see-more-card');
+            
+            if (seeMoreCard) {
+                seeMoreCard.remove();
+            }
+            
+            const data = notesData[subject];
+            const currentCards = row.querySelectorAll('.note-card').length;
+            const remainingItems = data.slice(currentCards);
+            
+            remainingItems.forEach(note => {
+                const card = createNoteCard(note, subject);
+                row.appendChild(card);
+            });
+        }
+
+        // Initialize Rows
+        function initializeRows() {
+            const initialCount = 6;
+            
+            Object.keys(notesData).forEach(subject => {
+                const rowId = subject + 'Row';
+                const row = document.getElementById(rowId);
+                const data = notesData[subject];
+                
+                if (row) {
+                    const initialItems = data.slice(0, initialCount);
+                    initialItems.forEach(note => {
+                        const card = createNoteCard(note, subject);
+                        row.appendChild(card);
+                    });
+                    
+                    if (data.length > initialCount) {
+                        const seeMoreCard = createNoteCard(null, subject, true);
+                        row.appendChild(seeMoreCard);
+                    }
+                }
+            });
+        }
+
+        // Search Functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const allCards = document.querySelectorAll('.note-card:not(.see-more-card)');
+                
+                allCards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const description = card.querySelector('.card-description')?.textContent.toLowerCase() || '';
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = searchTerm === '' ? 'flex' : 'none';
+                    }
+                });
+            });
+        }
+
+        // Filter Functionality
+        function initializeFilters() {
+            const filterChips = document.querySelectorAll('.subject-chip');
+            const sections = document.querySelectorAll('.subject-section');
+            
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    
+                    const filter = chip.getAttribute('data-filter');
+                    
+                    sections.forEach(section => {
+                        if (filter === 'all' || section.getAttribute('data-subject') === filter) {
+                            section.style.display = 'block';
+                            setTimeout(() => section.classList.add('visible'), 50);
+                        } else {
+                            section.classList.remove('visible');
+                            setTimeout(() => section.style.display = 'none', 300);
+                        }
+                    });
+                });
+            });
+        }
+
+        // Theme Toggle
+        function setupTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            });
+        }
+
+        // Go Back Function
+        function goBack() {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                history.back();
+            } else {
+                window.location.href = 'main.html';
+            }
+        }
+
+        // Navigation Scroll
+        let lastScroll = 0;
+        const topNav = document.querySelector('.top-nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                topNav.style.transform = 'translateY(0)';
+            } else if (currentScroll > lastScroll && currentScroll > 100) {
+                topNav.style.transform = 'translateY(-100%)';
+            } else {
+                topNav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for Animations
+        function initializeScrollAnimations() {
+            const sections = document.querySelectorAll('.subject-section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initialize Everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeRows();
+            initializeSearch();
+            initializeFilters();
+            setupTheme();
+            initializeScrollAnimations();
+        });
+        </script>
+        </html>

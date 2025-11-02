@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Geography Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #b8e6b8 30%, #a8d8ea 70%, #87ceeb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .quiz-container {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            padding: 35px;
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #e8f5e8;
+        }
+
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #22c55e, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            color: #374151;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            background: #e8f5e8;
+            height: 10px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            border: 2px solid #d1fae5;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #22c55e, #16a34a, #15803d);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.6s ease;
+            width: 0%;
+            position: relative;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            padding: 0 12px;
+        }
+
+        .question-number {
+            color: #16a34a;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .score-display {
+            color: #1e40af;
+            font-weight: 700;
+            font-size: 1.15rem;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            padding: 10px 18px;
+            border-radius: 25px;
+            border: 2px solid #93c5fd;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .question-area {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .question {
+            color: #1f2937;
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            padding: 22px;
+            border-radius: 15px;
+            border-left: 6px solid #22c55e;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+            position: relative;
+        }
+
+        .question::before {
+            
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 1.8rem;
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .options {
+            display: grid;
+            gap: 16px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 18px 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            text-align: left;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #e2e8f0;
+            border-radius: 15px 0 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-color: #3b82f6;
+            transform: translateX(8px) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .option:hover::before {
+            background: #3b82f6;
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border-color: #1d4ed8;
+            transform: translateX(8px) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            font-weight: 600;
+        }
+
+        .option.selected::before {
+            background: #1d4ed8;
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border-color: #15803d;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+        }
+
+        .option.correct::before {
+            background: #15803d;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-color: #b91c1c;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .option.incorrect::before {
+            background: #b91c1c;
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .controls {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin-top: 35px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            min-width: 140px;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+        }
+
+        .check-btn:hover:not(:disabled) {
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .results {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 28px;
+            font-weight: 800;
+        }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 25px 0;
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .results-message {
+            font-size: 1.5rem;
+            color: #374151;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            padding: 30px;
+            border-radius: 18px;
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            border: 2px solid #d1fae5;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.1);
+        }
+
+        .stat-box {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #16a34a;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #374151;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .replay-btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            font-size: 1.3rem;
+            padding: 18px 45px;
+            margin-top: 20px;
+        }
+
+        .replay-btn:hover {
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        @media (max-width: 750px) {
+            .quiz-container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quiz-info {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .question {
+                font-size: 1.2rem;
+                padding: 18px;
+            }
+        }
+
+        .earth-animation {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="header">
+            <h1 class="earth-animation"> Geography Quiz 🗺️</h1>
+            <p>Class 10th CBSE Syllabus</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div id="quizContent">
+            <div class="quiz-info">
+                <div class="question-number" id="questionNumber">Question 1 of 40</div>
+                <div class="score-display" id="currentScore">Score: 0/40</div>
+            </div>
+            
+            <div class="question-area">
+                <div class="question" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <div class="controls">
+                <button id="submitBtn" class="submit-btn">Submit Answer</button>
+                <button id="checkBtn" class="check-btn hidden">Check Answer</button>
+                <button id="nextBtn" class="hidden">Next Question</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="results hidden">
+            <div class="results-title">🏆 Quiz Completed!</div>
+            <div class="final-score" id="finalScore">0/40</div>
+            <div class="results-message" id="resultMessage"></div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="incorrectCount">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="accuracyScore">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="finalGrade">-</div>
+                    <div class="stat-label">Grade</div>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="location.reload()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // Resources and Development
+            {
+                question: "Which type of resource is petroleum?",
+                options: ["Renewable", "Non-renewable", "Biotic", "Flow resource"],
+                correct: 1
+            },
+            {
+                question: "What is the term for the actual use of resources?",
+                options: ["Resource planning", "Resource conservation", "Resource utilization", "Resource development"],
+                correct: 2
+            },
+            {
+                question: "Which is the most important factor for soil formation?",
+                options: ["Climate", "Parent rock", "Time", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "Black soil is also known as:",
+                options: ["Alluvial soil", "Red soil", "Regur soil", "Laterite soil"],
+                correct: 2
+            },
+            {
+                question: "Which state has the maximum forest cover in India?",
+                options: ["Madhya Pradesh", "Arunachal Pradesh", "Chhattisgarh", "Odisha"],
+                correct: 0
+            },
+
+            // Water Resources
+            {
+                question: "What percentage of India's land area receives less than 75cm rainfall annually?",
+                options: ["68%", "75%", "80%", "85%"],
+                correct: 0
+            },
+            {
+                question: "Which is the largest source of irrigation in India?",
+                options: ["Canals", "Wells and Tubewells", "Tanks", "Other sources"],
+                correct: 1
+            },
+            {
+                question: "Indira Gandhi Canal is in which state?",
+                options: ["Punjab", "Haryana", "Rajasthan", "Gujarat"],
+                correct: 2
+            },
+            {
+                question: "What is watershed management?",
+                options: ["Management of rivers", "Conservation of rainwater", "Management of groundwater", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "Which multipurpose project is on river Sutlej?",
+                options: ["Bhakra Nangal", "Hirakud", "Damodar Valley", "Nagarjuna Sagar"],
+                correct: 0
+            },
+
+            // Agriculture
+            {
+                question: "Which crop is known as 'Golden Fiber'?",
+                options: ["Cotton", "Jute", "Sugarcane", "Tea"],
+                correct: 1
+            },
+            {
+                question: "What percentage of India's population is dependent on agriculture?",
+                options: ["50%", "58%", "60%", "65%"],
+                correct: 1
+            },
+            {
+                question: "Which is the leading producer of rice in India?",
+                options: ["Punjab", "West Bengal", "Uttar Pradesh", "Haryana"],
+                correct: 1
+            },
+            {
+                question: "Green Revolution in India started in which decade?",
+                options: ["1950s", "1960s", "1970s", "1980s"],
+                correct: 1
+            },
+            {
+                question: "Which crop requires highest temperature for growth?",
+                options: ["Rice", "Wheat", "Sugarcane", "Cotton"],
+                correct: 3
+            },
+
+            // Minerals and Energy Resources
+            {
+                question: "India is the largest producer of which mineral?",
+                options: ["Iron ore", "Mica", "Bauxite", "Manganese"],
+                correct: 1
+            },
+            {
+                question: "Jharia coalfield is located in which state?",
+                options: ["Odisha", "Jharkhand", "Chhattisgarh", "West Bengal"],
+                correct: 1
+            },
+            {
+                question: "Which state is the largest producer of petroleum in India?",
+                options: ["Assam", "Gujarat", "Rajasthan", "Maharashtra"],
+                correct: 1
+            },
+            {
+                question: "Kudremukh mines are famous for:",
+                options: ["Iron ore", "Bauxite", "Manganese", "Copper"],
+                correct: 0
+            },
+            {
+                question: "Which is a conventional source of energy?",
+                options: ["Solar", "Wind", "Coal", "Geothermal"],
+                correct: 2
+            },
+
+            // Manufacturing Industries
+            {
+                question: "Which city is known as the 'Manchester of India'?",
+                options: ["Mumbai", "Ahmedabad", "Surat", "Coimbatore"],
+                correct: 1
+            },
+            {
+                question: "TISCO (now TATA Steel) is located in:",
+                options: ["Bokaro", "Rourkela", "Jamshedpur", "Durgapur"],
+                correct: 2
+            },
+            {
+                question: "Which industry is known as the 'sunrise industry'?",
+                options: ["Textile", "Iron and Steel", "Information Technology", "Automobile"],
+                correct: 2
+            },
+            {
+                question: "Salem is famous for which industry?",
+                options: ["Textile", "Steel", "Automobile", "Software"],
+                correct: 1
+            },
+            {
+                question: "Which factor is most important for the location of sugar industry?",
+                options: ["Raw material", "Market", "Transport", "Power"],
+                correct: 0
+            },
+
+            // Lifelines of National Economy
+            {
+                question: "Which is the longest National Highway in India?",
+                options: ["NH-1", "NH-7", "NH-44", "NH-48"],
+                correct: 2
+            },
+            {
+                question: "Which railway zone has the maximum length of tracks?",
+                options: ["Northern", "Southern", "Eastern", "Central"],
+                correct: 0
+            },
+            {
+                question: "Which is the busiest port in India?",
+                options: ["Mumbai", "Kolkata", "Chennai", "Kochi"],
+                correct: 0
+            },
+            {
+                question: "Golden Quadrilateral connects which cities?",
+                options: ["Delhi-Mumbai-Chennai-Kolkata", "Delhi-Ahmedabad-Bangalore-Hyderabad", "Mumbai-Pune-Bangalore-Chennai", "Delhi-Jaipur-Mumbai-Pune"],
+                correct: 0
+            },
+            {
+                question: "Pipeline transportation is used mainly for:",
+                options: ["Coal", "Petroleum and Natural Gas", "Iron ore", "Food grains"],
+                correct: 1
+            },
+
+            // Additional 
+            {
+                question: "Which soil is suitable for cotton cultivation?",
+                options: ["Alluvial soil", "Black soil", "Red soil", "Laterite soil"],
+                correct: 1
+            },
+            {
+                question: "Kharif crops are sown in which season?",
+                options: ["Winter", "Summer", "Monsoon", "Spring"],
+                correct: 2
+            },
+            {
+                question: "Which state is the largest producer of coffee in India?",
+                options: ["Kerala", "Karnataka", "Tamil Nadu", "Andhra Pradesh"],
+                correct: 1
+            },
+            {
+                question: "What is the main cause of land degradation in Punjab?",
+                options: ["Deforestation", "Overgrazing", "Over irrigation", "Mining"],
+                correct: 2
+            },
+            {
+                question: "Which type of farming is practiced in areas of high population density?",
+                options: ["Extensive farming", "Intensive farming", "Commercial farming", "Primitive farming"],
+                correct: 1
+            },
+            {
+                question: "Rabi crops are harvested in which months?",
+                options: ["June-July", "April-May", "September-October", "December-January"],
+                correct: 1
+            },
+            {
+                question: "Which mineral is used in the nuclear industry?",
+                options: ["Iron", "Coal", "Uranium", "Copper"],
+                correct: 2
+            },
+            {
+                question: "Name the technique of planting trees in rows to check wind movement:",
+                options: ["Shelter belts", "Afforestation", "Strip cropping", "Contour ploughing"],
+                correct: 0
+            },
+            {
+                question: "Which port is known as the 'Queen of Arabian Sea'?",
+                options: ["Mumbai", "Kochi", "Mangalore", "New Mangalore"],
+                correct: 1
+            },
+            {
+                question: "Mass communication includes:",
+                options: ["Television", "Radio", "Newspapers", "All of the above"],
+                correct: 3
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let score = 0;
+        let hasAnswered = false;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of 40`;
+            document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            document.getElementById('questionText').textContent = q.question;
+            
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.textContent = option;
+                div.onclick = () => selectOption(index);
+                container.appendChild(div);
+            });
+
+            // Update progress
+            const progress = ((currentQuestion) / 40) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            resetUI();
+        }
+
+        function resetUI() {
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('submitBtn').disabled = false;
+            selectedAnswer = null;
+            hasAnswered = false;
+        }
+
+        function selectOption(index) {
+            if (hasAnswered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            if (selectedAnswer === null) {
+                alert('Please select an answer! 🌍');
+                return;
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('checkBtn').classList.remove('hidden');
+            hasAnswered = true;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.add('disabled');
+            });
+        }
+
+        function checkAnswer() {
+            const correctIndex = questions[currentQuestion].correct;
+            const options = document.querySelectorAll('.option');
+            
+            options[correctIndex].classList.add('correct');
+            
+            if (selectedAnswer !== correctIndex) {
+                options[selectedAnswer].classList.add('incorrect');
+            } else {
+                score++;
+                document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            }
+
+            document.getElementById('checkBtn').classList.add('hidden');
+            
+            if (currentQuestion < 39) {
+                document.getElementById('nextBtn').classList.remove('hidden');
+            } else {
+                setTimeout(displayResults, 1800);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+            });
+            
+            loadQuestion();
+        }
+
+        function displayResults() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const accuracy = Math.round((score / 40) * 100);
+            
+            document.getElementById('finalScore').textContent = `${score}/40`;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('incorrectCount').textContent = 40 - score;
+            document.getElementById('accuracyScore').textContent = accuracy + '%';
+            
+            // Calculate grade
+            let grade = '';
+            if (accuracy >= 90) grade = 'A+';
+            else if (accuracy >= 80) grade = 'A';
+            else if (accuracy >= 70) grade = 'B+';
+            else if (accuracy >= 60) grade = 'B';
+            else if (accuracy >= 50) grade = 'C';
+            else if (accuracy >= 40) grade = 'D';
+            else grade = 'F';
+            
+            document.getElementById('finalGrade').textContent = grade;
+            
+            // Result messages
+            let message = '';
+            if (accuracy >= 90) {
+                message = 'Outstanding! You are a Geography Champion! 🌟🗺️';
+            } else if (accuracy >= 80) {
+                message = 'Excellent! Great knowledge of geography! 🏔️🌊';
+            } else if (accuracy >= 70) {
+                message = 'Good work! Keep exploring geography! 🧭📍';
+            } else if (accuracy >= 60) {
+                message = 'Fair attempt! Study more geography concepts! 📚🌍';
+            } else if (accuracy >= 50) {
+                message = 'Keep learning! Geography needs more attention! 🔍🗾';
+            } else {
+                message = 'Study harder! Focus on geography basics! 📖🌏';
+            }
+            
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // Event listeners
+        document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+        document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+
+        // Initialize quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

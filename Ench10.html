@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dust of Snow - Class 10 Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016, #4a7c2a);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background-color: #fff;
+            border: none;
+            border-radius: 30px;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #2d5016, #4a7c2a);
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #4a7c2a;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .key-points {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4a7c2a;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .key-points ul {
+            padding-left: 1.5rem;
+        }
+
+        .key-points li {
+            margin-bottom: 0.5rem;
+        }
+
+        .vocabulary {
+            background-color: #f0f8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .vocabulary h3 {
+            margin-top: 0;
+        }
+
+        .vocab-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .vocab-term {
+            font-weight: bold;
+            color: #2d5016;
+        }
+
+        .question {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .question h3 {
+            color: #e65100;
+        }
+
+        .image-placeholder {
+            background-color: #e9ecef;
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .poem-container {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4a7c2a;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .poem-line {
+            margin-bottom: 0.8rem;
+        }
+
+        .poem-author {
+            text-align: right;
+            margin-top: 1.5rem;
+            font-weight: bold;
+        }
+
+        .analysis-box {
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #2d5016;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dust of Snow</h1>
+        <p class="subtitle">Class 10 English Notes - First Flight</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" data-tab="overview">Overview</button>
+            <button class="tab" data-tab="poem">The Poem</button>
+            <button class="tab" data-tab="summary">Summary & Analysis</button>
+            <button class="tab" data-tab="literary">Literary Devices</button>
+            <button class="tab" data-tab="quiz">Quick Quiz</button>
+        </div>
+
+        <div id="overview" class="content-section active">
+            <h2>Poem Overview</h2>
+            <p>"Dust of Snow" is a short and powerful poem by Robert Frost, included in the Class 10 English textbook 'First Flight'. The poem illustrates how a simple moment in nature can bring about a significant change in one's attitude and perspective.</p>
+            
+            <div class="key-points">
+                <h3>Key Highlights:</h3>
+                <ul>
+                    <li>Written by renowned American poet Robert Frost</li>
+                    <li>A very short poem with deep meaning</li>
+                    <li>Explores themes of nature, transformation, and perspective</li>
+                    <li>Shows how small moments can have big impacts</li>
+                    <li>Uses simple language with powerful imagery</li>
+                </ul>
+            </div>
+
+            <h3>About the Poet: Robert Frost</h3>
+            <p>Robert Frost (1874-1963) was one of America's most celebrated poets. Known for his realistic depictions of rural life, Frost often examined complex social and philosophical themes through simple, everyday situations. He received four Pulitzer Prizes for Poetry during his lifetime.</p>
+            
+            <div class="image-placeholder">
+                [Portrait of Robert Frost]
+            </div>
+        </div>
+
+        <div id="poem" class="content-section">
+            <h2>The Poem: Dust of Snow</h2>
+            
+            <div class="poem-container">
+                <div class="poem-line">The way a crow</div>
+                <div class="poem-line">Shook down on me</div>
+                <div class="poem-line">The dust of snow</div>
+                <div class="poem-line">From a hemlock tree</div>
+                <br>
+                <div class="poem-line">Has given my heart</div>
+                <div class="poem-line">A change of mood</div>
+                <div class="poem-line">And saved some part</div>
+                <div class="poem-line">Of a day I had rued.</div>
+                <div class="poem-author">- Robert Frost</div>
+            </div>
+            
+            <h3>Structure of the Poem</h3>
+            <p>"Dust of Snow" is a short poem consisting of two stanzas with four lines each (quatrains). The poem follows a simple rhyme scheme: ABAB CDCD.</p>
+            
+            <div class="key-points">
+                <h3>Rhyme Scheme Analysis:</h3>
+                <ul>
+                    <li><strong>Stanza 1:</strong> crow (A) - me (B) - snow (A) - tree (B)</li>
+                    <li><strong>Stanza 2:</strong> heart (C) - mood (D) - part (C) - rued (D)</li>
+                </ul>
+            </div>
+            
+            <div class="vocabulary">
+                <h3>Important Vocabulary:</h3>
+                <div class="vocab-item">
+                    <span class="vocab-term">Dust of Snow:</span> Fine particles of snow
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Hemlock Tree:</span> A type of coniferous tree, often associated with poison in literature
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Rued:</span> Felt regret, remorse or sorrow for
+                </div>
+            </div>
+        </div>
+
+        <div id="summary" class="content-section">
+            <h2>Summary & Analysis</h2>
+            
+            <h3>Summary</h3>
+            <p>The poem describes a simple incident where a crow shakes snow off a hemlock tree, causing particles of snow to fall on the poet. This seemingly insignificant event transforms the poet's mood, pulling him out of his negative state of mind and saving at least part of a day that he would have otherwise regretted.</p>
+            
+            <div class="analysis-box">
+                <h3>Detailed Analysis</h3>
+                <p><strong>Stanza 1:</strong> The poem begins with a crow shaking snow from a hemlock tree onto the poet. The crow and hemlock tree are traditionally considered inauspicious or negative symbols, setting a gloomy tone.</p>
+                <p><strong>Stanza 2:</strong> The falling snow (the "dust of snow") unexpectedly changes the poet's mood. This small, natural incident saves part of his day from being completely ruined by negative thoughts.</p>
+            </div>
+            
+            <div class="key-points">
+                <h3>Central Theme:</h3>
+                <ul>
+                    <li><strong>Transformative Power of Nature:</strong> Nature has the ability to change human perspective</li>
+                    <li><strong>Significance of Small Moments:</strong> Seemingly trivial events can have profound impacts</li>
+                    <li><strong>Hope and Redemption:</strong> Even in gloomy situations, hope can be found</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h3>Think About:</h3>
+                <p>Why does Frost choose a crow and a hemlock tree - both traditionally negative symbols - for this transformative moment?</p>
+            </div>
+        </div>
+
+        <div id="literary" class="content-section">
+            <h2>Literary Devices</h2>
+            <p>Robert Frost masterfully employs various literary devices in this concise poem to enhance its meaning and impact.</p>
+            
+            <div class="key-points">
+                <h3>Imagery:</h3>
+                <ul>
+                    <li><strong>Visual Imagery:</strong> "crow," "dust of snow," "hemlock tree" - creates a clear picture</li>
+                    <li><strong>Kinesthetic Imagery:</strong> "shook down" - conveys movement</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3>Symbolism:</h3>
+                <ul>
+                    <li><strong>Crow:</strong> Traditionally symbolizes bad omen or death</li>
+                    <li><strong>Hemlock Tree:</strong> Associated with poison (Socrates was executed with hemlock)</li>
+                    <li><strong>Snow:</strong> Represents purity, transformation, and cleansing</li>
+                    <li><strong>Dust of Snow:</strong> Symbolizes hope and redemption in a gloomy situation</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3>Other Literary Devices:</h3>
+                <ul>
+                    <li><strong>Alliteration:</strong> "Saved some part" - repetition of 's' sound</li>
+                    <li><strong>Enjambment:</strong> Lines flow into each other without punctuation, creating continuity</li>
+                    <li><strong>Contrast:</strong> Negative symbols (crow, hemlock) leading to a positive outcome</li>
+                    <li><strong>Metaphor:</strong> "Dust of snow" metaphorically represents hope and transformation</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <h3>Critical Thinking:</h3>
+                <p>How does Frost's use of contrasting symbols (negative crow/hemlock vs. positive snow/transformation) enhance the poem's message about finding hope in unlikely places?</p>
+            </div>
+        </div>
+
+        <div id="quiz" class="content-section">
+            <h2>Quick Quiz</h2>
+            <p>Test your understanding of the poem with these questions:</p>
+            
+            <div class="question">
+                <h3>Question 1:</h3>
+                <p>What shakes the dust of snow onto the poet?</p>
+                <button class="quiz-option" data-correct="false">The wind</button>
+                <button class="quiz-option" data-correct="true">A crow</button>
+                <button class="quiz-option" data-correct="false">A squirrel</button>
+                <button class="quiz-option" data-correct="false">The poet himself</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 2:</h3>
+                <p>From which tree does the dust of snow fall?</p>
+                <button class="quiz-option" data-correct="false">Oak tree</button>
+                <button class="quiz-option" data-correct="false">Maple tree</button>
+                <button class="quiz-option" data-correct="true">Hemlock tree</button>
+                <button class="quiz-option" data-correct="false">Pine tree</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 3:</h3>
+                <p>What is the rhyme scheme of the poem?</p>
+                <button class="quiz-option" data-correct="false">AABB CCDD</button>
+                <button class="quiz-option" data-correct="true">ABAB CDCD</button>
+                <button class="quiz-option" data-correct="false">ABBA CDDC</button>
+                <button class="quiz-option" data-correct="false">ABCD EFGH</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 4:</h3>
+                <p>What does the word "rued" mean in the poem?</p>
+                <button class="quiz-option" data-correct="false">Enjoyed</button>
+                <button class="quiz-option" data-correct="false">Forgotten</button>
+                <button class="quiz-option" data-correct="false">Celebrated</button>
+                <button class="quiz-option" data-correct="true">Regretted</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 5:</h3>
+                <p>What is the main theme of "Dust of Snow"?</p>
+                <button class="quiz-option" data-correct="false">The beauty of winter</button>
+                <button class="quiz-option" data-correct="false">The intelligence of crows</button>
+                <button class="quiz-option" data-correct="true">The transformative power of small moments</button>
+                <button class="quiz-option" data-correct="false">The danger of hemlock trees</button>
+                <p class="quiz-feedback"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Class 10 English Notes - Dust of Snow by Robert Frost</p>
+        <p>Created for educational purposes</p>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and content sections
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to current tab and corresponding content section
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+            
+            // Quiz functionality
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const isCorrect = this.getAttribute('data-correct') === 'true';
+                    const feedback = this.parentElement.querySelector('.quiz-feedback');
+                    
+                    // Reset all options in this question
+                    const siblings = this.parentElement.querySelectorAll('.quiz-option');
+                    siblings.forEach(sib => {
+                        sib.style.backgroundColor = '';
+                        sib.style.color = '';
+                    });
+                    
+                    // Style the clicked option
+                    if (isCorrect) {
+                        this.style.backgroundColor = '#4caf50';
+                        this.style.color = 'white';
+                        feedback.textContent = 'Correct! Well done.';
+                        feedback.style.color = '#4caf50';
+                    } else {
+                        this.style.backgroundColor = '#f44336';
+                        this.style.color = 'white';
+                        feedback.textContent = 'Incorrect. Try again.';
+                        feedback.style.color = '#f44336';
+                        
+                        // Highlight the correct answer
+                        const correctOption = this.parentElement.querySelector('[data-correct="true"]');
+                        correctOption.style.backgroundColor = '#4caf50';
+                        correctOption.style.color = 'white';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

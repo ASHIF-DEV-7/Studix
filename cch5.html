@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Parties - Class 10 Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #fafafa;
+        }
+
+        .section-content.active {
+            max-height: 2000px;
+        }
+
+        .section-body {
+            padding: 20px;
+        }
+
+        .key-point {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .key-point h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        ul li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .quiz-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .quiz-container {
+            display: none;
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .quiz-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .option {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Political Parties</h1>
+            <p>Class 10 - Civics Notes</p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">🏛️</span> What is a Political Party?</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="key-point">
+                            <h3>Definition</h3>
+                            <p>A political party is an organized group of people who have similar political views and work together to contest elections and hold power in the government.</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>Three Components of Political Party</h3>
+                            <ul>
+                                <li><strong>Leaders:</strong> Top leaders who make major political decisions</li>
+                                <li><strong>Active Members:</strong> Members who participate in meetings and activities</li>
+                                <li><strong>Followers:</strong> People who believe in party ideology and support it</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">🎯</span> Functions of Political Parties</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="key-point">
+                            <h3>1. Contest Elections</h3>
+                            <p>Parties put up candidates for elections and campaign for them.</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>2. Put Forward Policies</h3>
+                            <p>Parties present different policies and programs to voters.</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>3. Make Laws</h3>
+                            <p>Parties play a decisive role in making laws for the country.</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>4. Form and Run Government</h3>
+                            <p>The winning party forms the government and executes policies.</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>5. Role of Opposition</h3>
+                            <p>Parties that lose elections form opposition and keep check on ruling party.</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>6. Shape Public Opinion</h3>
+                            <p>Parties raise and highlight issues to influence public opinion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">🌍</span> Types of Party Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="key-point">
+                            <h3>One-Party System</h3>
+                            <p>Only one party is allowed to rule the country. Example: China, North Korea</p>
+                            <ul>
+                                <li>No choice for voters</li>
+                                <li>Not democratic</li>
+                            </ul>
+                        </div>
+                        <div class="key-point">
+                            <h3>Two-Party System</h3>
+                            <p>Power usually alternates between two main parties. Example: USA, UK</p>
+                            <ul>
+                                <li>Two main parties dominate</li>
+                                <li>Others may exist but have little chance of winning</li>
+                            </ul>
+                        </div>
+                        <div class="key-point">
+                            <h3>Multi-Party System</h3>
+                            <p>Several parties compete for power. Example: India, France</p>
+                            <ul>
+                                <li>More than two parties have real chance of winning</li>
+                                <li>Often leads to coalition governments</li>
+                                <li>Represents diverse interests</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">🇮🇳</span> Types of Parties in India</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="key-point">
+                            <h3>National Parties</h3>
+                            <p>Parties recognized at national level by Election Commission</p>
+                            <ul>
+                                <li>Presence in multiple states</li>
+                                <li>Get 6% votes in Lok Sabha or Assembly elections in 4 states</li>
+                                <li>Win at least 4 seats in Lok Sabha</li>
+                            </ul>
+                        </div>
+                        <div class="key-point">
+                            <h3>State/Regional Parties</h3>
+                            <p>Parties recognized at state level</p>
+                            <ul>
+                                <li>Strong in one or few states</li>
+                                <li>Get 6% votes in state assembly elections</li>
+                                <li>Win at least 2 seats in state assembly</li>
+                            </ul>
+                        </div>
+                        <div class="highlight">
+                            <strong>💡 Did You Know?</strong> India has a multi-party system with several national and regional parties. Coalition governments are common!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">⚠️</span> Challenges to Political Parties</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="key-point">
+                            <h3>1. Lack of Internal Democracy</h3>
+                            <p>Power concentrated with top leaders, ordinary members have little say</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>2. Dynastic Succession</h3>
+                            <p>Top positions controlled by family members</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>3. Money and Muscle Power</h3>
+                            <p>Rich candidates have advantage, use of money and force in elections</p>
+                        </div>
+                        <div class="key-point">
+                            <h3>4. Lack of Choice</h3>
+                            <p>Similar policies offered by different parties, ideological differences fading</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">✅</span> Reforms for Political Parties</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="key-point">
+                            <h3>Legal Reforms (By Law)</h3>
+                            <ul>
+                                <li>Anti-defection law to prevent party switching</li>
+                                <li>Declaration of assets and criminal cases by candidates</li>
+                                <li>Limit on election expenses</li>
+                                <li>State funding of elections proposed</li>
+                            </ul>
+                        </div>
+                        <div class="key-point">
+                            <h3>Internal Reforms (By Parties)</h3>
+                            <ul>
+                                <li>Maintain register of members</li>
+                                <li>Hold open organizational elections</li>
+                                <li>File income tax returns</li>
+                                <li>Give minimum quota to women</li>
+                            </ul>
+                        </div>
+                        <div class="key-point">
+                            <h3>People's Participation</h3>
+                            <ul>
+                                <li>Join political parties and pressure them from within</li>
+                                <li>Support movements and pressure groups</li>
+                                <li>Vote wisely and responsibly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="quiz-btn" onclick="toggleQuiz()">📝 Test Your Knowledge</button>
+
+            <div class="quiz-container" id="quizContainer">
+                <h3 style="text-align: center; margin-bottom: 20px;">Quick Quiz</h3>
+                <div class="question">
+                    <h4>1. What is a multi-party system?</h4>
+                    <div class="option" onclick="checkAnswer(this, false)">Only one party exists</div>
+                    <div class="option" onclick="checkAnswer(this, false)">Two main parties compete</div>
+                    <div class="option" onclick="checkAnswer(this, true)">Several parties compete for power</div>
+                    <div class="option" onclick="checkAnswer(this, false)">No parties exist</div>
+                </div>
+                <div class="question">
+                    <h4>2. Which is NOT a function of political parties?</h4>
+                    <div class="option" onclick="checkAnswer(this, false)">Contest elections</div>
+                    <div class="option" onclick="checkAnswer(this, true)">Collect taxes directly</div>
+                    <div class="option" onclick="checkAnswer(this, false)">Form government</div>
+                    <div class="option" onclick="checkAnswer(this, false)">Shape public opinion</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📖 Study Smart, Score Better! Good Luck! 🌟</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        function toggleQuiz() {
+            const quiz = document.getElementById('quizContainer');
+            quiz.classList.toggle('active');
+        }
+
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+
+            if (isCorrect) {
+                element.style.background = '#28a745';
+                element.style.color = 'white';
+                element.innerHTML += ' ✓ Correct!';
+            } else {
+                element.style.background = '#dc3545';
+                element.style.color = 'white';
+                element.innerHTML += ' ✗ Wrong';
+                
+                options.forEach(opt => {
+                    if (opt !== element && !opt.innerHTML.includes('✓')) {
+                        const correctOpt = Array.from(options).find(o => 
+                            o.onclick.toString().includes('true')
+                        );
+                        if (correctOpt) {
+                            correctOpt.style.background = '#28a745';
+                            correctOpt.style.color = 'white';
+                            correctOpt.innerHTML += ' ✓';
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Civics Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin: 15px 0;
+        }
+        .question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        #submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #submit-btn:hover {
+            background-color: #218838;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Class 10th Civics Quiz</h1>
+        <form id="quiz-form">
+            <!-- Question 1 -->
+            <div class="question">
+                <p>1. Who is known as the Father of the Indian Constitution?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> Mahatma Gandhi</label>
+                    <label><input type="radio" name="q1" value="b"> B.R. Ambedkar</label>
+                    <label><input type="radio" name="q1" value="c"> Jawaharlal Nehru</label>
+                    <label><input type="radio" name="q1" value="d"> Sardar Patel</label>
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <p>2. When was the Indian Constitution adopted?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> 26th January 1950</label>
+                    <label><input type="radio" name="q2" value="b"> 15th August 1947</label>
+                    <label><input type="radio" name="q2" value="c"> 26th November 1949</label>
+                    <label><input type="radio" name="q2" value="d"> 1st January 1950</label>
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <p>3. What is the supreme law of India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> The Penal Code</label>
+                    <label><input type="radio" name="q3" value="b"> The Constitution</label>
+                    <label><input type="radio" name="q3" value="c"> The Civil Code</label>
+                    <label><input type="radio" name="q3" value="d"> The Parliament Act</label>
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question">
+                <p>4. How many Fundamental Rights are provided by the Indian Constitution?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> Six</label>
+                    <label><input type="radio" name="q4" value="b"> Seven</label>
+                    <label><input type="radio" name="q4" value="c"> Five</label>
+                    <label><input type="radio" name="q4" value="d"> Eight</label>
+                </div>
+            </div>
+            <!-- Question 5 -->
+            <div class="question">
+                <p>5. The President of India is elected by?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> Direct Voting</label>
+                    <label><input type="radio" name="q5" value="b"> Electoral College</label>
+                    <label><input type="radio" name="q5" value="c"> Parliament</label>
+                    <label><input type="radio" name="q5" value="d"> State Legislatures</label>
+                </div>
+            </div>
+            <!-- Question 6 -->
+            <div class="question">
+                <p>6. Which article of the Constitution deals with Right to Equality?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="a"> Article 14-18</label>
+                    <label><input type="radio" name="q6" value="b"> Article 19-22</label>
+                    <label><input type="radio" name="q6" value="c"> Article 23-24</label>
+                    <label><input type="radio" name="q6" value="d"> Article 25-28</label>
+                </div>
+            </div>
+            <!-- Question 7 -->
+            <div class="question">
+                <p>7. Who is the head of the state in India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="a"> Prime Minister</label>
+                    <label><input type="radio" name="q7" value="b"> President</label>
+                    <label><input type="radio" name="q7" value="c"> Chief Justice</label>
+                    <label><input type="radio" name="q7" value="d"> Governor</label>
+                </div>
+            </div>
+            <!-- Question 8 -->
+            <div class="question">
+                <p>8. What is the minimum age to become a Member of Parliament (Lok Sabha)?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="a"> 21</label>
+                    <label><input type="radio" name="q8" value="b"> 25</label>
+                    <label><input type="radio" name="q8" value="c"> 30</label>
+                    <label><input type="radio" name="q8" value="d"> 35</label>
+                </div>
+            </div>
+            <!-- Question 9 -->
+            <div class="question">
+                <p>9. The Indian Parliament consists of?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> Lok Sabha only</label>
+                    <label><input type="radio" name="q9" value="b"> Rajya Sabha only</label>
+                    <label><input type="radio" name="q9" value="c"> Lok Sabha and Rajya Sabha</label>
+                    <label><input type="radio" name="q9" value="d"> Lok Sabha, Rajya Sabha, and President</label>
+                </div>
+            </div>
+            <!-- Question 10 -->
+            <div class="question">
+                <p>10. Which part of the Constitution deals with Fundamental Duties?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> Part III</label>
+                    <label><input type="radio" name="q10" value="b"> Part IV</label>
+                    <label><input type="radio" name="q10" value="c"> Part IVA</label>
+                    <label><input type="radio" name="q10" value="d"> Part V</label>
+                </div>
+            </div>
+            <!-- Question 11 -->
+            <div class="question">
+                <p>11. Who appoints the Prime Minister of India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="a"> President</label>
+                    <label><input type="radio" name="q11" value="b"> Chief Justice</label>
+                    <label><input type="radio" name="q11" value="c"> Lok Sabha</label>
+                    <label><input type="radio" name="q11" value="d"> Rajya Sabha</label>
+                </div>
+            </div>
+            <!-- Question 12 -->
+            <div class="question">
+                <p>12. What is the tenure of the President of India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="a"> 4 years</label>
+                    <label><input type="radio" name="q12" value="b"> 5 years</label>
+                    <label><input type="radio" name="q12" value="c"> 6 years</label>
+                    <label><input type="radio" name="q12" value="d"> 7 years</label>
+                </div>
+            </div>
+            <!-- Question 13 -->
+            <div class="question">
+                <p>13. Which article abolishes untouchability?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="a"> Article 15</label>
+                    <label><input type="radio" name="q13" value="b"> Article 16</label>
+                    <label><input type="radio" name="q13" value="c"> Article 17</label>
+                    <label><input type="radio" name="q13" value="d"> Article 18</label>
+                </div>
+            </div>
+            <!-- Question 14 -->
+            <div class="question">
+                <p>14. The Right to Education is covered under which article?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="a"> Article 19</label>
+                    <label><input type="radio" name="q14" value="b"> Article 21A</label>
+                    <label><input type="radio" name="q14" value="c"> Article 23</label>
+                    <label><input type="radio" name="q14" value="d"> Article 25</label>
+                </div>
+            </div>
+            <!-- Question 15 -->
+            <div class="question">
+                <p>15. Who is the head of the Council of Ministers?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="a"> President</label>
+                    <label><input type="radio" name="q15" value="b"> Prime Minister</label>
+                    <label><input type="radio" name="q15" value="c"> Vice President</label>
+                    <label><input type="radio" name="q15" value="d"> Speaker</label>
+                </div>
+            </div>
+            <!-- Question 16 -->
+            <div class="question">
+                <p>16. What is the maximum strength of the Lok Sabha?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="a"> 543</label>
+                    <label><input type="radio" name="q16" value="b"> 552</label>
+                    <label><input type="radio" name="q16" value="c"> 545</label>
+                    <label><input type="radio" name="q16" value="d"> 550</label>
+                </div>
+            </div>
+            <!-- Question 17 -->
+            <div class="question">
+                <p>17. Which schedule of the Constitution lists the languages?</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="a"> Seventh Schedule</label>
+                    <label><input type="radio" name="q17" value="b"> Eighth Schedule</label>
+                    <label><input type="radio" name="q17" value="c"> Ninth Schedule</label>
+                    <label><input type="radio" name="q17" value="d"> Tenth Schedule</label>
+                </div>
+            </div>
+            <!-- Question 18 -->
+            <div class="question">
+                <p>18. Who can declare a National Emergency?</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="a"> Prime Minister</label>
+                    <label><input type="radio" name="q18" value="b"> President</label>
+                    <label><input type="radio" name="q18" value="c"> Parliament</label>
+                    <label><input type="radio" name="q18" value="d"> Supreme Court</label>
+                </div>
+            </div>
+            <!-- Question 19 -->
+            <div class="question">
+                <p>19. The term 'Secular' was added to the Constitution by which amendment?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="a"> 42nd Amendment</label>
+                    <label><input type="radio" name="q19" value="b"> 44th Amendment</label>
+                    <label><input type="radio" name="q19" value="c"> 46th Amendment</label>
+                    <label><input type="radio" name="q19" value="d"> 48th Amendment</label>
+                </div>
+            </div>
+            <!-- Question 20 -->
+            <div class="question">
+                <p>20. What is the minimum voting age in India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="a"> 18</label>
+                    <label><input type="radio" name="q20" value="b"> 21</label>
+                    <label><input type="radio" name="q20" value="c"> 16</label>
+                    <label><input type="radio" name="q20" value="d"> 19</label>
+                </div>
+            </div>
+            <!-- Question 21 -->
+            <div class="question">
+                <p>21. Which body conducts elections in India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q21" value="a"> Supreme Court</label>
+                    <label><input type="radio" name="q21" value="b"> Election Commission</label>
+                    <label><input type="radio" name="q21" value="c"> Parliament</label>
+                    <label><input type="radio" name="q21" value="d"> President</label>
+                </div>
+            </div>
+            <!-- Question 22 -->
+            <div class="question">
+                <p>22. The Right to Freedom of Speech is provided under which article?</p>
+                <div class="options">
+                    <label><input type="radio" name="q22" value="a"> Article 19</label>
+                    <label><input type="radio" name="q22" value="b"> Article 20</label>
+                    <label><input type="radio" name="q22" value="c"> Article 21</label>
+                    <label><input type="radio" name="q22" value="d"> Article 22</label>
+                </div>
+            </div>
+            <!-- Question 23 -->
+            <div class="question">
+                <p>23. Who is the ex-officio chairman of Rajya Sabha?</p>
+                <div class="options">
+                    <label><input type="radio" name="q23" value="a"> President</label>
+                    <label><input type="radio" name="q23" value="b"> Vice President</label>
+                    <label><input type="radio" name="q23" value="c"> Prime Minister</label>
+                    <label><input type="radio" name="q23" value="d"> Speaker</label>
+                </div>
+            </div>
+            <!-- Question 24 -->
+            <div class="question">
+                <p>24. Which article provides for the Directive Principles of State Policy?</p>
+                <div class="options">
+                    <label><input type="radio" name="q24" value="a"> Article 36-51</label>
+                    <label><input type="radio" name="q24" value="b"> Article 12-35</label>
+                    <label><input type="radio" name="q24" value="c"> Article 51A</label>
+                    <label><input type="radio" name="q24" value="d"> Article 52-78</label>
+                </div>
+            </div>
+            <!-- Question 25 -->
+            <div class="question">
+                <p>25. The power to amend the Constitution lies with?</p>
+                <div class="options">
+                    <label><input type="radio" name="q25" value="a"> Supreme Court</label>
+                    <label><input type="radio" name="q25" value="b"> Parliament</label>
+                    <label><input type="radio" name="q25" value="c"> President</label>
+                    <label><input type="radio" name="q25" value="d"> States</label>
+                </div>
+            </div>
+            <!-- Question 26 -->
+            <div class="question">
+                <p>26. How many members are nominated to the Rajya Sabha by the President?</p>
+                <div class="options">
+                    <label><input type="radio" name="q26" value="a"> 12</label>
+                    <label><input type="radio" name="q26" value="b"> 10</label>
+                    <label><input type="radio" name="q26" value="c"> 14</label>
+                    <label><input type="radio" name="q26" value="d"> 8</label>
+                </div>
+            </div>
+            <!-- Question 27 -->
+            <div class="question">
+                <p>27. Which amendment lowered the voting age from 21 to 18?</p>
+                <div class="options">
+                    <label><input type="radio" name="q27" value="a"> 61st Amendment</label>
+                    <label><input type="radio" name="q27" value="b"> 62nd Amendment</label>
+                    <label><input type="radio" name="q27" value="c"> 63rd Amendment</label>
+                    <label><input type="radio" name="q27" value="d"> 64th Amendment</label>
+                </div>
+            </div>
+            <!-- Question 28 -->
+            <div class="question">
+                <p>28. The Right to Property was removed as a Fundamental Right by which amendment?</p>
+                <div class="options">
+                    <label><input type="radio" name="q28" value="a"> 42nd Amendment</label>
+                    <label><input type="radio" name="q28" value="b"> 44th Amendment</label>
+                    <label><input type="radio" name="q28" value="c"> 46th Amendment</label>
+                    <label><input type="radio" name="q28" value="d"> 48th Amendment</label>
+                </div>
+            </div>
+            <!-- Question 29 -->
+            <div class="question">
+                <p>29. Who can impose President's Rule in a state?</p>
+                <div class="options">
+                    <label><input type="radio" name="q29" value="a"> Governor</label>
+                    <label><input type="radio" name="q29" value="b"> President</label>
+                    <label><input type="radio" name="q29" value="c"> Prime Minister</label>
+                    <label><input type="radio" name="q29" value="d"> Chief Minister</label>
+                </div>
+            </div>
+            <!-- Question 30 -->
+            <div class="question">
+                <p>30. The Preamble of the Constitution declares India as a?</p>
+                <div class="options">
+                    <label><input type="radio" name="q30" value="a"> Sovereign, Socialist, Secular, Democratic Republic</label>
+                    <label><input type="radio" name="q30" value="b"> Sovereign, Communist, Democratic Republic</label>
+                    <label><input type="radio" name="q30" value="c"> Sovereign, Capitalist, Democratic Republic</label>
+                    <label><input type="radio" name="q30" value="d"> Sovereign, Theocratic, Democratic Republic</label>
+                </div>
+            </div>
+            <button type="button" id="submit-btn">Submit Quiz</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'b', q2: 'c', q3: 'b', q4: 'a', q5: 'b', q6: 'a', q7: 'b', q8: 'b', q9: 'd', q10: 'c',
+            q11: 'a', q12: 'b', q13: 'c', q14: 'b', q15: 'b', q16: 'b', q17: 'b', q18: 'b', q19: 'a', q20: 'a',
+            q21: 'b', q22: 'a', q23: 'b', q24: 'a', q25: 'b', q26: 'a', q27: 'a', q28: 'b', q29: 'b', q30: 'a'
+        };
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+            let score = 0;
+            const form = document.getElementById('quiz-form');
+            const resultDiv = document.getElementById('result');
+
+            for (let i = 1; i <= 30; i++) {
+                const selected = form.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Your Score: ${score}/30 (${(score / 30 * 100).toFixed(2)}%)`;
+        });
+    </script>
+</body>
+</html>

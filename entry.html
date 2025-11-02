@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Stage App Entry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Global & Variables */
+        :root {
+            --primary-color: #00bcd4; /* Cyan/Teal */
+            --background-color: #1a1a2e; /* Dark Blue */
+            --card-color: #2c2c54; /* Medium Dark Blue */
+            --text-color: #ffffff;
+            --logo-size: 60px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        /* --- STAGE 1: SIMPLE SPLASH SCREEN (Entry Face) --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--background-color);
+            z-index: 2000;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .splash-logo img {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 188, 212, 0.5);
+            animation: pulse 1.5s infinite alternate;
+            /* Yahan aapki logo.png aayegi */
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+        }
+
+        /* Loading Spinner (Simple but advanced look) */
+        .splash-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            margin-top: 15px;
+            animation: spin 1s linear infinite;
+        }
+
+
+        /* --- STAGE 2: ADVANCED AUTH SCREEN (Login/Signup) --- */
+        #auth-screen {
+            background-color: var(--card-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            /* Initially hidden and animated later */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+            z-index: 1000;
+        }
+
+        /* Advanced Auth Styling (Same as previous advanced code) */
+        .branding h1 { margin: 10px 0 20px 0; color: var(--primary-color); font-size: 1.8em; }
+        .tab-nav { display: flex; justify-content: space-around; margin-bottom: 25px; border-bottom: 2px solid #3d3d6e; }
+        .tab-button { flex-grow: 1; padding: 10px 0; font-size: 1.1em; font-weight: 600; background: none; border: none; color: rgba(255, 255, 255, 0.6); cursor: pointer; transition: color 0.3s ease, border-bottom 0.3s ease; }
+        .tab-button.active { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
+        .form-container { position: relative; height: 250px; overflow: hidden; }
+        .auth-form { position: absolute; width: 100%; padding: 10px 0; transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out; }
+        .auth-form.hidden { opacity: 0; pointer-events: none; }
+        #login-form.hidden { transform: translateX(-100%); }
+        #signup-form.hidden { transform: translateX(100%); }
+        #login-form:not(.hidden) { transform: translateX(0); }
+        #signup-form:not(.hidden) { transform: translateX(0); }
+        .input-group { margin-bottom: 15px; text-align: left; position: relative; }
+        .input-group i { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: var(--primary-color); }
+        input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 12px 12px 12px 45px; background-color: #3b3b6b; border: 1px solid #4a4a86; border-radius: 8px; color: var(--text-color); font-size: 1em; transition: border-color 0.3s ease, box-shadow 0.3s ease; box-sizing: border-box; }
+        input:focus { border-color: var(--primary-color); box-shadow: 0 0 10px rgba(0, 188, 212, 0.4); outline: none; }
+        .submit-button { width: 100%; padding: 12px; margin-top: 20px; font-size: 1.1em; font-weight: bold; color: var(--background-color); background-color: var(--primary-color); border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); text-transform: uppercase; }
+        .submit-button:hover { background-color: #00a4b3; transform: translateY(-1px); }
+        #message { margin-top: 15px; font-size: 0.9em; color: #ff6b6b; }
+        #message.success { color: #6eff6e; }
+        #main-app-content { display: none; padding: 40px; width: 80%; max-width: 1000px; background-color: #282c34; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.5s ease-in, transform 0.5s ease-in; transform: translateY(20px); z-index: 500; }
+        #main-app-content.visible { display: block; opacity: 1; transform: translateY(0); }
+
+        /* Keyframes */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 188, 212, 0.7); } 100% { transform: scale(1.05); box-shadow: 0 0 10px 10px rgba(0, 188, 212, 0); } }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-logo">
+            <img src="logo.png" alt="App Logo">
+        </div>
+        <div class="splash-spinner"></div>
+        <p class="loading-text">Loading web Services...</p>
+    </div>
+
+    <div id="auth-screen">
+        <div class="branding">
+            <h1>App Console</h1>
+            <p style="margin-top: -10px; opacity: 0.7;">Sign in to continue</p>
+        </div>
+        
+        <div class="tab-nav">
+            <button class="tab-button active" data-tab="login">LOG IN</button>
+            <button class="tab-button" data-tab="signup">SIGN UP</button>
+        </div>
+
+        <div class="form-container">
+            <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="login-username" placeholder="Username / Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="submit-button">LOG IN SECURELY</button>
+            </form>
+            
+            <form id="signup-form" class="auth-form hidden" onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signup-email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signup-password" placeholder="Create Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock-open"></i>
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="submit-button">CREATE ACCOUNT</button>
+            </form>
+        </div>
+
+        <p id="message"></p>
+    </div>
+
+    <div id="main-app-content">
+        <h2>✅ Welcome to the Dashboard!</h2>
+        <p>You have successfully logged in/signed up. This is your main application.</p>
+    </div>
+
+    <script>
+        const splashScreen = document.getElementById('splash-screen');
+        const authScreen = document.getElementById('auth-screen');
+        const mainContent = document.getElementById('main-app-content');
+        const messageDisplay = document.getElementById('message');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        
+        const SPLASH_DURATION = 3000; // 3 seconds
+
+        // --- Step 1: Splash Screen Timer ---
+        setTimeout(() => {
+            // Splash Screen ko gayab karo
+            splashScreen.style.opacity = '0';
+            splashScreen.style.transform = 'translateY(-100%)';
+
+            // Transition ke baad remove karo aur Auth Screen dikhao
+            setTimeout(() => {
+                splashScreen.style.display = 'none';
+
+                // Auth Screen ko visible karo (Fade-in aur slide-up animation)
+                authScreen.style.opacity = '1';
+                authScreen.style.transform = 'translateY(0)';
+            }, 500); // Transition time 0.5s
+        }, SPLASH_DURATION);
+
+        // --- Step 2: Tab Switching Logic ---
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                if (targetTab === 'login') {
+                    signupForm.classList.add('hidden');
+                    loginForm.classList.remove('hidden');
+                } else {
+                    loginForm.classList.add('hidden');
+                    signupForm.classList.remove('hidden');
+                }
+                messageDisplay.textContent = '';
+            });
+        });
+
+        // --- Step 3: Auth Handlers (For Firebase later) ---
+        function showSuccess(msg) {
+            messageDisplay.textContent = msg;
+            messageDisplay.className = 'success';
+            setTimeout(transitionToMainApp, 1500);
+        }
+
+        function showError(msg) {
+            messageDisplay.textContent = msg;
+            messageDisplay.className = '';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            // 🔑 Yahan Firebase Login code aayega
+            const password = document.getElementById('login-password').value;
+            if (password.length < 6) {
+                showError("Password should be at least 6 characters.");
+                return;
+            }
+            showSuccess(`Login successful! Redirecting...`);
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            // 🔑 Yahan Firebase Signup code aayega
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            
+            if (password.length < 6) {
+                showError("Password must be at least 6 characters long.");
+                return;
+            }
+            if (password !== confirmPassword) {
+                showError("Passwords do not match.");
+                return;
+            }
+
+            showSuccess(`Account created! Logged in and redirecting...`);
+        }
+        
+        // --- Step 4: Final Transition ---
+        function transitionToMainApp() {
+            authScreen.style.opacity = '0';
+            authScreen.style.transform = 'translateY(-50px)';
+            
+            setTimeout(() => {
+                authScreen.style.display = 'none';
+                
+                mainContent.style.display = 'flex'; // Use flex to center content
+                mainContent.classList.add('visible');
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>

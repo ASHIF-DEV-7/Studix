@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Geography Ch 2 - Forest and Wildlife Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+        }
+
+        .topic {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .topic h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .topic p, .topic li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .topic ul {
+            padding-left: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .term-card {
+            background: rgba(118, 75, 162, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(118, 75, 162, 0.2);
+        }
+
+        .term-card strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .quiz-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-container.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+        }
+
+        .question h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 12px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .option.correct {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .option.incorrect {
+            border-color: #f44336;
+            background: rgba(244, 67, 54, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .notes-section {
+            display: block;
+        }
+
+        .notes-section.hidden {
+            display: none;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .search-result-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .content-card {
+                padding: 20px;
+            }
+            
+            .key-terms {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .controls, .print-btn, .search-container {
+                display: none;
+            }
+            
+            .content-card, .header {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Forest and Wildlife Resources</h1>
+            <p class="subtitle">Class 10 Geography - Chapter 2 Complete Notes</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search topics, terms, or concepts...">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn active" onclick="showSection('notes')">📚 Notes</button>
+            <button class="btn" onclick="showSection('quiz')">🧠 Quiz</button>
+            <button class="btn" onclick="showSection('summary')">📋 Summary</button>
+            <button class="btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+
+        <div id="notesSection" class="notes-section">
+            <div class="content-card">
+                <h2 class="section-title">Introduction to Forest and Wildlife Resources</h2>
+                
+                <div class="topic">
+                    <h3>What are Forest and Wildlife Resources?</h3>
+                    <p>Forest and wildlife resources are renewable natural resources that provide essential services to humanity and maintain ecological balance. These resources are vital for:</p>
+                    <ul>
+                        <li>Maintaining biodiversity and ecosystem stability</li>
+                        <li>Providing raw materials for various industries</li>
+                        <li>Supporting livelihoods of millions of people</li>
+                        <li>Climate regulation and carbon sequestration</li>
+                        <li>Soil and water conservation</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <strong>Key Point:</strong> India has about 21% of its total land area under forests and supports 8% of the world's biodiversity despite having only 2.4% of the world's land area.
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Biodiversity and Conservation</h2>
+                
+                <div class="topic">
+                    <h3>Types of Biodiversity</h3>
+                    <div class="key-terms">
+                        <div class="term-card">
+                            <strong>Genetic Diversity</strong>
+                            Diversity in genes within a species, enabling adaptation to changing environments.
+                        </div>
+                        <div class="term-card">
+                            <strong>Species Diversity</strong>
+                            Variety of species in a given ecosystem or on Earth as a whole.
+                        </div>
+                        <div class="term-card">
+                            <strong>Ecosystem Diversity</strong>
+                            Variety of ecosystems present in a region or biosphere.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Flora and Fauna</h3>
+                    <p><strong>Flora:</strong> Plant species found in a particular region</p>
+                    <p><strong>Fauna:</strong> Animal species found in a particular region</p>
+                    
+                    <div class="highlight">
+                        <strong>India's Rich Biodiversity:</strong>
+                        <ul>
+                            <li>47,000 plant species (10% of world's flora)</li>
+                            <li>89,000 animal species (6.5% of world's fauna)</li>
+                            <li>15,000 flowering plants (6% of world total)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Forest Types in India</h2>
+                
+                <div class="topic">
+                    <h3>1. Reserved Forests</h3>
+                    <ul>
+                        <li>More than half of total forest land (54%)</li>
+                        <li>Most valuable forests from conservation perspective</li>
+                        <li>No rights for local communities</li>
+                        <li>Strict protection and management</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>2. Protected Forests</h3>
+                    <ul>
+                        <li>About one-third of total forest area (29%)</li>
+                        <li>Forest department has limited rights</li>
+                        <li>Some community access allowed</li>
+                        <li>Buffer zones around reserved forests</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>3. Unclassed Forests</h3>
+                    <ul>
+                        <li>Remaining forest land (17%)</li>
+                        <li>Belongs to government and private individuals</li>
+                        <li>Community access for grazing, fuel collection</li>
+                        <li>Least protected category</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Threats to Forest and Wildlife</h2>
+                
+                <div class="topic">
+                    <h3>Major Threats</h3>
+                    <ul>
+                        <li><strong>Deforestation:</strong> Clearing forests for agriculture, urbanization, and industrial development</li>
+                        <li><strong>Forest Fires:</strong> Natural and human-induced fires destroying vast forest areas</li>
+                        <li><strong>Overgrazing:</strong> Excessive grazing by livestock damaging forest ecosystems</li>
+                        <li><strong>Mining:</strong> Extraction of minerals destroying forest habitats</li>
+                        <li><strong>Pollution:</strong> Industrial and agricultural pollution affecting forest health</li>
+                        <li><strong>Poaching:</strong> Illegal hunting of wildlife for commercial purposes</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <strong>Alarming Statistics:</strong> India loses about 1.38 million hectares of forest cover annually due to various human activities.
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Conservation Strategies</h2>
+                
+                <div class="topic">
+                    <h3>In-situ Conservation</h3>
+                    <p>Conservation of species in their natural habitat:</p>
+                    <ul>
+                        <li><strong>National Parks:</strong> 104 national parks covering 40,501 sq km</li>
+                        <li><strong>Wildlife Sanctuaries:</strong> 544 sanctuaries covering 118,918 sq km</li>
+                        <li><strong>Biosphere Reserves:</strong> 18 reserves covering 54,716 sq km</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>Ex-situ Conservation</h3>
+                    <p>Conservation outside natural habitat:</p>
+                    <ul>
+                        <li>Zoological gardens and botanical gardens</li>
+                        <li>Seed banks and gene banks</li>
+                        <li>Tissue culture and cryopreservation</li>
+                        <li>Breeding programs for endangered species</li>
+                    </ul>
+                </div>
+
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>Project Tiger</strong>
+                        Launched in 1973 to protect the endangered Bengal tiger and its habitat.
+                    </div>
+                    <div class="term-card">
+                        <strong>Project Elephant</strong>
+                        Started in 1992 to protect elephants and their corridors.
+                    </div>
+                    <div class="term-card">
+                        <strong>Project Rhinoceros</strong>
+                        Conservation program for the one-horned rhinoceros in Assam.
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Community Participation</h2>
+                
+                <div class="topic">
+                    <h3>Joint Forest Management (JFM)</h3>
+                    <p>A partnership between forest department and local communities for sustainable forest management:</p>
+                    <ul>
+                        <li>Local communities protect and manage forest resources</li>
+                        <li>Benefits shared between community and forest department</li>
+                        <li>Emphasis on sustainable use of forest products</li>
+                        <li>Successful in states like Odisha, Haryana, and West Bengal</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>Chipko Movement</h3>
+                    <p>Famous environmental movement in Uttarakhand (then Uttar Pradesh):</p>
+                    <ul>
+                        <li>Started in 1973 by Sunderlal Bahuguna</li>
+                        <li>Villagers hugged trees to prevent cutting</li>
+                        <li>Raised awareness about deforestation</li>
+                        <li>Led to policy changes in forest management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="quizSection" class="quiz-container">
+            <h2 class="section-title">Test Your Knowledge</h2>
+            <div id="quizContent"></div>
+            <button class="btn" id="checkAnswers" onclick="checkQuizAnswers()">Check Answers</button>
+            <button class="btn" id="retakeQuiz" onclick="generateQuiz()" style="display: none;">Retake Quiz</button>
+        </div>
+
+        <div id="summarySection" class="quiz-container">
+            <h2 class="section-title">Chapter Summary</h2>
+            <div class="content-card">
+                <div class="topic">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                                            <li>Forests and wildlife are renewable resources crucial for ecological balance</li>
+                        <li>India has rich biodiversity but faces serious conservation challenges</li>
+                        <li>Three types of forests: Reserved, Protected, and Unclassed</li>
+                        <li>Major threats include deforestation, pollution, and poaching</li>
+                        <li>Conservation through in-situ and ex-situ methods</li>
+                        <li>Community participation essential for sustainable management</li>
+                        <li>Government initiatives like Project Tiger show positive results</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight">
+                    <strong>Remember:</strong> Conservation is not just the government's responsibility but requires active participation from all citizens to ensure sustainable development.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()" title="Print Notes">🖨️</button>
+
+    <script>
+        let isDarkMode = false;
+        const searchableContent = [
+            'forest resources', 'wildlife resources', 'biodiversity', 'flora', 'fauna',
+            'reserved forests', 'protected forests', 'unclassed forests',
+            'deforestation', 'conservation', 'in-situ conservation', 'ex-situ conservation',
+            'national parks', 'wildlife sanctuaries', 'biosphere reserves',
+            'project tiger', 'project elephant', 'chipko movement', 'joint forest management'
+        ];
+
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('notesSection').style.display = 'none';
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('summarySection').classList.remove('active');
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section and activate button
+            if (section === 'notes') {
+                document.getElementById('notesSection').style.display = 'block';
+                event.target.classList.add('active');
+                updateProgress(100);
+            } else if (section === 'quiz') {
+                document.getElementById('quizSection').classList.add('active');
+                event.target.classList.add('active');
+                generateQuiz();
+                updateProgress(0);
+            } else if (section === 'summary') {
+                document.getElementById('summarySection').classList.add('active');
+                event.target.classList.add('active');
+                updateProgress(100);
+            }
+        }
+
+        function updateProgress(percentage) {
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.body;
+            
+            if (isDarkMode) {
+                body.style.background = 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)';
+                body.style.color = '#ecf0f1';
+                event.target.textContent = '☀️ Light Mode';
+            } else {
+                body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                body.style.color = '#333';
+                event.target.textContent = '🌙 Dark Mode';
+            }
+        }
+
+        // Quiz functionality
+        const quizQuestions = [
+            {
+                question: "What percentage of India's total land area is under forests?",
+                options: ["15%", "21%", "25%", "30%"],
+                correct: 1
+            },
+            {
+                question: "Which type of forest covers more than half of total forest land in India?",
+                options: ["Protected Forests", "Reserved Forests", "Unclassed Forests", "Private Forests"],
+                correct: 1
+            },
+            {
+                question: "Project Tiger was launched in which year?",
+                options: ["1970", "1973", "1975", "1980"],
+                correct: 1
+            },
+            {
+                question: "What does biodiversity include?",
+                options: ["Only animal species", "Only plant species", "Genetic, species, and ecosystem diversity", "Only endangered species"],
+                correct: 2
+            },
+            {
+                question: "Chipko Movement was started by:",
+                options: ["Medha Patkar", "Vandana Shiva", "Sunderlal Bahuguna", "Salim Ali"],
+                correct: 2
+            }
+        ];
+
+        function generateQuiz() {
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = '';
+            
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <h4>Q${index + 1}. ${q.question}</h4>
+                    <div class="options">
+                        ${q.options.map((option, i) => 
+                            `<div class="option" onclick="selectOption(${index}, ${i})">${option}</div>`
+                        ).join('')}
+                    </div>
+                `;
+                quizContent.appendChild(questionDiv);
+            });
+            
+            document.getElementById('checkAnswers').style.display = 'inline-block';
+            document.getElementById('retakeQuiz').style.display = 'none';
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            const question = document.querySelectorAll('.question')[questionIndex];
+            const options = question.querySelectorAll('.option');
+            
+            // Remove previous selections
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            options[optionIndex].classList.add('selected');
+            options[optionIndex].dataset.selected = 'true';
+        }
+
+        function checkQuizAnswers() {
+            let score = 0;
+            const questions = document.querySelectorAll('.question');
+            
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option');
+                const correctIndex = quizQuestions[index].correct;
+                
+                options.forEach((option, i) => {
+                    if (i === correctIndex) {
+                        option.classList.add('correct');
+                    } else if (option.dataset.selected) {
+                        option.classList.add('incorrect');
+                    }
+                    option.onclick = null; // Disable further clicks
+                });
+                
+                if (options[correctIndex].dataset.selected) {
+                    score++;
+                }
+            });
+            
+            const percentage = (score / quizQuestions.length) * 100;
+            updateProgress(percentage);
+            
+            alert(`Quiz Complete! You scored ${score}/${quizQuestions.length} (${percentage.toFixed(1)}%)`);
+            
+            document.getElementById('checkAnswers').style.display = 'none';
+            document.getElementById('retakeQuiz').style.display = 'inline-block';
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            const matches = searchableContent.filter(item => 
+                item.toLowerCase().includes(query)
+            ).slice(0, 5);
+            
+            if (matches.length > 0) {
+                searchResults.innerHTML = matches.map(match => 
+                    `<div class="search-result-item" onclick="searchTerm('${match}')">${match}</div>`
+                ).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        function searchTerm(term) {
+            document.getElementById('searchInput').value = term;
+            document.getElementById('searchResults').style.display = 'none';
+            
+            // Highlight the term in the notes
+            const notesSection = document.getElementById('notesSection');
+            const content = notesSection.innerHTML;
+            const highlightedContent = content.replace(
+                new RegExp(`(${term})`, 'gi'),
+                '<span style="background: yellow; padding: 2px;">$1</span>'
+            );
+            notesSection.innerHTML = highlightedContent;
+            
+            // Scroll to first occurrence
+            const firstHighlight = notesSection.querySelector('span[style*="background: yellow"]');
+            if (firstHighlight) {
+                firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Hide search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                document.getElementById('searchResults').style.display = 'none';
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress(100);
+        });
+    </script>
+</body>
+</html>

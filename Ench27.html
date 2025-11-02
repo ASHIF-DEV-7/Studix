@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Necklace – Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #ff6f61;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #ff3b2e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Necklace – Notes</h1>
+
+    <section>
+        <h2>Introduction</h2>
+        <ul>
+            <li><strong>The story</strong> is written by Guy de Maupassant.</li>
+            <li>It revolves around Mathilde Loisel, a middle-class woman.</li>
+            <li>Mathilde is dissatisfied with her modest life.</li>
+            <li>She dreams of wealth, luxury, and social status.</li>
+            <li>Her husband sacrifices to fulfill her wishes.</li>
+            <li>Mathilde borrows a diamond necklace to look rich at a party.</li>
+            <li>The story highlights greed, vanity, and consequences.</li>
+            <li>Mathilde loses the necklace, leading to hardship.</li>
+            <li>The narrative explores human desires and pride.</li>
+            <li>The story ends with a surprising twist.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Key Points Explanation</h2>
+        <ul>
+            <li>Mathilde dreams of a luxurious lifestyle.</li>
+            <li>Her husband brings an invitation to a fancy party.</li>
+            <li>Mathilde complains about having nothing suitable to wear.</li>
+            <li>She borrows a beautiful diamond necklace from her friend, Madame Forestier.</li>
+            <li>Mathilde shines at the party and feels admired.</li>
+            <li>After the party, she discovers the necklace is missing.</li>
+            <li>The couple searches everywhere but cannot find it.</li>
+            <li>They decide to replace the necklace by buying a new one.</li>
+            <li>The new necklace costs a huge amount, forcing them into debt.</li>
+            <li>They work for ten years to repay the debt.</li>
+            <li>Mathilde ages and loses her beauty due to hardship.</li>
+            <li>She meets Madame Forestier and tells her about the lost necklace.</li>
+            <li>Madame Forestier reveals the original necklace was fake.</li>
+            <li>The story highlights the consequences of vanity and materialism.</li>
+            <li>It emphasizes humility and contentment with what one has.</li>
+            <li>Mathilde’s pride led to years of unnecessary suffering.</li>
+            <li>The story has a twist ending, surprising both characters and readers.</li>
+            <li>It teaches that appearances can be deceiving.</li>
+            <li>It portrays the harsh realities of life and consequences of choices.</li>
+            <li>The story encourages gratitude and realistic expectations.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Conclusion</h2>
+        <p>
+            “The Necklace” teaches a powerful lesson about vanity, greed, and the consequences of superficial desires. 
+            Mathilde’s obsession with wealth and status leads to a decade of hardship and labor. 
+            The twist ending reveals that her suffering was unnecessary because the necklace was fake. 
+            The story emphasizes humility, gratitude, and the dangers of comparing oneself to others. 
+            Readers learn that contentment and honesty are far more valuable than material possessions.
+        </p>
+    </section>
+
+    <section>
+        <h2>Moral of the Story</h2>
+        <p>
+            <strong>Vanity and greed can lead to unnecessary suffering; be content and value honesty over appearances.</strong>
+        </p>
+    </section>
+
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">↑</button>
+
+    <script>
+        window.onscroll = function() {toggleScrollButton()};
+        
+        function toggleScrollButton() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

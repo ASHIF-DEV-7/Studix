@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Chemistry - Complete Formula Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .topic-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .topic-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .topic-btn:hover, .topic-btn.active {
+            background: #ff6b6b;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .topic-section {
+            background: rgba(255,255,255,0.95);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .topic-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .topic-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .topic-title {
+            font-size: 1.8rem;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 10px;
+        }
+
+        .formula-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .formula-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .formula {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-name {
+            font-size: 1rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .example {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            background: rgba(255,255,255,0.8);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+
+        .element {
+            display: inline-block;
+            margin: 2px;
+            padding: 2px 6px;
+            background: #3498db;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .subscript {
+            font-size: 0.8em;
+            vertical-align: sub;
+        }
+
+        .superscript {
+            font-size: 0.8em;
+            vertical-align: super;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .topic-nav {
+                gap: 5px;
+            }
+            
+            .topic-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Class 10 Chemistry - Complete Formula Reference</h1>
+        
+        <input type="text" id="searchBox" class="search-box" placeholder="Search formulas, compounds, or reactions...">
+        
+        <div class="topic-nav">
+            <button class="topic-btn active" onclick="showTopic('all')">All Topics</button>
+            <button class="topic-btn" onclick="showTopic('acids')">Acids & Bases</button>
+            <button class="topic-btn" onclick="showTopic('salts')">Salts</button>
+            <button class="topic-btn" onclick="showTopic('metals')">Metals & Non-metals</button>
+            <button class="topic-btn" onclick="showTopic('carbon')">Carbon Compounds</button>
+            <button class="topic-btn" onclick="showTopic('periodic')">Periodic Classification</button>
+            <button class="topic-btn" onclick="showTopic('life')">Life Processes</button>
+        </div>
+
+        <!-- Acids, Bases & Salts -->
+        <div class="topic-section" data-topic="acids">
+            <h2 class="topic-title">🧪 Acids, Bases & Salts</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name">Common Acids</div>
+                <div class="formula">HCl - Hydrochloric Acid</div>
+                <div class="formula">H<span class="subscript">2</span>SO<span class="subscript">4</span> - Sulphuric Acid</div>
+                <div class="formula">HNO<span class="subscript">3</span> - Nitric Acid</div>
+                <div class="formula">CH<span class="subscript">3</span>COOH - Acetic Acid</div>
+                <div class="example">Example: HCl is present in gastric juice</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Common Bases</div>
+                <div class="formula">NaOH - Sodium Hydroxide</div>
+                <div class="formula">KOH - Potassium Hydroxide</div>
+                <div class="formula">Ca(OH)<span class="subscript">2</span> - Calcium Hydroxide</div>
+                <div class="formula">Mg(OH)<span class="subscript">2</span> - Magnesium Hydroxide</div>
+                <div class="formula">NH<span class="subscript">4</span>OH - Ammonium Hydroxide</div>
+                <div class="example">Example: Ca(OH)₂ is used in whitewashing</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Neutralization Reaction</div>
+                <div class="formula">Acid + Base → Salt + Water</div>
+                <div class="formula">HCl + NaOH → NaCl + H<span class="subscript">2</span>O</div>
+                <div class="example">Example: When antacid neutralizes stomach acid</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Acid + Metal Reaction</div>
+                <div class="formula">Acid + Metal → Salt + Hydrogen</div>
+                <div class="formula">2HCl + Zn → ZnCl<span class="subscript">2</span> + H<span class="subscript">2</span>↑</div>
+                <div class="example">Example: Zinc reacts with hydrochloric acid</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">pH Scale</div>
+                <div class="formula">pH = -log[H<span class="superscript">+</span>]</div>
+                <div class="formula">pH < 7 = Acidic</div>
+                <div class="formula">pH = 7 = Neutral</div>
+                <div class="formula">pH > 7 = Basic</div>
+                <div class="example">Example: Lemon juice pH ≈ 2, Water pH = 7</div>
+            </div>
+        </div>
+
+        <!-- Salts -->
+        <div class="topic-section" data-topic="salts">
+            <h2 class="topic-title">🧂 Important Salts</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name">Common Salt</div>
+                <div class="formula">NaCl - Sodium Chloride</div>
+                <div class="example">Example: Table salt, obtained from sea water</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Baking Soda</div>
+                <div class="formula">NaHCO<span class="subscript">3</span> - Sodium Hydrogen Carbonate</div>
+                <div class="example">Example: Used in baking, antacid</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Washing Soda</div>
+                <div class="formula">Na<span class="subscript">2</span>CO<span class="subscript">3</span>.10H<span class="subscript">2</span>O - Sodium Carbonate Decahydrate</div>
+                <div class="example">Example: Used for washing clothes</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Plaster of Paris</div>
+                <div class="formula">CaSO<span class="subscript">4</span>.½H<span class="subscript">2</span>O - Calcium Sulphate Hemihydrate</div>
+                <div class="example">Example: Used for making casts</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Gypsum</div>
+                <div class="formula">CaSO<span class="subscript">4</span>.2H<span class="subscript">2</span>O - Calcium Sulphate Dihydrate</div>
+                <div class="example">Example: Used for making Plaster of Paris</div>
+            </div>
+        </div>
+
+        <!-- Metals and Non-metals -->
+        <div class="topic-section" data-topic="metals">
+            <h2 class="topic-title">⚙️ Metals and Non-metals</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name">Metal + Oxygen</div>
+                <div class="formula">Metal + Oxygen → Metal Oxide</div>
+                <div class="formula">4Na + O<span class="subscript">2</span> → 2Na<span class="subscript">2</span>O</div>
+                <div class="example">Example: Sodium burns in oxygen</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Metal + Water</div>
+                <div class="formula">Metal + Water → Metal Hydroxide + Hydrogen</div>
+                <div class="formula">2Na + 2H<span class="subscript">2</span>O → 2NaOH + H<span class="subscript">2</span>↑</div>
+                <div class="example">Example: Sodium reacts vigorously with water</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Metal + Acid</div>
+                <div class="formula">Metal + Acid → Salt + Hydrogen</div>
+                <div class="formula">Mg + 2HCl → MgCl<span class="subscript">2</span> + H<span class="subscript">2</span>↑</div>
+                <div class="example">Example: Magnesium ribbon in HCl</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Displacement Reactions</div>
+                <div class="formula">More reactive metal + Less reactive metal salt → Less reactive metal + More reactive metal salt</div>
+                <div class="formula">Zn + CuSO<span class="subscript">4</span> → ZnSO<span class="subscript">4</span> + Cu</div>
+                <div class="example">Example: Zinc displaces copper from copper sulphate</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Extraction of Metals</div>
+                <div class="formula">Metal Oxide + Carbon → Metal + Carbon Dioxide</div>
+                <div class="formula">ZnO + C → Zn + CO</div>
+                <div class="formula">2PbO + C → 2Pb + CO<span class="subscript">2</span></div>
+                <div class="example">Example: Reduction of zinc oxide</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Corrosion of Iron</div>
+                <div class="formula">4Fe + 3O<span class="subscript">2</span> + 6H<span class="subscript">2</span>O → 4Fe(OH)<span class="subscript">3</span> (Rust)</div>
+                <div class="example">Example: Rusting of iron in presence of oxygen and water</div>
+            </div>
+        </div>
+
+        <!-- Carbon and its Compounds -->
+        <div class="topic-section" data-topic="carbon">
+            <h2 class="topic-title">⚫ Carbon and its Compounds</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name">Hydrocarbons - Alkanes</div>
+                <div class="formula">C<span class="subscript">n</span>H<span class="subscript">2n+2</span></div>
+                <div class="formula">CH<span class="subscript">4</span> - Methane</div>
+                <div class="formula">C<span class="subscript">2</span>H<span class="subscript">6</span> - Ethane</div>
+                <div class="formula">C<span class="subscript">3</span>H<span class="subscript">8</span> - Propane</div>
+                <div class="formula">C<span class="subscript">4</span>H<span class="subscript">10</span> - Butane</div>
+                <div class="example">Example: Natural gas contains methane</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Hydrocarbons - Alkenes</div>
+                <div class="formula">C<span class="subscript">n</span>H<span class="subscript">2n</span></div>
+                <div class="formula">C<span class="subscript">2</span>H<span class="subscript">4</span> - Ethene</div>
+                <div class="formula">C<span class="subscript">3</span>H<span class="subscript">6</span> - Propene</div>
+                <div class="example">Example: Ethene is used to ripen fruits</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Hydrocarbons - Alkynes</div>
+                <div class="formula">C<span class="subscript">n</span>H<span class="subscript">2n-2</span></div>
+                <div class="formula">C<span class="subscript">2</span>H<span class="subscript">2</span> - Ethyne (Acetylene)</div>
+                <div class="example">Example: Acetylene is used in welding</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Alcohols</div>
+                <div class="formula">R-OH</div>
+                <div class="formula">CH<span class="subscript">3</span>OH - Methanol</div>
+                <div class="formula">C<span class="subscript">2</span>H<span class="subscript">5</span>OH - Ethanol</div>
+                <div class="example">Example: Ethanol in alcoholic beverages</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Carboxylic Acids</div>
+                <div class="formula">R-COOH</div>
+                <div class="formula">HCOOH - Formic Acid</div>
+                <div class="formula">CH<span class="subscript">3</span>COOH - Acetic Acid</div>
+                <div class="example">Example: Acetic acid in vinegar</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Combustion of Hydrocarbons</div>
+                <div class="formula">Hydrocarbon + Oxygen → Carbon dioxide + Water + Energy</div>
+                <div class="formula">CH<span class="subscript">4</span> + 2O<span class="subscript">2</span> → CO<span class="subscript">2</span> + 2H<span class="subscript">2</span>O</div>
+                <div class="example">Example: Burning of methane in air</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Esterification</div>
+                <div class="formula">Carboxylic Acid + Alcohol → Ester + Water</div>
+                <div class="formula">CH<span class="subscript">3</span>COOH + C<span class="subscript">2</span>H<span class="subscript">5</span>OH → CH<span class="subscript">3</span>COOC<span class="subscript">2</span>H<span class="subscript">5</span> + H<span class="subscript">2</span>O</div>
+                <div class="example">Example: Formation of ethyl acetate</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Saponification</div>
+                <div class="formula">Fat/Oil + NaOH → Soap + Glycerol</div>
+                <div class="example">Example: Making soap from vegetable oil</div>
+            </div>
+        </div>
+
+        <!-- Periodic Classification -->
+        <div class="topic-section" data-topic="periodic">
+            <h2 class="topic-title">📊 Periodic Classification of Elements</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name">Atomic Number</div>
+                <div class="formula">Z = Number of protons = Number of electrons (in neutral atom)</div>
+                <div class="example">Example: Hydrogen Z = 1, Carbon Z = 6</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Mass Number</div>
+                <div class="formula">A = Number of protons + Number of neutrons</div>
+                <div class="example">Example: Carbon-12 has mass number 12</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Electronic Configuration</div>
+                <div class="formula">Maximum electrons in shell = 2n<span class="superscript">2</span></div>
+                <div class="formula">K shell (n=1): 2 electrons</div>
+                <div class="formula">L shell (n=2): 8 electrons</div>
+                <div class="formula">M shell (n=3): 18 electrons</div>
+                <div class="example">Example: Sodium (11): 2, 8, 1</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Valency</div>
+                <div class="formula">Valency = 8 - Number of electrons in outermost shell (if >4)</div>
+                <div class="formula">Valency = Number of electrons in outermost shell (if ≤4)</div>
+                <div class="example">Example: Chlorine (2,8,7) has valency 1</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Modern Periodic Law</div>
+                <div class="formula">Properties of elements are periodic functions of their atomic numbers</div>
+                <div class="example">Example: Elements in same group have similar properties</div>
+            </div>
+        </div>
+
+               <!-- Life Processes -->
+        <div class="topic-section" data-topic="life">
+            <h2 class="topic-title">🌱 Life Processes - Chemical Formulas</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name">Photosynthesis</div>
+                <div class="formula">6CO<span class="subscript">2</span> + 6H<span class="subscript">2</span>O + Light Energy → C<span class="subscript">6</span>H<span class="subscript">12</span>O<span class="subscript">6</span> + 6O<span class="subscript">2</span></div>
+                <div class="example">Example: Plants make glucose using carbon dioxide and water</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Respiration</div>
+                <div class="formula">C<span class="subscript">6</span>H<span class="subscript">12</span>O<span class="subscript">6</span> + 6O<span class="subscript">2</span> → 6CO<span class="subscript">2</span> + 6H<span class="subscript">2</span>O + Energy (ATP)</div>
+                <div class="example">Example: Glucose is broken down to release energy</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Anaerobic Respiration (Fermentation)</div>
+                <div class="formula">C<span class="subscript">6</span>H<span class="subscript">12</span>O<span class="subscript">6</span> → 2C<span class="subscript">2</span>H<span class="subscript">5</span>OH + 2CO<span class="subscript">2</span> + Energy</div>
+                <div class="example">Example: Yeast converts glucose to ethanol</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Water Formula</div>
+                <div class="formula">H<span class="subscript">2</span>O - Water</div>
+                <div class="example">Example: Essential for all life processes</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name">Important Gases</div>
+                <div class="formula">O<span class="subscript">2</span> - Oxygen</div>
+                <div class="formula">CO<span class="subscript">2</span> - Carbon Dioxide</div>
+                <div class="formula">N<span class="subscript">2</span> - Nitrogen</div>
+                <div class="example">Example: Oxygen is needed for respiration</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        const formulaItems = document.querySelectorAll('.formula-item');
+        const topicSections = document.querySelectorAll('.topic-section');
+
+        searchBox.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            formulaItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parent = item.closest('.topic-section');
+                
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    parent.style.display = 'block';
+                    
+                    // Highlight search term
+                    const content = item.innerHTML;
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    item.innerHTML = content.replace(regex, '<span class="highlight">$1</span>');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide sections with no visible items
+            topicSections.forEach(section => {
+                const visibleItems = section.querySelectorAll('.formula-item[style="display: block"], .formula-item:not([style*="display: none"])');
+                if (visibleItems.length === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+
+            // If search is empty, show all
+            if (searchTerm === '') {
+                formulaItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/gi, '$1');
+                });
+                topicSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+            }
+        });
+
+        // Topic navigation
+        function showTopic(topic) {
+            const buttons = document.querySelectorAll('.topic-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            topicSections.forEach(section => {
+                if (topic === 'all' || section.dataset.topic === topic) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Animate sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        topicSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initial animation
+        setTimeout(() => {
+            topicSections.forEach(section => {
+                section.classList.add('visible');
+            });
+        }, 500);
+
+        // Add interactive effects
+        formulaItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+<script src="script.js"></script>
+</html>

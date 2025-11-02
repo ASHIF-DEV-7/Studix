@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Settings Test Page</title>
+    
+    <!-- Content Settings Script -->
+    <script src="content-settings.js" defer></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        /* Default styling for content areas - will be overridden by content-settings.js */
+        .content-area {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .study-content {
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .lesson-content {
+            background: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="header">
+            <h1>Content Settings Test Page</h1>
+            <p>यह page content settings को test करने के लिए है</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Settings page खोलकर content section के colors change करें</li>
+                <li>Content font family और text color भी change करें</li>
+                <li>Save Settings button दबाएं</li>
+                <li>इस page पर वापस आकर देखें - content areas automatically update हो जाने चाहिए</li>
+            </ol>
+        </div>
+
+        <!-- Test Content Areas -->
+        <div class="content-area">
+            <h2>Content Area Test</h2>
+            <p>यह एक <strong>content-area</strong> class का example है। यह content settings के अनुसार style होना चाहिए।</p>
+            <ul>
+                <li>Background color change होना चाहिए</li>
+                <li>Font family change होनी चाहिए</li>
+                <li>Text color भी change होना चाहिए</li>
+            </ul>
+            <p>यदि आप settings page से कुछ भी change करते हैं तो यह automatically update हो जाना चाहिए।</p>
+            
+            <h3>Sample Heading</h3>
+            <p>यह paragraph है जो <a href="#">link के साथ</a> है। सभी elements का color और font change होना चाहिए।</p>
+            
+            <blockquote style="border-left: 4px solid #ccc; padding-left: 15px; margin: 15px 0; font-style: italic;">
+                यह एक quote है जो भी content settings के अनुसार style होना चाहिए।
+            </blockquote>
+        </div>
+
+        <div class="study-content">
+            <h2>Study Content Test</h2>
+            <p>यह <strong>study-content</strong> class का example है।</p>
+            <ol>
+                <li>Mathematics formulas: x² + y² = z²</li>
+                <li>Physics equations: E = mc²</li>
+                <li>Chemistry symbols: H₂O, CO₂</li>
+            </ol>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px; background: #f5f5f5;">Subject</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; background: #f5f5f5;">Topic</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; background: #f5f5f5;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Math</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Algebra</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Completed</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Science</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Physics</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">In Progress</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="lesson-content">
+            <h2>Lesson Content Test</h2>
+            <p>यह <strong>lesson-content</strong> class का example है।</p>
+            
+            <h3>Code Example:</h3>
+            <pre style="background: #f4f4f4; padding: 10px; border-radius: 4px; overflow-x: auto;"><code>function testContentSettings() {
+    console.log("Content settings are working!");
+    return true;
+}</code></pre>
+            
+            <p>Inline code भी test करते हैं: <code>console.log("Hello World!")</code></p>
+            
+            <h4>Important Notes:</h4>
+            <ul>
+                <li>सभी headings का color change होना चाहिए</li>
+                <li>Paragraphs का font और color change होना चाहिए</li>
+                <li>Links का color भी change होना चाहिए</li>
+                <li>Tables और lists भी properly style होने चाहिए</li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h2>Main Content Test</h2>
+            <p>यह <strong>main-content</strong> class है जो भी content settings support करती है।</p>
+            
+            <div style="background: #f0f8f0; border: 1px solid #c8e6c8; padding: 15px; border-radius: 5px; margin: 15px 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">Success Box</h4>
+                <p>यह nested content का example है। यह भी content settings के अनुसार style होना चाहिए।</p>
+            </div>
+        </div>
+
+        <!-- Debug Information -->
+        <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin: 30px 0;">
+            <h3 style="color: #856404;">Debug Information:</h3>
+            <p><strong>Current Settings:</strong></p>
+            <div id="debugInfo" style="font-family: monospace; background: white; padding: 10px; border-radius: 3px; white-space: pre-wrap;"></div>
+            <button onclick="showDebugInfo()" style="background: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-top: 10px;">Show Current Settings</button>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="settings.html" style="background: #28a745; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">Go to Settings Page</a>
+        </div>
+    </div>
+
+    <script>
+        // Debug function to show current settings
+        function showDebugInfo() {
+            const debugDiv = document.getElementById('debugInfo');
+            
+            if (window.ContentSettings) {
+                const currentSettings = window.ContentSettings.get();
+                debugDiv.textContent = JSON.stringify(currentSettings, null, 2);
+            } else {
+                debugDiv.textContent = 'ContentSettings not loaded. Make sure content-settings.js is included.';
+            }
+            
+            // Also show localStorage data
+            const allSettings = localStorage.getItem('Studix-settings');
+            if (allSettings) {
+                debugDiv.textContent += '\n\nFull Settings from localStorage:\n' + JSON.stringify(JSON.parse(allSettings), null, 2);
+            }
+        }
+        
+        // Auto-show debug info when page loads
+        window.addEventListener('load', () => {
+            setTimeout(showDebugInfo, 1000);
+        });
+        
+        // Listen for content settings applied event
+        window.addEventListener('contentSettingsApplied', (event) => {
+            console.log('Content settings applied:', event.detail);
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 15px;
+                border-radius: 5px;
+                z-index: 1000;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            `;
+            notification.textContent = 'Content settings applied successfully!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

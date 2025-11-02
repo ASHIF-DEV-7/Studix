@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Visitor – Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #6a1b9a;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #6a1b9a;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #4a0072;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Midnight Visitor – Notes</h1>
+
+    <section>
+        <h2>Introduction</h2>
+        <ul>
+            <li><strong>The story</strong> is written by Robert Arthur.</li>
+            <li>It is a detective story featuring a clever young boy, Jerry.</li>
+            <li>The story revolves around a midnight visit to solve a mystery.</li>
+            <li>Jerry is observant, intelligent, and brave.</li>
+            <li>The story emphasizes logical reasoning and problem-solving.</li>
+            <li>It highlights suspense and thrilling events.</li>
+            <li>The protagonist uses his intelligence to outsmart criminals.</li>
+            <li>The story teaches courage, alertness, and critical thinking.</li>
+            <li>The narrative is short, engaging, and full of surprises.</li>
+            <li>It encourages readers to value observation and wit.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Key Points Explanation</h2>
+        <ul>
+            <li>Jerry is the son of a retired detective.</li>
+            <li>He notices suspicious behavior in his neighborhood.</li>
+            <li>At midnight, a mysterious visitor arrives at his home.</li>
+            <li>The visitor is connected to a theft or crime.</li>
+            <li>Jerry uses his detective skills to observe and gather clues.</li>
+            <li>He cleverly records conversations and actions without being noticed.</li>
+            <li>The story involves suspense, timing, and careful planning.</li>
+            <li>Jerry remains calm under pressure and thinks logically.</li>
+            <li>He identifies the criminal through observation and reasoning.</li>
+            <li>Jerry uses his wits rather than force to solve the problem.</li>
+            <li>The story emphasizes smart decision-making.</li>
+            <li>It highlights the importance of staying alert at unusual times.</li>
+            <li>Jerry demonstrates patience and courage in a tense situation.</li>
+            <li>The criminal underestimates the intelligence of a young boy.</li>
+            <li>The story ends with the criminal being caught or exposed.</li>
+            <li>Readers learn that sharp observation can solve complex problems.</li>
+            <li>The narrative shows that age is no barrier to intelligence.</li>
+            <li>It reinforces detective skills such as deduction and analysis.</li>
+            <li>The story keeps the reader engaged with suspenseful events.</li>
+            <li>It teaches that calm thinking is key in dangerous situations.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Conclusion</h2>
+        <p>
+            “The Midnight Visitor” is an exciting detective story that highlights intelligence, courage, and observation. 
+            Jerry’s clever thinking allows him to outsmart a criminal during a midnight visit. 
+            The story teaches readers that logical reasoning, patience, and attention to detail are powerful tools. 
+            It emphasizes that bravery is not only physical but also mental. 
+            Overall, it encourages critical thinking and problem-solving in everyday life.
+        </p>
+    </section>
+
+    <section>
+        <h2>Moral of the Story</h2>
+        <p>
+            <strong>Intelligence, observation, and courage are more powerful than age or strength in solving problems.</strong>
+        </p>
+    </section>
+
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">↑</button>
+
+    <script>
+        window.onscroll = function() {toggleScrollButton()};
+        
+        function toggleScrollButton() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

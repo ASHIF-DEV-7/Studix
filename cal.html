@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Class 10 Math Calculator</title>
+    <link rel="stylesheet" href="cal.css">
+    <style>
+        .back-btn {
+            height: 35px;
+            width: 35px;
+            box-shadow: 0,14px,20px rgba(0,0,0,0.3);
+            border-radius: 50%;
+            color: white;
+            background: linear-gradient(#3A5AD5,#D53A3A,white);
+        
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+        <!-- Back Button -->
+        <button class="back-btn" onclick="goBack()" title="Go Back">←</button>
+         <div class="logo">
+                <span class="logo-icon"></span>
+                <span class="logo-text">CBSE Math Calculator</span>
+                <span class="badge">Smart Calculator For 10th</span>
+            </div>
+            <button class="theme-btn" id="themeToggle">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="nav-section">
+                <h3 class="nav-heading">Calculators</h3>
+                <button class="nav-item active" data-section="basic">
+                    <span class="nav-icon">🔢</span>
+                    <span class="nav-text">Basic Calculator</span>
+                </button>
+                <button class="nav-item" data-section="real-numbers">
+                    <span class="nav-icon">1</span>
+                    <span class="nav-text">Real Numbers</span>
+                </button>
+                <button class="nav-item" data-section="polynomials">
+                    <span class="nav-icon">2</span>
+                    <span class="nav-text">Polynomials</span>
+                </button>
+                <button class="nav-item" data-section="linear-equations">
+                    <span class="nav-icon">3</span>
+                    <span class="nav-text">Linear Equations</span>
+                </button>
+                <button class="nav-item" data-section="quadratic">
+                    <span class="nav-icon">4</span>
+                    <span class="nav-text">Quadratic Equations</span>
+                </button>
+                <button class="nav-item" data-section="ap">
+                    <span class="nav-icon">5</span>
+                    <span class="nav-text">Arithmetic Progression</span>
+                </button>
+                <button class="nav-item" data-section="triangles">
+                    <span class="nav-icon">6</span>
+                    <span class="nav-text">Triangles</span>
+                </button>
+                <button class="nav-item" data-section="coordinate">
+                    <span class="nav-icon">7</span>
+                    <span class="nav-text">Coordinate Geometry</span>
+                </button>
+                <button class="nav-item" data-section="trigonometry">
+                    <span class="nav-icon">8</span>
+                    <span class="nav-text">Trigonometry</span>
+                </button>
+                <button class="nav-item" data-section="height-distance">
+                    <span class="nav-icon">9</span>
+                    <span class="nav-text">Height & Distance</span>
+                </button>
+                <button class="nav-item" data-section="circles">
+                    <span class="nav-icon">10</span>
+                    <span class="nav-text">Circles</span>
+                </button>
+                <button class="nav-item" data-section="constructions">
+                    <span class="nav-icon">11</span>
+                    <span class="nav-text">Constructions</span>
+                </button>
+                <button class="nav-item" data-section="area-circle">
+                    <span class="nav-icon">12</span>
+                   <span class="nav-text">Areas - Circles</span>
+                </button>
+                <button class="nav-item" data-section="surface-volume">
+                    <span class="nav-icon">13</span>
+                    <span class="nav-text">Surface Area & Volume</span>
+                </button>
+                <button class="nav-item" data-section="statistics">
+                    <span class="nav-icon">14</span>
+                    <span class="nav-text">Statistics</span>
+                </button>
+                <button class="nav-item" data-section="probability">
+                    <span class="nav-icon">15</span>
+                    <span class="nav-text">Probability</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="content">
+            <!-- Basic Calculator Section -->
+            <section class="section active" id="basic">
+                <div class="section-header">
+                    <h1 class="section-title">Basic Calculator</h1>
+                    <p class="section-desc">Perform basic arithmetic operations</p>
+                </div>
+
+                <div class="calculator-container">
+                    <div class="calc-display" id="calcDisplay">0</div>
+                    <div class="calc-grid">
+                        <button class="calc-btn calc-clear" data-action="clear">C</button>
+                        <button class="calc-btn calc-operator" data-action="backspace">⌫</button>
+                        <button class="calc-btn calc-operator" data-value="%">%</button>
+                        <button class="calc-btn calc-operator" data-value="/">÷</button>
+
+                        <button class="calc-btn" data-value="7">7</button>
+                        <button class="calc-btn" data-value="8">8</button>
+                        <button class="calc-btn" data-value="9">9</button>
+                        <button class="calc-btn calc-operator" data-value="*">×</button>
+
+                        <button class="calc-btn" data-value="4">4</button>
+                        <button class="calc-btn" data-value="5">5</button>
+                        <button class="calc-btn" data-value="6">6</button>
+                        <button class="calc-btn calc-operator" data-value="-">−</button>
+
+                        <button class="calc-btn" data-value="1">1</button>
+                        <button class="calc-btn" data-value="2">2</button>
+                        <button class="calc-btn" data-value="3">3</button>
+                        <button class="calc-btn calc-operator" data-value="+">+</button>
+
+                        <button class="calc-btn calc-zero" data-value="0">0</button>
+                        <button class="calc-btn" data-value=".">.</button>
+                        <button class="calc-btn calc-equals" data-action="equals">=</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real Numbers Section -->
+            <section class="section" id="real-numbers">
+                <div class="section-header">
+                    <h1 class="section-title">Real Numbers</h1>
+                    <p class="section-desc">HCF, LCM, Prime Factorization</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- HCF Calculator -->
+                    <div class="card">
+                        <h3 class="card-title">HCF Calculator</h3>
+                        <div class="input-group">
+                            <label class="label">First Number</label>
+                            <input type="number" class="input" id="hcf-num1" placeholder="Enter first number">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Second Number</label>
+                            <input type="number" class="input" id="hcf-num2" placeholder="Enter second number">
+                        </div>
+                        <button class="btn" onclick="calcHCF()">Calculate HCF</button>
+                        <div class="result" id="hcf-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Euclid's Division Algorithm
+                        </div>
+                    </div>
+
+                    <!-- LCM Calculator -->
+                    <div class="card">
+                        <h3 class="card-title">LCM Calculator</h3>
+                        <div class="input-group">
+                            <label class="label">First Number</label>
+                            <input type="number" class="input" id="lcm-num1" placeholder="Enter first number">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Second Number</label>
+                            <input type="number" class="input" id="lcm-num2" placeholder="Enter second number">
+                        </div>
+                        <button class="btn" onclick="calcLCM()">Calculate LCM</button>
+                        <div class="result" id="lcm-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> LCM × HCF = a × b
+                        </div>
+                    </div>
+
+                    <!-- Prime Factorization -->
+                    <div class="card">
+                        <h3 class="card-title">Prime Factorization</h3>
+                        <div class="input-group">
+                            <label class="label">Number</label>
+                            <input type="number" class="input" id="prime-num" placeholder="Enter number">
+                        </div>
+                        <button class="btn" onclick="calcPrimeFactors()">Find Prime Factors</button>
+                        <div class="result" id="prime-result"></div>
+                    </div>
+
+                    <!-- Check Prime -->
+                    <div class="card">
+                        <h3 class="card-title">Check Prime Number</h3>
+                        <div class="input-group">
+                            <label class="label">Number</label>
+                            <input type="number" class="input" id="check-prime" placeholder="Enter number">
+                        </div>
+                        <button class="btn" onclick="checkPrime()">Check Prime</button>
+                        <div class="result" id="check-prime-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Polynomials Section -->
+            <section class="section" id="polynomials">
+                <div class="section-header">
+                    <h1 class="section-title">Polynomials</h1>
+                    <p class="section-desc">Calculate polynomial values and find zeroes</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Polynomial Value -->
+                    <div class="card">
+                        <h3 class="card-title">Polynomial Value (ax² + bx + c)</h3>
+                        <div class="input-group">
+                            <label class="label">Coefficient a</label>
+                            <input type="number" class="input" id="poly-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient b</label>
+                            <input type="number" class="input" id="poly-b" placeholder="Enter b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient c</label>
+                            <input type="number" class="input" id="poly-c" placeholder="Enter c">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Value of x</label>
+                            <input type="number" class="input" id="poly-x" placeholder="Enter x">
+                        </div>
+                        <button class="btn" onclick="calcPolyValue()">Calculate Value</button>
+                        <div class="result" id="poly-value-result"></div>
+                    </div>
+
+                    <!-- Find Zeroes -->
+                    <div class="card">
+                        <h3 class="card-title">Find Zeroes</h3>
+                        <div class="input-group">
+                            <label class="label">Coefficient a</label>
+                            <input type="number" class="input" id="zero-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient b</label>
+                            <input type="number" class="input" id="zero-b" placeholder="Enter b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient c</label>
+                            <input type="number" class="input" id="zero-c" placeholder="Enter c">
+                        </div>
+                        <button class="btn" onclick="calcZeroes()">Find Zeroes</button>
+                        <div class="result" id="zeroes-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> x = [-b ± √(b² - 4ac)] / 2a
+                        </div>
+                    </div>
+
+                    <!-- Division Algorithm -->
+                    <div class="card">
+                        <h3 class="card-title">Division Algorithm</h3>
+                        <div class="input-group">
+                            <label class="label">Dividend</label>
+                            <input type="number" class="input" id="div-dividend" placeholder="Enter dividend">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Divisor</label>
+                            <input type="number" class="input" id="div-divisor" placeholder="Enter divisor">
+                        </div>
+                        <button class="btn" onclick="calcDivision()">Calculate</button>
+                        <div class="result" id="division-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Linear Equations Section -->
+            <section class="section" id="linear-equations">
+                <div class="section-header">
+                    <h1 class="section-title">Linear Equations</h1>
+                    <p class="section-desc">Solve pair of linear equations</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card card-wide">
+                        <h3 class="card-title">Solve Linear Equations</h3>
+                        <p class="card-subtitle">a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0</p>
+                        
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">a₁</label>
+                                <input type="number" class="input" id="lin-a1" placeholder="a₁">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">b₁</label>
+                                <input type="number" class="input" id="lin-b1" placeholder="b₁">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">c₁</label>
+                                <input type="number" class="input" id="lin-c1" placeholder="c₁">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">a₂</label>
+                                <input type="number" class="input" id="lin-a2" placeholder="a₂">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">b₂</label>
+                                <input type="number" class="input" id="lin-b2" placeholder="b₂">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">c₂</label>
+                                <input type="number" class="input" id="lin-c2" placeholder="c₂">
+                            </div>
+                        </div>
+
+                        <button class="btn" onclick="solveLinear()">Solve Equations</button>
+                        <div class="result" id="linear-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quadratic Equations Section -->
+            <section class="section" id="quadratic">
+                <div class="section-header">
+                    <h1 class="section-title">Quadratic Equations</h1>
+                    <p class="section-desc">Solve quadratic equations (ax² + bx + c = 0)</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Quadratic Formula -->
+                    <div class="card">
+                        <h3 class="card-title">Quadratic Formula</h3>
+                        <div class="input-group">
+                            <label class="label">Coefficient a</label>
+                            <input type="number" class="input" id="quad-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient b</label>
+                            <input type="number" class="input" id="quad-b" placeholder="Enter b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient c</label>
+                            <input type="number" class="input" id="quad-c" placeholder="Enter c">
+                        </div>
+                        <button class="btn" onclick="solveQuadratic()">Find Roots</button>
+                        <div class="result" id="quad-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> x = [-b ± √(b² - 4ac)] / 2a
+                        </div>
+                    </div>
+
+                    <!-- Factorization -->
+                    <div class="card">
+                        <h3 class="card-title">Factorization</h3>
+                        <div class="input-group">
+                            <label class="label">Coefficient a</label>
+                            <input type="number" class="input" id="fact-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient b</label>
+                            <input type="number" class="input" id="fact-b" placeholder="Enter b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient c</label>
+                            <input type="number" class="input" id="fact-c" placeholder="Enter c">
+                        </div>
+                        <button class="btn" onclick="factorizeQuad()">Factorize</button>
+                        <div class="result" id="fact-result"></div>
+                    </div>
+
+                    <!-- Nature of Roots -->
+                    <div class="card">
+                        <h3 class="card-title">Nature of Roots</h3>
+                        <div class="input-group">
+                            <label class="label">Coefficient a</label>
+                            <input type="number" class="input" id="nature-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient b</label>
+                            <input type="number" class="input" id="nature-b" placeholder="Enter b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Coefficient c</label>
+                            <input type="number" class="input" id="nature-c" placeholder="Enter c">
+                        </div>
+                        <button class="btn" onclick="checkNature()">Check Nature</button>
+                        <div class="result" id="nature-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Arithmetic Progression Section -->
+            <section class="section" id="ap">
+                <div class="section-header">
+                    <h1 class="section-title">Arithmetic Progression</h1>
+                    <p class="section-desc">Calculate AP terms and sums</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- nth Term -->
+                    <div class="card">
+                        <h3 class="card-title">nth Term of AP</h3>
+                        <div class="input-group">
+                            <label class="label">First Term (a)</label>
+                            <input type="number" class="input" id="ap-nth-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Common Difference (d)</label>
+                            <input type="number" class="input" id="ap-nth-d" placeholder="Enter d">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Term Position (n)</label>
+                            <input type="number" class="input" id="ap-nth-n" placeholder="Enter n">
+                        </div>
+                        <button class="btn" onclick="calcNthTerm()">Calculate nth Term</button>
+                        <div class="result" id="ap-nth-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> aₙ = a + (n-1)d
+                        </div>
+                    </div>
+
+                    <!-- Sum of n Terms -->
+                    <div class="card">
+                        <h3 class="card-title">Sum of n Terms</h3>
+                        <div class="input-group">
+                            <label class="label">First Term (a)</label>
+                            <input type="number" class="input" id="ap-sum-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Common Difference (d)</label>
+                            <input type="number" class="input" id="ap-sum-d" placeholder="Enter d">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Number of Terms (n)</label>
+                            <input type="number" class="input" id="ap-sum-n" placeholder="Enter n">
+                        </div>
+                        <button class="btn" onclick="calcAPSum()">Calculate Sum</button>
+                        <div class="result" id="ap-sum-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Sₙ = n/2[2a + (n-1)d]
+                        </div>
+                    </div>
+
+                    <!-- Find Common Difference -->
+                    <div class="card">
+                        <h3 class="card-title">Find Common Difference</h3>
+                        <div class="input-group">
+                            <label class="label">First Term (a)</label>
+                            <input type="number" class="input" id="ap-cd-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">nth Term (aₙ)</label>
+                            <input type="number" class="input" id="ap-cd-an" placeholder="Enter aₙ">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Position (n)</label>
+                            <input type="number" class="input" id="ap-cd-n" placeholder="Enter n">
+                        </div>
+                        <button class="btn" onclick="calcCommonDiff()">Find d</button>
+                        <div class="result" id="ap-cd-result"></div>
+                    </div>
+
+                    <!-- Find Number of Terms -->
+                    <div class="card">
+                        <h3 class="card-title">Find Number of Terms</h3>
+                        <div class="input-group">
+                            <label class="label">First Term (a)</label>
+                            <input type="number" class="input" id="ap-n-a" placeholder="Enter a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Common Difference (d)</label>
+                            <input type="number" class="input" id="ap-n-d" placeholder="Enter d">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Last Term (l)</label>
+                            <input type="number" class="input" id="ap-n-l" placeholder="Enter l">
+                        </div>
+                        <button class="btn" onclick="calcNumTerms()">Find n</button>
+                        <div class="result" id="ap-n-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Triangles Section -->
+            <section class="section" id="triangles">
+                <div class="section-header">
+                    <h1 class="section-title">Triangles</h1>
+                    <p class="section-desc">Calculate area, perimeter, and apply Pythagoras theorem</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Area (Base × Height) -->
+                    <div class="card">
+                        <h3 class="card-title">Area (Base × Height)</h3>
+                        <div class="input-group">
+                            <label class="label">Base</label>
+                            <input type="number" class="input" id="tri-base" placeholder="Enter base">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Height</label>
+                            <input type="number" class="input" id="tri-height" placeholder="Enter height">
+                        </div>
+                        <button class="btn" onclick="calcTriArea()">Calculate Area</button>
+                        <div class="result" id="tri-area-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Area = ½ × base × height
+                        </div>
+                    </div>
+
+                    <!-- Heron's Formula -->
+                    <div class="card">
+                        <h3 class="card-title">Heron's Formula</h3>
+                        <div class="input-group">
+                            <label class="label">Side a</label>
+                            <input type="number" class="input" id="heron-a" placeholder="Enter side a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Side b</label>
+                            <input type="number" class="input" id="heron-b" placeholder="Enter side b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Side c</label>
+                            <input type="number" class="input" id="heron-c" placeholder="Enter side c">
+                        </div>
+                        <button class="btn" onclick="calcHeron()">Calculate Area</button>
+                        <div class="result" id="heron-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Area = √[s(s-a)(s-b)(s-c)]
+                        </div>
+                    </div>
+
+                    <!-- Pythagoras Theorem -->
+                    <div class="card">
+                        <h3 class="card-title">Pythagoras Theorem</h3>
+                        <div class="input-group">
+                            <label class="label">Find</label>
+                            <select class="input" id="pyth-type">
+                                <option value="hypotenuse">Hypotenuse (c)</option>
+                                <option value="base">Base (a)</option>
+                                <option value="perpendicular">Perpendicular (b)</option>
+                            </select>
+                        </div>
+                        <div id="pyth-inputs"></div>
+                        <button class="btn" onclick="calcPythagoras()">Calculate</button>
+                        <div class="result" id="pyth-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> c² = a² + b²
+                        </div>
+                    </div>
+
+                    <!-- Perimeter -->
+                    <div class="card">
+                        <h3 class="card-title">Perimeter of Triangle</h3>
+                        <div class="input-group">
+                            <label class="label">Side a</label>
+                            <input type="number" class="input" id="peri-a" placeholder="Enter side a">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Side b</label>
+                            <input type="number" class="input" id="peri-b" placeholder="Enter side b">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Side c</label>
+                            <input type="number" class="input" id="peri-c" placeholder="Enter side c">
+                        </div>
+                        <button class="btn" onclick="calcPerimeter()">Calculate Perimeter</button>
+                        <div class="result" id="peri-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coordinate Geometry Section -->
+            <section class="section" id="coordinate">
+                <div class="section-header">
+                    <h1 class="section-title">Coordinate Geometry</h1>
+                    <p class="section-desc">Distance, midpoint, section formula, and area</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Distance Formula -->
+                    <div class="card">
+                        <h3 class="card-title">Distance Formula</h3>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₁</label>
+                                <input type="number" class="input" id="dist-x1" placeholder="x₁">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₁</label>
+                                <input type="number" class="input" id="dist-y1" placeholder="y₁">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₂</label>
+                                <input type="number" class="input" id="dist-x2" placeholder="x₂">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₂</label>
+                                <input type="number" class="input" id="dist-y2" placeholder="y₂">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="calcDistance()">Calculate Distance</button>
+                        <div class="result" id="dist-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> d = √[(x₂-x₁)² + (y₂-y₁)²]
+                        </div>
+                    </div>
+
+                    <!-- Section Formula -->
+                    <div class="card">
+                        <h3 class="card-title">Section Formula</h3>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₁</label>
+                                <input type="number" class="input" id="sec-x1" placeholder="x₁">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₁</label>
+                                <input type="number" class="input" id="sec-y1" placeholder="y₁">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+<label class="label">x₂</label>
+                                <input type="number" class="input" id="sec-x2" placeholder="x₂">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₂</label>
+                                <input type="number" class="input" id="sec-y2" placeholder="y₂">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">m</label>
+                                <input type="number" class="input" id="sec-m" placeholder="m">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">n</label>
+                                <input type="number" class="input" id="sec-n" placeholder="n">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="calcSection()">Calculate Point</button>
+                        <div class="result" id="sec-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> x = (mx₂ + nx₁)/(m+n)
+                        </div>
+                    </div>
+
+                    <!-- Midpoint Formula -->
+                    <div class="card">
+                        <h3 class="card-title">Midpoint Formula</h3>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₁</label>
+                                <input type="number" class="input" id="mid-x1" placeholder="x₁">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₁</label>
+                                <input type="number" class="input" id="mid-y1" placeholder="y₁">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₂</label>
+                                <input type="number" class="input" id="mid-x2" placeholder="x₂">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₂</label>
+                                <input type="number" class="input" id="mid-y2" placeholder="y₂">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="calcMidpoint()">Calculate Midpoint</button>
+                        <div class="result" id="mid-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> ((x₁+x₂)/2, (y₁+y₂)/2)
+                        </div>
+                    </div>
+
+                    <!-- Area of Triangle -->
+                    <div class="card">
+                        <h3 class="card-title">Area of Triangle</h3>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₁</label>
+                                <input type="number" class="input" id="area-x1" placeholder="x₁">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₁</label>
+                                <input type="number" class="input" id="area-y1" placeholder="y₁">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₂</label>
+                                <input type="number" class="input" id="area-x2" placeholder="x₂">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₂</label>
+                                <input type="number" class="input" id="area-y2" placeholder="y₂">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">x₃</label>
+                                <input type="number" class="input" id="area-x3" placeholder="x₃">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">y₃</label>
+                                <input type="number" class="input" id="area-y3" placeholder="y₃">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="calcTriangleArea()">Calculate Area</button>
+                        <div class="result" id="area-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Area = ½|x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)|
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trigonometry Section -->
+            <section class="section" id="trigonometry">
+                <div class="section-header">
+                    <h1 class="section-title">Trigonometry</h1>
+                    <p class="section-desc">Trigonometric ratios and identities</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Trigonometric Ratios -->
+                    <div class="card">
+                        <h3 class="card-title">Trigonometric Ratios</h3>
+                        <div class="input-group">
+                            <label class="label">Angle (degrees)</label>
+                            <input type="number" class="input" id="trig-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcTrigRatios()">Calculate All Ratios</button>
+                        <div class="result" id="trig-ratios-result"></div>
+                    </div>
+
+                    <!-- Find Angle -->
+                    <div class="card">
+                        <h3 class="card-title">Find Angle from Ratio</h3>
+                        <div class="input-group">
+                            <label class="label">Select Ratio</label>
+                            <select class="input" id="ratio-type">
+                                <option value="sin">sin θ</option>
+                                <option value="cos">cos θ</option>
+                                <option value="tan">tan θ</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Value</label>
+                            <input type="number" class="input" id="ratio-value" placeholder="Enter value" step="0.01">
+                        </div>
+                        <button class="btn" onclick="findAngle()">Find Angle</button>
+                        <div class="result" id="angle-result"></div>
+                    </div>
+
+                    <!-- Complementary Angles -->
+                    <div class="card">
+                        <h3 class="card-title">Complementary Angles</h3>
+                        <div class="input-group">
+                            <label class="label">Angle (degrees)</label>
+                            <input type="number" class="input" id="comp-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcComplementary()">Calculate</button>
+                        <div class="result" id="comp-result"></div>
+                        <div class="formula-box">
+                            <strong>Identity:</strong> sin(90° - θ) = cos θ
+                        </div>
+                    </div>
+
+                    <!-- Verify Identity -->
+                    <div class="card">
+                        <h3 class="card-title">Verify sin²θ + cos²θ = 1</h3>
+                        <div class="input-group">
+                            <label class="label">sin θ value</label>
+                            <input type="number" class="input" id="ident-sin" placeholder="Enter sin θ" step="0.01">
+                        </div>
+                        <button class="btn" onclick="verifyIdentity()">Verify Identity</button>
+                        <div class="result" id="ident-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Height and Distance Section -->
+            <section class="section" id="height-distance">
+                <div class="section-header">
+                    <h1 class="section-title">Height and Distance</h1>
+                    <p class="section-desc">Applications of trigonometry</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Find Height -->
+                    <div class="card">
+                        <h3 class="card-title">Find Height</h3>
+                        <div class="input-group">
+                            <label class="label">Distance from object</label>
+                            <input type="number" class="input" id="ht-dist" placeholder="Enter distance">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Angle of Elevation (degrees)</label>
+                            <input type="number" class="input" id="ht-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcHeight()">Calculate Height</button>
+                        <div class="result" id="ht-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Height = Distance × tan(angle)
+                        </div>
+                    </div>
+
+                    <!-- Find Distance -->
+                    <div class="card">
+                        <h3 class="card-title">Find Distance</h3>
+                        <div class="input-group">
+                            <label class="label">Height of object</label>
+                            <input type="number" class="input" id="dist-ht" placeholder="Enter height">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Angle of Elevation (degrees)</label>
+                            <input type="number" class="input" id="dist-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcDistFromHeight()">Calculate Distance</button>
+                        <div class="result" id="dist-ht-result"></div>
+                    </div>
+
+                    <!-- Find Angle -->
+                    <div class="card">
+                        <h3 class="card-title">Find Angle</h3>
+                        <div class="input-group">
+                            <label class="label">Height</label>
+                            <input type="number" class="input" id="ang-ht" placeholder="Enter height">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Distance</label>
+                            <input type="number" class="input" id="ang-dist" placeholder="Enter distance">
+                        </div>
+                        <button class="btn" onclick="calcAngleElev()">Calculate Angle</button>
+                        <div class="result" id="ang-result"></div>
+                    </div>
+
+                    <!-- Two Angles Problem -->
+                    <div class="card">
+                        <h3 class="card-title">Two Angles Problem</h3>
+                        <div class="input-group">
+                            <label class="label">Distance between two points</label>
+                            <input type="number" class="input" id="two-dist" placeholder="Enter distance">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">First Angle (degrees)</label>
+                            <input type="number" class="input" id="two-angle1" placeholder="Enter angle 1">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Second Angle (degrees)</label>
+                            <input type="number" class="input" id="two-angle2" placeholder="Enter angle 2">
+                        </div>
+                        <button class="btn" onclick="calcTwoAngles()">Calculate Height</button>
+                        <div class="result" id="two-ang-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Circles Section -->
+            <section class="section" id="circles">
+                <div class="section-header">
+                    <h1 class="section-title">Circles</h1>
+                    <p class="section-desc">Tangent, chord, and arc calculations</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Tangent Length -->
+                    <div class="card">
+                        <h3 class="card-title">Tangent Length</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="tang-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Distance from center (d)</label>
+                            <input type="number" class="input" id="tang-d" placeholder="Enter distance">
+                        </div>
+                        <button class="btn" onclick="calcTangent()">Calculate Tangent</button>
+                        <div class="result" id="tang-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Tangent = √(d² - r²)
+                        </div>
+                    </div>
+
+                    <!-- Chord Length -->
+                    <div class="card">
+                        <h3 class="card-title">Chord Length</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="chord-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Distance from center (d)</label>
+                            <input type="number" class="input" id="chord-d" placeholder="Enter distance">
+                        </div>
+                        <button class="btn" onclick="calcChord()">Calculate Chord</button>
+                        <div class="result" id="chord-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Chord = 2√(r² - d²)
+                        </div>
+                    </div>
+
+                    <!-- Arc Length -->
+                    <div class="card">
+                        <h3 class="card-title">Arc Length</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="arc-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Central Angle (degrees)</label>
+                            <input type="number" class="input" id="arc-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcArc()">Calculate Arc</button>
+                        <div class="result" id="arc-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Arc = (θ/360) × 2πr
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Constructions Section -->
+            <section class="section" id="constructions">
+                <div class="section-header">
+                    <h1 class="section-title">Constructions</h1>
+                    <p class="section-desc">Division of line segments and similar triangles</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Line Division -->
+                    <div class="card">
+                        <h3 class="card-title">Division of Line Segment</h3>
+                        <div class="input-group">
+                            <label class="label">Length of Line Segment</label>
+                            <input type="number" class="input" id="line-length" placeholder="Enter length">
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="label">m</label>
+                                <input type="number" class="input" id="line-m" placeholder="m">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">n</label>
+                                <input type="number" class="input" id="line-n" placeholder="n">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="calcLineDiv()">Calculate Division</button>
+                        <div class="result" id="line-div-result"></div>
+                    </div>
+
+                    <!-- Similar Triangles -->
+                    <div class="card">
+                        <h3 class="card-title">Similar Triangle Ratios</h3>
+                        <div class="input-group">
+                            <label class="label">Original side</label>
+                            <input type="number" class="input" id="sim-orig" placeholder="Enter original side">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Scale factor (k)</label>
+                            <input type="number" class="input" id="sim-scale" placeholder="Enter scale" step="0.1">
+                        </div>
+                        <button class="btn" onclick="calcSimilar()">Calculate New Side</button>
+                        <div class="result" id="sim-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> New side = Original × k
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Areas Related to Circles Section -->
+            <section class="section" id="area-circle">
+                <div class="section-header">
+                    <h1 class="section-title">Areas Related to Circles</h1>
+                    <p class="section-desc">Calculate area of circle, sector, segment, and ring</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Circle Area -->
+                    <div class="card">
+                        <h3 class="card-title">Area of Circle</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="circ-r" placeholder="Enter radius">
+                        </div>
+                        <button class="btn" onclick="calcCircArea()">Calculate Area</button>
+                        <div class="result" id="circ-area-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Area = πr²
+                        </div>
+                    </div>
+
+                    <!-- Sector Area -->
+                    <div class="card">
+                        <h3 class="card-title">Area of Sector</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="sect-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Central Angle (degrees)</label>
+                            <input type="number" class="input" id="sect-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcSector()">Calculate Sector</button>
+                        <div class="result" id="sect-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Area = (θ/360) × πr²
+                        </div>
+                    </div>
+
+                    <!-- Segment Area -->
+                    <div class="card">
+                        <h3 class="card-title">Area of Segment</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="seg-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Central Angle (degrees)</label>
+                            <input type="number" class="input" id="seg-angle" placeholder="Enter angle">
+                        </div>
+                        <button class="btn" onclick="calcSegment()">Calculate Segment</button>
+                        <div class="result" id="seg-result"></div>
+                    </div>
+
+                    <!-- Ring Area -->
+                    <div class="card">
+                        <h3 class="card-title">Area of Ring</h3>
+                        <div class="input-group">
+                            <label class="label">Outer Radius (R)</label>
+                            <input type="number" class="input" id="ring-R" placeholder="Enter R">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Inner Radius (r)</label>
+                            <input type="number" class="input" id="ring-r" placeholder="Enter r">
+                        </div>
+                        <button class="btn" onclick="calcRing()">Calculate Ring</button>
+                        <div class="result" id="ring-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Area = π(R² - r²)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Surface Area and Volume Section -->
+            <section class="section" id="surface-volume">
+                <div class="section-header">
+                    <h1 class="section-title">Surface Area and Volume</h1>
+                    <p class="section-desc">Calculate for 3D shapes</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Cube -->
+                    <div class="card">
+                        <h3 class="card-title">Cube</h3>
+                        <div class="input-group">
+                            <label class="label">Side (a)</label>
+                            <input type="number" class="input" id="cube-a" placeholder="Enter side">
+                        </div>
+                        <button class="btn" onclick="calcCube()">Calculate</button>
+                        <div class="result" id="cube-result"></div>
+                        <div class="formula-box">
+                            <strong>Formulas:</strong> Volume = a³, TSA = 6a²
+                        </div>
+                    </div>
+
+                    <!-- Cuboid -->
+                    <div class="card">
+                        <h3 class="card-title">Cuboid</h3>
+                        <div class="input-group">
+                            <label class="label">Length (l)</label>
+                            <input type="number" class="input" id="cuboid-l" placeholder="Enter length">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Breadth (b)</label>
+                            <input type="number" class="input" id="cuboid-b" placeholder="Enter breadth">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Height (h)</label>
+                            <input type="number" class="input" id="cuboid-h" placeholder="Enter height">
+                        </div>
+                        <button class="btn" onclick="calcCuboid()">Calculate</button>
+                        <div class="result" id="cuboid-result"></div>
+                    </div>
+
+                    <!-- Cylinder -->
+                    <div class="card">
+                        <h3 class="card-title">Cylinder</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="cyl-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Height (h)</label>
+                            <input type="number" class="input" id="cyl-h" placeholder="Enter height">
+                        </div>
+                        <button class="btn" onclick="calcCylinder()">Calculate</button>
+                        <div class="result" id="cyl-result"></div>
+                    </div>
+
+                    <!-- Cone -->
+                    <div class="card">
+                        <h3 class="card-title">Cone</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="cone-r" placeholder="Enter radius">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Height (h)</label>
+                            <input type="number" class="input" id="cone-h" placeholder="Enter height">
+                        </div>
+                        <button class="btn" onclick="calcCone()">Calculate</button>
+                        <div class="result" id="cone-result"></div>
+                    </div>
+
+                    <!-- Sphere -->
+                    <div class="card">
+                        <h3 class="card-title">Sphere</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="sphere-r" placeholder="Enter radius">
+                        </div>
+                        <button class="btn" onclick="calcSphere()">Calculate</button>
+                        <div class="result" id="sphere-result"></div>
+                    </div>
+
+                    <!-- Hemisphere -->
+                    <div class="card">
+                        <h3 class="card-title">Hemisphere</h3>
+                        <div class="input-group">
+                            <label class="label">Radius (r)</label>
+                            <input type="number" class="input" id="hemi-r" placeholder="Enter radius">
+                        </div>
+                        <button class="btn" onclick="calcHemisphere()">Calculate</button>
+                        <div class="result" id="hemi-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="section" id="statistics">
+                <div class="section-header">
+                    <h1 class="section-title">Statistics</h1>
+                    <p class="section-desc">Calculate mean, median, mode, and range</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Mean -->
+                    <div class="card">
+                        <h3 class="card-title">Mean (Average)</h3>
+                        <div class="input-group">
+                            <label class="label">Enter numbers (comma separated)</label>
+                            <input type="text" class="input" id="mean-data" placeholder="10, 20, 30, 40">
+                        </div>
+                        <button class="btn" onclick="calcMean()">Calculate Mean</button>
+                        <div class="result" id="mean-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Mean = Σx / n
+                        </div>
+                    </div>
+
+                    <!-- Median -->
+                    <div class="card">
+                        <h3 class="card-title">Median</h3>
+                        <div class="input-group">
+                            <label class="label">Enter numbers (comma separated)</label>
+                            <input type="text" class="input" id="median-data" placeholder="10, 20, 30, 40">
+                        </div>
+                        <button class="btn" onclick="calcMedian()">Calculate Median</button>
+                        <div class="result" id="median-result"></div>
+                    </div>
+
+                    <!-- Mode -->
+                    <div class="card">
+                        <h3 class="card-title">Mode</h3>
+                        <div class="input-group">
+                            <label class="label">Enter numbers (comma separated)</label>
+                            <input type="text" class="input" id="mode-data" placeholder="10, 20, 20, 30">
+                        </div>
+                        <button class="btn" onclick="calcMode()">Calculate Mode</button>
+                        <div class="result" id="mode-result"></div>
+                    </div>
+
+                    <!-- Range -->
+                    <div class="card">
+                        <h3 class="card-title">Range</h3>
+                        <div class="input-group">
+                            <label class="label">Enter numbers (comma separated)</label>
+                            <input type="text" class="input" id="range-data" placeholder="10, 20, 30, 40">
+                        </div>
+                        <button class="btn" onclick="calcRange()">Calculate Range</button>
+                        <div class="result" id="range-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> Range = Max - Min
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Probability Section -->
+            <section class="section" id="probability">
+                <div class="section-header">
+                    <h1 class="section-title">Probability</h1>
+                    <p class="section-desc">Calculate probabilities for different events</p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Basic Probability -->
+                    <div class="card">
+                        <h3 class="card-title">Basic Probability</h3>
+                        <div class="input-group">
+                            <label class="label">Favorable Outcomes</label>
+                            <input type="number" class="input" id="prob-fav" placeholder="Enter favorable">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Total Outcomes</label>
+                            <input type="number" class="input" id="prob-total" placeholder="Enter total">
+                        </div>
+                        <button class="btn" onclick="calcProbability()">Calculate Probability</button>
+                        <div class="result" id="prob-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> P(E) = Favorable / Total
+                        </div>
+                    </div>
+
+                    <!-- Dice Probability -->
+                    <div class="card">
+                        <h3 class="card-title">Dice Probability</h3>
+                        <div class="input-group">
+                            <label class="label">Select Event</label>
+                            <select class="input" id="dice-event">
+                                <option value="single">Single number</option>
+                                <option value="even">Even number</option>
+                                <option value="odd">Odd number</option>
+                                <option value="greater">Greater than</option>
+                                <option value="less">Less than</option>
+                            </select>
+                        </div>
+                        <div id="dice-input"></div>
+                        <button class="btn" onclick="calcDiceProbability()">Calculate</button>
+                        <div class="result" id="dice-result"></div>
+                    </div>
+
+                    <!-- Card Probability -->
+                    <div class="card">
+                        <h3 class="card-title">Card Probability</h3>
+                        <div class="input-group">
+                            <label class="label">Select Card Type</label>
+                            <select class="input" id="card-type">
+                                <option value="heart">Heart</option>
+                                <option value="diamond">Diamond</option>
+                                <option value="club">Club</option>
+                                <option value="spade">Spade</option>
+                                <option value="red">Red Card</option>
+                                <option value="black">Black Card</option>
+                                <option value="face">Face Card</option>
+                                <option value="ace">Ace</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="calcCardProbability()">Calculate</button>
+                        <div class="result" id="card-result"></div>
+                    </div>
+
+                    <!-- Complementary Events -->
+                    <div class="card">
+                        <h3 class="card-title">Complementary Events</h3>
+                        <div class="input-group">
+                            <label class="label">Probability P(E)</label>
+                            <input type="number" class="input" id="comp-prob" placeholder="Enter P(E)" step="0.01" min="0" max="1">
+                        </div>
+                        <button class="btn" onclick="calcComplement()">Calculate P(not E)</button>
+                        <div class="result" id="comp-prob-result"></div>
+                        <div class="formula-box">
+                            <strong>Formula:</strong> P(not E) = 1 - P(E)
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="cal.js"></script>
+    <script>
+    function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+    </script>
+</body>
+</html>
+                              

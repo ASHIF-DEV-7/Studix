@@ -1,0 +1,2513 @@
+{
+  "subject": "Biology",
+  "overview": "ATCT style Class 10 Biology syllabus for detailed study.",
+  "chapters": [
+    {
+      "chapter_no": 1,
+      "chapter_name": "Life Processes",
+      "topics": [
+        {
+          "topic": "Nutrition - Overview",
+          "brief": "Process by which organisms obtain and use food for energy, growth and repair.",
+          "subtopics": [
+            {
+              "name": "Autotrophic Nutrition",
+              "explanation": "Organisms (plants) make their own food via photosynthesis using CO2, water and sunlight."
+            },
+            {
+              "name": "Heterotrophic Nutrition",
+              "explanation": "Organisms obtain food from other organisms (animals, fungi, many bacteria)."
+            }
+          ]
+        },
+        {
+          "topic": "Photosynthesis - Basic",
+          "brief": "Conversion of light energy into chemical energy in plants (glucose) taking place in chloroplasts.",
+          "subtopics": [
+            {
+              "name": "Equation",
+              "explanation": "6CO2 + 6H2O + light → C6H12O6 + 6O2 (simplified overall reaction)."
+            },
+            {
+              "name": "Factors affecting photosynthesis",
+              "explanation": "Light intensity, CO2 concentration, temperature and chlorophyll availability."
+            }
+          ]
+        },
+        {
+          "topic": "Nutrition in Humans",
+          "brief": "Ingestion → Digestion → Absorption → Assimilation → Egestion in the human alimentary canal.",
+          "subtopics": [
+            {
+              "name": "Alimentary canal parts",
+              "explanation": "Mouth, oesophagus, stomach, small intestine, large intestine, rectum, anus."
+            },
+            {
+              "name": "Functions",
+              "explanation": "Mechanical breakdown, chemical digestion (enzymes), absorption (villi) and egestion."
+            }
+          ]
+        },
+        {
+          "topic": "Enzymes in Digestion",
+          "brief": "Biological catalysts that break down complex food into absorbable units.",
+          "subtopics": [
+            {
+              "name": "Salivary amylase",
+              "explanation": "Starts starch digestion into maltose in mouth."
+            },
+            {
+              "name": "Pepsin and trypsin",
+              "explanation": "Pepsin in stomach breaks proteins; trypsin in small intestine continues protein digestion."
+            },
+            {
+              "name": "Lipase",
+              "explanation": "Breaks fats into fatty acids and glycerol in small intestine."
+            }
+          ]
+        },
+        {
+          "topic": "Absorption and Villi",
+          "brief": "Small intestine structures that increase surface area for nutrient absorption.",
+          "subtopics": [
+            {
+              "name": "Villus structure",
+              "explanation": "Microvilli, capillaries and lacteal for absorption of glucose/amino acids and fats respectively."
+            }
+          ]
+        },
+        {
+          "topic": "Transport in Plants",
+          "brief": "Movement of water, minerals and food through xylem and phloem.",
+          "subtopics": [
+            {
+              "name": "Xylem",
+              "explanation": "Transports water and dissolved minerals upwards from roots to shoots (transpiration pull)."
+            },
+            {
+              "name": "Phloem",
+              "explanation": "Translocation of sugars from sources to sinks through sieve tubes and companion cells."
+            }
+          ]
+        },
+        {
+          "topic": "Transpiration",
+          "brief": "Loss of water vapour from aerial parts of plants, mainly through stomata.",
+          "subtopics": [
+            {
+              "name": "Purpose",
+              "explanation": "Helps in upward water movement, cooling and mineral transport."
+            },
+            {
+              "name": "Factors",
+              "explanation": "Temperature, humidity, wind, light intensity and stomatal opening."
+            }
+          ]
+        },
+        {
+          "topic": "Stomatal Opening and Closing",
+          "brief": "Guard cell mechanism controlling gas exchange and transpiration.",
+          "subtopics": [
+            {
+              "name": "Guard cells",
+              "explanation": "Change shape by turgor pressure (K+ uptake) to open/close stomata."
+            }
+          ]
+        },
+        {
+          "topic": "Respiration - Overview",
+          "brief": "Process of breaking down glucose to release energy (ATP).",
+          "subtopics": [
+            {
+              "name": "Aerobic respiration",
+              "explanation": "Requires oxygen; produces CO2, water and large amount of ATP."
+            },
+            {
+              "name": "Anaerobic respiration",
+              "explanation": "Without oxygen; produces lactic acid in animals or alcohol + CO2 in yeast with less ATP."
+            }
+          ]
+        },
+        {
+          "topic": "Human Respiratory System",
+          "brief": "Organs involved in breathing and gas exchange: nostrils, trachea, bronchi, lungs, alveoli.",
+          "subtopics": [
+            {
+              "name": "Alveoli",
+              "explanation": "Site of gas exchange; thin walls, large surface area and rich blood supply."
+            },
+            {
+              "name": "Mechanism of breathing",
+              "explanation": "Inspiration: diaphragm contracts, thoracic volume increases; Expiration: diaphragm relaxes."
+            }
+          ]
+        },
+        {
+          "topic": "Exchange of Gases",
+          "brief": "Diffusion of O2 into blood and CO2 out of blood at alveoli and tissues.",
+          "subtopics": [
+            {
+              "name": "Partial pressure gradient",
+              "explanation": "Drives diffusion of gases (high to low concentration)."
+            }
+          ]
+        },
+        {
+          "topic": "Circulatory System - Basics",
+          "brief": "Transport of gases, nutrients and wastes via heart, blood and blood vessels.",
+          "subtopics": [
+            {
+              "name": "Double circulation",
+              "explanation": "Pulmonary (heart-lungs) and systemic (heart-body) circuits in humans."
+            },
+            {
+              "name": "Blood components",
+              "explanation": "RBCs, WBCs, platelets and plasma with functions (oxygen transport, immunity, clotting)."
+            }
+          ]
+        },
+        {
+          "topic": "Heart Structure and Function",
+          "brief": "Four-chambered heart that pumps blood; atria receive, ventricles pump.",
+          "subtopics": [
+            {
+              "name": "Valves",
+              "explanation": "Prevent backflow (atrioventricular and semilunar valves)."
+            },
+            {
+              "name": "Cardiac cycle",
+              "explanation": "Sequence of contraction (systole) and relaxation (diastole)."
+            }
+          ]
+        },
+        {
+          "topic": "Blood Vessels",
+          "brief": "Arteries, veins and capillaries — structure suits function.",
+          "subtopics": [
+            {
+              "name": "Capillaries",
+              "explanation": "Thin walls for exchange between blood and tissues."
+            },
+            {
+              "name": "Veins",
+              "explanation": "Have valves to prevent backflow; carry blood to heart."
+            }
+          ]
+        },
+        {
+          "topic": "Excretion in Humans",
+          "brief": "Removal of metabolic nitrogenous wastes primarily by kidneys.",
+          "subtopics": [
+            {
+              "name": "Kidney function",
+              "explanation": "Filters blood, forms urine, maintains water-salt balance and removes urea."
+            },
+            {
+              "name": "Urine formation steps",
+              "explanation": "Filtration, reabsorption and secretion in nephron."
+            }
+          ]
+        },
+        {
+          "topic": "Nephron - Functional Unit",
+          "brief": "Structural and functional unit of kidney; includes glomerulus and tubules.",
+          "subtopics": [
+            {
+              "name": "Glomerulus",
+              "explanation": "Site of plasma filtration under pressure."
+            },
+            {
+              "name": "Loop of Henle",
+              "explanation": "Important for concentrating urine (water reabsorption)."
+            }
+          ]
+        },
+        {
+          "topic": "Homeostasis",
+          "brief": "Maintenance of stable internal conditions (temperature, pH, water balance).",
+          "subtopics": [
+            {
+              "name": "Thermoregulation",
+              "explanation": "Sweating, vasodilation/vasoconstriction, shivering help maintain temperature."
+            },
+            {
+              "name": "Osmoregulation",
+              "explanation": "Kidneys regulate water and solute levels to maintain osmotic balance."
+            }
+          ]
+        },
+        {
+          "topic": "Microorganisms in Nutrition",
+          "brief": "Role of microbes in digestion, fermentation and decomposition.",
+          "subtopics": [
+            {
+              "name": "Ruminants",
+              "explanation": "Microbes in stomach chambers (e.g., cattle) digest cellulose."
+            },
+            {
+              "name": "Yeast fermentation",
+              "explanation": "Anaerobic breakdown of sugars producing alcohol and CO2."
+            }
+          ]
+        },
+        {
+          "topic": "Nutrition in Amoeba",
+          "brief": "Unicellular heterotroph; ingestion by phagocytosis forming food vacuoles.",
+          "subtopics": [
+            {
+              "name": "Phagocytosis",
+              "explanation": "Cell membrane engulfs food particles; digestion occurs in vacuoles."
+            }
+          ]
+        },
+        {
+          "topic": "Plant Nutrition - Mineral Requirements",
+          "brief": "Essential minerals (N, P, K, Mg, Fe) for growth and chlorophyll formation.",
+          "subtopics": [
+            {
+              "name": "Deficiency symptoms",
+              "explanation": "Chlorosis, stunted growth, necrosis depending on missing nutrient."
+            }
+          ]
+        },
+        {
+          "topic": "Modes of Nutrition (special types)",
+          "brief": "Parasitic, saprophytic and symbiotic nutrition examples.",
+          "subtopics": [
+            {
+              "name": "Parasitic plants",
+              "explanation": "Obtain nutrients from host (e.g., Cuscuta)."
+            },
+            {
+              "name": "Saprophytes",
+              "explanation": "Obtain nutrients from dead organic matter (fungi)."
+            }
+          ]
+        },
+        {
+          "topic": "Digestion in Insects and Earthworms (brief)",
+          "brief": "Different adaptations: crop, gizzard, typhlosole etc.",
+          "subtopics": [
+            {
+              "name": "Earthworm digestion",
+              "explanation": "Soil ingestion, digestion in gut with typhlosole to increase surface area."
+            },
+            {
+              "name": "Insect gut",
+              "explanation": "Foregut, midgut, hindgut with specialized regions for storage and grinding."
+            }
+          ]
+        },
+        {
+          "topic": "Energy Flow and ATP",
+          "brief": "ATP as cellular energy currency produced in respiration.",
+          "subtopics": [
+            {
+              "name": "ATP role",
+              "explanation": "Drives metabolic reactions, muscle contraction and active transport."
+            },
+            {
+              "name": "Glycolysis (basic)",
+              "explanation": "Glucose → pyruvate in cytoplasm producing small ATP; first step of respiration."
+            }
+          ]
+        },
+        {
+          "topic": "Common PYQ-style Questions (Life Processes)",
+          "brief": "Important short/long answer points often asked in exams.",
+          "subtopics": [
+            {
+              "name": "Describe photosynthesis",
+              "explanation": "State equation, site (chloroplast), raw materials, importance and factors."
+            },
+            {
+              "name": "Explain human digestion",
+              "explanation": "Write steps for any one enzyme action + role of small intestine and villi."
+            }
+          ]
+        }
+        
+      ]
+    },
+  {
+  "chapter_no": 2,
+  "chapter_name": "Control and Coordination",
+  "topics": [
+    {
+      "topic": "Introduction to Control & Coordination",
+      "brief": "Nervous and endocrine systems work together to detect changes, process information and respond appropriately.",
+      "subtopics": [
+        {
+          "name": "Stimulus and Response",
+          "explanation": "Stimulus: any change in environment; Response: organism's reaction to stimulus."
+        },
+        {
+          "name": "Importance",
+          "explanation": "Helps organisms survive, maintain homeostasis and interact with environment."
+        }
+      ]
+    },
+    {
+      "topic": "Nervous System - Basic Structure",
+      "brief": "Comprises brain, spinal cord and nerves; made of neurons.",
+      "subtopics": [
+        {
+          "name": "Neuron structure",
+          "explanation": "Cell body, dendrites (receive signals), axon (transmits signals), synapse (junction)."
+        },
+        {
+          "name": "Types of neurons",
+          "explanation": "Sensory (afferent), motor (efferent), relay (interneurons)."
+        }
+      ]
+    },
+    {
+      "topic": "Nerve Impulse Transmission",
+      "brief": "Electrical and chemical signals that allow communication between neurons.",
+      "subtopics": [
+        {
+          "name": "Electrical impulse",
+          "explanation": "Travels along axon membrane due to movement of ions (Na+, K+)."
+        },
+        {
+          "name": "Synaptic transmission",
+          "explanation": "Neurotransmitters cross synapse to pass signal to next neuron."
+        }
+      ]
+    },
+    {
+      "topic": "Human Brain - Structure",
+      "brief": "Control center of body; protected by skull and meninges.",
+      "subtopics": [
+        {
+          "name": "Forebrain",
+          "explanation": "Cerebrum (thinking, memory), thalamus (relay), hypothalamus (homeostasis)."
+        },
+        {
+          "name": "Midbrain",
+          "explanation": "Controls visual and auditory reflexes."
+        },
+        {
+          "name": "Hindbrain",
+          "explanation": "Cerebellum (balance, coordination), medulla (vital functions)."
+        }
+      ]
+    },
+    {
+      "topic": "Spinal Cord",
+      "brief": "Long tubular structure extending from brain; reflex actions and signal conduction.",
+      "subtopics": [
+        {
+          "name": "Structure",
+          "explanation": "Protected by vertebral column; grey and white matter inside."
+        },
+        {
+          "name": "Functions",
+          "explanation": "Conducts signals between brain and body; reflex center."
+        }
+      ]
+    },
+    {
+      "topic": "Reflex Action",
+      "brief": "Automatic, rapid, involuntary response to stimulus.",
+      "subtopics": [
+        {
+          "name": "Reflex arc",
+          "explanation": "Pathway: receptor → sensory neuron → spinal cord → motor neuron → effector."
+        },
+        {
+          "name": "Examples",
+          "explanation": "Knee jerk, pulling hand from hot object."
+        }
+      ]
+    },
+    {
+      "topic": "Voluntary vs Involuntary Actions",
+      "brief": "Difference between conscious and automatic actions.",
+      "subtopics": [
+        {
+          "name": "Voluntary actions",
+          "explanation": "Under conscious control (e.g., writing, speaking)."
+        },
+        {
+          "name": "Involuntary actions",
+          "explanation": "Automatic (e.g., heartbeat, digestion, reflexes)."
+        }
+      ]
+    },
+    {
+      "topic": "Peripheral Nervous System",
+      "brief": "Nerves connecting CNS to rest of body.",
+      "subtopics": [
+        {
+          "name": "Cranial nerves",
+          "explanation": "From brain to head/neck regions."
+        },
+        {
+          "name": "Spinal nerves",
+          "explanation": "From spinal cord to body parts."
+        }
+      ]
+    },
+    {
+      "topic": "Autonomic Nervous System",
+      "brief": "Controls involuntary functions; sympathetic and parasympathetic.",
+      "subtopics": [
+        {
+          "name": "Sympathetic",
+          "explanation": "Fight or flight response (increases heart rate)."
+        },
+        {
+          "name": "Parasympathetic",
+          "explanation": "Rest and digest (calms body)."
+        }
+      ]
+    },
+    {
+      "topic": "Endocrine System - Introduction",
+      "brief": "Chemical coordination via hormones secreted by glands.",
+      "subtopics": [
+        {
+          "name": "Hormones",
+          "explanation": "Chemical messengers secreted directly into blood; slow, long-lasting effects."
+        },
+        {
+          "name": "Glands",
+          "explanation": "Endocrine (ductless) vs exocrine (with ducts)."
+        }
+      ]
+    },
+    {
+      "topic": "Pituitary Gland",
+      "brief": "Master gland at base of brain; controls other endocrine glands.",
+      "subtopics": [
+        {
+          "name": "Functions",
+          "explanation": "Secretes growth hormone, TSH, ACTH, FSH, LH etc."
+        }
+      ]
+    },
+    {
+      "topic": "Thyroid and Parathyroid",
+      "brief": "Glands in neck region regulating metabolism and calcium.",
+      "subtopics": [
+        {
+          "name": "Thyroid hormones",
+          "explanation": "Thyroxine (metabolism), calcitonin (calcium)."
+        },
+        {
+          "name": "Parathyroid hormone",
+          "explanation": "Increases blood calcium level."
+        }
+      ]
+    },
+    {
+      "topic": "Adrenal Glands",
+      "brief": "On top of kidneys; emergency hormones.",
+      "subtopics": [
+        {
+          "name": "Adrenaline",
+          "explanation": "Fight or flight hormone; increases heart rate, blood pressure."
+        }
+      ]
+    },
+    {
+      "topic": "Pancreas",
+      "brief": "Both endocrine and exocrine functions.",
+      "subtopics": [
+        {
+          "name": "Islets of Langerhans",
+          "explanation": "Alpha cells (glucagon), beta cells (insulin) - regulate blood sugar."
+        }
+      ]
+    },
+    {
+      "topic": "Gonads",
+      "brief": "Testes and ovaries producing sex hormones.",
+      "subtopics": [
+        {
+          "name": "Testosterone",
+          "explanation": "Male secondary sexual characteristics."
+        },
+        {
+          "name": "Estrogen, progesterone",
+          "explanation": "Female secondary sexual characteristics and menstrual cycle."
+        }
+      ]
+    },
+    {
+      "topic": "Feedback Mechanisms",
+      "brief": "Regulation of hormone secretion.",
+      "subtopics": [
+        {
+          "name": "Negative feedback",
+          "explanation": "High hormone level inhibits further secretion (e.g., insulin)."
+        }
+      ]
+    },
+    {
+      "topic": "Comparison: Nervous vs Endocrine",
+      "brief": "Differences between two coordination systems.",
+      "subtopics": [
+        {
+          "name": "Speed",
+          "explanation": "Nervous: fast; Endocrine: slow."
+        },
+        {
+          "name": "Duration",
+          "explanation": "Nervous: short-lived; Endocrine: long-lasting."
+        }
+      ]
+    },
+    {
+      "topic": "Plant Movements",
+      "brief": "Plants also show control and coordination through movements.",
+      "subtopics": [
+        {
+          "name": "Tropic movements",
+          "explanation": "Directional growth responses (phototropism, geotropism)."
+        },
+        {
+          "name": "Nastic movements",
+          "explanation": "Non-directional (thigmonasty, photonasty)."
+        }
+      ]
+    },
+    {
+      "topic": "Plant Hormones (Phytohormones)",
+      "brief": "Chemicals regulating plant growth and development.",
+      "subtopics": [
+        {
+          "name": "Auxins",
+          "explanation": "Cell elongation, phototropism, apical dominance."
+        },
+        {
+          "name": "Gibberellins",
+          "explanation": "Stem elongation, seed germination."
+        },
+        {
+          "name": "Cytokinins",
+          "explanation": "Cell division, delay aging."
+        },
+        {
+          "name": "Abscisic acid (ABA)",
+          "explanation": "Stress hormone, promotes dormancy, stomatal closure."
+        },
+        {
+          "name": "Ethylene",
+          "explanation": "Fruit ripening, leaf abscission."
+        }
+      ]
+    },
+    {
+      "topic": "Phototropism and Geotropism",
+      "brief": "Growth towards/away from light and gravity.",
+      "subtopics": [
+        {
+          "name": "Phototropism mechanism",
+          "explanation": "Auxin distribution causes unequal growth - bends towards light."
+        },
+        {
+          "name": "Geotropism",
+          "explanation": "Roots positive, shoots negative to gravity."
+        }
+      ]
+    },
+    {
+      "topic": "Chemical Coordination in Plants",
+      "brief": "How phytohormones help plants respond to environment.",
+      "subtopics": [
+        {
+          "name": "Defense responses",
+          "explanation": "Production of chemicals against herbivores/pathogens."
+        }
+      ]
+    },
+    {
+      "topic": "Tropic vs Nastic Movements",
+      "brief": "Key differences with examples.",
+      "subtopics": [
+        {
+          "name": "Directionality",
+          "explanation": "Tropic: directional; Nastic: non-directional."
+        },
+        {
+          "name": "Examples",
+          "explanation": "Tropic: sunflower to sun; Nastic: touch-me-not leaf folding."
+        }
+      ]
+    },
+    {
+      "topic": "Common Disorders",
+      "brief": "Nervous and endocrine system related diseases.",
+      "subtopics": [
+        {
+          "name": "Goiter",
+          "explanation": "Thyroid enlargement due to iodine deficiency."
+        },
+        {
+          "name": "Diabetes",
+          "explanation": "High blood sugar due to insulin deficiency/resistance."
+        }
+      ]
+    },
+    {
+      "topic": "Receptors in Humans",
+      "brief": "Specialized structures detecting stimuli.",
+      "subtopics": [
+        {
+          "name": "Photoreceptors",
+          "explanation": "Eyes - detect light."
+        },
+        {
+          "name": "Phonoreceptors",
+          "explanation": "Ears - detect sound."
+        },
+        {
+          "name": "Olfactory receptors",
+          "explanation": "Nose - detect smell."
+        },
+        {
+          "name": "Gustatory receptors",
+          "explanation": "Tongue - detect taste."
+        },
+        {
+          "name": "Thermoreceptors",
+          "explanation": "Skin - detect temperature."
+        }
+      ]
+    },
+    {
+      "topic": "Common PYQ-style Questions (Control & Coordination)",
+      "brief": "Important short/long answer points often asked in exams.",
+      "subtopics": [
+        {
+          "name": "Reflex arc diagram and explanation",
+          "explanation": "Draw and label reflex arc; explain pathway with example."
+        },
+        {
+          "name": "Compare nervous and endocrine systems",
+          "explanation": "Give differences in tabular form."
+        },
+        {
+          "name": "Plant hormones and functions",
+          "explanation": "List 5 phytohormones with one function each."
+        }
+      ]
+    }
+  ]
+},
+{
+  "chapter_no": 3,
+  "chapter_name": "How Do Organisms Reproduce?",
+  "topics": [
+    {
+      "topic": "Introduction to Reproduction",
+      "brief": "Biological process by which new individuals of the same species are produced, ensuring continuity of life.",
+      "subtopics": [
+        {
+          "name": "Importance of Reproduction",
+          "explanation": "Maintains species existence, creates variations for evolution, and transfers genetic material to next generation."
+        },
+        {
+          "name": "Basic Characteristics",
+          "explanation": "DNA copying, cell division, and formation of new organisms with similar traits."
+        }
+      ]
+    },
+    {
+      "topic": "Types of Reproduction",
+      "brief": "Two main types: asexual (single parent) and sexual (two parents).",
+      "subtopics": [
+        {
+          "name": "Asexual Reproduction",
+          "explanation": "Single parent, no gametes, offspring genetically identical (clones), faster process."
+        },
+        {
+          "name": "Sexual Reproduction",
+          "explanation": "Two parents, gamete formation, fertilization, genetic variations, evolutionarily advantageous."
+        },
+        {
+          "name": "Comparison Table",
+          "explanation": "Asexual: simple, rapid, no variations; Sexual: complex, slow, genetic diversity."
+        }
+      ]
+    },
+    {
+      "topic": "Asexual Reproduction Methods",
+      "brief": "Various ways organisms reproduce asexually without gamete formation.",
+      "subtopics": [
+        {
+          "name": "Binary Fission",
+          "explanation": "Parent cell divides into two equal daughters (Amoeba, bacteria)."
+        },
+        {
+          "name": "Multiple Fission",
+          "explanation": "Parent divides into many daughters (Plasmodium during malaria)."
+        },
+        {
+          "name": "Budding",
+          "explanation": "Outgrowth forms and detaches (Hydra, yeast)."
+        },
+        {
+          "name": "Fragmentation",
+          "explanation": "Body breaks into pieces, each grows into new organism (Spirogyra, fungi)."
+        },
+        {
+          "name": "Regeneration",
+          "explanation": "Ability to regrow lost parts (Planaria, starfish)."
+        },
+        {
+          "name": "Spore Formation",
+          "explanation": "Specialized cells (spores) develop into new individuals (Rhizopus, ferns)."
+        },
+        {
+          "name": "Vegetative Propagation",
+          "explanation": "New plants from vegetative parts (roots, stems, leaves)."
+        }
+      ]
+    },
+    {
+      "topic": "Binary Fission in Detail",
+      "brief": "Simple cell division in unicellular organisms.",
+      "subtopics": [
+        {
+          "name": "Process in Amoeba",
+          "explanation": "Pseudopodia withdrawn → nucleus divides → cytoplasm divides → two daughters formed."
+        },
+        {
+          "name": "Process in Paramecium",
+          "explanation": "Transverse binary fission, micronucleus and macronucleus divide."
+        },
+        {
+          "name": "Significance",
+          "explanation": "Rapid multiplication under favorable conditions."
+        }
+      ]
+    },
+    {
+      "topic": "Budding in Hydra and Yeast",
+      "brief": "Formation of buds that develop into new organisms.",
+      "subtopics": [
+        {
+          "name": "Hydra Budding",
+          "explanation": "Outgrowth forms on body wall → develops mouth, tentacles → detaches as independent individual."
+        },
+        {
+          "name": "Yeast Budding",
+          "explanation": "Small protrusion forms on parent cell → nucleus divides → one nucleus migrates to bud → separates."
+        }
+      ]
+    },
+    {
+      "topic": "Spore Formation in Rhizopus",
+      "brief": "Reproduction through microscopic spores in fungi.",
+      "subtopics": [
+        {
+          "name": "Structure of Rhizopus",
+          "explanation": "Mycelium, hyphae, sporangium, sporangiophore, spores."
+        },
+        {
+          "name": "Process",
+          "explanation": "Sporangium develops at tips → nuclei + cytoplasm form spores → sporangium bursts → spores disperse → germinate in moist conditions."
+        },
+        {
+          "name": "Advantages",
+          "explanation": "Mass production, easy dispersal, survival in unfavorable conditions."
+        }
+      ]
+    },
+    {
+      "topic": "Vegetative Propagation in Plants",
+      "brief": "Asexual reproduction using vegetative plant parts.",
+      "subtopics": [
+        {
+          "name": "Natural Methods",
+          "explanation": "Tubers (potato), bulbs (onion), rhizomes (ginger), runners (grass)."
+        },
+        {
+          "name": "Artificial Methods",
+          "explanation": "Cutting, grafting, layering, tissue culture."
+        },
+        {
+          "name": "Advantages",
+          "explanation": "Faster than seeds, preserves desired traits, seedless varieties."
+        },
+        {
+          "name": "Disadvantages",
+          "explanation": "No genetic variation, disease accumulation."
+        }
+      ]
+    },
+    {
+      "topic": "Tissue Culture",
+      "brief": "Modern artificial vegetative propagation technique.",
+      "subtopics": [
+        {
+          "name": "Process",
+          "explanation": "Small tissue (explant) → sterile nutrient medium → cell division → plantlets → mature plants."
+        },
+        {
+          "name": "Applications",
+          "explanation": "Mass propagation of elite plants, disease-free plants, conservation of rare species."
+        }
+      ]
+    },
+    {
+      "topic": "Sexual Reproduction in Plants",
+      "brief": "Involves flower structure, gamete formation, and fertilization.",
+      "subtopics": [
+        {
+          "name": "Flower Structure",
+          "explanation": "Four whorls: calyx (sepals), corolla (petals), androecium (male), gynoecium (female)."
+        },
+        {
+          "name": "Essential vs Non-essential Parts",
+          "explanation": "Essential: androecium and gynoecium; Non-essential: sepals and petals."
+        },
+        {
+          "name": "Bisexual vs Unisexual Flowers",
+          "explanation": "Bisexual: both sexes; Unisexual: only male or female flowers."
+        }
+      ]
+    },
+    {
+      "topic": "Androecium - Male Reproductive Part",
+      "brief": "Stamen structure and function in flower.",
+      "subtopics": [
+        {
+          "name": "Stamen Parts",
+          "explanation": "Anther (pollen production) and filament (support)."
+        },
+        {
+          "name": "Pollen Grains",
+          "explanation": "Male gametes, contain sperm cells, produced in anther lobes."
+        }
+      ]
+    },
+    {
+      "topic": "Gynoecium - Female Reproductive Part",
+      "brief": "Carpel/pistil structure and function.",
+      "subtopics": [
+        {
+          "name": "Carpel Parts",
+          "explanation": "Stigma (pollen reception), style (tube), ovary (ovules)."
+        },
+        {
+          "name": "Ovule Structure",
+          "explanation": "Contains embryo sac with egg cell, integuments, micropyle."
+        }
+      ]
+    },
+    {
+      "topic": "Pollination",
+      "brief": "Transfer of pollen from anther to stigma.",
+      "subtopics": [
+        {
+          "name": "Self-pollination",
+          "explanation": "Within same flower or different flowers of same plant."
+        },
+        {
+          "name": "Cross-pollination",
+          "explanation": "Between flowers of different plants of same species."
+        },
+        {
+          "name": "Agents of Pollination",
+          "explanation": "Wind, water, insects, birds, animals."
+        }
+      ]
+    },
+    {
+      "topic": "Fertilization in Plants",
+      "brief": "Fusion of male and female gametes to form zygote.",
+      "subtopics": [
+        {
+          "name": "Process",
+          "explanation": "Pollen on stigma → pollen tube growth through style → sperm nuclei reach ovule → double fertilization."
+        },
+        {
+          "name": "Double Fertilization",
+          "explanation": "One sperm + egg = zygote; Other sperm + polar nuclei = endosperm (unique to angiosperms)."
+        }
+      ]
+    },
+    {
+      "topic": "Post-fertilization Changes",
+      "brief": "Development of seed and fruit after fertilization.",
+      "subtopics": [
+        {
+          "name": "Seed Formation",
+          "explanation": "Ovule develops into seed containing embryo (plumule, radicle, cotyledons)."
+        },
+        {
+          "name": "Fruit Formation",
+          "explanation": "Ovary develops into fruit, pericarp layers (epicarp, mesocarp, endocarp)."
+        },
+        {
+          "name": "Seed Dispersal",
+          "explanation": "Wind, water, animals, explosion mechanisms."
+        }
+      ]
+    },
+    {
+      "topic": "Germination of Seeds",
+      "brief": "Process by which seed develops into seedling.",
+      "subtopics": [
+        {
+          "name": "Conditions Required",
+          "explanation": "Water, oxygen, suitable temperature."
+        },
+        {
+          "name": "Types of Germination",
+          "explanation": "Epigeal (cotyledons above ground) and Hypogeal (cotyledons below ground)."
+        }
+      ]
+    },
+    {
+      "topic": "Human Male Reproductive System",
+      "brief": "Organs involved in production and delivery of male gametes.",
+      "subtopics": [
+        {
+          "name": "Testes",
+          "explanation": "Primary sex organs, produce sperm and testosterone, located in scrotum."
+        },
+        {
+          "name": "Epididymis",
+          "explanation": "Coiled tube where sperm mature and are stored."
+        },
+        {
+          "name": "Vas Deferens",
+          "explanation": "Tube carrying sperm from epididymis to urethra."
+        },
+        {
+          "name": "Accessory Glands",
+          "explanation": "Seminal vesicles, prostate gland, bulbourethral gland - produce seminal fluid."
+        },
+        {
+          "name": "Penis",
+          "explanation": "Copulatory organ, delivers sperm into female reproductive tract."
+        }
+      ]
+    },
+    {
+      "topic": "Sperm Structure and Function",
+      "brief": "Male gamete specialized for movement and fertilization.",
+      "subtopics": [
+        {
+          "name": "Parts of Sperm",
+          "explanation": "Head (nucleus, acrosome), middle piece (mitochondria), tail (flagellum for movement)."
+        },
+        {
+          "name": "Spermatogenesis",
+          "explanation": "Process of sperm production in seminiferous tubules of testes."
+        }
+      ]
+    },
+    {
+      "topic": "Human Female Reproductive System",
+      "brief": "Organs involved in egg production, fertilization, and embryo development.",
+      "subtopics": [
+        {
+          "name": "Ovaries",
+          "explanation": "Primary sex organs, produce eggs and estrogen/progesterone."
+        },
+        {
+          "name": "Fallopian Tubes",
+          "explanation": "Oviducts, site of fertilization, transport egg to uterus."
+        },
+        {
+          "name": "Uterus",
+          "explanation": "Womb, site of embryo development, muscular organ."
+        },
+        {
+          "name": "Cervix",
+          "explanation": "Lower part of uterus opening into vagina."
+        },
+        {
+          "name": "Vagina",
+          "explanation": "Birth canal, receives sperm during intercourse."
+        }
+      ]
+    },
+    {
+      "topic": "Ovum Structure and Oogenesis",
+      "brief": "Female gamete and its production process.",
+      "subtopics": [
+        {
+          "name": "Structure of Ovum",
+          "explanation": "Large, non-motile, contains yolk, surrounded by zona pellucida and corona radiata."
+        },
+        {
+          "name": "Oogenesis",
+          "explanation": "Egg formation process in ovaries, begins before birth, completes after puberty."
+        }
+      ]
+    },
+    {
+      "topic": "Menstrual Cycle",
+      "brief": "Monthly reproductive cycle in human females.",
+      "subtopics": [
+        {
+          "name": "Phases",
+          "explanation": "Menstrual (days 1-5), Follicular (days 6-13), Ovulatory (day 14), Luteal (days 15-28)."
+        },
+        {
+          "name": "Hormonal Control",
+          "explanation": "FSH, LH, estrogen, progesterone regulate cycle events."
+        },
+        {
+          "name": "Ovulation",
+          "explanation": "Release of mature egg from ovary around day 14."
+        }
+      ]
+    },
+    {
+      "topic": "Fertilization in Humans",
+      "brief": "Process of sperm-egg fusion leading to zygote formation.",
+      "subtopics": [
+        {
+          "name": "Process",
+          "explanation": "Sperm penetration → acrosomal reaction → cortical reaction → fusion of nuclei → zygote formation."
+        },
+        {
+          "name": "Site of Fertilization",
+          "explanation": "Ampulla of fallopian tube."
+        },
+        {
+          "name": "Twins Formation",
+          "explanation": "Identical (one zygote splits) and Fraternal (two eggs fertilized)."
+        }
+      ]
+    },
+    {
+      "topic": "Implantation and Pregnancy",
+      "brief": "Attachment of embryo to uterus and subsequent development.",
+      "subtopics": [
+        {
+          "name": "Implantation",
+          "explanation": "Blastocyst attaches to uterine wall 6-7 days after fertilization."
+        },
+        {
+          "name": "Placenta Formation",
+          "explanation": "Organ connecting mother and embryo for nutrient/waste exchange."
+        },
+        {
+          "name": "Gestation Period",
+          "explanation": "Approximately 280 days (40 weeks) in humans."
+        }
+      ]
+    },
+    {
+      "topic": "Embryonic Development",
+      "brief": "Stages of development from zygote to fetus.",
+      "subtopics": [
+        {
+          "name": "Cleavage",
+          "explanation": "Rapid cell divisions forming morula then blastocyst."
+        },
+        {
+          "name": "Gastrulation",
+          "explanation": "Formation of three germ layers: ectoderm, mesoderm, endoderm."
+        },
+        {
+          "name": "Organogenesis",
+          "explanation": "Development of organs from germ layers."
+        }
+      ]
+    },
+    {
+      "topic": "Reproductive Health",
+      "brief": "Maintaining healthy reproductive system and preventing diseases.",
+      "subtopics": [
+        {
+          "name": "STDs/STIs",
+          "explanation": "Sexually transmitted diseases/infections - HIV/AIDS, syphilis, gonorrhea, herpes."
+        },
+        {
+          "name": "Birth Control Methods",
+          "explanation": "Natural, barrier, hormonal, surgical methods of contraception."
+        },
+        {
+          "name": "Importance of Hygiene",
+          "explanation": "Personal cleanliness to prevent infections."
+        }
+      ]
+    },
+    {
+      "topic": "Contraceptive Methods",
+      "brief": "Various ways to prevent pregnancy.",
+      "subtopics": [
+        {
+          "name": "Barrier Methods",
+          "explanation": "Condoms, diaphragms - prevent sperm reaching egg."
+        },
+        {
+          "name": "Hormonal Methods",
+          "explanation": "Pills, implants - prevent ovulation."
+        },
+        {
+          "name": "IUDs",
+          "explanation": "Intrauterine devices - prevent implantation."
+        },
+        {
+          "name": "Surgical Methods",
+          "explanation": "Vasectomy (male), Tubectomy (female) - permanent sterilization."
+        }
+      ]
+    },
+    {
+      "topic": "Reproduction in Animals",
+      "brief": "Various reproductive strategies in animal kingdom.",
+      "subtopics": [
+        {
+          "name": "External Fertilization",
+          "explanation": "In water, many gametes released (fish, amphibians)."
+        },
+        {
+          "name": "Internal Fertilization",
+          "explanation": "Inside female body, fewer gametes (reptiles, birds, mammals)."
+        },
+        {
+          "name": "Oviparous Animals",
+          "explanation": "Lay eggs, embryonic development outside (birds, reptiles)."
+        },
+        {
+          "name": "Viviparous Animals",
+          "explanation": "Give birth to young ones, embryonic development inside (mammals)."
+        },
+        {
+          "name": "Ovoviviparous Animals",
+          "explanation": "Eggs hatch inside body, then birth (some sharks, snakes)."
+        }
+      ]
+    },
+    {
+      "topic": "Metamorphosis in Insects",
+      "brief": "Process of transformation from larva to adult.",
+      "subtopics": [
+        {
+          "name": "Complete Metamorphosis",
+          "explanation": "Egg → larva → pupa → adult (butterflies, beetles)."
+        },
+        {
+          "name": "Incomplete Metamorphosis",
+          "explanation": "Egg → nymph → adult (cockroaches, grasshoppers)."
+        }
+      ]
+    },
+    {
+      "topic": "DNA Copying and Variations",
+      "brief": "Importance of DNA replication in reproduction.",
+      "subtopics": [
+        {
+          "name": "DNA Replication",
+          "explanation": "Process of making identical DNA copies before cell division."
+        },
+        {
+          "name": "Importance of Variations",
+          "explanation": "Essential for evolution and species survival in changing environments."
+        },
+        {
+          "name": "Sources of Variations",
+          "explanation": "Crossing over, mutations, random fertilization, independent assortment."
+        }
+      ]
+    },
+    {
+      "topic": "Menopause",
+      "brief": "Cessation of menstrual cycles in females.",
+      "subtopics": [
+        {
+          "name": "Age of Onset",
+          "explanation": "Typically 45-55 years."
+        },
+        {
+          "name": "Symptoms",
+          "explanation": "Hot flashes, mood changes, cessation of periods."
+        },
+        {
+          "name": "Significance",
+          "explanation": "End of reproductive capacity in females."
+        }
+      ]
+    },
+    {
+      "topic": "Sex Determination in Humans",
+      "brief": "Genetic mechanism deciding male or female offspring.",
+      "subtopics": [
+        {
+          "name": "Chromosomal Basis",
+          "explanation": "XX - female, XY - male; sperm determines sex of child."
+        },
+        {
+          "name": "Role of SRY Gene",
+          "explanation": "On Y chromosome, triggers male development."
+        }
+      ]
+    },
+    {
+      "topic": "Common Reproductive Disorders",
+      "brief": "Health issues affecting reproductive systems.",
+      "subtopics": [
+        {
+          "name": "Infertility",
+          "explanation": "Inability to conceive, various causes in males and females."
+        },
+        {
+          "name": "PCOS",
+          "explanation": "Polycystic ovarian syndrome - hormonal imbalance in females."
+        },
+        {
+          "name": "Endometriosis",
+          "explanation": "Uterine tissue grows outside uterus causing pain."
+        }
+      ]
+    },
+    {
+      "topic": "Assisted Reproductive Technologies",
+      "brief": "Medical interventions to help conception.",
+      "subtopics": [
+        {
+          "name": "IVF",
+          "explanation": "In vitro fertilization - egg and sperm combined outside body."
+        },
+        {
+          "name": "Artificial Insemination",
+          "explanation": "Sperm placed directly in uterus."
+        },
+        {
+          "name": "Surrogacy",
+          "explanation": "Another woman carries pregnancy for couple."
+        }
+      ]
+    },
+    {
+      "topic": "Population Control",
+      "brief": "Importance of regulating population growth.",
+      "subtopics": [
+        {
+          "name": "Need for Control",
+          "explanation": "Limited resources, environmental sustainability, quality of life."
+        },
+        {
+          "name": "Methods",
+          "explanation": "Family planning, education, contraceptive availability."
+        }
+      ]
+    },
+    {
+      "topic": "Common PYQ-style Questions",
+      "brief": "Important exam questions with detailed answers.",
+      "subtopics": [
+        {
+          "name": "Asexual vs Sexual Reproduction",
+          "explanation": "Define both, give 3 differences, 2 examples each, advantages of each type."
+        },
+        {
+          "name": "Human Male Reproductive System",
+          "explanation": "Draw labeled diagram, describe functions of testes, vas deferens, prostate gland."
+        },
+        {
+          "name": "Menstrual Cycle Hormonal Control",
+          "explanation": "Explain 4 phases, role of FSH, LH, estrogen, progesterone with timeline."
+        },
+        {
+          "name": "Flower Structure and Pollination",
+          "explanation": "Draw bisexual flower, label parts, define pollination types, agents with examples."
+        },
+        {
+          "name": "Seed Germination Process",
+          "explanation": "Describe conditions, stages, types of germination with examples."
+        }
+      ]
+    }
+  ]
+},
+{
+  "chapter_no": 4,
+  "chapter_name": "Heredity and Evolution",
+  "topics": [
+    {
+      "topic": "Introduction to Heredity",
+      "brief": "The passing of genetic traits from parents to offspring through reproduction. 🧬",
+      "subtopics": [
+        {
+          "name": "What is Heredity?",
+          "explanation": "Transmission of characteristics from one generation to the next via genes. 👨‍👩‍👧‍👦"
+        },
+        {
+          "name": "Importance of Heredity",
+          "explanation": "Explains family resemblances, inheritance of traits, and biological continuity. 🔄"
+        }
+      ]
+    },
+    {
+      "topic": "Basic Genetics Terminology",
+      "brief": "Essential terms and concepts in genetics that form the foundation of heredity studies.",
+      "subtopics": [
+        {
+          "name": "Chromosomes",
+          "explanation": "Thread-like structures in nucleus carrying genetic information. Humans have 46 chromosomes. 🧵"
+        },
+        {
+          "name": "Genes",
+          "explanation": "Units of heredity located on chromosomes that code for specific traits. 💊"
+        },
+        {
+          "name": "DNA",
+          "explanation": "Deoxyribonucleic acid - the molecule that carries genetic instructions. 🧬"
+        },
+        {
+          "name": "Alleles",
+          "explanation": "Different forms of the same gene (e.g., T for tall, t for short in plants). 🔀"
+        },
+        {
+          "name": "Genotype",
+          "explanation": "Genetic makeup of an organism (e.g., TT, Tt, tt). 🧪"
+        },
+        {
+          "name": "Phenotype",
+          "explanation": "Physical appearance or observable characteristics (e.g., tall, short). 👀"
+        }
+      ]
+    },
+    {
+      "topic": "Gregor Mendel - Father of Genetics",
+      "brief": "The pioneering work of Mendel with pea plants that established fundamental laws of inheritance. 🌱",
+      "subtopics": [
+        {
+          "name": "Mendel's Experiments",
+          "explanation": "Conducted between 1856-1863 using pea plants, studying 7 contrasting characters. 🔬"
+        },
+        {
+          "name": "Why Pea Plants?",
+          "explanation": "Easy to grow, short life cycle, distinct contrasting traits, self-pollinating. ✅"
+        },
+        {
+          "name": "Mendel's Contributions",
+          "explanation": "Discovered fundamental principles of inheritance through careful experimentation. 🏆"
+        }
+      ]
+    },
+    {
+      "topic": "Mendel's Laws of Inheritance",
+      "brief": "Three fundamental principles that govern how traits are passed from parents to offspring.",
+      "subtopics": [
+        {
+          "name": "Law of Dominance",
+          "explanation": "In a pair of contrasting alleles, one dominates and expresses itself while the other remains recessive. 🥊"
+        },
+        {
+          "name": "Law of Segregation",
+          "explanation": "During gamete formation, alleles separate so each gamete gets only one allele. 🪢"
+        },
+        {
+          "name": "Law of Independent Assortment",
+          "explanation": "Genes for different traits are inherited independently of each other. 🎲"
+        }
+      ]
+    },
+    {
+      "topic": "Monohybrid Cross",
+      "brief": "Genetic cross focusing on inheritance of a single trait with two contrasting forms.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Cross between parents differing in only one character (e.g., tall vs short). 1️⃣"
+        },
+        {
+          "name": "Example: Tall vs Short Pea Plants",
+          "explanation": "Pure tall (TT) × pure short (tt) → all F1 heterozygous tall (Tt) → F2 ratio 3:1. 📊"
+        },
+        {
+          "name": "Punnett Square Method",
+          "explanation": "Diagrammatic method to predict possible genotypes and phenotypes of offspring. 📐"
+        }
+      ]
+    },
+    {
+      "topic": "Dihybrid Cross",
+      "brief": "Genetic cross studying inheritance of two different traits simultaneously.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Cross between parents differing in two characters (e.g., seed shape and color). 2️⃣"
+        },
+        {
+          "name": "Example: Round/Yellow vs Wrinkled/Green",
+          "explanation": "RRYY × rryy → F1 all RrYy → F2 ratio 9:3:3:1 demonstrating independent assortment. 🎯"
+        },
+        {
+          "name": "Significance",
+          "explanation": "Proves that different traits are inherited independently of each other. 🔗"
+        }
+      ]
+    },
+    {
+      "topic": "Back Cross and Test Cross",
+      "brief": "Special types of genetic crosses used to determine unknown genotypes.",
+      "subtopics": [
+        {
+          "name": "Test Cross",
+          "explanation": "Crossing an individual of unknown genotype with a homozygous recessive individual. ❓"
+        },
+        {
+          "name": "Back Cross",
+          "explanation": "Crossing a hybrid with one of its parents or genetically similar individual. 🔙"
+        },
+        {
+          "name": "Applications",
+          "explanation": "Used in plant and animal breeding to determine genotypes and purify lines. 🌾"
+        }
+      ]
+    },
+    {
+      "topic": "Sex Determination in Humans",
+      "brief": "The biological system that determines whether an offspring will be male or female. 👶",
+      "subtopics": [
+        {
+          "name": "Chromosomal Theory",
+          "explanation": "Females: XX chromosomes, Males: XY chromosomes. Sperm determines the sex of child. 🎯"
+        },
+        {
+          "name": "Process",
+          "explanation": "All eggs carry X chromosome; sperm carry either X or Y. XX = girl, XY = boy. 🔄"
+        },
+        {
+          "name": "Probability",
+          "explanation": "Always 50% chance of male or female offspring in each pregnancy. ½"
+        }
+      ]
+    },
+    {
+      "topic": "Sex Determination in Other Organisms",
+      "brief": "Different mechanisms of sex determination across the animal kingdom.",
+      "subtopics": [
+        {
+          "name": "Birds",
+          "explanation": "ZZ = male, ZW = female (opposite of XY system). 🐦"
+        },
+        {
+          "name": "Insects",
+          "explanation": "XX = female, XO = male (grasshoppers). 🦗"
+        },
+        {
+          "name": "Environmental Sex Determination",
+          "explanation": "Temperature determines sex in turtles, crocodiles, and some lizards. 🌡️"
+        }
+      ]
+    },
+    {
+      "topic": "Sex-linked Inheritance",
+      "brief": "Inheritance of genes located on sex chromosomes, particularly X chromosome.",
+      "subtopics": [
+        {
+          "name": "X-linked Inheritance",
+          "explanation": "Genes on X chromosome show different inheritance patterns in males and females. 🔗"
+        },
+        {
+          "name": "Examples",
+          "explanation": "Color blindness, hemophilia, muscular dystrophy - more common in males. 🎨"
+        },
+        {
+          "name": "Criss-cross Inheritance",
+          "explanation": "Trait passed from mother to son and from father to daughter. ❌"
+        }
+      ]
+    },
+    {
+      "topic": "Blood Groups Inheritance",
+      "brief": "Genetic basis of ABO blood group system in humans.",
+      "subtopics": [
+        {
+          "name": "ABO System",
+          "explanation": "Controlled by gene I with three alleles: Iᴬ, Iᴮ, and i. 🩸"
+        },
+        {
+          "name": "Genotypes and Phenotypes",
+          "explanation": "IᴬIᴬ/Iᴬi = A, IᴮIᴮ/Iᴮi = B, IᴬIᴮ = AB, ii = O blood group. 🧬"
+        },
+        {
+          "name": "Medical Importance",
+          "explanation": "Crucial for blood transfusions, organ transplants, and paternity testing. 🏥"
+        }
+      ]
+    },
+    {
+      "topic": "Genetic Variations",
+      "brief": "Differences in DNA sequences among individuals of the same species.",
+      "subtopics": [
+        {
+          "name": "Sources of Variations",
+          "explanation": "Mutation, recombination during meiosis, random fertilization. 🎲"
+        },
+        {
+          "name": "Importance",
+          "explanation": "Raw material for evolution, adaptation to environment, survival during changes. 🌍"
+        },
+        {
+          "name": "Types",
+          "explanation": "Somatic variations (body cells) and germinal variations (reproductive cells). 🔄"
+        }
+      ]
+    },
+    {
+      "topic": "Mutations",
+      "brief": "Sudden, heritable changes in genetic material that create new variations.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Permanent alteration in DNA sequence that can be passed to下一代. 💥"
+        },
+        {
+          "name": "Types of Mutations",
+          "explanation": "Point mutations (single base change) and chromosomal mutations (large changes). 🧩"
+        },
+        {
+          "name": "Causes",
+          "explanation": "Radiation, chemicals, replication errors, environmental factors. ☢️"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Can be harmful, beneficial, or neutral depending on the change. ⚖️"
+        }
+      ]
+    },
+    {
+      "topic": "Genetic Disorders",
+      "brief": "Diseases or conditions caused by abnormalities in genes or chromosomes.",
+      "subtopics": [
+        {
+          "name": "Chromosomal Disorders",
+          "explanation": "Down syndrome (extra chromosome 21), Turner syndrome (XO), Klinefelter syndrome (XXY). 🧬"
+        },
+        {
+          "name": "Gene Disorders",
+          "explanation": "Hemophilia, sickle cell anemia, cystic fibrosis, color blindness. 🩺"
+        },
+        {
+          "name": "Patterns of Inheritance",
+          "explanation": "Autosomal dominant/recessive, X-linked dominant/recessive. 📈"
+        }
+      ]
+    },
+    {
+      "topic": "Introduction to Evolution",
+      "brief": "The process by which different kinds of living organisms developed and diversified over time. 🌱→🦍→👤",
+      "subtopics": [
+        {
+          "name": "What is Evolution?",
+          "explanation": "Gradual change in species over generations through genetic variations and natural selection. 🕰️"
+        },
+        {
+          "name": "Evidence for Evolution",
+          "explanation": "Fossils, comparative anatomy, embryology, molecular biology. 🔍"
+        },
+        {
+          "name": "Theories of Evolution",
+          "explanation": "Lamarckism, Darwinism, Neo-Darwinism, Modern Synthetic Theory. 📚"
+        }
+      ]
+    },
+    {
+      "topic": "Lamarck's Theory of Evolution",
+      "brief": "The first comprehensive theory of evolution proposed by Jean-Baptiste Lamarck.",
+      "subtopics": [
+        {
+          "name": "Basic Principles",
+          "explanation": "Use and disuse of organs, inheritance of acquired characteristics. 💪"
+        },
+        {
+          "name": "Example: Giraffe Neck",
+          "explanation": "Lamarck: Giraffes stretched necks → offspring inherited long necks. 🦒"
+        },
+        {
+          "name": "Criticism",
+          "explanation": "No evidence that acquired characteristics can be inherited genetically. ❌"
+        }
+      ]
+    },
+    {
+      "topic": "Darwin's Theory of Natural Selection",
+      "brief": "Charles Darwin's revolutionary theory explaining evolution through natural processes.",
+      "subtopics": [
+        {
+          "name": "Darwin's Observations",
+          "explanation": "Galapagos finches, fossil evidence, geographical distribution of species. 🐦"
+        },
+        {
+          "name": "Key Principles",
+          "explanation": "Overproduction, variation, struggle for existence, survival of the fittest. 🏆"
+        },
+        {
+          "name": "Natural Selection",
+          "explanation": "Environment selects individuals with favorable variations to survive and reproduce. 🌍"
+        }
+      ]
+    },
+    {
+      "topic": "Speciation",
+      "brief": "The evolutionary process by which new biological species arise.",
+      "subtopics": [
+        {
+          "name": "What is a Species?",
+          "explanation": "Group of organisms that can interbreed and produce fertile offspring. 🔄"
+        },
+        {
+          "name": "Mechanisms of Speciation",
+          "explanation": "Geographical isolation, reproductive isolation, genetic drift. 🗺️"
+        },
+        {
+          "name": "Types of Speciation",
+          "explanation": "Allopatric (geographical separation) and sympatric (same area). 📍"
+        }
+      ]
+    },
+    {
+      "topic": "Human Evolution",
+      "brief": "The evolutionary process that led to the emergence of Homo sapiens.",
+      "subtopics": [
+        {
+          "name": "Hominid Evolution",
+          "explanation": "Australopithecus → Homo habilis → Homo erectus → Homo sapiens. 🦍→👤"
+        },
+        {
+          "name": "Key Features",
+          "explanation": "Bipedalism, larger brain, tool use, language development. 🧠"
+        },
+        {
+          "name": "Out of Africa Theory",
+          "explanation": "Modern humans originated in Africa and migrated to other continents. 🌍"
+        }
+      ]
+    },
+    {
+      "topic": "Fossils and Evolution",
+      "brief": "Preserved remains of ancient organisms that provide evidence for evolution.",
+      "subtopics": [
+        {
+          "name": "What are Fossils?",
+          "explanation": "Preserved remains or impressions of ancient organisms in rocks. 🦴"
+        },
+        {
+          "name": "Fossil Formation",
+          "explanation": "Petrification, molds, casts, carbonization, amber preservation. 💎"
+        },
+        {
+          "name": "Dating Methods",
+          "explanation": "Relative dating and radioactive dating (carbon-14, uranium-lead). ⏳"
+        }
+      ]
+    },
+    {
+      "topic": "Adaptive Radiation",
+      "brief": "Evolution of diverse species from a common ancestor to fill different ecological niches.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Rapid diversification of species to exploit different environments. 🌈"
+        },
+        {
+          "name": "Examples",
+          "explanation": "Darwin's finches, Australian marsupials, Hawaiian honeycreepers. 🐦"
+        },
+        {
+          "name": "Significance",
+          "explanation": "Shows how natural selection leads to biodiversity and adaptation. 🌿"
+        }
+      ]
+    },
+    {
+      "topic": "Genetic Drift",
+      "brief": "Random changes in gene frequencies in small populations due to chance events.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Change in allele frequencies by chance rather than natural selection. 🎲"
+        },
+        {
+          "name": "Founder Effect",
+          "explanation": "New population established by small number of individuals with limited genetic diversity. 🚢"
+        },
+        {
+          "name": "Bottleneck Effect",
+          "explanation": "Sharp reduction in population size followed by recovery with reduced genetic diversity. 🍾"
+        }
+      ]
+    },
+    {
+      "topic": "Molecular Evolution",
+      "brief": "Study of evolution at molecular level using DNA and protein sequences.",
+      "subtopics": [
+        {
+          "name": "DNA Sequencing",
+          "explanation": "Comparing DNA sequences to determine evolutionary relationships. 🧬"
+        },
+        {
+          "name": "Molecular Clock",
+          "explanation": "Using mutation rates in DNA to estimate time of species divergence. ⏰"
+        },
+        {
+          "name": "Applications",
+          "explanation": "Phylogenetic trees, human migration patterns, disease evolution. 📊"
+        }
+      ]
+    },
+    {
+      "topic": "Artificial Selection",
+      "brief": "Humans selectively breeding organisms for desired traits.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Intentional breeding for specific characteristics by humans. 👨‍🌾"
+        },
+        {
+          "name": "Examples",
+          "explanation": "Dog breeds, crop plants, livestock - all from artificial selection. 🌽🐕"
+        },
+        {
+          "name": "vs Natural Selection",
+          "explanation": "Artificial: human-directed, fast; Natural: environment-directed, slow. ⚖️"
+        }
+      ]
+    },
+    {
+      "topic": "Antibiotic Resistance",
+      "brief": "Evolution of bacteria resistant to antibiotics due to natural selection.",
+      "subtopics": [
+        {
+          "name": "Mechanism",
+          "explanation": "Random mutations → resistant bacteria survive → reproduce → resistant population. 🦠"
+        },
+        {
+          "name": "Examples",
+          "explanation": "MRSA, drug-resistant tuberculosis, multi-drug resistant bacteria. 💊"
+        },
+        {
+          "name": "Prevention",
+          "explanation": "Proper antibiotic use, completing courses, not using for viral infections. 🛡️"
+        }
+      ]
+    },
+    {
+      "topic": "Genetic Engineering",
+      "brief": "Modern technology to directly manipulate genes and genetic material.",
+      "subtopics": [
+        {
+          "name": "Recombinant DNA Technology",
+          "explanation": "Combining DNA from different sources to create new genetic combinations. 🔗"
+        },
+        {
+          "name": "Applications",
+          "explanation": "Insulin production, GM crops, gene therapy, DNA fingerprinting. 🧬"
+        },
+        {
+          "name": "Ethical Concerns",
+          "explanation": "GMO safety, environmental impact, human genetic modification. ⚖️"
+        }
+      ]
+    },
+    {
+      "topic": "DNA Fingerprinting",
+      "brief": "Technique to identify individuals based on unique DNA patterns.",
+      "subtopics": [
+        {
+          "name": "Principle",
+          "explanation": "Uses variable number tandem repeats (VNTRs) that are unique to each person. 👆"
+        },
+        {
+          "name": "Process",
+          "explanation": "DNA extraction → cutting with enzymes → electrophoresis → pattern analysis. 🧪"
+        },
+        {
+          "name": "Applications",
+          "explanation": "Forensics, paternity testing, wildlife conservation, historical research. 🔍"
+        }
+      ]
+    },
+    {
+      "topic": "Human Genome Project",
+      "brief": "International research project to map and sequence all human genes.",
+      "subtopics": [
+        {
+          "name": "Goals",
+          "explanation": "Identify all human genes, determine DNA sequences, store information. 🎯"
+        },
+        {
+          "name": "Findings",
+          "explanation": "Humans have ~20,000-25,000 genes, 98% DNA is non-coding. 📈"
+        },
+        {
+          "name": "Applications",
+          "explanation": "Medical research, personalized medicine, understanding genetic diseases. 🏥"
+        }
+      ]
+    },
+    {
+      "topic": "Evolutionary Trees",
+      "brief": "Diagrams showing evolutionary relationships among species.",
+      "subtopics": [
+        {
+          "name": "Phylogenetic Trees",
+          "explanation": "Show common ancestry and evolutionary pathways of different species. 🌳"
+        },
+        {
+          "name": "Cladograms",
+          "explanation": "Focus on shared derived characteristics to show relationships. 📊"
+        },
+        {
+          "name": "Interpretation",
+          "explanation": "Closer branches indicate more recent common ancestry. 🔗"
+        }
+      ]
+    },
+    {
+      "topic": "Common PYQ-style Questions",
+      "brief": "Important exam questions with detailed answers and explanations.",
+      "subtopics": [
+        {
+          "name": "Mendel's Dihybrid Cross",
+          "explanation": "Explain with Punnett square: RRYY × rryy → F1 → F2 with 9:3:3:1 ratio. Show how this proves independent assortment. 📐"
+        },
+        {
+          "name": "Natural Selection vs Artificial Selection",
+          "explanation": "Compare: Natural - environment selects, slow, for survival; Artificial - humans select, fast, for desired traits. Give 2 examples each. 🌍👨‍🌾"
+        },
+        {
+          "name": "Human Evolution Timeline",
+          "explanation": "Describe: Australopithecus (4-2 mya) → Homo habilis (2.4-1.4 mya) → Homo erectus (1.9-0.1 mya) → Homo sapiens (0.3 mya-present). Key features at each stage. 🦍→👤"
+        },
+        {
+          "name": "Sex Determination in Humans",
+          "explanation": "Explain chromosomal mechanism: XX female, XY male. Show cross: 50% male, 50% female. Why males determine sex? 👶"
+        },
+        {
+          "name": "Evidence for Evolution",
+          "explanation": "Discuss: Fossil records (transitional forms), comparative anatomy (homologous/analogous), embryology (similar embryos), molecular biology (DNA similarities). 🔍"
+        }
+      ]
+    }
+  ]
+},
+{
+  "chapter_no": 5,
+  "chapter_name": "Our Environment",
+  "topics": [
+    {
+      "topic": "Introduction to Environment",
+      "brief": "The surroundings and conditions in which living organisms exist and interact with each other and physical components. 🌍",
+      "subtopics": [
+        {
+          "name": "What is Environment?",
+          "explanation": "Sum total of all living and non-living components that surround an organism and influence its life. 🔄"
+        },
+        {
+          "name": "Components of Environment",
+          "explanation": "Biotic (living organisms) and Abiotic (non-living physical factors) components. 🌱🪨"
+        },
+        {
+          "name": "Importance of Environment",
+          "explanation": "Provides resources, maintains ecological balance, supports life systems, and regulates climate. 💚"
+        }
+      ]
+    },
+    {
+      "topic": "Ecosystem - Basic Concept",
+      "brief": "A biological community of interacting organisms and their physical environment functioning as an ecological unit.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Self-sustaining structural and functional unit of biosphere where living and non-living components interact. 🔗"
+        },
+        {
+          "name": "Types of Ecosystems",
+          "explanation": "Natural (forests, oceans) and Artificial (agricultural fields, aquariums) ecosystems. 🌲🏙️"
+        },
+        {
+          "name": "Components",
+          "explanation": "Producers, consumers, decomposers + abiotic factors like soil, water, air, sunlight. ☀️"
+        }
+      ]
+    },
+    {
+      "topic": "Biotic Components of Ecosystem",
+      "brief": "Living organisms in ecosystem classified based on their nutritional relationships.",
+      "subtopics": [
+        {
+          "name": "Producers (Autotrophs)",
+          "explanation": "Green plants and algae that produce food through photosynthesis. 🌿"
+        },
+        {
+          "name": "Consumers (Heterotrophs)",
+          "explanation": "Organisms that depend on producers directly or indirectly for food. 🐇"
+        },
+        {
+          "name": "Decomposers (Saprotrophs)",
+          "explanation": "Bacteria and fungi that break down dead organic matter. 🍄"
+        }
+      ]
+    },
+    {
+      "topic": "Types of Consumers",
+      "brief": "Classification of consumers based on their food habits and position in food chain.",
+      "subtopics": [
+        {
+          "name": "Herbivores (Primary Consumers)",
+          "explanation": "Plant-eating animals like deer, rabbit, cow. 🌱→🐄"
+        },
+        {
+          "name": "Carnivores (Secondary/Tertiary Consumers)",
+          "explanation": "Flesh-eating animals like lion, tiger, hawk. 🐇→🦁"
+        },
+        {
+          "name": "Omnivores",
+          "explanation": "Animals that eat both plants and animals like humans, bear, crow. 🌱🍖"
+        },
+        {
+          "name": "Detritivores",
+          "explanation": "Organisms that feed on dead organic matter like earthworms, millipedes. 🪱"
+        }
+      ]
+    },
+    {
+      "topic": "Abiotic Components",
+      "brief": "Non-living physical and chemical factors that influence ecosystem functioning.",
+      "subtopics": [
+        {
+          "name": "Physical Factors",
+          "explanation": "Sunlight, temperature, water, wind, soil type, humidity. ☀️🌡️💧"
+        },
+        {
+          "name": "Chemical Factors",
+          "explanation": "pH, salinity, oxygen, mineral nutrients, organic compounds. 🧪"
+        },
+        {
+          "name": "Importance",
+          "explanation": "Determine types of organisms, their distribution, and ecosystem productivity. 📊"
+        }
+      ]
+    },
+    {
+      "topic": "Food Chain",
+      "brief": "Linear sequence of organisms where each is eaten by the next member in chain.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Transfer of food energy from producers through series of organisms with repeated eating and being eaten. 🔗"
+        },
+        {
+          "name": "Components",
+          "explanation": "Producers → Primary Consumers → Secondary Consumers → Tertiary Consumers → Decomposers. 📈"
+        },
+        {
+          "name": "Example",
+          "explanation": "Grass → Grasshopper → Frog → Snake → Hawk → Decomposers. 🌱→🦗→🐸→🐍→🦅"
+        }
+      ]
+    },
+    {
+      "topic": "Food Web",
+      "brief": "Network of interconnected food chains showing complex feeding relationships.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Multiple interconnected food chains that form a web-like pattern of energy flow. 🕸️"
+        },
+        {
+          "name": "Advantages over Food Chain",
+          "explanation": "More realistic, provides stability, allows multiple feeding options for organisms. ✅"
+        },
+        {
+          "name": "Importance",
+          "explanation": "Maintains ecological balance, ensures biodiversity, provides ecosystem stability. ⚖️"
+        }
+      ]
+    },
+    {
+      "topic": "Trophic Levels",
+      "brief": "Position an organism occupies in a food chain representing its feeding relationship.",
+      "subtopics": [
+        {
+          "name": "Trophic Level 1",
+          "explanation": "Producers (plants, algae) - base of all food chains. 1️⃣"
+        },
+        {
+          "name": "Trophic Level 2",
+          "explanation": "Primary Consumers (herbivores) - feed directly on producers. 2️⃣"
+        },
+        {
+          "name": "Trophic Level 3",
+          "explanation": "Secondary Consumers (carnivores) - feed on primary consumers. 3️⃣"
+        },
+        {
+          "name": "Trophic Level 4",
+          "explanation": "Tertiary Consumers (top carnivores) - feed on secondary consumers. 4️⃣"
+        }
+      ]
+    },
+    {
+      "topic": "Energy Flow in Ecosystem",
+      "brief": "Unidirectional flow of energy from sun to producers and then to consumers.",
+      "subtopics": [
+        {
+          "name": "10% Law (Lindeman's Law)",
+          "explanation": "Only 10% energy is transferred from one trophic level to next; 90% lost as heat. 🔥"
+        },
+        {
+          "name": "Energy Pyramid",
+          "explanation": "Graphical representation showing decrease in energy at higher trophic levels. 📊"
+        },
+        {
+          "name": "Significance",
+          "explanation": "Explains why food chains are short and why large carnivores are fewer in number. 🦁"
+        }
+      ]
+    },
+    {
+      "topic": "Ecological Pyramids",
+      "brief": "Graphical representations of ecological parameters at different trophic levels.",
+      "subtopics": [
+        {
+          "name": "Pyramid of Numbers",
+          "explanation": "Shows number of individuals at each trophic level. Usually upright. 🔢"
+        },
+        {
+          "name": "Pyramid of Biomass",
+          "explanation": "Shows total dry weight of organisms at each trophic level. Can be inverted. ⚖️"
+        },
+        {
+          "name": "Pyramid of Energy",
+          "explanation": "Shows energy content at each trophic level. Always upright. ⚡"
+        }
+      ]
+    },
+    {
+      "topic": "Biogeochemical Cycles",
+      "brief": "Natural pathways by which essential elements circulate through biotic and abiotic components.",
+      "subtopics": [
+        {
+          "name": "What are Biogeochemical Cycles?",
+          "explanation": "Cycles that involve movement of elements between living organisms and physical environment. 🔄"
+        },
+        {
+          "name": "Importance",
+          "explanation": "Maintain balance of elements in nature, ensure continuous availability for organisms. ♻️"
+        },
+        {
+          "name": "Types",
+          "explanation": "Gaseous cycles (carbon, nitrogen, oxygen) and Sedimentary cycles (phosphorus, sulfur). 💨"
+        }
+      ]
+    },
+    {
+      "topic": "Water Cycle",
+      "brief": "Continuous movement of water on, above, and below surface of Earth.",
+      "subtopics": [
+        {
+          "name": "Processes Involved",
+          "explanation": "Evaporation, transpiration, condensation, precipitation, runoff, infiltration. 💧"
+        },
+        {
+          "name": "Importance",
+          "explanation": "Distributes freshwater, regulates climate, supports all life forms, shapes landscape. 🌎"
+        },
+        {
+          "name": "Human Impact",
+          "explanation": "Deforestation, urbanization, pollution affect natural water cycle. 🏭"
+        }
+      ]
+    },
+    {
+      "topic": "Carbon Cycle",
+      "brief": "Circulation of carbon between living organisms and environment.",
+      "subtopics": [
+        {
+          "name": "Key Processes",
+          "explanation": "Photosynthesis, respiration, decomposition, combustion, weathering. 🔄"
+        },
+        {
+          "name": "Carbon Reservoirs",
+          "explanation": "Atmosphere, oceans, fossil fuels, living biomass, soil organic matter. 🗃️"
+        },
+        {
+          "name": "Global Warming Connection",
+          "explanation": "Increased CO2 from burning fossil fuels enhances greenhouse effect. 🌡️"
+        }
+      ]
+    },
+    {
+      "topic": "Nitrogen Cycle",
+      "brief": "Transformation and circulation of nitrogen in various forms in nature.",
+      "subtopics": [
+        {
+          "name": "Nitrogen Fixation",
+          "explanation": "Conversion of atmospheric N2 to usable forms by bacteria (Rhizobium, Azotobacter). 🦠"
+        },
+        {
+          "name": "Nitrification",
+          "explanation": "Conversion of ammonia to nitrites and then to nitrates by nitrifying bacteria. 🔄"
+        },
+        {
+          "name": "Denitrification",
+          "explanation": "Conversion of nitrates back to atmospheric nitrogen by denitrifying bacteria. 💨"
+        }
+      ]
+    },
+    {
+      "topic": "Oxygen Cycle",
+      "brief": "Movement of oxygen between atmosphere, biosphere, and lithosphere.",
+      "subtopics": [
+        {
+          "name": "Oxygen Production",
+          "explanation": "Mainly through photosynthesis by green plants and phytoplankton. 🌿"
+        },
+        {
+          "name": "Oxygen Consumption",
+          "explanation": "Respiration by living organisms, combustion, decomposition. 🔥"
+        },
+        {
+          "name": "Balance",
+          "explanation": "Delicate balance between production and consumption maintains atmospheric oxygen at 21%. ⚖️"
+        }
+      ]
+    },
+    {
+      "topic": "Greenhouse Effect",
+      "brief": "Natural process where greenhouse gases trap heat in Earth's atmosphere.",
+      "subtopics": [
+        {
+          "name": "Mechanism",
+          "explanation": "Solar radiation enters atmosphere → Earth surface heats up → infrared radiation emitted → greenhouse gases trap heat. 🌡️"
+        },
+        {
+          "name": "Greenhouse Gases",
+          "explanation": "CO2, methane, water vapor, nitrous oxide, CFCs - trap infrared radiation. 💨"
+        },
+        {
+          "name": "Natural vs Enhanced",
+          "explanation": "Natural: essential for life; Enhanced: human activities increasing effect dangerously. ⚠️"
+        }
+      ]
+    },
+    {
+      "topic": "Global Warming",
+      "brief": "Gradual increase in Earth's average surface temperature due to enhanced greenhouse effect.",
+      "subtopics": [
+        {
+          "name": "Causes",
+          "explanation": "Burning fossil fuels, deforestation, industrial processes, agriculture. 🏭"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Melting glaciers, sea level rise, extreme weather, biodiversity loss, climate change. 🌊"
+        },
+        {
+          "name": "Solutions",
+          "explanation": "Renewable energy, afforestation, energy efficiency, sustainable practices. 🌞"
+        }
+      ]
+    },
+    {
+      "topic": "Ozone Layer Depletion",
+      "brief": "Thinning of protective ozone layer in stratosphere due to human-made chemicals.",
+      "subtopics": [
+        {
+          "name": "Ozone Layer Function",
+          "explanation": "Absorbs harmful UV-B and UV-C radiation from sun, protecting life on Earth. 🛡️"
+        },
+        {
+          "name": "Ozone Depleting Substances",
+          "explanation": "CFCs, halons, carbon tetrachloride - release chlorine atoms that destroy ozone. ☢️"
+        },
+        {
+          "name": "Ozone Hole",
+          "explanation": "Seasonal thinning of ozone layer over Antarctica discovered in 1980s. 🕳️"
+        }
+      ]
+    },
+    {
+      "topic": "Biological Magnification",
+      "brief": "Increasing concentration of toxic substances in organisms at higher trophic levels.",
+      "subtopics": [
+        {
+          "name": "Definition",
+          "explanation": "Process where non-biodegradable chemicals become more concentrated at successive trophic levels. 📈"
+        },
+        {
+          "name": "Example: DDT",
+          "explanation": "Water (0.003 ppm) → Plankton (0.04 ppm) → Small fish (0.5 ppm) → Large fish (2 ppm) → Birds (25 ppm). 🐟→🦅"
+        },
+        {
+          "name": "Impact",
+          "explanation": "Causes reproductive failure, birth defects, immune system damage in top consumers. 💔"
+        }
+      ]
+    },
+    {
+      "topic": "Waste Management",
+      "brief": "Collection, transport, processing, and disposal of waste materials.",
+      "subtopics": [
+        {
+          "name": "Types of Waste",
+          "explanation": "Biodegradable (food, paper) and Non-biodegradable (plastic, metal, glass). 🗑️"
+        },
+        {
+          "name": "3R Principle",
+          "explanation": "Reduce, Reuse, Recycle - sustainable approach to waste management. 🔄"
+        },
+        {
+          "name": "Methods",
+          "explanation": "Landfills, incineration, composting, recycling, waste-to-energy plants. 🏭"
+        }
+      ]
+    },
+    {
+      "topic": "Sewage Treatment",
+      "brief": "Process of removing contaminants from wastewater to make it safe for disposal.",
+      "subtopics": [
+        {
+          "name": "Primary Treatment",
+          "explanation": "Physical processes: screening, sedimentation to remove solid waste. 🚰"
+        },
+        {
+          "name": "Secondary Treatment",
+          "explanation": "Biological processes: aerobic bacteria break down organic matter. 🦠"
+        },
+        {
+          "name": "Tertiary Treatment",
+          "explanation": "Chemical processes: disinfection, nutrient removal for advanced purification. 🧪"
+        }
+      ]
+    },
+    {
+      "topic": "Air Pollution",
+      "brief": "Presence of harmful substances in atmosphere that affect living organisms and environment.",
+      "subtopics": [
+        {
+          "name": "Major Pollutants",
+          "explanation": "Particulate matter, SO2, NOx, CO, hydrocarbons, lead, ozone. 💨"
+        },
+        {
+          "name": "Sources",
+          "explanation": "Vehicles, industries, power plants, construction, agricultural burning. 🚗🏭"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Respiratory diseases, acid rain, global warming, ozone depletion. 😷"
+        }
+      ]
+    },
+    {
+      "topic": "Water Pollution",
+      "brief": "Contamination of water bodies making water unfit for intended uses.",
+      "subtopics": [
+        {
+          "name": "Sources",
+          "explanation": "Industrial discharge, agricultural runoff, sewage, oil spills, thermal pollution. 🏭"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Waterborne diseases, eutrophication, aquatic life destruction, ecosystem damage. 🐟"
+        },
+        {
+          "name": "Control Measures",
+          "explanation": "Treatment plants, regulations, public awareness, sustainable practices. 💧"
+        }
+      ]
+    },
+    {
+      "topic": "Soil Pollution",
+      "brief": "Presence of toxic chemicals in soil at concentrations that risk ecosystem and human health.",
+      "subtopics": [
+        {
+          "name": "Causes",
+          "explanation": "Pesticides, industrial waste, mining, improper waste disposal, deforestation. 🏭"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Reduced soil fertility, groundwater contamination, food chain contamination. 🌱"
+        },
+        {
+          "name": "Soil Conservation",
+          "explanation": "Afforestation, terrace farming, crop rotation, organic farming. 🌳"
+        }
+      ]
+    },
+    {
+      "topic": "Noise Pollution",
+      "brief": "Presence of unwanted or disturbing sound that harms human and animal life.",
+      "subtopics": [
+        {
+          "name": "Sources",
+          "explanation": "Traffic, industries, construction, loudspeakers, aircraft, fireworks. 🚗"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Hearing loss, stress, sleep disturbance, cardiovascular problems, wildlife disruption. 👂"
+        },
+        {
+          "name": "Control",
+          "explanation": "Sound barriers, noise limits, green belts, public awareness. 🔇"
+        }
+      ]
+    },
+    {
+      "topic": "Acid Rain",
+      "brief": "Rainfall made sufficiently acidic by atmospheric pollution that causes environmental harm.",
+      "subtopics": [
+        {
+          "name": "Formation",
+          "explanation": "SO2 and NOx from burning fossil fuels react with water vapor to form sulfuric and nitric acid. ☔"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Damages forests, acidifies lakes, corrodes buildings, affects soil fertility. 🌲"
+        },
+        {
+          "name": "Prevention",
+          "explanation": "Flue gas desulfurization, cleaner fuels, renewable energy sources. 🌞"
+        }
+      ]
+    },
+    {
+      "topic": "Eutrophication",
+      "brief": "Excessive nutrient enrichment in water bodies leading to ecosystem imbalance.",
+      "subtopics": [
+        {
+          "name": "Process",
+          "explanation": "Nutrient increase → algal bloom → oxygen depletion → fish death → dead zone. 📈"
+        },
+        {
+          "name": "Causes",
+          "explanation": "Agricultural runoff, sewage discharge, detergent phosphates. 🌾"
+        },
+        {
+          "name": "Prevention",
+          "explanation": "Proper wastewater treatment, reduced fertilizer use, buffer zones. 🛡️"
+        }
+      ]
+    },
+    {
+      "topic": "Deforestation",
+      "brief": "Large-scale removal of forests for agriculture, urbanization, or commercial purposes.",
+      "subtopics": [
+        {
+          "name": "Causes",
+          "explanation": "Agriculture expansion, logging, urbanization, mining, infrastructure development. 🪵"
+        },
+        {
+          "name": "Effects",
+          "explanation": "Loss of biodiversity, soil erosion, climate change, disrupted water cycles. 🌳"
+        },
+        {
+          "name": "Solutions",
+          "explanation": "Afforestation, sustainable logging, protected areas, community forestry. 🌱"
+        }
+      ]
+    },
+    {
+      "topic": "Wildlife Conservation",
+      "brief": "Protection of wild species and their habitats to maintain ecological balance.",
+      "subtopics": [
+        {
+          "name": "Importance",
+          "explanation": "Maintains biodiversity, ecological balance, gene pool, and ecosystem services. 🐅"
+        },
+        {
+          "name": "Methods",
+          "explanation": "Protected areas, wildlife sanctuaries, national parks, breeding programs. 🛡️"
+        },
+        {
+          "name": "Threats",
+          "explanation": "Habitat loss, poaching, pollution, climate change, invasive species. ⚠️"
+        }
+      ]
+    },
+    {
+      "topic": "Sustainable Development",
+      "brief": "Development that meets present needs without compromising future generations.",
+      "subtopics": [
+        {
+          "name": "Principles",
+          "explanation": "Conservation, appropriate technology, reduce-reuse-recycle, community participation. 🌱"
+        },
+        {
+          "name": "Goals",
+          "explanation": "Economic development, environmental protection, social equity for long-term sustainability. 🎯"
+        },
+        {
+          "name": "Examples",
+          "explanation": "Renewable energy, organic farming, eco-tourism, green buildings. 🌞"
+        }
+      ]
+    },
+    {
+      "topic": "Renewable Energy Sources",
+      "brief": "Energy derived from natural sources that are replenished constantly.",
+      "subtopics": [
+        {
+          "name": "Solar Energy",
+          "explanation": "From sunlight using photovoltaic cells or solar thermal systems. ☀️"
+        },
+        {
+          "name": "Wind Energy",
+          "explanation": "From wind using wind turbines to generate electricity. 💨"
+        },
+        {
+          "name": "Hydropower",
+          "explanation": "From flowing water using dams and turbines. 💧"
+        },
+        {
+          "name": "Biomass Energy",
+          "explanation": "From organic matter like agricultural waste, wood, biogas. 🌿"
+        }
+      ]
+    },
+    {
+      "topic": "Environmental Laws and Policies",
+      "brief": "Legal frameworks to protect environment and regulate human activities.",
+      "subtopics": [
+        {
+          "name": "Important Laws",
+          "explanation": "Environment Protection Act, Water Act, Air Act, Wildlife Protection Act. ⚖️"
+        },
+        {
+          "name": "International Agreements",
+          "explanation": "Montreal Protocol, Kyoto Protocol, Paris Agreement, CITES. 🌍"
+        },
+        {
+          "name": "Role of Citizens",
+          "explanation": "Follow rules, report violations, participate in conservation efforts. 👥"
+        }
+      ]
+    },
+    {
+      "topic": "Common PYQ-style Questions",
+      "brief": "Important exam questions with detailed answers and explanations.",
+      "subtopics": [
+        {
+          "name": "Food Chain vs Food Web",
+          "explanation": "Food chain: linear sequence, simple; Food web: interconnected chains, complex, stable. Give examples and diagrams. 🔗🕸️"
+        },
+        {
+          "name": "Greenhouse Effect and Global Warming",
+          "explanation": "Natural greenhouse effect essential for life; enhanced effect causes global warming. List 4 greenhouse gases and their sources. Discuss impacts and solutions. 🌡️"
+        },
+        {
+          "name": "Ozone Layer Depletion",
+          "explanation": "Explain formation of ozone hole due to CFCs. Discuss effects of UV radiation and Montreal Protocol success story. 🛡️"
+        },
+        {
+          "name": "Biomagnification with Example",
+          "explanation": "Define biomagnification. Explain with DDT example through aquatic food chain. Show concentration increase at each trophic level. 📈"
+        },
+        {
+          "name": "3R Principle in Waste Management",
+          "explanation": "Reduce (minimize waste generation), Reuse (use items multiple times), Recycle (process waste into new products). Give 2 examples for each. 🔄"
+        }
+      ]
+    }
+  ]
+}
+  ]
+}

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Biology Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f8f5 0%, #f0fff4 50%, #e6fffa 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .quiz-container {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 35px;
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e6fffa;
+        }
+
+        .header {
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
+            color: #1a365d;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .progress-container {
+            background: #f0fff4;
+            height: 8px;
+            border-radius: 12px;
+            margin-bottom: 28px;
+            overflow: hidden;
+            border: 1px solid #c6f6d5;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #38a169, #48bb78, #68d391);
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            padding: 0 8px;
+        }
+
+        .question-number {
+            color: #38a169;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .score-display {
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: #f0fff4;
+            padding: 6px 12px;
+            border-radius: 15px;
+            border: 1px solid #c6f6d5;
+        }
+
+        .question-area {
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        .question {
+            color: #1a365d;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 600;
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #38a169;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px 18px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 1.05rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .option:hover {
+            background: #e6fffa;
+            border-color: #38a169;
+            transform: translateX(4px);
+        }
+
+        .option.selected {
+            background: #38a169;
+            color: white;
+            border-color: #2f855a;
+            transform: translateX(4px);
+        }
+
+        .option.correct {
+            background: #22543d;
+            color: white;
+            border-color: #1a202c;
+            box-shadow: 0 4px 12px rgba(34, 84, 61, 0.3);
+        }
+
+        .option.incorrect {
+            background: #c53030;
+            color: white;
+            border-color: #9b2c2c;
+            box-shadow: 0 4px 12px rgba(197, 48, 48, 0.3);
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #38a169, #48bb78);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            min-width: 120px;
+            box-shadow: 0 4px 15px rgba(56, 161, 105, 0.2);
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 161, 105, 0.3);
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ed8936, #f56500);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            box-shadow: 0 6px 20px rgba(237, 137, 54, 0.3);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+        }
+
+        .check-btn:hover:not(:disabled) {
+            box-shadow: 0 6px 20px rgba(49, 130, 206, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .results {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .results-title {
+            font-size: 2.2rem;
+            color: #1a365d;
+            margin-bottom: 22px;
+            font-weight: 700;
+        }
+
+        .final-score {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #38a169, #48bb78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .results-message {
+            font-size: 1.4rem;
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            background: #f0fff4;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            border: 1px solid #c6f6d5;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #38a169;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #4a5568;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .replay-btn {
+            background: linear-gradient(135deg, #805ad5, #9f7aea);
+            font-size: 1.2rem;
+            padding: 15px 35px;
+            margin-top: 10px;
+        }
+
+        .replay-btn:hover {
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.3);
+        }
+
+        @media (max-width: 650px) {
+            .quiz-container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.9rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quiz-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .question {
+                font-size: 1.15rem;
+                padding: 15px;
+            }
+        }
+
+        .loading-animation {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="header">
+            <h1>🌱 Biology Quiz</h1>
+            <p>Class 10th CBSE Syllabus</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div id="quizContent">
+            <div class="quiz-info">
+                <div class="question-number" id="questionNumber">Question 1 of 40</div>
+                <div class="score-display" id="currentScore">Score: 0/40</div>
+            </div>
+            
+            <div class="question-area">
+                <div class="question" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <div class="controls">
+                <button id="submitBtn" class="submit-btn">Submit Answer</button>
+                <button id="checkBtn" class="check-btn hidden">Check Answer</button>
+                <button id="nextBtn" class="hidden">Next Question</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="results hidden">
+            <div class="results-title">🎯 Quiz Completed!</div>
+            <div class="final-score" id="finalScore">0/40</div>
+            <div class="results-message" id="resultMessage"></div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="incorrectCount">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="accuracyScore">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="finalGrade">-</div>
+                    <div class="stat-label">Grade</div>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="location.reload()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // Life Processes - Nutrition
+            {
+                question: "Which part of the plant is responsible for photosynthesis?",
+                options: ["Root", "Stem", "Leaf", "Flower"],
+                correct: 2
+            },
+            {
+                question: "The opening and closing of stomata is controlled by:",
+                options: ["Mesophyll cells", "Guard cells", "Epidermal cells", "Xylem cells"],
+                correct: 1
+            },
+            {
+                question: "Which enzyme is present in saliva?",
+                options: ["Pepsin", "Trypsin", "Amylase", "Lipase"],
+                correct: 2
+            },
+            {
+                question: "The longest part of the alimentary canal is:",
+                options: ["Esophagus", "Stomach", "Large intestine", "Small intestine"],
+                correct: 3
+            },
+            {
+                question: "Bile is produced by which organ?",
+                options: ["Pancreas", "Liver", "Kidney", "Spleen"],
+                correct: 1
+            },
+
+            // Life Processes - Respiration
+            {
+                question: "During respiration, glucose is broken down to produce:",
+                options: ["Oxygen and water", "Carbon dioxide and water", "Oxygen and carbon dioxide", "Water and nitrogen"],
+                correct: 1
+            },
+            {
+                question: "The respiratory pigment in human blood is:",
+                options: ["Chlorophyll", "Hemoglobin", "Carotene", "Xanthophyll"],
+                correct: 1
+            },
+            {
+                question: "The site of gaseous exchange in lungs is:",
+                options: ["Bronchi", "Bronchioles", "Alveoli", "Trachea"],
+                correct: 2
+            },
+            {
+                question: "During vigorous exercise, muscle cells may undergo:",
+                options: ["Aerobic respiration", "Anaerobic respiration", "Photosynthesis", "Fermentation"],
+                correct: 1
+            },
+            {
+                question: "The end products of aerobic respiration are:",
+                options: ["CO₂ and H₂O", "CO₂ and alcohol", "Lactic acid and CO₂", "CO₂ and glucose"],
+                correct: 0
+            },
+
+            // Life Processes - Transportation
+            {
+                question: "Which blood vessel carries deoxygenated blood from heart to lungs?",
+                options: ["Pulmonary vein", "Pulmonary artery", "Aorta", "Vena cava"],
+                correct: 1
+            },
+            {
+                question: "The liquid part of blood is called:",
+                options: ["Serum", "Plasma", "Lymph", "Hemolymph"],
+                correct: 1
+            },
+            {
+                question: "Which chamber of heart has thickest wall?",
+                options: ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"],
+                correct: 3
+            },
+            {
+                question: "Water and minerals are transported in plants through:",
+                options: ["Phloem", "Xylem", "Cambium", "Cortex"],
+                correct: 1
+            },
+            {
+                question: "The normal blood pressure in healthy adult is:",
+                options: ["80/120 mmHg", "120/80 mmHg", "140/90 mmHg", "90/60 mmHg"],
+                correct: 1
+            },
+
+            // Life Processes - Excretion
+            {
+                question: "The functional unit of kidney is:",
+                options: ["Neuron", "Nephron", "Axon", "Dendrite"],
+                correct: 1
+            },
+            {
+                question: "Urea is formed in which organ?",
+                options: ["Kidney", "Liver", "Lungs", "Skin"],
+                correct: 1
+            },
+            {
+                question: "The process of removal of metabolic waste is called:",
+                options: ["Secretion", "Excretion", "Absorption", "Assimilation"],
+                correct: 1
+            },
+            {
+                question: "Which of the following is not an excretory organ?",
+                options: ["Kidney", "Skin", "Lungs", "Heart"],
+                correct: 3
+            },
+            {
+                question: "The yellow color of urine is due to:",
+                options: ["Urea", "Urochrome", "Creatinine", "Ammonia"],
+                correct: 1
+            },
+
+            // Control and Coordination
+            {
+                question: "The control and coordination in plants is due to:",
+                options: ["Nervous system", "Hormones", "Enzymes", "Vitamins"],
+                correct: 1
+            },
+            {
+                question: "Which part of brain controls balance and posture?",
+                options: ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"],
+                correct: 1
+            },
+            {
+                question: "The gap between two neurons is called:",
+                options: ["Dendrite", "Axon", "Synapse", "Cell body"],
+                correct: 2
+            },
+            {
+                question: "Which hormone controls blood sugar level?",
+                options: ["Insulin", "Thyroxine", "Adrenaline", "Growth hormone"],
+                correct: 0
+            },
+            {
+                question: "The movement of plant parts towards light is called:",
+                options: ["Geotropism", "Phototropism", "Hydrotropism", "Chemotropism"],
+                correct: 1
+            },
+
+            // How do Organisms Reproduce?
+            {
+                question: "Asexual reproduction takes place through budding in:",
+                options: ["Amoeba", "Yeast", "Planaria", "Spirogyra"],
+                correct: 1
+            },
+            {
+                question: "The male gamete in flowering plants is:",
+                options: ["Ovule", "Pollen grain", "Stamen", "Pistil"],
+                correct: 1
+            },
+            {
+                question: "Which part of flower develops into fruit?",
+                options: ["Stamen", "Pistil", "Ovary", "Petals"],
+                correct: 2
+            },
+            {
+                question: "The onset of reproductive phase in human females is marked by:",
+                options: ["Menopause", "Menarche", "Fertilization", "Ovulation"],
+                correct: 1
+            },
+            {
+                question: "The process of fusion of male and female gametes is called:",
+                options: ["Reproduction", "Fertilization", "Pollination", "Germination"],
+                correct: 1
+            },
+
+            // Heredity and Evolution
+            {
+                question: "The father of genetics is:",
+                options: ["Charles Darwin", "Gregor Mendel", "Hugo de Vries", "Lamarck"],
+                correct: 1
+            },
+            {
+                question: "The units of inheritance are called:",
+                options: ["Chromosomes", "Genes", "Alleles", "DNA"],
+                correct: 1
+            },
+            {
+                question: "If both parents have brown eyes (Bb), the probability of blue-eyed child is:",
+                options: ["0%", "25%", "50%", "75%"],
+                correct: 1
+            },
+            {
+                question: "The theory of evolution was proposed by:",
+                options: ["Lamarck", "Darwin", "Mendel", "Watson"],
+                correct: 1
+            },
+            {
+                question: "Homologous organs have:",
+                options: ["Same function, different structure", "Different function, same structure", "Same origin, different function", "Different origin, same function"],
+                correct: 2
+            },
+
+            // Management of Natural Resources
+            {
+                question: "Which of the following is a renewable resource?",
+                options: ["Coal", "Petroleum", "Solar energy", "Natural gas"],
+                correct: 2
+            },
+            {
+                question: "The three R's to save environment are:",
+                options: ["Reduce, Reuse, Recycle", "Reduce, Renew, Recycle", "Reuse, Renew, Recycle", "Reduce, Reuse, Renew"],
+                correct: 0
+            },
+            {
+                question: "Ozone layer protects us from:",
+                options: ["Infrared rays", "Ultraviolet rays", "X-rays", "Gamma rays"],
+                correct: 1
+            },
+            {
+                question: "The main cause of water pollution is:",
+                options: ["Industrial waste", "Sewage", "Pesticides", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "Which gas is responsible for global warming?",
+                options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+                correct: 2
+            },
+
+            // Additional Important Questions
+            {
+                question: "The powerhouse of the cell is:",
+                options: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"],
+                correct: 1
+            },
+            {
+                question: "Which tissue is responsible for transport of water in plants?",
+                options: ["Phloem", "Xylem", "Sclerenchyma", "Parenchyma"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let score = 0;
+        let hasAnswered = false;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of 40`;
+            document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            document.getElementById('questionText').textContent = q.question;
+            
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.textContent = option;
+                div.onclick = () => selectOption(index);
+                container.appendChild(div);
+            });
+
+            // Update progress
+            const progress = ((currentQuestion) / 40) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            resetUI();
+        }
+
+        function resetUI() {
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('submitBtn').disabled = false;
+            selectedAnswer = null;
+            hasAnswered = false;
+        }
+
+        function selectOption(index) {
+            if (hasAnswered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            if (selectedAnswer === null) {
+                alert('कृपया कोई उत्तर चुनें! / Please select an answer!');
+                return;
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('checkBtn').classList.remove('hidden');
+            hasAnswered = true;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.add('disabled');
+            });
+        }
+
+        function checkAnswer() {
+            const correctIndex = questions[currentQuestion].correct;
+            const options = document.querySelectorAll('.option');
+            
+            options[correctIndex].classList.add('correct');
+            
+            if (selectedAnswer !== correctIndex) {
+                options[selectedAnswer].classList.add('incorrect');
+            } else {
+                score++;
+                document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            }
+
+            document.getElementById('checkBtn').classList.add('hidden');
+            
+            if (currentQuestion < 39) {
+                document.getElementById('nextBtn').classList.remove('hidden');
+            } else {
+                setTimeout(displayResults, 1500);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+            });
+            
+            loadQuestion();
+        }
+
+        function displayResults() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const accuracy = Math.round((score / 40) * 100);
+            
+            document.getElementById('finalScore').textContent = `${score}/40`;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('incorrectCount').textContent = 40 - score;
+            document.getElementById('accuracyScore').textContent = accuracy + '%';
+            
+            // Calculate grade
+            let grade = '';
+            if (accuracy >= 90) grade = 'A+';
+            else if (accuracy >= 80) grade = 'A';
+            else if (accuracy >= 70) grade = 'B+';
+            else if (accuracy >= 60) grade = 'B';
+            else if (accuracy >= 50) grade = 'C';
+            else if (accuracy >= 40) grade = 'D';
+            else grade = 'F';
+            
+            document.getElementById('finalGrade').textContent = grade;
+            
+            // Result messages
+            let message = '';
+            if (accuracy >= 90) {
+                message = 'Outstanding! You are a Biology Expert! 🏆';
+            } else if (accuracy >= 80) {
+                message = 'Excellent! Great knowledge of biology! 🌟';
+            } else if (accuracy >= 70) {
+                message = 'Good work! Keep studying biology! 👏';
+            } else if (accuracy >= 60) {
+                message = 'Fair attempt! Practice more concepts! 📖';
+            } else if (accuracy >= 50) {
+                message = 'Keep learning! You can do better! 💪';
+            } else {
+                message = 'Study harder! Biology needs more attention! 🔬';
+            }
+            
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // Event listeners
+        document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+        document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+
+        // Start quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

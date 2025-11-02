@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Hub - About & Feedback</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Google Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      color: #202124;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px 0;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #1a73e8;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      color: #5f6368;
+    }
+
+    /* Cards */
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      border: 1px solid #e8eaed;
+      box-shadow: 0 1px 3px rgba(60, 64, 67, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(60, 64, 67, 0.12);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #202124;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: #1a73e8;
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      gap: 20px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .feature-item {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #e8eaed;
+      transition: all 0.2s ease;
+    }
+
+    .feature-item:hover {
+      background: #e8f0fe;
+      border-color: #1a73e8;
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-title {
+      font-weight: 500;
+      color: #1a73e8;
+      margin-bottom: 4px;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: #5f6368;
+    }
+
+    /* Custom Form Styles */
+    .form-container {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .form-header {
+      background: #1a73e8;
+      color: white;
+      padding: 24px 32px;
+      text-align: center;
+    }
+
+    .form-header h2 {
+      color: white;
+      margin: 0;
+    }
+
+    .form-header h2::before {
+      display: none;
+    }
+
+    .form-header p {
+      margin-top: 8px;
+      opacity: 0.9;
+    }
+
+    .form-content {
+      padding: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #202124;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      background: #1a73e8;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #1557b0;
+      box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Stats Section */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 16px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e8eaed;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a73e8;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #5f6368;
+      margin-top: 4px;
+    }
+
+    /* Back Button */
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: #f8f9fa;
+      box-shadow: 0 4px 12px rgba(60, 64, 67, 0.2);
+    }
+
+    .back-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #5f6368;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 24px;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      body {
+        padding: 16px;
+      }
+    }
+
+    /* Success Message */
+    .success-message {
+      background: #e8f5e8;
+      color: #1e7e34;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #c3e6cb;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <button class="back-btn" onclick="goBack()" title="Go Back">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>📚 Study Hub</h1>
+      <p>Your complete learning companion for Class 10 Science</p>
+    </div>
+
+    <!-- About Section -->
+    <div class="card">
+      <h2>About Study Hub</h2>
+      <div class="about-content">
+        <p>Study Hub is a comprehensive learning platform specifically designed for Class 10 Science students. Our mission is to make learning interactive, engaging, and effective through a variety of tools and resources.</p>
+        
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <div class="stat-label">Formulas</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <div class="stat-label">Quiz Topics</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <div class="stat-label">PYQs</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <div class="stat-label">AI Support</div>
+          </div>
+        </div>
+
+        <h3 style="margin: 24px 0 16px 0; color: #1a73e8;">Key Features</h3>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon">📝</div>
+            <div class="feature-title">Smart Notes</div>
+            <div class="feature-desc">Comprehensive chapter-wise notes</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🧮</div>
+            <div class="feature-title">Formula Bank</div>
+            <div class="feature-desc">All important formulas organized</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">Interactive Quizzes</div>
+            <div class="feature-desc">Practice with instant feedback</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">Previous Papers</div>
+            <div class="feature-desc">Past year questions solved</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-title">AI Tutor</div>
+            <div class="feature-desc">24/7 doubt solving assistant</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎮</div>
+            <div class="feature-title">Fun Games</div>
+            <div class="feature-desc">Learn while you play</div>
+          </div>
+        </div>
+
+        <p style="margin-top: 24px; padding: 16px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #1a73e8;">
+          <strong>Created by ignivox017</strong> 🔥<br>
+          Dedicated to making science education accessible and enjoyable for every student.
+        </p>
+      </div>
+    </div>
+
+    <!-- Feedback Section -->
+    <div class="card form-container">
+      <div class="form-header">
+        <h2>We Value Your Feedback</h2>
+        <p>Help us improve Study Hub by sharing your thoughts and suggestions</p>
+      </div>
+      <div class="form-content">
+        <!-- Google Form Embed with better styling -->
+        <iframe 
+          src="https://docs.google.com/forms/d/e/1FAIpQLSe0LyAeI_8VBrKaIiedPvH2A7spq-0Gfh9bKKg3qXxvyL-BvQ/viewform?embedded=true" 
+          frameborder="0" 
+          marginheight="0" 
+          marginwidth="0"
+          style="width: 100%; min-height: 700px; border-radius: 8px; background: #fff;">
+          Loading feedback form...
+        </iframe>
+
+        <p style="text-align: center; margin-top: 24px; color: #5f6368; font-size: 0.9rem;">
+          📢 <strong>Goal:</strong> Next app will be developed when we receive 15+ feedbacks!<br>
+          Your feedback helps us improve Study Hub for everyone! 🚀
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/';
+      }
+    }
+
+
+  </script>
+</body>
+</html>

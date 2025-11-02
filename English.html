@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English - Studix</title>
+       <script src="universal-settings.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1E1E2F;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navbar Structure - Double Line */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(30, 30, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* First navigation line: Toggle | Studix | Search Icon */
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFB74D;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+        }
+
+        .search-icon-nav {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-icon-nav:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        /* Second navigation line: Subject links */
+        .navbar-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-links a:hover {
+            color: #FFB74D;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #FFB74D;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            z-index: 1002;
+            transition: left 0.3s ease;
+            border-right: 1px solid rgba(255, 183, 77, 0.2);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .sidebar-overlay.visible {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 183, 77, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: rgba(255, 183, 77, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 183, 77, 0.1);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-item.active {
+            background: rgba(255, 183, 77, 0.15);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-text {
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 8rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 2rem 2rem 3rem;
+            background: linear-gradient(135deg, #1E1E2F 0%, #25273F 100%);
+        }
+
+        .page-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #90CAF9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            padding: 0 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #FFB74D;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .cards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Enhanced horizontal scrolling */
+        .cards-row {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 0.5rem 0 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #FFB74D #1E253D;
+        }
+
+        .cards-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cards-row::-webkit-scrollbar-track {
+            background: #1E253D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb {
+            background: #FFB74D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb:hover {
+            background: #FF9800;
+        }
+
+        /* Enhanced Card Styles for English Content */
+        .card {
+            flex: 0 0 auto;
+            width: 320px;
+            height: 180px;
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(52, 152, 219, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(52, 152, 219, 0.3);
+            border-color: rgba(52, 152, 219, 0.5);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #FFFFFF;
+            z-index: 1;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Specific card styles for different categories */
+        .poem-card {
+            background: linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%);
+            border-color: rgba(142, 68, 173, 0.3);
+        }
+
+        .poem-card:hover {
+            border-color: rgba(142, 68, 173, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(142, 68, 173, 0.4);
+        }
+
+        .firstflight-card {
+            background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+            border-color: rgba(39, 174, 96, 0.3);
+        }
+
+        .firstflight-card:hover {
+            border-color: rgba(39, 174, 96, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(39, 174, 96, 0.4);
+        }
+
+        .footprints-card {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+
+        .footprints-card:hover {
+            border-color: rgba(231, 76, 60, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .pyq-card {
+            background: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+
+        .pyq-card:hover {
+            border-color: rgba(243, 156, 18, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(243, 156, 18, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1A1A2E;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: #B0BEC5;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #90CAF9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFB74D;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1rem 0.5rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .section {
+                padding: 0 1rem;
+            }
+
+            .cards-row {
+                gap: 1rem;
+            }
+
+            .card {
+                width: 280px;
+                height: 160px;
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .card {
+                width: 240px;
+                height: 140px;
+                padding: 0.8rem;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+        }
+
+        .card:focus {
+            outline: 2px solid #FFB74D;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">Studix</div>
+            <button class="sidebar-close" id="sidebar-close">×</button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="main.html" class="sidebar-item">
+                <span class="sidebar-icon">🏠</span>
+                <span class="sidebar-text">Home</span>
+            </a>
+            <a href="#" class="sidebar-item active">
+                <span class="sidebar-icon">📚</span>
+                <span class="sidebar-text">English</span>
+            </a>
+            <a href="library.html" class="sidebar-item">
+                <span class="sidebar-icon">📝</span>
+                <span class="sidebar-text">Keep Notes</span>
+            </a>
+            <a href="profile.html" class="sidebar-item">
+                <span class="sidebar-icon">👤</span>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+            <a href="feedback.html" class="sidebar-item">
+                <span class="sidebar-icon">💬</span>
+                <span class="sidebar-text">Feedback</span>
+            </a>
+            <a href="settings.html" class="sidebar-item">
+                <span class="sidebar-icon">⚙️</span>
+                <span class="sidebar-text">Settings</span>
+            </a>
+             <a href="pyq.html" class="sidebar-item">
+                <span class="sidebar-icon">📇</span>
+                <span class="sidebar-text">Previous year question</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <!-- First line: Toggle | Studix | Search Icon -->
+            <div class="navbar-top">
+                <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+                <div class="navbar-brand">English Hub</div>
+                <button class="search-icon-nav" onclick="window.location.href='search.html'">⌕</button>
+            </div>
+            <!-- Second line: Subject links -->
+            <div class="navbar-links">
+                <a href="main.html">Home</a>
+                <a href="sst.html">SST</a>
+                <a href="notes.html">Science</a>
+                <a href="math.html">Math</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">English Literature & Language</h1>
+            <p class="page-subtitle">Explore the world of English through poetry, prose, and comprehensive study materials</p>
+        </div>
+
+        <!-- Poems Section -->
+        <section class="section">
+            <h2 class="section-title">Poems</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="poem-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- First Flight Section -->
+        <section class="section">
+            <h2 class="section-title">First Flight (Prose)</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="firstflight-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footprints Without Feet Section -->
+        <section class="section">
+            <h2 class="section-title">Footprints Without Feet (Supplementary)</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="footprints-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PYQs Section -->
+        <section class="section">
+            <h2 class="section-title">Previous Year Questions</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="pyq-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">Studix English</div>
+                <p class="footer-description">
+                    Master English Literature and Language with comprehensive notes, analysis, and practice materials for Class 10 students.
+                </p>
+                <div class="footer-links">
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Studix. All rights reserved. Made with ❤️ for English Literature enthusiasts.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+<script>
+        // Content data for English chapters
+        const englishContent = {
+            poems: [
+                { title: "Dust of Snow", url: "Ench10.html", description: "By Robert Frost" },
+                { title: "Fire and Ice", url: "Ench11.html", description: "By Robert Frost" },
+                { title: "A Tiger in the Zoo", url: "Ench12.html", description: "By Leslie Norris" },
+                { title: "How to Tell Wild Animals", url: "Ench13.html", description: "By Carolyn Wells" },
+                { title: "The Ball Poem", url: "Ench14.html", description: "By John Berryman" },
+                { title: "Amanda!", url: "Ench15.html", description: "By Robin Klein" },
+                { title: "Animals", url: "Ench16.html", description: "By Walt Whitman" },
+                { title: "The Trees", url: "Ench17.html", description: "By Adrienne Rich" },
+                { title: "Fog", url: "Ench18.html", description: "By Carl Sandburg" },
+                { title: "The Tale of Custard the Dragon", url: "Ench19.html", description: "By Ogden Nash" },
+                { title: "For Anne Gregory", url: "Ench20.html", description: "By William Butler Yeats" }
+            ],
+            firstFlight: [
+                { title: "A Letter to God", url: "Ench1.html", description: "By Gregorio López y Fuentes" },
+                { title: "Nelson Mandela: Long Walk to Freedom", url: "Ench2.html", description: "By Nelson Mandela" },
+                { title: "Two Stories about Flying", url: "Ench3.html", description: "His First Flight & The Black Aeroplane" },
+                { title: "From the Diary of Anne Frank", url: "Ench4.html", description: "By Anne Frank" },
+                { title: "Glimpses of India", url: "Ench5.html", description: "Tea from Assam & Coorg" },
+                { title: "Mijbil the Otter", url: "Ench6.html", description: "By Gavin Maxwell" },
+                { title: "Madam Rides the Bus", url: "Ench7.html", description: "By Vallikkannan" },
+                { title: "The Sermon at Benares", url: "Ench8.html", description: "By Betty Renshaw" },
+                { title: "The Proposal", url: "Ench9.html", description: "By Anton Chekhov" }
+            ],
+            footprints: [
+                { title: "A Triumph of Surgery", url: "Ench21.html", description: "By James Herriot" },
+                { title: "The Thief's Story", url: "Ench22.html", description: "By Ruskin Bond" },
+                { title: "The Midnight Visitor", url: "Ench23.html", description: "By Robert Arthur" },
+                { title: "A Question of Trust", url: "Ench24.html", description: "By Victor Canning" },
+                { title: "Footprints Without Feet", url: "Ench25.html", description: "By H.G. Wells" },
+                { title: "The Making of a Scientist", url: "Ench26.html", description: "By Robert W. Peterson" },
+                { title: "The Necklace", url: "Ench27.html", description: "By Guy de Maupassant" },
+                { title: "The Hack Driver", url: "Ench28.html", description: "By Sinclair Lewis" },
+                { title: "Bholi", url: "Ench29.html", description: "By K.A. Abbas" },
+                { title: "The Book That Saved the Earth", url: "Ench30.html", description: "By Claire Boiko" }
+            ],
+            pyqs: [
+                { title: "First Flight PYQ 2024", url: "#", description: "Complete question paper with solutions" },
+                { title: "Footprints Without Feet PYQ 2024", url: "#", description: "Supplementary reader questions" },
+                { title: "Poems PYQ 2024", url: "#", description: "Poetry analysis and questions" },
+                { title: "First Flight PYQ 2023", url: "#", description: "Previous year solved papers" },
+                { title: "Footprints Without Feet PYQ 2023", url: "#", description: "Supplementary reader solutions" },
+                { title: "Poems PYQ 2023", url: "#", description: "Poetry comprehension papers" },
+                { title: "First Flight PYQ 2022", url: "#", description: "Board examination papers" },
+                { title: "Footprints Without Feet PYQ 2022", url: "#", description: "Literature questions solved" },
+                { title: "Poems PYQ 2022", url: "#", description: "Poetic devices and analysis" }
+            ]
+        };
+
+        // Create a card element
+        function createCard(item, cardType = 'default') {
+            const card = document.createElement('a');
+            card.className = `card ${cardType}`;
+            card.href = item.url;
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `Open ${item.title}`);
+            
+            card.innerHTML = `
+                <div class="card-title">${item.title}</div>
+                ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+            `;
+
+            return card;
+        }
+
+        // Initialize all content rows
+        function initializeContent() {
+            // Poems
+            const poemRow = document.getElementById('poem-row');
+            englishContent.poems.forEach(poem => {
+                const card = createCard(poem, 'poem-card');
+                poemRow.appendChild(card);
+            });
+
+            // First Flight
+            const firstFlightRow = document.getElementById('firstflight-row');
+            englishContent.firstFlight.forEach(chapter => {
+                const card = createCard(chapter, 'firstflight-card');
+                firstFlightRow.appendChild(card);
+            });
+
+            // Footprints Without Feet
+            const footprintsRow = document.getElementById('footprints-row');
+            englishContent.footprints.forEach(chapter => {
+                const card = createCard(chapter, 'footprints-card');
+                footprintsRow.appendChild(card);
+            });
+
+            // PYQs
+            const pyqRow = document.getElementById('pyq-row');
+            englishContent.pyqs.forEach(pyq => {
+                const card = createCard(pyq, 'pyq-card');
+                pyqRow.appendChild(card);
+            });
+        }
+
+        // Sidebar functionality
+        function initializeSidebar() {
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarClose = document.getElementById('sidebar-close');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                sidebarOverlay.classList.add('visible');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('visible');
+                document.body.style.overflow = 'auto';
+            }
+
+            sidebarToggle.addEventListener('click', openSidebar);
+            sidebarClose.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+
+            // Sidebar menu active state
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    sidebarItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+        }
+
+        // Section visibility animations
+        function initializeScrollAnimations() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeContent();
+            initializeSidebar();
+            initializeScrollAnimations();
+        });
+    </script>
+</body>
+</html>

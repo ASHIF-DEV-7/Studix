@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hack Driver – Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #ff6f61;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #ff3b2e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Hack Driver – Notes</h1>
+
+    <section>
+        <h2>Introduction</h2>
+        <ul>
+            <li><strong>The story</strong> is written by Sinclair Lewis.</li>
+            <li>It revolves around a city man traveling to a country town.</li>
+            <li>The protagonist needs to hire a hack driver (horse carriage driver).</li>
+            <li>The driver appears ordinary but has hidden cleverness.</li>
+            <li>The story highlights wit, intelligence, and practical humor.</li>
+            <li>The protagonist learns an important lesson about humility.</li>
+            <li>The driver cleverly handles a tricky situation.</li>
+            <li>The story is short, humorous, and insightful.</li>
+            <li>It shows the contrast between city and country life.</li>
+            <li>The narrative emphasizes respect for others’ intelligence.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Key Points Explanation</h2>
+        <ul>
+            <li>The protagonist is a city man unfamiliar with the countryside.</li>
+            <li>He needs transportation and hires a hack driver.</li>
+            <li>The driver seems simple and ordinary at first.</li>
+            <li>He handles the horse and carriage skillfully.</li>
+            <li>The protagonist underestimates the driver initially.</li>
+            <li>The driver cleverly manipulates the situation to his advantage.</li>
+            <li>The story emphasizes wit over physical strength.</li>
+            <li>The driver uses his intelligence to solve a tricky problem.</li>
+            <li>The city man learns not to judge people by appearances.</li>
+            <li>The driver exhibits patience and observation.</li>
+            <li>The protagonist faces embarrassment in the end.</li>
+            <li>The story is humorous yet teaches practical wisdom.</li>
+            <li>It showcases rural people’s cleverness and street-smart behavior.</li>
+            <li>The hack driver remains calm and confident throughout.</li>
+            <li>The story uses simple language to convey lessons.</li>
+            <li>It teaches humility and respect for everyone’s abilities.</li>
+            <li>The protagonist realizes that knowledge and intelligence can come from unexpected places.</li>
+            <li>The narrative contrasts arrogance with cleverness.</li>
+            <li>The story is short, memorable, and easy to understand.</li>
+            <li>It leaves a lasting impression about wit and common sense.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Conclusion</h2>
+        <p>
+            “The Hack Driver” is a short, humorous story that teaches valuable lessons about humility and intelligence. 
+            The city man underestimates the driver but learns that cleverness is not limited to urban life. 
+            The hack driver’s wit and practical knowledge help him handle tricky situations effortlessly. 
+            The story shows that appearances can be deceptive and everyone has unique skills. 
+            Overall, it emphasizes respect for others and the importance of observation and common sense.
+        </p>
+    </section>
+
+    <section>
+        <h2>Moral of the Story</h2>
+        <p>
+            <strong>Do not judge people by their appearance; intelligence and cleverness can come from anyone, anywhere.</strong>
+        </p>
+    </section>
+
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">↑</button>
+
+    <script>
+        window.onscroll = function() {toggleScrollButton()};
+        
+        function toggleScrollButton() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

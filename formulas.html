@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Hub - Class 10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .back-btn::before {
+            content: '←';
+            font-size: 24px;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+            background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #999999 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #999;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Section */
+        .section {
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 20px 0;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            min-width: 250px;
+            height: 100px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-content {
+            padding: 35px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .card-subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .play-btn {
+            transform: scale(1.15);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid #0a0a0a;
+            border-top: 13px solid transparent;
+            border-bottom: 13px solid transparent;
+            margin-left: 5px;
+        }
+
+        /* Scroll Arrows */
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-container:hover .scroll-arrow {
+            opacity: 1;
+        }
+
+        .scroll-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .scroll-arrow.left {
+            left: -25px;
+        }
+
+        .scroll-arrow.right {
+            right: -25px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 40px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+        }
+
+        .creator-badge {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 25px 45px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .creator-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .creator-name {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #999999 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero {
+                height: 60vh;
+                padding: 0 20px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            .card {
+                min-width: 300px;
+                height: 180px;
+            }
+
+            .card-content {
+                padding: 25px;
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+
+            .scroll-arrow {
+                display: none;
+            }
+        }
+
+        /* Smooth animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .card {
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-btn" onclick="goBack()" title="Go Back"></button>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">FORMULA HUB</h1>
+            <p class="hero-subtitle">CLASS 10 • COMPLETE COLLECTION</p>
+        </div>
+    </section>
+
+    <!-- Mathematics Section -->
+    <section class="section">
+        <h2 class="section-title">Mathematics</h2>
+        <div class="carousel-container">
+            <button class="scroll-arrow left" onclick="scrollCarousel('math-carousel', -1)">‹</button>
+            <div class="carousel" id="math-carousel">
+                <div class="card" onclick="window.location.href='trigonometry.html'">
+                    <div class="card-content">
+                        <div class="card-icon">📐</div>
+                        <div>
+                            <div class="card-title">Trigonometry</div>
+                            <div class="card-subtitle">Sin, Cos, Tan & Identities</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='mensuration.html'">
+                    <div class="card-content">
+                        <div class="card-icon">📏</div>
+                        <div>
+                            <div class="card-title">Mensuration</div>
+                            <div class="card-subtitle">Area, Volume & Surface Area</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='geometry.html'">
+                    <div class="card-content">
+                        <div class="card-icon">📊</div>
+                        <div>
+                            <div class="card-title">Geometry</div>
+                            <div class="card-subtitle">Circles, Triangles & Theorems</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='algebra.html'">
+                    <div class="card-content">
+                        <div class="card-icon">🔤</div>
+                        <div>
+                            <div class="card-title">Algebra</div>
+                            <div class="card-subtitle">Equations & Polynomials</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='statics.html'">
+                    <div class="card-content">
+                        <div class="card-icon">📈</div>
+                        <div>
+                            <div class="card-title">Statistics</div>
+                            <div class="card-subtitle">Mean, Median & Probability</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-arrow right" onclick="scrollCarousel('math-carousel', 1)">›</button>
+        </div>
+    </section>
+
+    <!-- Physics Section -->
+    <section class="section">
+        <h2 class="section-title">Physics</h2>
+        <div class="carousel-container">
+            <button class="scroll-arrow left" onclick="scrollCarousel('physics-carousel', -1)">‹</button>
+            <div class="carousel" id="physics-carousel">
+                <div class="card" onclick="window.location.href='phyform.html'">
+                    <div class="card-content">
+                        <div class="card-icon">⚡</div>
+                        <div>
+                            <div class="card-title">Light</div>
+                            <div class="card-subtitle">Reflection & Refraction</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='electform.html'">
+                    <div class="card-content">
+                        <div class="card-icon">🔋</div>
+                        <div>
+                            <div class="card-title">Electricity</div>
+                            <div class="card-subtitle">Ohm's Law & Circuits</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='heacwform.html'">
+                    <div class="card-content">
+                        <div class="card-icon">👁️</div>
+                        <div>
+                            <div class="card-title">Human Eye</div>
+                            <div class="card-subtitle">Vision & Color Spectrum</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='magnetismform.html'">
+                    <div class="card-content">
+                        <div class="card-icon">🧲</div>
+                        <div>
+                            <div class="card-title">Magnetism</div>
+                            <div class="card-subtitle">Magnetic Effects of Current</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-arrow right" onclick="scrollCarousel('physics-carousel', 1)">›</button>
+        </div>
+    </section>
+
+    <!-- Chemistry & Biology Section -->
+    <section class="section">
+        <h2 class="section-title">Chemistry & Biology</h2>
+        <div class="carousel-container">
+            <button class="scroll-arrow left" onclick="scrollCarousel('chem-carousel', -1)">‹</button>
+            <div class="carousel" id="chem-carousel">
+                <div class="card" onclick="window.location.href='chemform.html'">
+                    <div class="card-content">
+                        <div class="card-icon">🧪</div>
+                        <div>
+                            <div class="card-title">Chemistry</div>
+                            <div class="card-subtitle">Complete Formula Collection</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="window.location.href='bioform.html'">
+                    <div class="card-content">
+                        <div class="card-icon">🌱</div>
+                        <div>
+                            <div class="card-title">Biology</div>
+                            <div class="card-subtitle">Complete Formula Collection</div>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="play-btn">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-arrow right" onclick="scrollCarousel('chem-carousel', 1)">›</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="creator-badge">
+            <span class="creator-label">Created by</span>
+            <span class="creator-name">ASHIF</span>
+        </div>
+    </footer>
+
+    <script>
+        function scrollCarousel(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            const scrollAmount = 370;
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        // Smooth scroll reveal effect
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

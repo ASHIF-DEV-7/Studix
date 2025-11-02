@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Biology - Complete Formula Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #16a085 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .topic-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .topic-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .topic-btn:hover, .topic-btn.active {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231,76,60,0.4);
+        }
+
+        .topic-section {
+            background: rgba(255,255,255,0.95);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .topic-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .topic-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .topic-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+
+        .formula-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+            transition: all 0.3s ease;
+        }
+
+        .formula-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+            border-left-color: #e74c3c;
+        }
+
+        .formula {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+            background: rgba(39,174,96,0.1);
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .formula-name {
+            font-size: 1.1rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            background: rgba(255,255,255,0.8);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+
+        .process-step {
+            background: #e8f5e8;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+
+        .subscript {
+            font-size: 0.8em;
+            vertical-align: sub;
+        }
+
+        .superscript {
+            font-size: 0.8em;
+            vertical-align: super;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            border: 1px solid #ffeaa7;
+        }
+
+        .bio-icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .rate-formula {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .enzyme-box {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+
+        .organ-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .organ-card {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .organ-card:hover {
+            border-color: #27ae60;
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .topic-nav {
+                gap: 5px;
+            }
+            
+            .topic-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .organ-system {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧬 Class 10 Biology - Complete Formula Reference</h1>
+        
+        <input type="text" id="searchBox" class="search-box" placeholder="Search biological processes, formulas, or systems...">
+        
+        <div class="topic-nav">
+            <button class="topic-btn active" onclick="showTopic('all')">All Topics</button>
+            <button class="topic-btn" onclick="showTopic('life-processes')">Life Processes</button>
+            <button class="topic-btn" onclick="showTopic('control')">Control & Coordination</button>
+            <button class="topic-btn" onclick="showTopic('reproduction')">Reproduction</button>
+            <button class="topic-btn" onclick="showTopic('heredity')">Heredity & Evolution</button>
+            <button class="topic-btn" onclick="showTopic('environment')">Environment</button>
+            <button class="topic-btn" onclick="showTopic('calculations')">Bio Calculations</button>
+        </div>
+
+        <!-- Life Processes -->
+        <div class="topic-section" data-topic="life-processes">
+            <h2 class="topic-title">🌱 Life Processes</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌿</span>Photosynthesis</div>
+                <div class="formula">6CO₂ + 6H₂O + Light Energy (Chlorophyll) → C₆H₁₂O₆ + 6O₂ + 6H₂O</div>
+                <div class="process-step">Light Reaction: 2H₂O → 4H⁺ + 4e⁻ + O₂</div>
+                <div class="process-step">Dark Reaction: CO₂ + RuBP → 2PGA → Glucose</div>
+                <div class="example">Example: Plants convert CO₂ and water into glucose using sunlight</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">💨</span>Cellular Respiration (Aerobic)</div>
+                <div class="formula">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 36-38 ATP</div>
+                <div class="process-step">Glycolysis: Glucose → 2 Pyruvate + 2 ATP</div>
+                <div class="process-step">Krebs Cycle: 2 Pyruvate → 6CO₂ + 2 ATP</div>
+                <div class="process-step">ETC: 34 ATP produced</div>
+                <div class="example">Example: Mitochondria break down glucose to release energy</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🍺</span>Anaerobic Respiration</div>
+                <div class="formula">C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + 2 ATP (Alcoholic fermentation)</div>
+                <div class="formula">C₆H₁₂O₆ → 2C₃H₆O₃ + 2 ATP (Lactic acid fermentation)</div>
+                <div class="example">Example: Yeast fermentation in bread making</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">💧</span>Transpiration</div>
+                <div class="rate-formula">Rate of Transpiration = Amount of water lost / Time</div>
+                <div class="formula">Factors: Temperature ↑, Humidity ↓, Wind ↑, Light ↑ = Transpiration ↑</div>
+                <div class="example">Example: Plants lose water through stomata</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🔥</span>BMR (Basal Metabolic Rate)</div>
+                <div class="rate-formula">BMR = 70 × (Body weight in kg)^0.75 kcal/day</div>
+                <div class="formula">For humans: BMR ≈ 1200-1800 kcal/day</div>
+                <div class="example">Example: Energy needed for basic body functions at rest</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🩸</span>Blood Pressure</div>
+                <div class="formula">Blood Pressure = Systolic/Diastolic (mmHg)</div>
+                <div class="formula">Normal: 120/80 mmHg</div>
+                <div class="formula">Cardiac Output = Heart Rate × Stroke Volume</div>
+                <div class="example">Example: Normal resting heart rate = 60-100 bpm</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🫁</span>Breathing Rate</div>
+                <div class="rate-formula">Breathing Rate = Number of breaths / Minute</div>
+                <div class="formula">Normal adult: 12-20 breaths/minute</div>
+                <div class="formula">Tidal Volume ≈ 500 mL (air in/out during normal breathing)</div>
+                <div class="example">Example: Respiratory rate increases during exercise</div>
+            </div>
+        </div>
+
+        <!-- Control and Coordination -->
+        <div class="topic-section" data-topic="control">
+            <h2 class="topic-title">🧠 Control and Coordination</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">⚡</span>Nerve Impulse Speed</div>
+                <div class="rate-formula">Impulse Speed = Distance / Time</div>
+                <div class="formula">Myelinated nerves: 120 m/s</div>
+                <div class="formula">Non-myelinated nerves: 0.5-2 m/s</div>
+                <div class="example">Example: Reflex actions happen in 0.1-0.2 seconds</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🔄</span>Reflex Arc</div>
+                <div class="formula">Stimulus → Receptor → Sensory Neuron → Spinal Cord → Motor Neuron → Effector → Response</div>
+                <div class="process-step">Time taken: 150-300 milliseconds</div>
+                <div class="example">Example: Withdrawing hand from hot object</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">💊</span>Hormone Action</div>
+                <div class="enzyme-box">Hormone + Target Cell Receptor → Cellular Response</div>
+                <div class="formula">Insulin: Glucose uptake ↑, Blood glucose ↓</div>
+                <div class="formula">Adrenaline: Heart rate ↑, Blood pressure ↑</div>
+                <div class="example">Example: Insulin helps cells absorb glucose from blood</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌱</span>Plant Hormones (Phytohormones)</div>
+                <div class="formula">Auxin: Cell elongation, Apical dominance</div>
+                <div class="formula">Gibberellin: Stem elongation, Seed germination</div>
+                <div class="formula">Cytokinin: Cell division, Delay senescence</div>
+                <div class="formula">ABA: Stomatal closure, Seed dormancy</div>
+                <div class="example">Example: Auxin causes bending of plant towards light</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">👁️</span>Vision Process</div>
+                <div class="formula">Light → Cornea → Pupil → Lens → Retina → Optic nerve → Brain</div>
+                <div class="formula">Power of lens = 1/focal length (in meters)</div>
+                <div class="formula">Normal eye: Far point = ∞, Near point = 25 cm</div>
+                <div class="example">Example: Eye lens changes shape to focus on objects</div>
+            </div>
+        </div>
+
+        <!-- Reproduction -->
+        <div class="topic-section" data-topic="reproduction">
+            <h2 class="topic-title">👶 How Do Organisms Reproduce?</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🔄</span>Cell Division Cycle</div>
+                <div class="formula">Mitosis: Parent cell (2n) → 2 Daughter cells (2n)</div>
+                <div class="formula">Meiosis: Parent cell (2n) → 4 Gametes (n)</div>
+                <div class="process-step">Mitosis phases: Prophase → Metaphase → Anaphase → Telophase</div>
+                <div class="example">Example: Skin cells reproduce through mitosis</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌸</span>Sexual Reproduction</div>
+                <div class="formula">Male gamete (n) + Female gamete (n) → Zygote (2n)</div>
+                <div class="formula">Fertilization: Sperm + Ovum → Zygote → Embryo → Fetus</div>
+                <div class="example">Example: Human reproduction involves 23+23=46 chromosomes</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌱</span>Asexual Reproduction</div>
+                <div class="formula">Binary fission: 1 → 2 (Bacteria, Amoeba)</div>
+                <div class="formula">Budding: Parent → Bud → New individual (Yeast, Hydra)</div>
+                <div class="formula">Fragmentation: Parent → Multiple fragments → New individuals</div>
+                <div class="example">Example: Amoeba divides every 20-30 minutes</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌺</span>Plant Reproduction</div>
+                <div class="formula">Pollination: Pollen grain → Stigma → Style → Ovary</div>
+                <div class="formula">Double fertilization: 1 sperm + egg → zygote, 1 sperm + polar nuclei → endosperm</div>
+                <div class="example">Example: Cross-pollination increases genetic diversity</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">⏰</span>Human Reproductive Cycle</div>
+                <div class="formula">Menstrual cycle = 28 days (average)</div>
+                <div class="process-step">Days 1-5: Menstruation</div>
+                <div class="process-step">Days 6-13: Follicular phase</div>
+                <div class="process-step">Day 14: Ovulation</div>
+                <div class="process-step">Days 15-28: Luteal phase</div>
+                <div class="example">Example: Ovulation occurs around day 14 of cycle</div>
+            </div>
+        </div>
+
+        <!-- Heredity and Evolution -->
+        <div class="topic-section" data-topic="heredity">
+            <h2 class="topic-title">🧬 Heredity and Evolution</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">👨‍👩‍👧‍👦</span>Mendel's Laws</div>
+                <div class="formula">Monohybrid cross: 3:1 ratio in F₂ generation</div>
+                <div class="formula">Dihybrid cross: 9:3:3:1 ratio in F₂ generation</div>
+                <div class="formula">P generation: TT × tt → F₁: Tt → F₂: TT:Tt:tt = 1:2:1</div>
+                <div class="example">Example: Tall (TT) × Short (tt) → All tall (Tt) in F₁</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🧬</span>Genetic Probability</div>
+                <div class="rate-formula">Probability = Number of favorable outcomes / Total outcomes</div>
+                <div class="formula">For Tt × Tt: P(TT) = 1/4, P(Tt) = 1/2, P(tt) = 1/4</div>
+                <div class="example">Example: Chance of getting recessive trait = 25%</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🔬</span>DNA Structure</div>
+                <div class="formula">DNA = Deoxyribose + Phosphate + Nitrogenous base</div>
+                <div class="formula">Base pairing: A=T, G≡C</div>
+                <div class="formula">Chargaff's rule: A = T, G = C</div>
+                <div class="example">Example: Human DNA has 3 billion base pairs</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌍</span>Hardy-Weinberg Principle</div>
+                <div class="formula">p² + 2pq + q² = 1</div>
+                <div class="formula">p + q = 1 (where p and q are allele frequencies)</div>
+                <div class="example">Example: Used to calculate allele frequencies in populations</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🦕</span>Evolution Rate</div>
+                <div class="rate-formula">Rate of evolution ∝ Generation time</div>
+                <div class="formula">Microorganisms evolve faster than complex organisms</div>
+                <div class="formula">Natural Selection: Variation → Selection → Inheritance</div>
+                <div class="example">Example: Bacteria develop antibiotic resistance quickly</div>
+            </div>
+        </div>
+
+        <!-- Management of Natural Resources -->
+        <div class="topic-section" data-topic="environment">
+            <h2 class="topic-title">🌍 Management of Natural Resources</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🔋</span>Energy Flow</div>
+                <div class="formula">10% Law: Only 10% energy transfers to next trophic level</div>
+                <div class="formula">Primary producers → Primary consumers → Secondary consumers</div>
+                <div class="rate-formula">Energy efficiency = (Energy output / Energy input) × 100</div>
+                <div class="example">Example: If plants have 1000 J, herbivores get only 100 J</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌿</span>Biomass Pyramid</div>
+                <div class="formula">Biomass decreases at each trophic level</div>
+                <div class="formula">Primary producers > Primary consumers > Secondary consumers</div>
+                <div class="example">Example: Forest ecosystem has decreasing biomass upwards</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">♻️</span>Carbon Cycle</div>
+                <div class="formula">Atmosphere ↔ Plants (Photosynthesis/Respiration) ↔ Animals → Decomposers</div>
+                <div class="formula">CO₂ in atmosphere ≈ 0.04% (400 ppm)</div>
+                <div class="example">Example: Carbon moves between atmosphere, living organisms, and fossil fuels</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">💧</span>Nitrogen Cycle</div>
+                <div class="formula">N₂ → NH₃ (Nitrogen fixation) → NO₂⁻ → NO₃⁻ → N₂</div>
+                <div class="process-step">Nitrogen fixation: N₂ → NH₃ (by bacteria)</div>
+                <div class="process-step">Nitrification: NH₃ → NO₂⁻ → NO₃⁻</div>
+                <div class="process-step">Denitrification: NO₃⁻ → N₂</div>
+                <div class="example">Example: Rhizobium bacteria fix nitrogen in legume roots</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">📊</span>Population Growth</div>
+                <div class="rate-formula">Growth Rate = (Birth Rate - Death Rate) / 1000</div>
+                <div class="formula">Exponential growth: N(t) = N₀e^(rt)</div>
+                <div class="formula">Logistic growth: Limited by carrying capacity</div>
+                <div class="example">Example: Human population grows exponentially when resources are abundant</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🌡️</span>BOD (Biological Oxygen Demand)</div>
+                <div class="rate-formula">BOD = Amount of O₂ consumed by microorganisms (mg/L)</div>
+                <div class="formula">Clean water: BOD < 3 mg/L</div>
+                <div class="formula">Polluted water: BOD > 5 mg/L</div>
+                <div class="example">Example: High BOD indicates water pollution</div>
+            </div>
+        </div>
+
+        <!-- Biological Calculations -->
+        <div class="topic-section" data-topic="calculations">
+            <h2 class="topic-title">🧮 Biological Calculations & Formulas</h2>
+            
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🔬</span>Magnification</div>
+                <div class="rate-formula">Magnification = Image size / Object size</div>
+                <div class="formula">Total magnification = Eyepiece × Objective lens</div>
+                <div class="example">Example: 10x eyepiece × 40x objective = 400x total magnification</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🧬</span>Chromosome Number</div>
+                <div class="formula">Diploid (2n) = 46 chromosomes (humans)</div>
+                <div class="formula">Haploid (n) = 23 chromosomes (gametes)</div>
+                <div class="formula">Polyploid = 3n, 4n, 5n... (common in plants)</div>
+                <div class="example">Example: Wheat is hexaploid (6n = 42 chromosomes)</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">⏱️</span>Generation Time</div>
+                <div class="rate-formula">Generation time = Time / Number of generations</div>
+                <div class="formula">Bacteria: 20-30 minutes</div>
+                <div class="formula">Humans: ~25-30 years</div>
+                <div class="example">Example: E. coli can double every 20 minutes</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">💊</span>Enzyme Activity</div>
+                <div class="rate-formula">Enzyme activity = Amount of product formed / Time</div>
+                <div class="formula">Optimum pH: Pepsin = 2, Trypsin = 8.5</div>
+                <div class="formula">Optimum temp: Human enzymes = 37°C</div>
+                <div class="example">Example: Body temperature is optimal for human enzymes</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">🧪</span>Solution Concentrations</div>
+                <div class="rate-formula">Molarity = Moles of solute / Liters of solution</div>
+                <div class="formula">Percentage = (Mass of solute / Mass of solution) × 100</div>
+                <div class="formula">ppm = (mg solute / L solution)</div>
+                <div class="example">Example: Normal saline = 0.9% NaCl solution</div>
+            </div>
+
+            <div class="formula-item">
+                <div class="formula-name"><span class="bio-icon">📏</span>Surface Area to Volume Ratio</div>
+                <div class="rate-formula">SA:V ratio = Surface Area / Volume</div>
+                <div class="formula">Smaller cells have higher SA:V ratio</div>
+                <div class="formula">Higher SA:V = More efficient exchange</div>
+                <div class="example">Example: Microvilli increase surface area for absorption</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        const formulaItems = document.querySelectorAll('.formula-item');
+        const topicSections = document.querySelectorAll('.topic-section');
+
+        searchBox.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            formulaItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parent = item.closest('.topic-section');
+                
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    parent.style.display = 'block';
+                    
+                    // Highlight search term
+                    const content = item.innerHTML;
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    if (searchTerm) {
+                        item.innerHTML = content.replace(regex, '<span class="highlight">$1</span>');
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide sections with no visible items
+            topicSections.forEach(section => {
+                const visibleItems = section.querySelectorAll('.formula-item[style="display: block"], .formula-item:not([style*="display: none"])');
+                if (visibleItems.length === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+
+            // If search is empty, show all and remove highlights
+            if (searchTerm === '') {
+                formulaItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/gi, '$1');
+                });
+                topicSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+            }
+        });
+
+        // Topic navigation
+        function showTopic(topic) {
+            const buttons = document.querySelectorAll('.topic-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            topicSections.forEach(section => {
+                if (topic === 'all' || section.dataset.topic === topic) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Animate sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        topicSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initial animation
+        setTimeout(() => {
+            topicSections.forEach(section => {
+                section.classList.add('visible');
+            });
+        }, 500);
+
+        // Add interactive effects
+        formulaItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(1.02)';
+                this.classList.add('pulse-animation');
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.classList.remove('pulse-animation');
+                }, 600);
+            });
+        });
+
+        // Add hover sound effect simulation
+        formulaItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 8px 25px rgba(39,174,96,0.3)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Random biological facts ticker
+        const bioFacts = [
+            "🧬 Human DNA is 99.9% identical between all people",
+            "🫀 Your heart beats about 100,000 times per day",
+            "🧠 The human brain uses 20% of body's total energy",
+            "🌱 Plants produce oxygen that we breathe",
+            "🦠 There are more bacterial cells in your body than human cells",
+            "💧 About 60% of human body weight is water",
+            "🔬 Mitochondria have their own DNA separate from cell nucleus"
+        ];
+
+        let factIndex = 0;
+        
+        // Add fact ticker to header
+        const header = document.querySelector('h1');
+        const factElement = document.createElement('div');
+        factElement.style.cssText = `
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0.8;
+            font-weight: normal;
+            animation: fadeInUp 2s ease-out infinite alternate;
+        `;
+        header.appendChild(factElement);
+
+        function showRandomFact() {
+            factElement.textContent = bioFacts[factIndex];
+            factIndex = (factIndex + 1) % bioFacts.length;
+        }
+
+        showRandomFact();
+        setInterval(showRandomFact, 4000);
+
+        // Add quiz mode functionality
+        let quizMode = false;
+        
+        function toggleQuizMode() {
+            quizMode = !quizMode;
+            formulaItems.forEach(item => {
+                const formula = item.querySelector('.formula');
+                if (quizMode) {
+                    formula.style.filter = 'blur(5px)';
+                    formula.style.cursor = 'pointer';
+                    formula.title = 'Click to reveal answer';
+                    
+                    formula.addEventListener('click', function() {
+                        this.style.filter = 'none';
+                    });
+                } else {
+                    formula.style.filter = 'none';
+                    formula.style.cursor = 'default';
+                    formula.title = '';
+                }
+            });
+        }
+
+        // Add quiz button
+        const quizButton = document.createElement('button');
+        quizButton.textContent = '🧩 Quiz Mode';
+        quizButton.className = 'topic-btn';
+        quizButton.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #e74c3c;
+            color: white;
+        `;
+        quizButton.addEventListener('click', toggleQuizMode);
+        document.body.appendChild(quizButton);
+    </script>
+</body>
+<script src="script.js"></script>
+</html>
+  

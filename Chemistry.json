@@ -1,0 +1,215 @@
+{
+  "subject": "Chemistry",
+  "overview": "ATCT style Class 10 Chemistry – Chapters 1 & 2",
+  "chapters": [
+    {
+      "chapter_no": 1,
+      "chapter_name": "Chemical Reactions and Equations",
+      "topics": [
+        {
+          "topic": "Introduction to Chemical Reactions",
+          "brief": "Meaning and key indicators of a chemical reaction.",
+          "subtopics": [
+            { "name": "Definition", "explanation": "Process where reactants form new products with different properties." },
+            { "name": "Indicators", "explanation": "Color change, gas release, heat/light, precipitate formation." }
+          ]
+        },
+        {
+          "topic": "Balancing Chemical Equations",
+          "brief": "Law of Conservation of Mass and stepwise balancing.",
+          "subtopics": [
+            { "name": "Law of Conservation", "explanation": "Total mass of reactants equals total mass of products." },
+            { "name": "Steps", "explanation": "Count atoms → Add coefficients → Verify both sides." }
+          ]
+        },
+        {
+          "topic": "Types of Chemical Reactions",
+          "brief": "Main categories with examples.",
+          "subtopics": [
+            { "name": "Combination", "explanation": "Two or more reactants combine to form one product. Ex: 2H₂ + O₂ → 2H₂O" },
+            { "name": "Decomposition", "explanation": "One compound breaks into simpler substances. Ex: 2HgO → 2Hg + O₂" }
+          ]
+        },
+        {
+          "topic": "Displacement & Double Displacement",
+          "brief": "How elements replace or exchange ions.",
+          "subtopics": [
+            { "name": "Displacement", "explanation": "More reactive element displaces a less reactive one. Ex: Zn + CuSO₄ → ZnSO₄ + Cu" },
+            { "name": "Double Displacement", "explanation": "Exchange of ions between two compounds. Ex: Na₂SO₄ + BaCl₂ → BaSO₄ + 2NaCl" }
+          ]
+        },
+        {
+          "topic": "Reaction Conditions",
+          "brief": "Factors influencing the rate and outcome of chemical reactions.",
+          "subtopics": [
+            { "name": "Temperature", "explanation": "Higher temperatures increase reaction rates by providing energy to break bonds. Ex: Heating CaCO₃ speeds up decomposition to CaO + CO₂." },
+            { "name": "Concentration", "explanation": "Higher reactant concentration increases collision frequency, speeding up reactions. Ex: Dilute HCl reacts slower with Zn than concentrated HCl." },
+            { "name": "Catalysts", "explanation": "Substances that lower activation energy without being consumed. Ex: MnO₂ catalyzes H₂O₂ decomposition to H₂O + O₂." },
+            { "name": "Surface Area", "explanation": "Smaller particle size increases surface area, enhancing reaction rate. Ex: Powdered Zn reacts faster with HCl than Zn chunks." },
+            { "name": "Pressure", "explanation": "For gases, higher pressure increases reaction rate by bringing molecules closer. Ex: Haber’s process for NH₃ synthesis uses high pressure." }
+          ]
+        },
+        {
+          "topic": "Energy Changes in Reactions",
+          "brief": "Understanding energy absorption or release during chemical reactions.",
+          "subtopics": [
+            { "name": "Exothermic Reactions", "explanation": "Reactions that release heat energy. Ex: Combustion of methane (CH₄ + 2O₂ → CO₂ + 2H₂O) produces heat." },
+            { "name": "Endothermic Reactions", "explanation": "Reactions that absorb heat energy. Ex: Decomposition of CaCO₃ absorbs heat to form CaO + CO₂." },
+            { "name": "Activation Energy", "explanation": "Minimum energy required to start a reaction. Ex: A spark initiates H₂ and O₂ reaction to form H₂O." },
+            { "name": "Energy Diagrams", "explanation": "Graphs showing energy changes; exothermic shows energy decrease, endothermic shows increase." },
+            { "name": "Bond Energy", "explanation": "Energy needed to break or form bonds determines if a reaction is exothermic or endothermic." }
+          ]
+        },
+        {
+          "topic": "Chemical Equation Notation",
+          "brief": "Symbols and conventions used in writing chemical equations.",
+          "subtopics": [
+            { "name": "State Symbols", "explanation": "Indicate physical state: (s) for solid, (l) for liquid, (g) for gas, (aq) for aqueous. Ex: NaCl(aq) + AgNO₃(aq) → AgCl(s) + NaNO₃(aq)." },
+            { "name": "Skeleton Equations", "explanation": "Unbalanced equations showing reactants and products. Ex: H₂ + O₂ → H₂O (unbalanced)." },
+            { "name": "Balanced Equations", "explanation": "Equations adjusted with coefficients to obey the Law of Conservation of Mass. Ex: 2H₂ + O₂ → 2H₂O." },
+            { "name": "Reaction Conditions", "explanation": "Notations like heat (Δ) or catalyst above the arrow. Ex: 2KClO₃ →[MnO₂] 2KCl + 3O₂." },
+            { "name": "Stoichiometry", "explanation": "Coefficients show the mole ratio of reactants and products in a balanced equation." }
+          ]
+        },
+        {
+          "topic": "Redox Reactions",
+          "brief": "Reactions involving oxidation and reduction processes.",
+          "subtopics": [
+            { "name": "Oxidation Definition", "explanation": "Loss of electrons or gain of oxygen. Ex: 2Mg + O₂ → 2MgO (Mg loses electrons)." },
+            { "name": "Reduction Definition", "explanation": "Gain of electrons or loss of oxygen. Ex: CuO + H₂ → Cu + H₂O (CuO loses oxygen)." },
+            { "name": "Redox Pair", "explanation": "Oxidation and reduction occur together. Ex: Zn + CuSO₄ → ZnSO₄ + Cu (Zn oxidized, Cu²⁺ reduced)." },
+            { "name": "Oxidizing Agent", "explanation": "Substance that causes oxidation by accepting electrons. Ex: O₂ in combustion reactions." },
+            { "name": "Reducing Agent", "explanation": "Substance that causes reduction by donating electrons. Ex: H₂ in CuO reduction." }
+          ]
+        },
+        {
+          "topic": "Reaction Rates",
+          "brief": "Study of how fast chemical reactions occur.",
+          "subtopics": [
+            { "name": "Rate Definition", "explanation": "Speed of reactant consumption or product formation. Measured as change in concentration over time." },
+            { "name": "Collision Theory", "explanation": "Reactions occur when particles collide with sufficient energy and proper orientation." },
+            { "name": "Factors Affecting Rate", "explanation": "Temperature, concentration, surface area, and catalysts influence reaction speed." },
+            { "name": "Rate Examples", "explanation": "Ex: Burning wood (fast) vs. rusting iron (slow)." },
+            { "name": "Catalysis Effect", "explanation": "Catalysts speed up reactions by lowering activation energy. Ex: Pt in SO₂ to SO₃ conversion." }
+          ]
+        },
+        {
+          "topic": "Precipitation Reactions",
+          "brief": "Reactions forming insoluble products (precipitates).",
+          "subtopics": [
+            { "name": "Precipitate Definition", "explanation": "Insoluble solid formed during a reaction. Ex: AgNO₃ + NaCl → AgCl(s) + NaNO₃." },
+            { "name": "Solubility Rules", "explanation": "Guidelines to predict if a product is insoluble. Ex: Most chlorides are soluble except AgCl, PbCl₂." },
+            { "name": "Double Displacement Link", "explanation": "Precipitation often occurs in double displacement reactions. Ex: BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl." },
+            { "name": "Applications", "explanation": "Used in water treatment to remove ions by forming precipitates." },
+            { "name": "Net Ionic Equation", "explanation": "Shows only the ions forming the precipitate. Ex: Ag⁺ + Cl⁻ → AgCl(s)." }
+          ]
+        },
+        {
+          "topic": "Reversible Reactions",
+          "brief": "Reactions that can proceed in both forward and reverse directions.",
+          "subtopics": [
+            { "name": "Reversibility", "explanation": "Some reactions can form reactants back from products. Ex: N₂ + 3H₂ ⇌ 2NH₃." },
+            { "name": "Equilibrium", "explanation": "State where forward and reverse reaction rates are equal." },
+            { "name": "Conditions", "explanation": "Closed systems and specific conditions favor equilibrium. Ex: Haber’s process for NH₃." },
+            { "name": "Examples", "explanation": "Ex: Heating CaCO₃ forms CaO + CO₂, and CO₂ can react back with CaO." },
+            { "name": "Le Chatelier’s Principle", "explanation": "System adjusts to changes in concentration, temperature, or pressure to restore equilibrium." }
+          ]
+        },
+        {
+          "topic": "Corrosion",
+          "brief": "Chemical process of material degradation, especially metals.",
+          "subtopics": [
+            { "name": "Corrosion Definition", "explanation": "Deterioration of metals due to chemical reactions with the environment. Ex: Rusting of iron." },
+            { "name": "Rusting Process", "explanation": "Iron reacts with O₂ and H₂O to form Fe₂O₃·xH₂O." },
+            { "name": "Prevention Methods", "explanation": "Galvanization, painting, or using alloys prevent corrosion." },
+            { "name": "Electrochemical Nature", "explanation": "Corrosion involves redox reactions with anode and cathode regions on metal." },
+            { "name": "Economic Impact", "explanation": "Corrosion causes damage to structures, costing billions annually." }
+          ]
+        },
+        {
+          "topic": "Reaction Stoichiometry",
+          "brief": "Quantitative relationships in chemical reactions.",
+          "subtopics": [
+            { "name": "Mole Ratio", "explanation": "Coefficients in a balanced equation give the ratio of moles. Ex: 2H₂ + O₂ → 2H₂O (2:1:2)." },
+            { "name": "Mass Calculations", "explanation": "Use molar masses to find reactant or product masses. Ex: Calculate H₂O formed from 4g H₂." },
+            { "name": "Limiting Reagent", "explanation": "Reactant that gets consumed first, limiting product formation." },
+            { "name": "Excess Reagent", "explanation": "Reactant left over after the limiting reagent is used up." },
+            { "name": "Yield", "explanation": "Actual yield vs. theoretical yield; percentage yield measures efficiency." }
+          ]
+        },
+        {
+          "topic": "Practical Applications",
+          "brief": "Real-world uses of chemical reactions.",
+          "subtopics": [
+            { "name": "Combustion in Industry", "explanation": "Burning fuels like coal or natural gas for energy production." },
+            { "name": "Food Preservation", "explanation": "Antioxidants prevent rancidity by slowing oxidation of fats." },
+            { "name": "Metallurgy", "explanation": "Reduction reactions extract metals from ores. Ex: Fe₂O₃ + 3CO → 2Fe + 3CO₂." },
+            { "name": "Fertilizer Production", "explanation": "Haber’s process (N₂ + 3H₂ → 2NH₃) produces ammonia for fertilizers." },
+            { "name": "Water Treatment", "explanation": "Precipitation reactions remove harmful ions from water." }
+          ]
+        },
+        {
+          "topic": "Effects of Oxidation",
+          "brief": "Daily life examples of oxidation reactions.",
+          "subtopics": [
+            { "name": "Rusting of Iron", "explanation": "Formation of Fe₂O₃·xH₂O in presence of moisture and oxygen." },
+            { "name": "Rancidity", "explanation": "Oils/fats get oxidized producing foul smell." }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter_no": 2,
+      "chapter_name": "Acids, Bases and Salts",
+      "topics": [
+        {
+          "topic": "Introduction to Acids & Bases",
+          "brief": "Overview of acids and bases with basic definitions.",
+          "subtopics": [
+            { "name": "Acids", "explanation": "Compounds that release H⁺ ions in aqueous solution." },
+            { "name": "Bases", "explanation": "Compounds that release OH⁻ ions in aqueous solution." },
+            { "name": "Indicators", "explanation": "Substances like litmus, phenolphthalein, methyl orange used to detect acids and bases." },
+            { "name": "pH Scale", "explanation": "Measures acidity or basicity: <7 acidic, 7 neutral, >7 basic." }
+          ]
+        },
+        {
+          "topic": "Physical Properties",
+          "brief": "Observable properties of acids and bases.",
+          "subtopics": [
+            { "name": "Acids", "explanation": "Sour taste, turn blue litmus red." },
+            { "name": "Bases", "explanation": "Bitter taste, soapy touch, turn red litmus blue." }
+          ]
+        },
+        {
+          "topic": "Chemical Properties of Acids",
+          "brief": "How acids react with metals, bases and carbonates.",
+          "subtopics": [
+            { "name": "Metal Reaction", "explanation": "Acid + Metal → Salt + H₂ gas." },
+            { "name": "Carbonate Reaction", "explanation": "Acid + Carbonate → Salt + H₂O + CO₂." },
+            { "name": "Base Reaction", "explanation": "Acid + Base → Salt + Water (Neutralization)." },
+            { "name": "Non-metal Reaction", "explanation": "Ex: HCl reacts with NH₃ to form NH₄Cl." }
+          ]
+        },
+        {
+          "topic": "Chemical Properties of Bases",
+          "brief": "Reactions showing basic nature.",
+          "subtopics": [
+            { "name": "With Acids", "explanation": "Base + Acid → Salt + Water (Neutralization)." },
+            { "name": "With Ammonium Salts", "explanation": "Base + Ammonium Salt → NH₃ gas + Salt + H₂O." }
+          ]
+        },
+        {
+          "topic": "Salts and Their Importance",
+          "brief": "Formation and uses of common salts.",
+          "subtopics": [
+            { "name": "Common Salt", "explanation": "NaCl obtained from sea water, used in food and chemical industry." },
+            { "name": "Bleaching Powder", "explanation": "Prepared from Ca(OH)₂ and Cl₂, used for disinfection." },
+            { "name": "Types of Salts", "explanation": "Normal, acid, basic salts." },
+            { "name": "Preparation Methods", "explanation": "Neutralization, precipitation, direct combination." },
+            { "name": "Uses of Salts", "explanation": "Baking soda, washing soda, Epsom salt, Plaster of Paris." }
+          ]
+        }
+      ]
+    }
+  ]
+}

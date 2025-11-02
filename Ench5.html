@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glimpses of India - Class 10 Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background-color: #fff;
+            border: none;
+            border-radius: 30px;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #2a5298;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .key-points {
+            background-color: #f9f9f9;
+            border-left: 4px solid #2a5298;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .key-points ul {
+            padding-left: 1.5rem;
+        }
+
+        .key-points li {
+            margin-bottom: 0.5rem;
+        }
+
+        .vocabulary {
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .vocabulary h3 {
+            margin-top: 0;
+        }
+
+        .vocab-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .vocab-term {
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .question {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .question h3 {
+            color: #e65100;
+        }
+
+        .image-placeholder {
+            background-color: #e9ecef;
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #1e3c72;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Glimpses of India</h1>
+        <p class="subtitle">Class 10 English Notes - First Flight</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" data-tab="overview">Overview</button>
+            <button class="tab" data-tab="goa">A Baker from Goa</button>
+            <button class="tab" data-tab="coorg">Coorg</button>
+            <button class="tab" data-tab="assam">Tea from Assam</button>
+            <button class="tab" data-tab="quiz">Quick Quiz</button>
+        </div>
+
+        <div id="overview" class="content-section active">
+            <h2>Chapter Overview</h2>
+            <p>"Glimpses of India" is a chapter from the Class 10 English textbook 'First Flight' that consists of three parts, each offering a unique perspective on different regions of India.</p>
+            
+            <div class="key-points">
+                <h3>Key Highlights:</h3>
+                <ul>
+                    <li>Explores the cultural diversity of India through three distinct regions</li>
+                    <li>Highlights traditional occupations and their significance</li>
+                    <li>Showcases the natural beauty and resources of different parts of India</li>
+                    <li>Provides insights into local traditions, customs, and lifestyles</li>
+                </ul>
+            </div>
+
+            <h3>The Three Parts:</h3>
+            <p><strong>1. A Baker from Goa</strong> - A nostalgic look at the Portuguese influence on Goan culture, particularly through the tradition of bread-making.</p>
+            <p><strong>2. Coorg</strong> - A description of the natural beauty, coffee plantations, and brave people of Coorg (Kodagu) in Karnataka.</p>
+            <p><strong>3. Tea from Assam</strong> - A journey through the tea gardens of Assam, exploring the history and process of tea cultivation.</p>
+            
+            <div class="image-placeholder">
+                [Map of India highlighting Goa, Coorg, and Assam]
+            </div>
+        </div>
+
+        <div id="goa" class="content-section">
+            <h2>A Baker from Goa</h2>
+            <p>This part is a nostalgic account by Lucio Rodrigues about the traditional bread-making culture in Goa, which has its roots in Portuguese influence.</p>
+            
+            <h3>Summary</h3>
+            <p>The narrator reminisces about the importance of bakers (paders) in Goan society. The baker was an essential part of daily life, arriving early each morning with his bamboo staff jingling, signaling his arrival. Different types of bread were baked for various occasions - bol for marriage, kabai for festivals, and sweet bread for special events.</p>
+            
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <li>Goan bakers are known as 'paders'</li>
+                    <li>Baking was a profitable profession in Goa</li>
+                    <li>Traditional breads include bol, kabai, and sweet bread</li>
+                    <li>The baker's arrival was announced by the jingling sound of his bamboo staff</li>
+                    <li>Bread-making continues to be an important part of Goan culture despite Portuguese departure</li>
+                </ul>
+            </div>
+            
+            <div class="vocabulary">
+                <h3>Important Vocabulary:</h3>
+                <div class="vocab-item">
+                    <span class="vocab-term">Pader:</span> Goan term for baker
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Furnace:</span> A very hot oven used for baking
+                </div>
+                    <div class="vocab-item">
+                    <span class="vocab-term">Bol:</span> A sweet bread usually eaten at marriages
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Kabai:</span> A bread baked in a special shape for festivals
+                </div>
+            </div>
+            
+            <div class="question">
+                <h3>Think About:</h3>
+                <p>How does the author use nostalgia to describe the importance of bakers in Goan society?</p>
+            </div>
+        </div>
+
+        <div id="coorg" class="content-section">
+            <h2>Coorg</h2>
+            <p>Written by Lokesh Abrol, this part describes the beautiful region of Coorg (Kodagu) in Karnataka, known for its coffee plantations, brave people, and natural beauty.</p>
+            
+            <h3>Summary</h3>
+            <p>Coorg is located between Mysore and the coastal town of Mangalore. It is famous for its coffee plantations, evergreen rainforests, and spices. The people of Coorg are known for their bravery and are possibly of Greek or Arabic descent. The region is also home to various wildlife including elephants, kingfishers, and langurs.</p>
+            
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <li>Coorg is the smallest district of Karnataka</li>
+                    <li>Known as the 'Scotland of India' due to its similar landscape</li>
+                    <li>Famous for coffee plantations and spices</li>
+                    <li>Coorgi people are known for their bravery and hospitality</li>
+                    <li>Possible descendants of Greeks or Arabs</li>
+                    <li>Rich in biodiversity with many animal species</li>
+                </ul>
+            </div>
+            
+            <div class="vocabulary">
+                <h3>Important Vocabulary:</h3>
+                <div class="vocab-item">
+                    <span class="vocab-term">Plantations:</span> Large farms where crops like coffee, tea, or rubber are grown
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Evergreen:</span> Having green leaves throughout the year
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Biodiversity:</span> Variety of plant and animal life in a particular habitat
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Descent:</span> Origin or background of a person in terms of family or nationality
+                </div>
+            </div>
+            
+            <div class="image-placeholder">
+                [Image of Coorg's landscape with coffee plantations]
+            </div>
+        </div>
+
+        <div id="assam" class="content-section">
+            <h2>Tea from Assam</h2>
+            <p>This part by Arup Kumar Datta follows two friends, Rajvir and Pranjol, as they travel to Assam, where Pranjol's father manages a tea garden.</p>
+            
+            <h3>Summary</h3>
+            <p>During their journey, Rajvir shares his knowledge about tea with Pranjol. He talks about the legend of how tea was discovered by a Chinese emperor and how it reached Europe and eventually India. When they arrive at the tea garden, they see women plucking tea leaves and learn about the process of tea cultivation.</p>
+            
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <li>Assam has the largest concentration of tea plantations in the world</li>
+                    <li>Tea was first discovered in China</li>
+                    <li>There are two main varieties of tea - Chinese and Assamese</li>
+                    <li>Tea bushes are pruned to maintain a convenient height for plucking</li>
+                    <li>The best tea is made from the first two leaves and a bud</li>
+                </ul>
+            </div>
+            
+            <div class="vocabulary">
+                <h3>Important Vocabulary:</h3>
+                <div class="vocab-item">
+                    <span class="vocab-term">Plantation:</span> A large estate where cash crops are grown
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Pruning:</span> Trimming by cutting away dead or overgrown branches
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Sprouting:</span> Beginning to grow or develop
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">Legends:</span> Traditional stories sometimes regarded as historical but not verified
+                </div>
+            </div>
+            
+            <div class="question">
+                <h3>Think About:</h3>
+                <p>How does the author use the journey of Rajvir and Pranjol to educate readers about tea cultivation?</p>
+            </div>
+            
+            <div class="image-placeholder">
+                [Image of tea plantations in Assam]
+            </div>
+        </div>
+
+        <div id="quiz" class="content-section">
+            <h2>Quick Quiz</h2>
+            <p>Test your understanding of the chapter with these questions:</p>
+            
+            <div class="question">
+                <h3>Question 1:</h3>
+                <p>What is the traditional Goan baker called?</p>
+                <button class="quiz-option" data-correct="false">Baker</button>
+                <button class="quiz-option" data-correct="true">Pader</button>
+                <button class="quiz-option" data-correct="false">Padeira</button>
+                <button class="quiz-option" data-correct="false">Fornheiro</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 2:</h3>
+                <p>Coorg is located in which Indian state?</p>
+                <button class="quiz-option" data-correct="false">Kerala</button>
+                <button class="quiz-option" data-correct="true">Karnataka</button>
+                <button class="quiz-option" data-correct="false">Tamil Nadu</button>
+                <button class="quiz-option" data-correct="false">Goa</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 3:</h3>
+                <p>According to the legend, who discovered tea?</p>
+                <button class="quiz-option" data-correct="false">An Indian saint</button>
+                <button class="quiz-option" data-correct="false">A Japanese monk</button>
+                <button class="quiz-option" data-correct="true">A Chinese emperor</button>
+                <button class="quiz-option" data-correct="false">A British explorer</button>
+                <p class="quiz-feedback"></p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 4:</h3>
+                <p>What is Coorg famously known as?</p>
+                <button class="quiz-option" data-correct="false">The Kashmir of South India</button>
+                <button class="quiz-option" data-correct="true">The Scotland of India</button>
+                <button class="quiz-option" data-correct="false">The Switzerland of India</button>
+                <button class="quiz-option" data-correct="false">The Paradise of South India</button>
+                <p class="quiz-feedback"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Class 10 English Notes - Glimpses of India</p>
+        <p>Created for educational purposes</p>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and content sections
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to current tab and corresponding content section
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+            
+            // Quiz functionality
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const isCorrect = this.getAttribute('data-correct') === 'true';
+                    const feedback = this.parentElement.querySelector('.quiz-feedback');
+                    
+                    // Reset all options in this question
+                    const siblings = this.parentElement.querySelectorAll('.quiz-option');
+                    siblings.forEach(sib => {
+                        sib.style.backgroundColor = '';
+                        sib.style.color = '';
+                    });
+                    
+                    // Style the clicked option
+                    if (isCorrect) {
+                        this.style.backgroundColor = '#4caf50';
+                        this.style.color = 'white';
+                        feedback.textContent = 'Correct! Well done.';
+                        feedback.style.color = '#4caf50';
+                    } else {
+                        this.style.backgroundColor = '#f44336';
+                        this.style.color = 'white';
+                        feedback.textContent = 'Incorrect. Try again.';
+                        feedback.style.color = '#f44336';
+                        
+                        // Highlight the correct answer
+                        const correctOption = this.parentElement.querySelector('[data-correct="true"]');
+                        correctOption.style.backgroundColor = '#4caf50';
+                        correctOption.style.color = 'white';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

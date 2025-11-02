@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Electricity Formulas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(31, 38, 135, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .formula-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 50px rgba(31, 38, 135, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .formula-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+        
+        .formula-card:hover::before {
+            animation: shine 0.8s ease-in-out;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+        
+        .formula-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(31, 38, 135, 0.6);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .formula-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .formula-content {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #FFD700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .formula {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .where {
+            color: #e8e8e8;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .where strong {
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        .unit {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .special-section {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+        
+        .special-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .power-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .power-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .power-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .important-note {
+            background: linear-gradient(135deg, #FFA726 0%, #FF7043 50%, #E91E63 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            color: white;
+            box-shadow: 0 15px 40px rgba(255, 167, 38, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .important-note::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .important-note h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .important-note p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            color: white;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .emoji {
+            font-size: 1.8rem;
+            margin: 0 8px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .formula-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .formula-card {
+                padding: 25px;
+            }
+            
+            .power-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-section {
+                padding: 30px 20px;
+            }
+        }
+        
+        .tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 2px dotted #FFD700;
+        }
+        
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 1000;
+            animation: fadeInUp 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="emoji">⚡</span>ELECTRICITY FORMULAS<span class="emoji">⚡</span></h1>
+            <p>Class 10 Physics - Complete Formula Collection</p>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Master all the essential formulas!</p>
+        </div>
+        
+        <div class="formula-grid">
+            <!-- Ohm's Law -->
+            <div class="formula-card">
+                <div class="formula-title">Ohm's Law</div>
+                <div class="formula-content">
+                    <div class="formula">V = I × R</div>
+                    <div class="where">
+                        <strong>Where:</strong><br>
+                        V = Voltage (Potential Difference)<br>
+                        I = Current (Flow of Charge)<br>
+                        R = Resistance (Opposition to Current)
+                    </div>
+                    <div class="unit">V: Volt, I: Ampere, R: Ohm</div>
+                </div>
+            </div>
+            
+            <!-- Current Formula -->
+            <div class="formula-card">
+                <div class="formula-title">Electric Current</div>
+                <div class="formula-content">
+                    <div class="formula">I = Q/t</div>
+                    <div class="where">
+                        <strong>Where:</strong><br>
+                        I = Electric Current<br>
+                        Q = Electric Charge<br>
+                        t = Time Period
+                    </div>
+                    <div class="unit">I: Ampere, Q: Coulomb, t: Second</div>
+                </div>
+            </div>
+            
+            <!-- Resistance Formula -->
+            <div class="formula-card">
+                <div class="formula-title">Resistance of a Conductor</div>
+                <div class="formula-content">
+                    <div class="formula">R = ρL/A</div>
+                    <div class="where">
+                        <strong>Where:</strong><br>
+                        R = Resistance<br>
+                        ρ = Resistivity (Material Property)<br>
+                        L = Length of Conductor<br>
+                        A = Cross-sectional Area
+                    </div>
+                    <div class="unit">R: Ohm, ρ: Ohm-meter, L: meter, A: m²</div>
+                </div>
+            </div>
+            
+            <!-- Series Resistance -->
+            <div class="formula-card">
+                <div class="formula-title">Series Combination</div>
+                <div class="formula-content">
+                    <div class="formula">R<sub>total</sub> = R₁ + R₂ + R₃ + ...</div>
+                    <div class="where">
+                        <strong>In Series:</strong><br>
+                        • Total resistance = Sum of all resistances<br>
+                        • Current remains same<br>
+                        • Voltage gets divided
+                    </div>
+                    <div class="unit">All resistances in Ohms</div>
+                </div>
+            </div>
+            
+            <!-- Parallel Resistance -->
+            <div class="formula-card">
+                <div class="formula-title">Parallel Combination</div>
+                <div class="formula-content">
+                    <div class="formula">1/R<sub>total</sub> = 1/R₁ + 1/R₂ + 1/R₃ + ...</div>
+                    <div class="where">
+                        <strong>In Parallel:</strong><br>
+                        • Reciprocal of total = Sum of reciprocals<br>
+                        • Voltage remains same<br>
+                        • Current gets divided
+                    </div>
+                    <div class="unit">All resistances in Ohms</div>
+                </div>
+            </div>
+            
+            <!-- Work and Energy -->
+            <div class="formula-card">
+                <div class="formula-title">Electrical Work & Energy</div>
+                <div class="formula-content">
+                    <div class="formula">W = V × I × t = V × Q</div>
+                    <div class="where">
+                        <strong>Where:</strong><br>
+                        W = Work Done / Energy Consumed<br>
+                        V = Voltage Applied<br>
+                        I = Current Flowing<br>
+                        t = Time Duration<br>
+                        Q = Total Charge
+                    </div>
+                    <div class="unit">W: Joule, V: Volt, I: Ampere, t: Second</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Power Section -->
+        <div class="special-section">
+            <h2><span class="emoji">🔋</span>POWER FORMULAS<span class="emoji">🔋</span></h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">Rate of doing electrical work</p>
+            
+            <div class="power-grid">
+                <div class="power-card">
+                    <div class="formula" style="font-size: 1.2rem; margin-bottom: 10px;">P = V × I</div>
+                    <p style="font-size: 0.9rem;">Power using Voltage & Current</p>
+                </div>
+                
+                <div class="power-card">
+                    <div class="formula" style="font-size: 1.2rem; margin-bottom: 10px;">P = I² × R</div>
+                    <p style="font-size: 0.9rem;">Power using Current & Resistance</p>
+                </div>
+                
+                <div class="power-card">
+                    <div class="formula" style="font-size: 1.2rem; margin-bottom: 10px;">P = V²/R</div>
+                    <p style="font-size: 0.9rem;">Power using Voltage & Resistance</p>
+                </div>
+                
+                <div class="power-card">
+                    <div class="formula" style="font-size: 1.2rem; margin-bottom: 10px;">P = W/t</div>
+                    <p style="font-size: 0.9rem;">Power as Work per unit Time</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Important Notes -->
+        <div class="important-note">
+            <h3><span class="emoji">💡</span>Key Points to Remember</h3>
+            <p>• <strong>1 kWh = 3.6 × 10⁶ J</strong> (Unit of electrical energy)</p>
+            <p>• <strong>Fuse Rating</strong> = Maximum safe current</p>
+            <p>• <strong>Short Circuit</strong> occurs when R → 0, causing I → ∞</p>
+            <p>• <strong>Heating Effect:</strong> H = I²Rt (Joule's Law)</p>
+        </div>
+        
+        <!-- More Formulas -->
+        <div class="formula-grid">
+            <!-- Joule's Law -->
+            <div class="formula-card">
+                <div class="formula-title">Joule's Law of Heating</div>
+                <div class="formula-content">
+                    <div class="formula">H = I² × R × t</div>
+                    <div class="where">
+                        <strong>Where:</strong><br>
+                        H = Heat Produced<br>
+                        I = Current through conductor<br>
+                        R = Resistance of conductor<br>
+                        t = Time duration
+                    </div>
+                    <div class="unit">H: Joule, I: Ampere, R: Ohm, t: Second</div>
+                </div>
+            </div>
+            
+            <!-- Alternative Heating Formulas -->
+            <div class="formula-card">
+                <div class="formula-title">Alternative Heating Formulas</div>
+                <div class="formula-content">
+                    <div class="formula">H = V²t/R = VIt</div>
+                    <div class="where">
+                        <strong>Different forms:</strong><br>
+                        H = V²t/R (using V and R)<br>
+                        H = VIt (using V, I and t)<br>
+                        All give the same result
+                    </div>
+                    <div class="unit">H: Joule, V: Volt, I: Ampere, R: Ohm</div>
+                </div>
+            </div>
+            
+            <!-- Commercial Unit -->
+            <div class="formula-card">
+                <div class="formula-title">Commercial Unit of Energy</div>
+                <div class="formula-content">
+                    <div class="formula">1 kWh = 1000 W × 1 h</div>
+                    <div class="where">
+                        <strong>Conversion:</strong><br>
+                        1 kWh = 3.6 × 10⁶ J<br>
+                        1 Unit = 1 kWh<br>
+                        Used in electricity bills
+                    </div>
+                    <div class="unit">kWh: Kilowatt Hour</div>
+                </div>
+            </div>
+            
+            <!-- Electric Bill -->
+            <div class="formula-card">
+                <div class="formula-title">Electricity Bill Calculation</div>
+        <div class="formula-card">
+                <div class="formula-title">Electricity Bill Calculation</div>
+                <div class="formula-content">
+                    <div class="formula">Cost = Power × Time × Rate</div>
+                    <div class="where">
+                        <strong>Where:</strong><br>
+                        Power = Appliance power in kW<br>
+                        Time = Usage time in hours<br>
+                        Rate = Cost per kWh (unit)
+                    </div>
+                    <div class="unit">Cost: Currency per kWh</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Final Important Section -->
+        <div class="special-section">
+            <h2><span class="emoji">🎯</span>QUICK REFERENCE<span class="emoji">🎯</span></h2>
+            <div class="power-grid">
+                <div class="power-card">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Basic Units</h4>
+                    <p>Voltage: Volt (V)<br>
+                    Current: Ampere (A)<br>
+                    Resistance: Ohm (Ω)<br>
+                    Power: Watt (W)</p>
+                </div>
+                
+                <div class="power-card">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Energy Units</h4>
+                    <p>SI Unit: Joule (J)<br>
+                    Commercial: kWh<br>
+                    1 kWh = 1000 Wh<br>
+                    1 kWh = 3.6 × 10⁶ J</p>
+                </div>
+                
+                <div class="power-card">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Safety Devices</h4>
+                    <p>Fuse: Melts at high current<br>
+                    MCB: Switches off circuit<br>
+                    Earthing: Safety connection<br>
+                    Rating based on max current</p>
+                </div>
+                
+                <div class="power-card">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Practical Applications</h4>
+                    <p>Heating: I²Rt effect<br>
+                    Lighting: Electrical to light<br>
+                    Motors: Electrical to mechanical<br>
+                    Batteries: Chemical to electrical</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3><span class="emoji">🚀</span>Ready to Ace Your Physics Exam!<span class="emoji">🚀</span></h3>
+            <p>Practice these formulas regularly and understand the concepts behind them.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Remember: Understanding > Memorizing</p>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

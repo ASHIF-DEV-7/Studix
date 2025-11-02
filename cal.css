@@ -1,0 +1,749 @@
+/*
+================================================================================
+# CSS-001: GLOBAL & THEME VARIABLES (OP SETUP)
+# Designed for CBSE Class 10 Math Calculator (cal.html)
+# Author: Gemini AI
+================================================================================
+*/
+
+/* --- 1. DARK THEME (Default) --- */
+:root {
+    --color-primary: #007bff; /* Bright Blue */
+    --color-primary-dark: #0056b3;
+    --color-accent: #ff9500; /* Orange Accent for high visibility */
+    --color-text-main: #ffffff;
+    --color-text-secondary: #b0b0b0;
+    --color-bg-main: #0a0a0a; /* Ultra Dark Background */
+    --color-bg-header-sidebar: #1f1f1f;
+    --color-bg-card: #2c2c2c;
+    --color-border: #3a3a3a;
+    --color-shadow: rgba(0, 0, 0, 0.7);
+    --color-hover: #3a3a3a;
+    --color-active-nav-bg: #004d99;
+    --color-result-bg: rgba(0, 123, 255, 0.15);
+    --font-stack: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transition-fast: 0.2s ease-in-out;
+    --transition-slow: 0.4s ease-in-out;
+    --shadow-z1: 0 2px 4px var(--color-shadow);
+    --shadow-z2: 0 8px 16px var(--color-shadow);
+    --card-radius: 12px;
+}
+
+/* --- 2. LIGHT THEME (Toggle) --- */
+[data-theme="light"] {
+    --color-primary: #007bff;
+    --color-primary-dark: #0056b3;
+    --color-accent: #ff8000;
+    --color-text-main: #333333;
+    --color-text-secondary: #666666;
+    --color-bg-main: #f0f2f5;
+    --color-bg-header-sidebar: #ffffff;
+    --color-bg-card: #ffffff;
+    --color-border: #e0e0e0;
+    --color-shadow: rgba(0, 0, 0, 0.15);
+    --color-hover: #f0f0f0;
+    --color-active-nav-bg: #e6f0ff;
+    --color-result-bg: rgba(0, 123, 255, 0.1);
+}
+
+/*
+================================================================================
+# CSS-002: BASE & RESET STYLES
+================================================================================
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    font-family: var(--font-stack);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-slow);
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: var(--color-primary);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.2rem; }
+h3 { font-size: 1.4rem; }
+
+p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+/* Scrollbar Styling for a premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}
+
+/*
+================================================================================
+# CSS-003: HEADER (Ekdam Jhakash)
+================================================================================
+*/
+
+.header {
+    background-color: var(--color-bg-header-sidebar);
+    padding: 15px 30px;
+    box-shadow: var(--shadow-z2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color var(--transition-slow);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.logo-text {
+    margin-left: 10px;
+    letter-spacing: 0.5px;
+}
+
+.badge {
+    background: linear-gradient(90deg, #d53a3a, #ff6b6b);
+    color: var(--color-text-main);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 15px;
+    margin-left: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px #d53a3a; }
+    to { box-shadow: 0 0 10px #ff6b6b, 0 0 15px #d53a3a; }
+}
+
+/* Utility Buttons (Back, Theme, Menu) */
+.theme-btn, .back-btn, .menu-btn {
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 1.2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: brightness(0.9);
+}
+
+.theme-btn:hover, .menu-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.theme-btn {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-z1);
+}
+
+.back-btn {
+    box-shadow: var(--shadow-z2);
+    color: var(--color-text-main);
+    background: linear-gradient(135deg, #3A5AD5, #D53A3A); /* Attractive gradient */
+    font-weight: bold;
+}
+
+.menu-btn {
+    background-color: var(--color-accent);
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-z1);
+}
+
+
+/*
+================================================================================
+# CSS-004: MAIN LAYOUT & EXPANDABLE SIDEBAR (Khatarnaak Sidebar)
+================================================================================
+*/
+
+.main-container {
+    display: flex;
+    flex: 1;
+    max-width: 1400px;
+    margin: 20px auto;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.sidebar {
+    width: 280px; /* Expanded Width */
+    min-width: 280px;
+    background-color: var(--color-bg-header-sidebar);
+    padding: 20px 10px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-z2);
+    margin-right: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); /* Custom smooth transition */
+    position: relative; /* For the focus effect */
+}
+
+/* --- COLLAPSED STATE --- */
+.main-container.collapsed .sidebar {
+    width: 80px; /* Collapsed Width (Wider for better icon space) */
+    min-width: 80px;
+    padding: 20px 5px;
+}
+
+/* Hide non-essential text elements when collapsed */
+.main-container.collapsed .nav-text,
+.main-container.collapsed .nav-heading {
+    opacity: 0;
+    width: 0;
+    visibility: hidden;
+    pointer-events: none; /* Ensure no accidental clicks */
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.main-container.collapsed .nav-item {
+    justify-content: center;
+    padding: 12px 0; /* Center the icon vertically */
+}
+
+.main-container.collapsed .nav-icon {
+    margin-right: 0;
+}
+
+/* --- SIDEBAR NAV ITEMS --- */
+.nav-heading {
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border-bottom: 1px dashed var(--color-border);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: opacity 0.3s;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 8px;
+    background: none;
+    border: none;
+    color: var(--color-text-main);
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color var(--transition-fast), transform 0.1s;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item:hover {
+    background-color: var(--color-hover);
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    background-color: var(--color-primary);
+    color: var(--color-text-main);
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+.nav-item.active:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.nav-icon {
+    font-size: 1.4rem;
+    margin-right: 15px;
+    min-width: 20px; /* Ensures consistent spacing */
+    text-align: center;
+    transition: margin var(--transition-fast);
+}
+
+.nav-text {
+    white-space: nowrap;
+    transition: opacity 0.3s;
+}
+
+/*
+================================================================================
+# CSS-005: MAIN CONTENT & CARDS (Professional Look)
+================================================================================
+*/
+
+.content {
+    flex-grow: 1;
+}
+
+.section {
+    display: none;
+    padding: 20px;
+    background-color: var(--color-bg-main);
+    border-radius: var(--card-radius);
+    animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    color: var(--color-text-main);
+}
+
+.section-desc {
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+/* Cards Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--color-bg-card);
+    padding: 30px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-z2);
+    border: 1px solid var(--color-border);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--color-shadow);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--color-primary);
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+}
+
+.card-subtitle {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/*
+================================================================================
+# CSS-006: FORM & UI ELEMENTS
+================================================================================
+*/
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.input, select.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    font-size: 1rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-slow);
+    appearance: none; /* Removes default select/input styling */
+}
+
+.input:focus, select.input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.3);
+    outline: none;
+    background-color: var(--color-bg-header-sidebar); /* Subtle change on focus */
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-row .input-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Buttons (Khatarnaak Styles) */
+.btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-text-main);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 10px;
+    transition: all var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.btn:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
+}
+
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.4);
+}
+
+/* Result Area */
+.result {
+    margin-top: 25px;
+    padding: 18px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    background-color: var(--color-result-bg);
+    color: var(--color-text-main);
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    word-break: break-all;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+.result:empty {
+    border-color: var(--color-border);
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-style: italic;
+    content: "Calculation result will appear here...";
+}
+
+/* Formula Box (Important Info) */
+.formula-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--color-bg-main);
+    border-left: 5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.formula-box strong {
+    color: var(--color-text-main);
+    font-style: normal;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+/*
+================================================================================
+# CSS-007: BASIC CALCULATOR SPECIFIC STYLES
+================================================================================
+*/
+
+.calculator-container {
+    background-color: var(--color-bg-card);
+    padding: 25px;
+    border-radius: var(--card-radius);
+    max-width: 380px;
+    margin: 30px auto;
+    box-shadow: var(--shadow-z2);
+}
+
+.calc-display {
+    background-color: var(--color-bg-main);
+    color: var(--color-primary);
+    font-size: 2.8rem;
+    text-align: right;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 300;
+    letter-spacing: 1px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.calc-btn {
+    background-color: #4a4a4a; /* Darker grey for buttons */
+    color: var(--color-text-main);
+    border: none;
+    padding: 18px;
+    font-size: 1.4rem;
+    border-radius: 50%; /* Make them circular */
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.calc-btn:hover {
+    background-color: #6a6a6a;
+    transform: translateY(-1px);
+}
+
+.calc-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Operator Styles */
+.calc-operator {
+    background-color: var(--color-accent);
+    color: var(--color-text-main);
+}
+
+.calc-operator:hover {
+    background-color: #cc7600;
+}
+
+/* Clear Button */
+.calc-clear {
+    background-color: #D53A3A; /* Red for clear */
+}
+
+.calc-clear:hover {
+    background-color: #a32c2c;
+}
+
+/* Equals Button (Spans two columns) */
+.calc-equals {
+    background-color: var(--color-primary);
+    grid-column: span 2;
+    border-radius: 8px; /* Make the equals button rectangular */
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.calc-equals:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.calc-zero {
+    grid-column: span 1;
+}
+
+/*
+================================================================================
+# CSS-008: MEDIA QUERIES (Jhakass Responsiveness)
+================================================================================
+*/
+
+/* Tablet View */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 230px;
+        min-width: 230px;
+        padding: 15px 10px;
+    }
+    
+    .main-container.collapsed .sidebar {
+        width: 70px;
+        min-width: 70px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Mobile View (The ultimate collapse) */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        margin: 10px auto;
+        padding: 0 10px;
+    }
+
+    /* Header adjustments */
+    .header-content {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .logo {
+        font-size: 1.6rem;
+        order: 1;
+    }
+    
+    .theme-btn, .back-btn, .menu-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        margin-left: 8px;
+        order: 2;
+    }
+    
+    .badge, .logo-text {
+        display: none; /* Simplify header for small screens */
+    }
+
+    /* Sidebar full width and horizontal scrolling */
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+        max-height: 80px; /* Constrain height */
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        padding: 10px;
+    }
+
+    .nav-section {
+        display: flex;
+        gap: 8px;
+        width: fit-content; /* Allows horizontal scrolling */
+    }
+
+    /* All text/heading elements are hidden or removed */
+    .nav-heading,
+    .nav-text {
+        display: none !important;
+    }
+
+    /* Navigation items become icon-only circles */
+    .nav-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        min-width: 55px;
+        max-width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        box-shadow: var(--shadow-z1);
+    }
+    
+    .nav-icon {
+        margin: 0;
+        font-size: 1.3rem;
+    }
+
+    /* Since the sidebar is permanently icon-only on mobile, the collapsed class is unnecessary for layout */
+    .main-container.collapsed .sidebar {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .section {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+/* END OF cal.css (Total Lines: 750+) */

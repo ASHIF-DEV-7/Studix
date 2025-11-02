@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Chemistry Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .quiz-container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        .progress-container {
+            background: #f7fafc;
+            height: 6px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #4299e1, #38b2ac);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .question-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 5px;
+        }
+
+        .question-number {
+            color: #4299e1;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .score-display {
+            color: #38b2ac;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .question-container {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .question {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .option:hover {
+            background: #ebf8ff;
+            border-color: #4299e1;
+            transform: translateY(-1px);
+        }
+
+        .option.selected {
+            background: #4299e1;
+            color: white;
+            border-color: #3182ce;
+        }
+
+        .option.correct {
+            background: #38a169;
+            color: white;
+            border-color: #2f855a;
+        }
+
+        .option.incorrect {
+            background: #e53e3e;
+            color: white;
+            border-color: #c53030;
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #4299e1, #38b2ac);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            box-shadow: 0 4px 12px rgba(237, 137, 54, 0.3);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #38a169, #2f855a);
+        }
+
+        .check-btn:hover:not(:disabled) {
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .final-score {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #4299e1, #38b2ac);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-message {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .result-stats {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4299e1;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-size: 1.1rem;
+            padding: 12px 30px;
+        }
+
+        .restart-btn:hover {
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .question-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="header">
+            <h1>🧪 Chemistry Quiz</h1>
+            <p>Class 10th CBSE Syllabus</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div id="quizContent">
+            <div class="question-info">
+                <div class="question-number" id="questionNumber">Question 1 of 40</div>
+                <div class="score-display" id="currentScore">Score: 0/40</div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <div class="buttons">
+                <button id="submitBtn" class="submit-btn">Submit Answer</button>
+                <button id="checkBtn" class="check-btn hidden">Check Answer</button>
+                <button id="nextBtn" class="hidden">Next Question</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="result-container hidden">
+            <div class="result-title">🎉 Quiz Completed!</div>
+            <div class="final-score" id="finalScore">0/40</div>
+            <div class="result-message" id="resultMessage"></div>
+            <div class="result-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="correctAnswers">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="incorrectAnswers">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="accuracyPercent">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="gradeDisplay">-</div>
+                    <div class="stat-label">Grade</div>
+                </div>
+            </div>
+            <button class="restart-btn" onclick="location.reload()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // Acids, Bases and Salts
+            {
+                question: "Which of the following is a strong acid?",
+                options: ["Acetic acid", "Citric acid", "Hydrochloric acid", "Carbonic acid"],
+                correct: 2
+            },
+            {
+                question: "The pH of pure water at 25°C is:",
+                options: ["6", "7", "8", "14"],
+                correct: 1
+            },
+            {
+                question: "Which indicator turns red in acidic solution?",
+                options: ["Phenolphthalein", "Methyl orange", "Litmus", "Universal indicator"],
+                correct: 1
+            },
+            {
+                question: "Baking soda is chemically known as:",
+                options: ["Sodium carbonate", "Sodium hydrogen carbonate", "Sodium chloride", "Sodium hydroxide"],
+                correct: 1
+            },
+            {
+                question: "Which gas is produced when zinc reacts with hydrochloric acid?",
+                options: ["Oxygen", "Carbon dioxide", "Hydrogen", "Nitrogen"],
+                correct: 2
+            },
+
+            // Metals and Non-metals
+            {
+                question: "Which of the following metals is most reactive?",
+                options: ["Iron", "Copper", "Sodium", "Silver"],
+                correct: 2
+            },
+            {
+                question: "The process of coating iron with zinc is called:",
+                options: ["Galvanization", "Electroplating", "Anodization", "Vulcanization"],
+                correct: 0
+            },
+            {
+                question: "Which non-metal is essential for combustion?",
+                options: ["Carbon", "Nitrogen", "Oxygen", "Sulfur"],
+                correct: 2
+            },
+            {
+                question: "Alloy of copper and tin is:",
+                options: ["Brass", "Bronze", "Steel", "Pewter"],
+                correct: 1
+            },
+            {
+                question: "Which metal is found in liquid state at room temperature?",
+                options: ["Sodium", "Mercury", "Potassium", "Cesium"],
+                correct: 1
+            },
+
+            // Carbon and its Compounds
+            {
+                question: "The molecular formula of methane is:",
+                options: ["CH₂", "CH₃", "CH₄", "C₂H₆"],
+                correct: 2
+            },
+            {
+                question: "Ethanol has the molecular formula:",
+                options: ["C₂H₄O", "C₂H₆O", "C₂H₅OH", "Both B and C"],
+                correct: 3
+            },
+            {
+                question: "Which of the following is a saturated hydrocarbon?",
+                options: ["Ethene", "Ethyne", "Ethane", "Benzene"],
+                correct: 2
+            },
+            {
+                question: "Soap is prepared by:",
+                options: ["Esterification", "Saponification", "Hydrogenation", "Polymerization"],
+                correct: 1
+            },
+            {
+                question: "The functional group present in aldehydes is:",
+                options: ["-OH", "-CHO", "-COOH", "-CO-"],
+                correct: 1
+            },
+
+            // Periodic Classification
+            {
+                question: "How many periods are there in the modern periodic table?",
+                options: ["6", "7", "8", "9"],
+                correct: 1
+            },
+            {
+                question: "Elements in the same group have the same:",
+                options: ["Atomic mass", "Atomic number", "Number of valence electrons", "Number of shells"],
+                correct: 2
+            },
+            {
+                question: "Which element has atomic number 1?",
+                options: ["Helium", "Hydrogen", "Lithium", "Carbon"],
+                correct: 1
+            },
+            {
+                question: "Noble gases are placed in which group?",
+                options: ["Group 17", "Group 18", "Group 1", "Group 2"],
+                correct: 1
+            },
+            {
+                question: "The smallest particle of an element that retains its chemical properties is:",
+                options: ["Molecule", "Atom", "Ion", "Electron"],
+                correct: 1
+            },
+
+            // Chemical Reactions and Equations
+            {
+                question: "In the reaction 2H₂ + O₂ → 2H₂O, the coefficient of oxygen is:",
+                options: ["1", "2", "3", "4"],
+                correct: 0
+            },
+            {
+                question: "Which type of reaction is photosynthesis?",
+                options: ["Decomposition", "Combination", "Displacement", "Double displacement"],
+                correct: 1
+            },
+            {
+                question: "When magnesium burns in air, it forms:",
+                options: ["MgO", "Mg₂O", "MgO₂", "Mg₂O₃"],
+                correct: 0
+            },
+            {
+                question: "The process of respiration is:",
+                options: ["Endothermic", "Exothermic", "Neither", "Both"],
+                correct: 1
+            },
+            {
+                question: "Precipitation reaction produces:",
+                options: ["Gas", "Heat", "Light", "Insoluble salt"],
+                correct: 3
+            },
+
+            // Life Processes - Additional Chemistry
+            {
+                question: "Which enzyme breaks down starch?",
+                options: ["Pepsin", "Trypsin", "Amylase", "Lipase"],
+                correct: 2
+            },
+            {
+                question: "The chemical formula of glucose is:",
+                options: ["C₆H₁₂O₆", "C₁₂H₂₂O₁₁", "C₆H₁₀O₅", "C₅H₁₀O₅"],
+                correct: 0
+            },
+            {
+                question: "Chlorophyll contains which metal?",
+                options: ["Iron", "Copper", "Magnesium", "Zinc"],
+                correct: 2
+            },
+            {
+                question: "The end product of anaerobic respiration in plants is:",
+                options: ["Lactic acid", "Ethanol", "Carbon dioxide", "Water"],
+                correct: 1
+            },
+            {
+                question: "Hemoglobin contains which element?",
+                options: ["Calcium", "Iron", "Sodium", "Potassium"],
+                correct: 1
+            },
+
+            // Additional Chemistry Concepts
+            {
+                question: "What is the atomic number of carbon?",
+                options: ["4", "6", "8", "12"],
+                correct: 1
+            },
+            {
+                question: "Which gas turns lime water milky?",
+                options: ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"],
+                correct: 2
+            },
+            {
+                question: "The chemical name of common salt is:",
+                options: ["Sodium chloride", "Sodium carbonate", "Sodium hydroxide", "Sodium sulfate"],
+                correct: 0
+            },
+            {
+                question: "Which of the following is a noble gas?",
+                options: ["Oxygen", "Nitrogen", "Argon", "Carbon dioxide"],
+                correct: 2
+            },
+            {
+                question: "The valency of sodium is:",
+                options: ["1", "2", "3", "4"],
+                correct: 0
+            },
+            {
+                question: "Which acid is present in vinegar?",
+                options: ["Citric acid", "Acetic acid", "Lactic acid", "Formic acid"],
+                correct: 1
+            },
+            {
+                question: "The chemical symbol for gold is:",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: 2
+            },
+            {
+                question: "Diamond and graphite are allotropes of:",
+                options: ["Silicon", "Carbon", "Sulfur", "Phosphorus"],
+                correct: 1
+            },
+            {
+                question: "Which oxide is acidic in nature?",
+                options: ["CaO", "MgO", "SO₂", "Na₂O"],
+                correct: 2
+            },
+            {
+                question: "The process by which plants lose water is called:",
+                options: ["Respiration", "Transpiration", "Photosynthesis", "Excretion"],
+                correct: 1
+            },
+            {
+                question: "Which metal is used in galvanization?",
+                options: ["Aluminum", "Zinc", "Tin", "Lead"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let score = 0;
+        let answered = false;
+
+        function updateDisplay() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of 40`;
+            document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            document.getElementById('questionText').textContent = q.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Update progress
+         const progress = ((currentQuestion) / 40) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Reset UI state
+            resetButtons();
+            selectedAnswer = null;
+            answered = false;
+        }
+
+        function resetButtons() {
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function selectOption(index) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            if (selectedAnswer === null) {
+                alert('Please select an answer!');
+                return;
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('checkBtn').classList.remove('hidden');
+            answered = true;
+            
+            // Disable all options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.add('disabled');
+            });
+        }
+
+        function checkAnswer() {
+            const correctIndex = questions[currentQuestion].correct;
+            const options = document.querySelectorAll('.option');
+            
+            // Show correct answer
+            options[correctIndex].classList.add('correct');
+            
+            // Mark incorrect if wrong selection
+            if (selectedAnswer !== correctIndex) {
+                options[selectedAnswer].classList.add('incorrect');
+            } else {
+                score++;
+                document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            }
+
+            document.getElementById('checkBtn').classList.add('hidden');
+            
+            if (currentQuestion < 39) {
+                document.getElementById('nextBtn').classList.remove('hidden');
+            } else {
+                setTimeout(showResults, 1500);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            // Reset options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+            });
+            
+            updateDisplay();
+        }
+
+        function showResults() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const accuracy = Math.round((score / 40) * 100);
+            
+            // Update final results
+            document.getElementById('finalScore').textContent = `${score}/40`;
+            document.getElementById('correctAnswers').textContent = score;
+            document.getElementById('incorrectAnswers').textContent = 40 - score;
+            document.getElementById('accuracyPercent').textContent = accuracy + '%';
+            
+            // Grade calculation
+            let grade = '';
+            if (accuracy >= 90) grade = 'A+';
+            else if (accuracy >= 80) grade = 'A';
+            else if (accuracy >= 70) grade = 'B+';
+            else if (accuracy >= 60) grade = 'B';
+            else if (accuracy >= 50) grade = 'C';
+            else grade = 'D';
+            
+            document.getElementById('gradeDisplay').textContent = grade;
+            
+            // Result message
+            let message = '';
+            if (accuracy >= 90) {
+                message = 'Outstanding! You are a Chemistry Champion! 🏆';
+            } else if (accuracy >= 80) {
+                message = 'Excellent work! Great chemistry knowledge! ⭐';
+            } else if (accuracy >= 70) {
+                message = 'Good job! Keep studying chemistry! 👍';
+            } else if (accuracy >= 60) {
+                message = 'Fair attempt! Practice more chemistry concepts! 📚';
+            } else {
+                message = 'Keep learning! Chemistry needs more practice! 🧪';
+            }
+            
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // Event listeners
+        document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+        document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+</html>

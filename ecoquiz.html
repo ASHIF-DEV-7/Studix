@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Economics Quiz - 40 Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            color: #555;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+        .progress {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>CBSE Class 10 Economics Quiz</h1>
+        <p style="text-align: center;">40 Multiple Choice Questions | Test your knowledge!</p>
+        <div class="progress" id="progress">Question 1 of 40</div>
+        <div class="question">
+            <h3 id="question-text"></h3>
+            <div class="options">
+                <label><input type="radio" name="answer" value="A"> <span id="option-a"></span></label>
+                <label><input type="radio" name="answer" value="B"> <span id="option-b"></span></label>
+                <label><input type="radio" name="answer" value="C"> <span id="option-c"></span></label>
+                <label><input type="radio" name="answer" value="D"> <span id="option-d"></span></label>
+            </div>
+            <button onclick="nextQuestion()">Next Question</button>
+        </div>
+        <div id="result" style="display: none;">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="final-score"></span>/40</p>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the main criterion used by the World Bank to classify countries as high-income or low-income?",
+                a: "Total population",
+                b: "Per capita income",
+                c: "Literacy rate",
+                d: "Life expectancy",
+                answer: "B"
+            },
+            {
+                question: "Which of the following is not a goal of development?",
+                a: "Equal treatment for all",
+                b: "Sustainable development",
+                c: "High per capita income",
+                d: "Decline in quality of life",
+                answer: "D"
+            },
+            {
+                question: "Human Development Index (HDI) is a composite index of which three dimensions?",
+                a: "Health, education, and standard of living",
+                b: "Income, employment, and literacy",
+                c: "Agriculture, industry, and services",
+                d: "Urban, rural, and semi-urban",
+                answer: "A"
+            },
+            {
+                question: "Public facilities like health and education are important for development because they",
+                a: "Increase income levels",
+                b: "Ensure equal access for all",
+                c: "Promote private enterprise",
+                d: "Reduce exports",
+                answer: "B"
+            },
+            {
+                question: "Sustainability of development means",
+                a: "Development that meets the needs of the present without compromising the ability of future generations",
+                b: "Rapid industrialization",
+                c: "Urban migration",
+                d: "High consumption",
+                answer: "A"
+            },
+            {
+                question: "Which sector is also known as the service sector?",
+                a: "Primary sector",
+                b: "Secondary sector",
+                c: "Tertiary sector",
+                d: "Organized sector",
+                answer: "C"
+            },
+            {
+                question: "The primary sector includes activities like",
+                a: "Manufacturing and construction",
+                b: "Agriculture, fishing, and forestry",
+                c: "Banking and insurance",
+                d: "Transport and communication",
+                answer: "B"
+            },
+            {
+                question: "Underemployment occurs when people",
+                a: "Do not have work",
+                b: "Are working less than their potential",
+                c: "Are highly skilled",
+                d: "Work in factories",
+                answer: "B"
+            },
+            {
+                question: "The Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA) provides",
+                a: "100 days of wage employment per year to rural households",
+                b: "Free education",
+                c: "Subsidized food",
+                d: "Health insurance",
+                answer: "A"
+            },
+            {
+                question: "The organized sector covers those enterprises or places of work where",
+                a: "Terms of employment are regular",
+                b: "Workers are uneducated",
+                c: "No benefits are provided",
+                d: "Employment is seasonal",
+                answer: "A"
+            },
+            {
+                question: "What is money primarily used for?",
+                a: "As a store of value",
+                b: "As a medium of exchange",
+                c: "As a unit of account",
+                d: "All of the above",
+                answer: "D"
+            },
+            {
+                question: "The system of money notes and coins is called",
+                a: "Credit system",
+                b: "Legal tender",
+                c: "Barter system",
+                d: "Deposit system",
+                answer: "B"
+            },
+            {
+                question: "Banks use the major portion of deposits to",
+                a: "Extend loans",
+                b: "Keep as cash",
+                c: "Invest in stocks",
+                d: "Pay salaries",
+                answer: "A"
+            },
+            {
+                question: "The main informal source of credit in rural areas is",
+                a: "Banks",
+                b: "Moneylenders",
+                c: "Cooperatives",
+                d: "Post offices",
+                answer: "B"
+            },
+            {
+                question: "Self-Help Groups (SHGs) enable members to",
+                a: "Borrow from banks without collateral",
+                b: "Save small amounts and lend to each other",
+                c: "Both a and b",
+                d: "None of the above",
+                answer: "C"
+            },
+            {
+                question: "Globalization means",
+                a: "Integration of the domestic economy with the world economy",
+                b: "Reduction in foreign trade",
+                c: "Increase in taxes",
+                d: "Decline in investment",
+                answer: "A"
+            },
+            {
+                question: "The main aim of WTO is to",
+                a: "Liberalize international trade",
+                b: "Protect domestic industries",
+                c: "Increase tariffs",
+                d: "Limit foreign investment",
+                answer: "A"
+            },
+            {
+                question: "The impact of globalization has been",
+                a: "Unequal for different countries",
+                b: "Equal for all",
+                c: "Only positive",
+                d: "Only negative",
+                answer: "A"
+            },
+            {
+                question: "MNCs stand for",
+                a: "Multinational Corporations",
+                b: "Multi-National Companies",
+                c: "Both a and b",
+                d: "None of the above",
+                answer: "C"
+            },
+            {
+                question: "The most important factor that has stimulated globalization is",
+                a: "Technology",
+                b: "Government policies",
+                c: "Labor migration",
+                d: "Natural resources",
+                answer: "A"
+            },
+            {
+                question: "Consumer rights include the right to",
+                a: "Be informed",
+                b: "Seek redressal",
+                c: "Both a and b",
+                d: "None of the above",
+                answer: "C"
+            },
+            {
+                question: "COPRA stands for",
+                a: "Consumer Protection Act",
+                b: "Cooperative Protection and Regulation Act",
+                c: "Consumer Organization for Price Regulation Act",
+                d: "None of the above",
+                answer: "A"
+            },
+            {
+                question: "The Consumer Product Safety Commission is responsible for",
+                a: "Setting standards for consumer goods",
+                b: "Pricing products",
+                c: "Advertising",
+                d: "Distribution",
+                answer: "A"
+            },
+            {
+                question: "Labels on packaged goods provide information on",
+                a: "Ingredients and expiry date",
+                b: "Price only",
+                c: "Manufacturer only",
+                d: "Seller's name",
+                answer: "A"
+            },
+            {
+                question: "The district level consumer forum can hear complaints where the value of goods and services is up to",
+                a: "Rs 20 lakh",
+                b: "Rs 1 crore",
+                c: "Rs 50 lakh",
+                d: "Rs 5 lakh",
+                answer: "A"
+            },
+            {
+                question: "In the Human Development Index, which indicator measures health?",
+                a: "Life expectancy at birth",
+                b: "Infant mortality rate",
+                c: "Literacy rate",
+                d: "GDP per capita",
+                answer: "A"
+            },
+            {
+                question: "The secondary sector includes",
+                a: "Mining and quarrying",
+                b: "Construction and manufacturing",
+                c: "Trade and transport",
+                d: "Forestry and fishing",
+                answer: "B"
+            },
+            {
+                question: "Disguised unemployment is a feature of",
+                a: "Urban areas",
+                b: "Rural areas",
+                c: "Industrial sector",
+                d: "Service sector",
+                answer: "B"
+            },
+            {
+                question: "The unorganized sector is characterized by",
+                a: "Low wages and irregular employment",
+                b: "High job security",
+                c: "Pension benefits",
+                d: "Paid leave",
+                answer: "A"
+            },
+            {
+                question: "Demonetization in India aimed to",
+                a: "Curb black money",
+                b: "Increase exports",
+                c: "Reduce inflation",
+                d: "Boost agriculture",
+                answer: "A"
+            },
+            {
+                question: "The Reserve Bank of India regulates",
+                a: "Commercial banks",
+                b: "Cooperative societies",
+                c: "Both a and b",
+                d: "None of the above",
+                answer: "C"
+            },
+            {
+                question: "Collateral is",
+                a: "Security for a loan",
+                b: "Interest on loan",
+                c: "Principal amount",
+                d: "Repayment period",
+                answer: "A"
+            },
+            {
+                question: "Liberalization means",
+                a: "Removing restrictions on trade and investment",
+                b: "Increasing taxes",
+                c: "Nationalizing industries",
+                d: "Reducing foreign trade",
+                answer: "A"
+            },
+            {
+                question: "SEZs stand for",
+                a: "Special Economic Zones",
+                b: "Secure Export Zones",
+                c: "Strategic Economic Zones",
+                d: "Special Employment Zones",
+                answer: "A"
+            },
+            {
+                question: "The right to choose means consumers can",
+                a: "Select from a variety of goods",
+                b: "Pay higher prices",
+                c: "Buy inferior quality",
+                d: "Be misled by ads",
+                answer: "A"
+            },
+            {
+                question: "The state consumer disputes redressal commission can hear complaints up to",
+                a: "Rs 1 crore",
+                b: "Rs 20 lakh",
+                c: "Rs 50 lakh",
+                d: "No limit",
+                answer: "A"
+            },
+            {
+                question: "Per capita income is calculated as",
+                a: "Total income divided by population",
+                b: "Average income",
+                c: "Both a and b",
+                d: "None of the above",
+                answer: "C"
+            },
+            {
+                question: "Tertiary sector contributes the largest share to GDP in",
+                a: "Developed countries",
+                b: "Developing countries",
+                c: "Least developed countries",
+                d: "All countries equally",
+                answer: "A"
+            },
+            {
+                question: "Seasonal unemployment occurs in",
+                a: "Agriculture",
+                b: "Manufacturing",
+                c: "Banking",
+                d: "IT sector",
+                answer: "A"
+            },
+            {
+                question: "NABARD provides credit to",
+                a: "Farmers and rural development",
+                b: "Urban industries",
+                c: "Export firms",
+                d: "Tourism sector",
+                answer: "A"
+            },
+            {
+                question: "The terms of credit include",
+                a: "Interest rate, collateral, and documentation",
+                b: "Only principal amount",
+                c: "Only repayment period",
+                d: "None of the above",
+                answer: "A"
+            },
+            {
+                question: "Outsourcing is a benefit of globalization for",
+                a: "MNCs and IT sector in India",
+                b: "Agriculture",
+                c: "Small traders",
+                d: "Handloom workers",
+                answer: "A"
+            },
+            {
+                question: "The Consumer Protection Act was enacted in",
+                a: "1986",
+                b: "1991",
+                c: "2000",
+                d: "1975",
+                answer: "A"
+            },
+            {
+                question: "Income inequality is measured by",
+                a: "Gini coefficient",
+                b: "HDI",
+                c: "Per capita income",
+                d: "Literacy rate",
+                answer: "A"
+            },
+            {
+                question: "Final goods and intermediate goods are distinguished by",
+                a: "Their use in further production",
+                b: "Price",
+                c: "Quantity",
+                d: "Quality",
+                answer: "A"
+            },
+            {
+                question: "The formal sector provides",
+                a: "Social security benefits",
+                b: "Irregular jobs",
+                c: "Low wages",
+                d: "No contracts",
+                answer: "A"
+            },
+            {
+                question: "Double coincidence of wants is a problem in",
+                a: "Barter system",
+                b: "Money system",
+                c: "Credit system",
+                d: "Deposit system",
+                answer: "A"
+            },
+            {
+                question: "Ford Motors set up a plant in Chennai for",
+                a: "Manufacturing cars",
+                b: "Agriculture",
+                c: "Banking",
+                d: "Education",
+                answer: "A"
+            },
+            {
+                question: "Jago Grahak Jago is a campaign for",
+                a: "Consumer awareness",
+                b: "Farmer rights",
+                c: "Worker safety",
+                d: "Child education",
+                answer: "A"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-text').innerText = q.question;
+            document.getElementById('option-a').innerText = q.a;
+            document.getElementById('option-b').innerText = q.b;
+            document.getElementById('option-c').innerText = q.c;
+            document.getElementById('option-d').innerText = q.d;
+            document.querySelectorAll('input[name="answer"]').forEach(r => r.checked = false);
+            document.getElementById('progress').innerText = `Question ${currentQuestion + 1} of 40`;
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                alert('Please select an answer!');
+                return;
+            }
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < 40) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.querySelector('.question').style.display = 'none';
+            document.getElementById('progress').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('final-score').innerText = score;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('result').style.display = 'none';
+            document.querySelector('.question').style.display = 'block';
+            document.getElementById('progress').style.display = 'block';
+            loadQuestion();
+        }
+
+        // Load first question
+        loadQuestion();
+    </script>
+</body>
+</html>
