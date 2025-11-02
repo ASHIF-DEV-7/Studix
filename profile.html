@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyX Profile System</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="loading-percentage" id="loadingPercentage">0%</div>
+        </div>
+        <div class="loading-text" id="loadingText">Loading...</div>
+        <div class="loading-subtext" id="loadingSubtext">Please wait ⏳</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <h1>📚 StudyX Profile System</h1>
+        </div>
+
+        <!-- Motivational Box -->
+        <div id="motivationBox" class="motivation-box hidden">
+            <p class="motivation-text" id="motivationText"></p>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="form-section">
+            <h2>Welcome to StudyX! 🎯</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-primary); font-size: 1.1rem;">
+                Join thousands of students achieving their dreams
+            </p>
+            <div class="button-group">
+                <button class="btn btn-primary" id="btnCreateProfile">
+                    ✨ Create New Profile
+                </button>
+                <button class="btn btn-secondary" id="btnLogin">
+                    🔑 Login to Profile
+                </button>
+            </div>
+        </div>
+
+        <!-- Login Section -->
+        <div id="loginSection" class="auth-section">
+            <h2>Welcome Back! 👋</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-primary);">
+                Login to continue your learning journey
+            </p>
+            <div id="loginError" class="error-msg hidden"></div>
+            
+            <div class="form-group">
+                <label>👤 Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter your username" autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label>🔒 Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" id="btnLoginSubmit">Login</button>
+                <button class="btn btn-secondary" id="btnLoginBack">Back</button>
+            </div>
+            
+            <div class="recovery-section">
+                <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 15px;">🔐 Forgot Password?</p>
+                <p style="margin-bottom: 15px; opacity: 0.8;">Enter your username to view recovery hints</p>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="recoveryUsername" placeholder="Enter username">
+                </div>
+                <button class="btn btn-secondary" id="btnShowRecovery">Show Recovery Info</button>
+                <div id="recoveryInfo" class="recovery-info hidden"></div>
+            </div>
+        </div>
+
+        <!-- Create Profile Section -->
+        <div id="createSection" class="auth-section">
+            <h2>Create Your StudyX Profile 🎓</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-primary);">
+                Start your journey towards academic excellence
+            </p>
+            <div id="createError" class="error-msg hidden"></div>
+            <div id="createSuccess" class="success-msg hidden"></div>
+
+            <!-- Photo Upload -->
+            <div class="photo-upload-section">
+                <div class="profile-photo-preview" id="photoPreview">📷</div>
+                <label for="photoInput" class="photo-upload-btn">📸 Upload Profile Photo</label>
+                <input type="file" id="photoInput" accept="image/*">
+            </div>
+
+            <!-- Account Information -->
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    🔐 Account Information
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>👤 Username (Unique) *</label>
+                <input type="text" id="username" placeholder="Choose a unique username (min 3 characters)" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>🔒 Password *</label>
+                <input type="password" id="password" placeholder="Create a strong password (min 6 characters)" autocomplete="new-password">
+                <div id="passwordStrength" class="password-strength"></div>
+            </div>
+
+            <div class="form-group">
+                <label>🔒 Confirm Password *</label>
+                <input type="password" id="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password">
+            </div>
+
+            <!-- Personal Information -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    📝 Personal Information
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>✨ Full Name *</label>
+                <input type="text" id="fullName" placeholder="Your full name">
+            </div>
+
+            <div class="form-group">
+                <label>📧 Email Address</label>
+                <input type="email" id="email" placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+                <label>🎂 Age</label>
+                <input type="number" id="age" placeholder="Your age" min="5" max="100">
+            </div>
+
+            <div class="form-group">
+                <label>🏙️ City</label>
+                <input type="text" id="city" placeholder="Your city">
+            </div>
+
+            <!-- Academic Information -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    🎯 Academic Information
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>🎯 Career Goal *</label>
+                <input type="text" id="goal" placeholder="e.g., Doctor, Engineer, Artist, Teacher">
+            </div>
+
+            <div class="form-group">
+                <label>🏫 School/College *</label>
+                <input type="text" id="school" placeholder="Your educational institution">
+            </div>
+
+            <div class="form-group">
+                <label>📚 Current Class/Year</label>
+                <input type="text" id="currentClass" placeholder="e.g., Class 12, 2nd Year">
+            </div>
+
+            <div class="form-group">
+                <label>📖 Favorite Subject</label>
+                <input type="text" id="favSubject" placeholder="e.g., Mathematics, Science, History">
+            </div>
+
+            <div class="form-group">
+                <label>⏰ Daily Study Hours</label>
+                <input type="number" id="studyHours" placeholder="Average hours per day" min="0" max="24" step="0.5">
+            </div>
+
+            <!-- Interests & Hobbies -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    💫 Interests & Hobbies
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>🎨 Main Interest *</label>
+                <input type="text" id="interest" placeholder="e.g., Coding, Music, Sports, Art">
+            </div>
+
+            <div class="form-group">
+                <label>📚 Favorite Book *</label>
+                <input type="text" id="favBook" placeholder="Your favorite book">
+            </div>
+
+            <div class="form-group">
+                <label>💪 Skills</label>
+                <input type="text" id="skills" placeholder="e.g., Programming, Drawing, Public Speaking">
+            </div>
+
+            <div class="form-group">
+                <label>🌟 Role Model</label>
+                <input type="text" id="roleModel" placeholder="Your inspiration">
+            </div>
+
+            <div class="form-group">
+                <label>💭 Favorite Quote</label>
+                <input type="text" id="quote" placeholder="Your motivational quote">
+            </div>
+
+            <!-- About You -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    ✍️ About You
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>📝 Bio</label>
+                <textarea id="bio" placeholder="Tell us about yourself, your dreams, and aspirations..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="btnCreateSubmit">
+                    ✨ Create & Save Profile
+                </button>
+                <button class="btn btn-secondary" id="btnCreateBack">
+                    ← Cancel
+                </button>
+            </div>
+        </div>
+
+        <!-- Profile Display Section -->
+        <div id="profileDisplay" class="profile-display">
+            <!-- Hero Section -->
+            <div class="profile-hero">
+                <div class="profile-photo-display" id="displayPhoto">👤</div>
+                <h2 class="profile-name" id="displayName"></h2>
+                <p class="profile-username" id="displayUsername"></p>
+                <span class="profile-goal-badge" id="displayGoalBadge"></span>
+                <p id="lastLoginInfo" style="margin-top: 20px;"></p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <span class="stat-icon">🔥</span>
+                    <div class="stat-value" id="statStreak">0</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">⏰</span>
+                    <div class="stat-value" id="statHours">0</div>
+                    <div class="stat-label">Study Hours</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-value" id="statGoals">0</div>
+                    <div class="stat-label">Goals Achieved</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">📚</span>
+                    <div class="stat-value" id="statLevel">1</div>
+                    <div class="stat-label">Level</div>
+                </div>
+            </div>
+
+            <!-- Bio Section -->
+            <div class="info-section" id="bioSection">
+                <h3 class="section-title">✨ About Me</h3>
+                <div class="bio-card">
+                    <div class="detail-value" id="displayBio"></div>
+                </div>
+            </div>
+
+            <!-- Academic Info -->
+            <div class="info-section">
+                <h3 class="section-title">🎓 Academic Information</h3>
+                <div class="info-grid" id="academicGrid">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Personal Info -->
+            <div class="info-section">
+                <h3 class="section-title">👤 Personal Information</h3>
+                <div class="info-grid" id="personalGrid">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Interests & Hobbies -->
+            <div class="info-section">
+                <h3 class="section-title">💫 Interests & Hobbies</h3>
+                <div class="info-grid" id="interestsGrid">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button class="btn btn-edit" id="btnEnableEdit">✏️ Edit Profile</button>
+                <button class="btn btn-danger" id="btnLogout">🚪 Logout</button>
+            </div>
+        </div>
+
+        <!-- Edit Profile Section -->
+        <div id="editSection" class="auth-section">
+            <h2>Edit Your Profile ✏️</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-primary);">
+                Update your information and keep your profile fresh
+            </p>
+            <div id="editSuccess" class="success-msg hidden"></div>
+
+            <!-- Photo Upload for Edit -->
+            <div class="photo-upload-section">
+                <div class="profile-photo-preview" id="editPhotoPreview">📷</div>
+                <label for="editPhotoInput" class="photo-upload-btn">📸 Change Profile Photo</label>
+                <input type="file" id="editPhotoInput" accept="image/*">
+            </div>
+
+            <!-- Personal Information -->
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    📝 Personal Information
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>✨ Full Name</label>
+                <input type="text" id="editFullName">
+            </div>
+
+            <div class="form-group">
+                <label>📧 Email Address</label>
+                <input type="email" id="editEmail">
+            </div>
+
+            <div class="form-group">
+                <label>🔒 New Password (leave empty to keep current)</label>
+                <input type="password" id="editPassword" placeholder="New password (min 6 characters)">
+            </div>
+
+            <div class="form-group">
+                <label>🎂 Age</label>
+                <input type="number" id="editAge" min="5" max="100">
+            </div>
+
+            <div class="form-group">
+                <label>🏙️ City</label>
+                <input type="text" id="editCity">
+            </div>
+
+            <!-- Academic Information -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    🎯 Academic Information
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>🎯 Career Goal</label>
+                <input type="text" id="editGoal">
+            </div>
+
+            <div class="form-group">
+                <label>🏫 School/College</label>
+                <input type="text" id="editSchool">
+            </div>
+
+            <div class="form-group">
+                <label>📚 Current Class/Year</label>
+                <input type="text" id="editCurrentClass">
+            </div>
+
+            <div class="form-group">
+                <label>📖 Favorite Subject</label>
+                <input type="text" id="editFavSubject">
+            </div>
+
+            <div class="form-group">
+                <label>⏰ Daily Study Hours</label>
+                <input type="number" id="editStudyHours" min="0" max="24" step="0.5">
+            </div>
+
+            <!-- Interests & Hobbies -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    💫 Interests & Hobbies
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>🎨 Main Interest</label>
+                <input type="text" id="editInterest">
+            </div>
+
+            <div class="form-group">
+                <label>📚 Favorite Book</label>
+                <input type="text" id="editFavBook">
+            </div>
+
+            <div class="form-group">
+                <label>💪 Skills</label>
+                <input type="text" id="editSkills">
+            </div>
+
+            <div class="form-group">
+                <label>🌟 Role Model</label>
+                <input type="text" id="editRoleModel">
+            </div>
+
+            <div class="form-group">
+                <label>💭 Favorite Quote</label>
+                <input type="text" id="editQuote">
+            </div>
+
+            <!-- About You -->
+            <div style="margin: 40px 0 25px;">
+                <h3 style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.3rem;">
+                    ✍️ About You
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label>📝 Bio</label>
+                <textarea id="editBio"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="btnSaveEdit">💾 Save Changes</button>
+                <button class="btn btn-secondary" id="btnCancelEdit">← Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

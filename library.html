@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes - Studix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #3498DB;
+        }
+
+        body.dark-mode {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #2a2a2a;
+            --card-bg: #1a1a1a;
+            --shadow: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            padding-bottom: 70px;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+        }
+
+        .top-nav-main {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .top-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s, background 0.2s;
+            color: var(--text-primary);
+            border-radius: 8px;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .top-nav-center {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 50px;
+            height: 50px;
+            background: none;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            color: #f59e0b;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon.sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .theme-icon.moon {
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+            position: absolute;
+            color: #60a5fa;
+        }
+
+        body.dark-mode .theme-icon-wrapper {
+            background: #1e3a5f;
+        }
+
+        body.dark-mode .theme-icon.sun {
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+        }
+
+        body.dark-mode .theme-icon.moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 56px;
+            padding: 20px 16px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Subject Selector */
+        .subject-selector {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .selector-header {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .subject-btn {
+            padding: 14px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .subject-btn:hover {
+            background: var(--card-bg);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .subject-btn.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
+        }
+
+        /* Note Input Area */
+        .note-input-area {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .input-header {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .note-title-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .note-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .note-title-input:focus,
+        .note-textarea:focus {
+            border-color: var(--accent);
+            background: var(--card-bg);
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980B9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--card-bg);
+            border-color: var(--text-secondary);
+        }
+
+        /* Notes List */
+        .notes-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .notes-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-box {
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            outline: none;
+            font-size: 13px;
+            width: 200px;
+            max-width: 100%;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent);
+        }
+
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .note-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s;
+        }
+
+        .note-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .note-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .note-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .note-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            word-wrap: break-word;
+        }
+
+        .note-date {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .note-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .edit-btn {
+            background: #90CAF9;
+            color: #1a1a1a;
+        }
+
+        .edit-btn:hover {
+            background: #64B5F6;
+            transform: scale(1.05);
+        }
+
+        .delete-btn {
+            background: #F48FB1;
+            color: #1a1a1a;
+        }
+
+        .delete-btn:hover {
+            background: #EC407A;
+            transform: scale(1.05);
+        }
+
+        .note-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .empty-text {
+            font-size: 14px;
+        }
+
+        /* Bottom Navigation - WhatsApp Style */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 90;
+            padding: 0 8px;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .bottom-nav-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 12px;
+            opacity: 0.1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .bottom-nav-item:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-item.active {
+            color: var(--accent);
+        }
+
+        .bottom-nav-item.active::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bottom-nav-item.active .bottom-nav-icon {
+            transform: scale(1.1);
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1.1); }
+            50% { transform: scale(1.25); }
+        }
+
+        .bottom-nav-label {
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-item.active .bottom-nav-label {
+            font-weight: 600;
+        }
+
+        /* Toast Message */
+        .toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .toast.error {
+            border-left: 4px solid #F44336;
+        }
+
+        .toast.info {
+            border-left: 4px solid #2196F3;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .subject-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .notes-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 24px;
+            }
+
+            .input-actions {
+                flex-direction: column;
+            }
+
+            .note-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="top-nav-main">
+            <div class="top-nav-left">
+                <button class="icon-btn" onclick="goBack()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="top-nav-center">My Notes</div>
+            <div class="top-nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <div class="theme-icon-wrapper">
+                        <svg class="theme-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <svg class="theme-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">📚 Study Notes</h1>
+            <p class="page-subtitle">Organize your notes by subject and keep track of your learning</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalNotes">0</div>
+                <div class="stat-label">Total Notes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="subjectNotes">0</div>
+                <div class="stat-label" id="subjectLabel">Math Notes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="todayNotes">0</div>
+                <div class="stat-label">Today</div>
+            </div>
+        </div>
+
+        <!-- Subject Selector -->
+        <div class="subject-selector">
+            <div class="selector-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                </svg>
+                Select Subject
+            </div>
+            <div class="subject-grid">
+                <button class="subject-btn active" data-subject="mathematics">🔢 Math</button>
+                <button class="subject-btn" data-subject="science">🧪 Science</button>
+                <button class="subject-btn" data-subject="english">📖 English</button>
+                <button class="subject-btn" data-subject="sst">🌍 SST</button>
+                <button class="subject-btn" data-subject="rough">✏️ Rough</button>
+                <button class="subject-btn" data-subject="general">📝 General</button>
+            </div>
+        </div>
+
+        <!-- Note Input Area -->
+        <div class="note-input-area">
+            <div class="input-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Create New Note
+            </div>
+            <div class="input-group">
+                <label class="input-label">Title</label>
+                <input type="text" class="note-title-input" id="noteTitle" placeholder="Enter note title...">
+            </div>
+            <div class="input-group">
+                <label class="input-label">Content</label>
+                <textarea class="note-textarea" id="noteContent" placeholder="Write your notes here..."></textarea>
+            </div>
+            <div class="input-actions">
+                <button class="btn btn-secondary" onclick="clearInputs()">Clear</button>
+                <button class="btn btn-primary" onclick="saveNote()">Save Note</button>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="notes-section">
+            <div class="notes-header">
+                <div class="notes-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <path d="M14 2v6h6"/>
+                    </svg>
+                    <span id="notesCount">0 Notes</span>
+                </div>
+                <input type="text" class="search-box" id="searchBox" placeholder="Search notes..." oninput="searchNotes()">
+            </div>
+            <div class="notes-list" id="notesList">
+                <div class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <div class="empty-text">No notes yet. Create your first note above!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="main.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+        <a href="all-notes.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            <span class="bottom-nav-label">Notes</span>
+        </a>
+        <a href="library.html" class="bottom-nav-item active">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            <span class="bottom-nav-label">Keep</span>
+        </a>
+        <a href="quizopt.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            <span class="bottom-nav-label">Quiz</span>
+        </a>
+        <a href="chatbot.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                <path d="M9 14c.5.5 1.5 1 3 1s2.5-.5 3-1"/>
+            </svg>
+            <span class="bottom-nav-label">Chatbot</span>
+        </a>
+    </div>
+
+    <script>
+// State Management
+let notes = {};
+let currentSubject = 'mathematics';
+let editingId = null;
+
+const subjectLabels = {
+    mathematics: 'Math Notes',
+    science: 'Science Notes',
+    english: 'English Notes',
+    sst: 'SST Notes',
+    rough: 'Rough Notes',
+    general: 'General Notes'
+};
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    loadNotes();
+    setupSubjectButtons();
+    updateDisplay();
+    setupTheme();
+});
+
+// Theme Management
+function setupTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+    });
+}
+
+// Load Notes from Storage
+function loadNotes() {
+    try {
+        const saved = localStorage.getItem('StudixNotes');
+        if (saved) {
+            notes = JSON.parse(saved);
+        } else {
+            notes = {
+                mathematics: [],
+                science: [],
+                english: [],
+                sst: [],
+                rough: [],
+                general: []
+            };
+        }
+
+        // Ensure all subjects exist
+        Object.keys(subjectLabels).forEach(subject => {
+            if (!notes[subject]) {
+                notes[subject] = [];
+            }
+        });
+    } catch (error) {
+        console.error('Error loading notes:', error);
+        notes = {
+            mathematics: [],
+            science: [],
+            english: [],
+            sst: [],
+            rough: [],
+            general: []
+        };
+    }
+}
+
+// Save Notes to Storage
+function saveToStorage() {
+    try {
+        localStorage.setItem('StudixNotes', JSON.stringify(notes));
+    } catch (error) {
+        console.error('Error saving notes:', error);
+        showToast('Error saving note', 'error');
+    }
+}
+
+// Setup Subject Buttons
+function setupSubjectButtons() {
+    const buttons = document.querySelectorAll('.subject-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSubject = btn.getAttribute('data-subject');
+            clearInputs();
+            updateDisplay();
+            document.getElementById('searchBox').value = '';
+        });
+    });
+}
+
+// Save Note
+function saveNote() {
+    const title = document.getElementById('noteTitle').value.trim();
+    const content = document.getElementById('noteContent').value.trim();
+
+    if (!title && !content) {
+        showToast('Please enter a title or content', 'error');
+        return;
+    }
+
+    const now = new Date();
+    const noteData = {
+        id: editingId || Date.now(),
+        title: title || 'Untitled Note',
+        content: content,
+        subject: currentSubject,
+        date: now.toISOString(),
+        dateString: now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    if (!notes[currentSubject]) {
+        notes[currentSubject] = [];
+    }
+
+    if (editingId) {
+        const index = notes[currentSubject].findIndex(n => n.id === editingId);
+        if (index !== -1) {
+            noteData.date = notes[currentSubject][index].date;
+            noteData.dateString = notes[currentSubject][index].dateString + ' (edited)';
+            notes[currentSubject][index] = noteData;
+        }
+        editingId = null;
+    } else {
+        notes[currentSubject].unshift(noteData);
+    }
+
+    saveToStorage();
+    updateDisplay();
+    clearInputs();
+    showToast('Note saved successfully!', 'success');
+}
+
+// Clear Inputs
+function clearInputs() {
+    document.getElementById('noteTitle').value = '';
+    document.getElementById('noteContent').value = '';
+    editingId = null;
+}
+
+// Edit Note
+function editNote(id) {
+    const note = notes[currentSubject].find(n => n.id === id);
+    if (note) {
+        document.getElementById('noteTitle').value = note.title;
+        document.getElementById('noteContent').value = note.content;
+        editingId = id;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showToast('Editing note...', 'info');
+    }
+}
+
+// Delete Note
+function deleteNote(id) {
+    if (confirm('Delete this note?')) {
+        notes[currentSubject] = notes[currentSubject].filter(n => n.id !== id);
+        saveToStorage();
+        updateDisplay();
+        showToast('Note deleted', 'success');
+    }
+}
+
+// Search Notes
+function searchNotes() {
+    const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+    const noteCards = document.querySelectorAll('.note-card');
+
+    noteCards.forEach(card => {
+        const title = card.querySelector('.note-card-title').textContent.toLowerCase();
+        const content = card.querySelector('.note-content').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || content.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Update Display
+function updateDisplay() {
+    updateStats();
+    displayNotes();
+}
+
+// Update Stats
+function updateStats() {
+    const totalNotes = Object.values(notes).reduce((sum, arr) => sum + arr.length, 0);
+    const subjectNotesCount = notes[currentSubject] ? notes[currentSubject].length : 0;
+    
+    const today = new Date().toLocaleDateString();
+    const todayCount = Object.values(notes).flat().filter(note => {
+        try {
+            return new Date(note.date).toLocaleDateString() === today;
+        } catch {
+            return false;
+        }
+    }).length;
+
+    document.getElementById('totalNotes').textContent = totalNotes;
+    document.getElementById('subjectNotes').textContent = subjectNotesCount;
+    document.getElementById('subjectLabel').textContent = subjectLabels[currentSubject];
+    document.getElementById('todayNotes').textContent = todayCount;
+}
+
+// Display Notes
+function displayNotes() {
+    const notesList = document.getElementById('notesList');
+    const notesCount = document.getElementById('notesCount');
+    const currentNotes = notes[currentSubject] || [];
+
+    if (currentNotes.length === 0) {
+        notesList.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <div class="empty-text">No ${subjectLabels[currentSubject].toLowerCase()} yet. Create your first note above!</div>
+            </div>
+        `;
+        notesCount.textContent = '0 Notes';
+        return;
+    }
+
+    let html = '';
+    currentNotes.forEach(note => {
+        html += `
+            <div class="note-card">
+                <div class="note-card-header">
+                    <div class="note-info">
+                        <div class="note-card-title">${escapeHtml(note.title)}</div>
+                        <div class="note-date">${note.dateString}</div>
+                    </div>
+                    <div class="note-actions">
+                        <button class="action-btn edit-btn" onclick="editNote(${note.id})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteNote(${note.id})">Delete</button>
+                    </div>
+                </div>
+                <div class="note-content">${escapeHtml(note.content)}</div>
+            </div>
+        `;
+    });
+
+    notesList.innerHTML = html;
+    notesCount.textContent = `${currentNotes.length} Note${currentNotes.length !== 1 ? 's' : ''}`;
+}
+
+// Escape HTML
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Show Toast
+function showToast(message, type = 'success') {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.classList.add('show'), 100);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// Go Back
+function goBack() {
+    if (document.referrer && document.referrer.includes(window.location.hostname)) {
+        history.back();
+    } else {
+        window.location.href = 'main.html';
+    }
+}
+
+// Keyboard Shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        saveNote();
+    }
+    if (e.ctrlKey && e.key === 'n') {
+        e.preventDefault();
+        clearInputs();
+        document.getElementById('noteTitle').focus();
+    }
+    if (e.key === 'Escape') {
+        clearInputs();
+    }
+});
+
+// Navigation Scroll
+let lastScroll = 0;
+const topNav = document.querySelector('.top-nav');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 0) {
+        topNav.style.transform = 'translateY(0)';
+    } else if (currentScroll > lastScroll && currentScroll > 100) {
+        topNav.style.transform = 'translateY(-100%)';
+    } else {
+        topNav.style.transform = 'translateY(0)';
+    }
+    
+    lastScroll = currentScroll;
+});
+</script>
+</html>

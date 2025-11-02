@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Studies - Studix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1E1E2F;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navbar Structure - Double Line */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(30, 30, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFB74D;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+        }
+
+        .search-icon-nav {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-icon-nav:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-links a:hover {
+            color: #FFB74D;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #FFB74D;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            z-index: 1002;
+            transition: left 0.3s ease;
+            border-right: 1px solid rgba(255, 183, 77, 0.2);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .sidebar-overlay.visible {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 183, 77, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: rgba(255, 183, 77, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 183, 77, 0.1);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-item.active {
+            background: rgba(255, 183, 77, 0.15);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-text {
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 8rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 2rem 2rem 3rem;
+            background: linear-gradient(135deg, #1E1E2F 0%, #25273F 100%);
+        }
+
+        .page-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #90CAF9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Subject Section Headers */
+        .subject-section {
+            margin-bottom: 5rem;
+            padding: 0 2rem;
+        }
+
+        .subject-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .history-header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+        }
+
+        .civics-header {
+            background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+        }
+
+        .geography-header {
+            background: linear-gradient(135deg, #4169E1 0%, #6495ED 100%);
+        }
+
+        .economics-header {
+            background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+        }
+
+        .subject-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subject-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            padding: 0 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #FFB74D;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .cards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 0.5rem 0 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #FFB74D #1E253D;
+        }
+
+        .cards-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cards-row::-webkit-scrollbar-track {
+            background: #1E253D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb {
+            background: #FFB74D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb:hover {
+            background: #FF9800;
+        }
+
+        /* Enhanced Card Styles */
+        .card {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 160px;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #FFFFFF;
+            z-index: 1;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-description {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* History Cards */
+        .history-card {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            border-color: rgba(139, 69, 19, 0.3);
+        }
+
+        .history-card::before {
+            background: rgba(139, 69, 19, 0.2);
+        }
+
+        .history-card:hover {
+            border-color: rgba(139, 69, 19, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Civics Cards */
+        .civics-card {
+            background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+            border-color: rgba(46, 139, 87, 0.3);
+        }
+
+        .civics-card::before {
+            background: rgba(46, 139, 87, 0.2);
+        }
+
+        .civics-card:hover {
+            border-color: rgba(46, 139, 87, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(46, 139, 87, 0.4);
+        }
+
+        /* Geography Cards */
+        .geography-card {
+            background: linear-gradient(135deg, #4169E1 0%, #6495ED 100%);
+            border-color: rgba(65, 105, 225, 0.3);
+        }
+
+        .geography-card::before {
+            background: rgba(65, 105, 225, 0.2);
+        }
+
+        .geography-card:hover {
+            border-color: rgba(65, 105, 225, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(65, 105, 225, 0.4);
+        }
+
+        /* Economics Cards */
+        .economics-card {
+            background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+            border-color: rgba(184, 134, 11, 0.3);
+        }
+
+        .economics-card::before {
+            background: rgba(184, 134, 11, 0.2);
+        }
+
+        .economics-card:hover {
+            border-color: rgba(184, 134, 11, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(184, 134, 11, 0.4);
+        }
+
+        /* Quiz Cards */
+        .quiz-card {
+            background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);
+            border-color: rgba(155, 89, 182, 0.3);
+        }
+
+        .quiz-card::before {
+            background: rgba(155, 89, 182, 0.2);
+        }
+
+        .quiz-card:hover {
+            border-color: rgba(155, 89, 182, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(155, 89, 182, 0.4);
+        }
+
+        /* PYQ Cards */
+        .pyq-card {
+            background: linear-gradient(135deg, #E91E63 0%, #AD1457 100%);
+            border-color: rgba(233, 30, 99, 0.3);
+        }
+
+        .pyq-card::before {
+            background: rgba(233, 30, 99, 0.2);
+        }
+
+        .pyq-card:hover {
+            border-color: rgba(233, 30, 99, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        /* Chatbot Button */
+        .chatbot-container {
+            margin: 3rem auto 2rem;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+        }
+
+        .chatbot-button {
+            background: #FFB74D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 183, 77, 0.3);
+            text-align: center;
+        }
+
+        .chatbot-button:hover {
+            background: #FFB74D;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(144, 202, 249, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1A1A2E;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: #B0BEC5;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #90CAF9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFB74D;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1rem 0.5rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .subject-section {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 0 1rem;
+            }
+
+            .cards-row {
+                gap: 1rem;
+            }
+
+            .card {
+                width: 260px;
+                height: 140px;
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+
+            .chatbot-container {
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+
+            .chatbot-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .card {
+                width: 220px;
+                height: 120px;
+                padding: 0.8rem;
+            }
+
+            .card-title {
+                font-size: 0.8rem;
+            }
+
+            .chatbot-button {
+                font-size: 0.85rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+
+        .card:focus {
+            outline: 2px solid #FFB74D;
+            outline-offset: 2px;
+        }
+    </style>
+    <script src="universal-settings.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">Studix</div>
+            <button class="sidebar-close" id="sidebar-close">×</button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="main.html" class="sidebar-item">
+                <span class="sidebar-icon">🏠</span>
+                <span class="sidebar-text">Home</span>
+            </a>
+            <a href="#" class="sidebar-item active">
+                <span class="sidebar-icon">🌍</span>
+                <span class="sidebar-text">Social Studies</span>
+            </a>
+            <a href="library.html" class="sidebar-item">
+                <span class="sidebar-icon">📝</span>
+                <span class="sidebar-text">Keep Notes</span>
+            </a>
+            <a href="profile.html" class="sidebar-item">
+                <span class="sidebar-icon">👤</span>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+            <a href="feedback.html" class="sidebar-item">
+                <span class="sidebar-icon">💬</span>
+                <span class="sidebar-text">Feedback</span>
+            </a>
+             <a href="pyq.html" class="sidebar-item">
+                <span class="sidebar-icon">📇</span>
+                <span class="sidebar-text">Previous year question</span>
+            </a>
+            <a href="settings.html" class="sidebar-item">
+                <span class="sidebar-icon">⚙️</span>
+                <span class="sidebar-text">Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-top">
+                <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+                <div class="navbar-brand">Social Studies Hub</div>
+                <button class="search-icon-nav" onclick="window.location.href='search.html'">⌕</button>
+            </div>
+            <div class="navbar-links">
+                <a href="main.html">Home</a>
+                <a href="english.html">English</a>
+                <a href="notes.html">Science</a>
+                <a href="math.html">Math</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Social Studies Hub</h1>
+            <p class="page-subtitle">Explore History, Civics, Geography, and Economics through comprehensive study materials</p>
+        </div>
+
+        <!-- History Section -->
+<section class="subject-section" id="history-section">
+            <div class="subject-header history-header">
+                <h2 class="subject-title">History</h2>
+                <p class="subject-description">Journey through time and understand the making of the modern world</p>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="history-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Civics Section -->
+        <section class="subject-section" id="civics-section">
+            <div class="subject-header civics-header">
+                <h2 class="subject-title">Civics</h2>
+                <p class="subject-description">Learn about democracy, governance, and citizen rights</p>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="civics-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Geography Section -->
+        <section class="subject-section" id="geography-section">
+            <div class="subject-header geography-header">
+                <h2 class="subject-title">Geography</h2>
+                <p class="subject-description">Discover resources, development, and our environment</p>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="geography-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Economics Section -->
+        <section class="subject-section" id="economics-section">
+            <div class="subject-header economics-header">
+                <h2 class="subject-title">Economics</h2>
+                <p class="subject-description">Understand development, sectors, and globalization</p>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="economics-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="section">
+            <h2 class="section-title">Subject Quizzes</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="quiz-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PYQs Section -->
+        <section class="section">
+            <h2 class="section-title">Previous Year Questions</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="pyq-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Chatbot Button -->
+        <div class="chatbot-container">
+            <a href="chatbot.html" class="chatbot-button">🤖 AI Social Studies Tutor - Ask me anything!</a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">Studix Social Studies</div>
+                <p class="footer-description">
+                    Master History, Civics, Geography, and Economics with comprehensive study materials and interactive learning tools for Class 10 students.
+                </p>
+                <div class="footer-links">
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Studix. All rights reserved. Made with ❤️ for social studies learners.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // SST Content data will be added here
+        // Content data for Social Studies (SST)
+const sstContent = {
+    history: [
+        { title: "The Rise of Nationalism in Europe", url: "hch1.html", description: "French Revolution and nationalism in Europe" },
+        { title: "Nationalism in India", url: "hch2.html", description: "Indian freedom struggle and national movement" },
+        { title: "The Making of a Global World", url: "hch3.html", description: "Trade, migration, and economic systems" },
+        { title: "The Age of Industrialisation", url: "hch4.html", description: "Industrial revolution and its impact" },
+        { title: "Print Culture and the Modern World", url: "hch5.html", description: "History of printing and literature" }
+    ],
+    civics: [
+        { title: "Power Sharing", url: "cch1.html", description: "Democracy and power distribution" },
+        { title: "Federalism", url: "cch2.html", description: "Federal government structure in India" },
+        { title: "Democracy and Diversity", url: "cch3.html", description: "Social divisions and democracy" },
+        { title: "Gender, Religion and Caste", url: "cch4.html", description: "Social inequalities in democracy" },
+        { title: "Political Parties", url: "cch5.html", description: "Role and functions of political parties" },
+        { title: "Outcomes of Democracy", url: "cch6.html", description: "Democratic achievements and challenges" }
+    ],
+    geography: [
+        { title: "Resources and Development", url: "geoch1.html", description: "Types and conservation of resources" },
+        { title: "Forest and Wildlife Resources", url: "geoch2.html", description: "Biodiversity and conservation" },
+        { title: "Water Resources", url: "geoch3.html", description: "Water scarcity and conservation" },
+        { title: "Agriculture", url: "geoch4.html", description: "Types of farming and agricultural practices" },
+        { title: "Minerals and Energy Resources", url: "geoch5.html", description: "Mineral distribution and energy resources" },
+        { title: "Manufacturing Industries", url: "geoch6.html", description: "Industrial location and development" },
+        { title: "Lifelines of National Economy", url: "geoch7.html", description: "Transport, communication, and trade" }
+    ],
+    economics: [
+        { title: "Development", url: "ecoch1.html", description: "What development promises and sustainability" },
+        { title: "Sectors of the Indian Economy", url: "ecoch2.html", description: "Primary, secondary, and tertiary sectors" },
+        { title: "Money and Credit", url: "ecoch3.html", description: "Banking system and credit facilities" },
+        { title: "Globalisation and the Indian Economy", url: "ecoch4.html", description: "Integration with world economy" },
+        { title: "Consumer Rights", url: "ecoch5.html", description: "Consumer awareness and protection" }
+    ],
+    quizzes: [
+        { title: "History Quiz - Nationalism", url: "#", description: "Test your knowledge of European and Indian nationalism" },
+        { title: "Civics Quiz - Democracy", url: "#", description: "Power sharing, federalism, and political parties" },
+        { title: "Geography Quiz - Resources", url: "#", description: "Natural resources and their management" },
+        { title: "Economics Quiz - Development", url: "#", description: "Economic sectors and globalization" },
+        { title: "History Quiz - Industrial Revolution", url: "#", description: "Industrialization and global trade" },
+        { title: "Civics Quiz - Rights & Duties", url: "#", description: "Constitutional rights and citizen duties" },
+        { title: "Geography Quiz - Agriculture", url: "#", description: "Farming types and agricultural practices" },
+        { title: "Economics Quiz - Money & Credit", url: "#", description: "Banking system and financial institutions" }
+    ],
+    pyqs: [
+        { title: "History PYQ 2024", url: "#", description: "Complete history question paper" },
+        { title: "Civics PYQ 2024", url: "#", description: "Democratic politics questions" },
+        { title: "Geography PYQ 2024", url: "#", description: "Contemporary India geography paper" },
+        { title: "Economics PYQ 2024", url: "#", description: "Understanding economic development" },
+        { title: "History PYQ 2023", url: "#", description: "Nationalism and industrialization" },
+        { title: "Civics PYQ 2023", url: "#", description: "Power sharing and federalism" },
+        { title: "Geography PYQ 2023", url: "#", description: "Resources and agriculture questions" },
+        { title: "Economics PYQ 2023", url: "#", description: "Sectors and globalization problems" },
+        { title: "SST Combined PYQ 2022", url: "#", description: "All subjects mixed question paper" },
+        { title: "SST Sample Papers", url: "#", description: "Practice papers for board exams" }
+    ]
+};
+
+// Create a card element
+function createCard(item, cardType = 'default') {
+    const card = document.createElement('a');
+    card.className = `card ${cardType}`;
+    card.href = item.url;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Open ${item.title}`);
+    
+    card.innerHTML = `
+        <div class="card-title">${item.title}</div>
+        ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+    `;
+
+    return card;
+}
+
+// Initialize all content rows
+function initializeContent() {
+    // History Notes
+    const historyRow = document.getElementById('history-row');
+    sstContent.history.forEach(chapter => {
+        const card = createCard(chapter, 'history-card');
+        historyRow.appendChild(card);
+    });
+
+    // Civics Notes
+    const civicsRow = document.getElementById('civics-row');
+    sstContent.civics.forEach(chapter => {
+        const card = createCard(chapter, 'civics-card');
+        civicsRow.appendChild(card);
+    });
+
+    // Geography Notes
+    const geographyRow = document.getElementById('geography-row');
+    sstContent.geography.forEach(chapter => {
+        const card = createCard(chapter, 'geography-card');
+        geographyRow.appendChild(card);
+    });
+
+    // Economics Notes
+    const economicsRow = document.getElementById('economics-row');
+    sstContent.economics.forEach(chapter => {
+        const card = createCard(chapter, 'economics-card');
+        economicsRow.appendChild(card);
+    });
+
+    // Quizzes
+    const quizRow = document.getElementById('quiz-row');
+    sstContent.quizzes.forEach(quiz => {
+        const card = createCard(quiz, 'quiz-card');
+        quizRow.appendChild(card);
+    });
+
+    // PYQs
+    const pyqRow = document.getElementById('pyq-row');
+    sstContent.pyqs.forEach(pyq => {
+        const card = createCard(pyq, 'pyq-card');
+        pyqRow.appendChild(card);
+    });
+}
+
+// Sidebar functionality
+function initializeSidebar() {
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebar-close');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        sidebarOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('visible');
+        document.body.style.overflow = 'auto';
+    }
+
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+            closeSidebar();
+        }
+    });
+
+    // Sidebar menu active state
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', () => {
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+}
+
+// Section visibility animations
+function initializeScrollAnimations() {
+    const sections = document.querySelectorAll('.subject-section, .section');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeContent();
+    initializeSidebar();
+    initializeScrollAnimations();
+});
+        
+    </script>
+</body>
+</html>

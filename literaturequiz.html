@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 English Literature Quiz - 40 Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            color: #555;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+        .progress {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>CBSE Class 10 English Literature Quiz</h1>
+        <p style="text-align: center;">40 Multiple Choice Questions | Test your knowledge!</p>
+        <div class="progress" id="progress">Question 1 of 40</div>
+        <div class="question">
+            <h3 id="question-text"></h3>
+            <div class="options">
+                <label><input type="radio" name="answer" value="A"> <span id="option-a"></span></label>
+                <label><input type="radio" name="answer" value="B"> <span id="option-b"></span></label>
+                <label><input type="radio" name="answer" value="C"> <span id="option-c"></span></label>
+                <label><input type="radio" name="answer" value="D"> <span id="option-d"></span></label>
+            </div>
+            <button onclick="nextQuestion()">Next Question</button>
+        </div>
+        <div id="result" style="display: none;">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="final-score"></span>/40</p>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Who is the author of 'A Letter to God'?",
+                a: "G.L. Fuentes",
+                b: "Lencho",
+                c: "Postmaster",
+                d: "None of the above",
+                answer: "A"
+            },
+            {
+                question: "What is the main theme of the poem 'Dust of Snow'?",
+                a: "Nature's beauty",
+                b: "The impact of a small moment",
+                c: "A tiger's life",
+                d: "Scientific discovery",
+                answer: "B"
+            },
+            {
+                question: "In 'Nelson Mandela: Long Walk to Freedom', what significant event does the chapter describe?",
+                a: "Mandela's childhood",
+                b: "Mandela's inauguration as President",
+                c: "A scientific experiment",
+                d: "A bus journey",
+                answer: "B"
+            },
+            {
+                question: "What animal is the focus of the chapter 'Mijbil the Otter'?",
+                a: "Tiger",
+                b: "Otter",
+                c: "Dog",
+                d: "Elephant",
+                answer: "B"
+            },
+            {
+                question: "In the poem 'Fire and Ice', what does the poet compare fire and ice to?",
+                a: "Animals and plants",
+                b: "Desire and hatred",
+                c: "Day and night",
+                d: "Water and air",
+                answer: "B"
+            },
+            {
+                question: "What is the central idea of the chapter 'The Thief’s Story' in Footprints without Feet?",
+                a: "A scientist's discovery",
+                b: "A thief's transformation",
+                c: "A bus ride",
+                d: "A necklace's loss",
+                answer: "B"
+            },
+            {
+                question: "In 'From the Diary of Anne Frank', what type of text is the chapter based on?",
+                a: "A letter",
+                b: "A diary",
+                c: "A poem",
+                d: "A story",
+                answer: "B"
+            },
+            {
+                question: "What is the setting of the poem 'A Tiger in the Zoo'?",
+                a: "A forest",
+                b: "A zoo",
+                c: "A house",
+                d: "A school",
+                answer: "B"
+            },
+            {
+                question: "In 'The Necklace' from Footprints without Feet, what does Mathilde lose?",
+                a: "A ring",
+                b: "A necklace",
+                c: "A book",
+                d: "A letter",
+                answer: "B"
+            },
+            {
+                question: "What is the main lesson from the poem 'The Ball Poem'?",
+                a: "The joy of playing",
+                b: "The loss and realization of value",
+                c: "The beauty of nature",
+                d: "The life of animals",
+                answer: "B"
+            },
+            {
+                question: "In 'A Triumph of Surgery', what is the condition of Tricki at the beginning?",
+                a: "Healthy and active",
+                b: "Overfed and unwell",
+                c: "Lost and scared",
+                d: "Studying science",
+                answer: "B"
+            },
+            {
+                question: "What does the poem 'Fog' describe?",
+                a: "A tiger's movement",
+                b: "The behavior of fog",
+                c: "A bus journey",
+                d: "A scientific experiment",
+                answer: "B"
+            },
+            {
+                question: "In 'Glimpses of India', which place is one of the settings?",
+                a: "Coorg",
+                b: "London",
+                c: "New York",
+                d: "Paris",
+                answer: "A"
+            },
+            {
+                question: "What is the main conflict in 'The Proposal' from First Flight?",
+                a: "A scientific discovery",
+                b: "A marriage proposal",
+                c: "A lost necklace",
+                d: "A thief's story",
+                answer: "B"
+            },
+            {
+                question: "In 'Footprints without Feet', what ability does Griffin have?",
+                a: "Invisibility",
+                b: "Flying",
+                c: "Time travel",
+                d: "Mind reading",
+                answer: "A"
+            },
+            {
+                question: "Based on the detail of the house’s location in 'A Letter to God', how can it best be described?",
+                a: "Majestic",
+                b: "Imposing",
+                c: "Solitary",
+                d: "Unique",
+                answer: "C"
+            },
+            {
+                question: "The field of corn dotted with flowers means that... (A Letter to God)",
+                a: "Not a single flower was bigger than a dot",
+                b: "The flowers were scattered across",
+                c: "The flowers were in shape like dots",
+                d: "The flowers had shrunk in size",
+                answer: "B"
+            },
+            {
+                question: "Which quote supports the idea of farming in 'A Letter to God'?",
+                a: "“Farming is a profession of hope.”",
+                b: "“I would rather be on my farm than be emperor of the world.”",
+                c: "“Farming looks mighty easy when your plough is a pencil...”",
+                d: "“Those too lazy to plough in the right season will have no food...”",
+                answer: "A"
+            },
+            {
+                question: "Of the many symbols the hemlock tree represents in 'Dust of Snow', choose the one that Frost drew upon.",
+                a: "Longevity",
+                b: "Togetherness",
+                c: "Healing",
+                d: "Protection",
+                answer: "C"
+            },
+            {
+                question: "Choose the option that lists the possible feelings of the poet prior to the experience in 'Dust of Snow'.",
+                a: "1, 3 & 7",
+                b: "2, 4 & 6",
+                c: "5 & 7",
+                d: "1 & 3",
+                answer: "B"
+            },
+            {
+                question: "In 'Madam Rides the Bus', Valli would stare wistfully at the people as she...",
+                a: "Had been watching the bus for a long time",
+                b: "Was inspired by the people travelling on the bus",
+                c: "Had a strong desire to take a ride on the bus",
+                d: "Envied the people who could travel on the bus",
+                answer: "C"
+            },
+            {
+                question: "‘Valli would be jealous to listen…’ This indicates Valli’s... (Madam Rides the Bus)",
+                a: "Longing to ride the bus",
+                b: "Nature as an envious person",
+                c: "Denial to accept her situation",
+                d: "Inclination to trouble travellers",
+                answer: "A"
+            },
+            {
+                question: "In 'Bholi', what was Bholi's initial reaction when she was in a state of shock?",
+                a: "She cried loudly",
+                b: "She remained silent",
+                c: "She was in a state of shock",
+                d: "She laughed nervously",
+                answer: "C"
+            },
+            {
+                question: "Why was the bridegroom described as greedy and disrespectful in 'Bholi'?",
+                a: "He demanded a higher dowry",
+                b: "The bridegroom had been greedy and was disrespectful",
+                c: "He refused to marry Bholi",
+                d: "He was kind but poor",
+                answer: "B"
+            },
+            {
+                question: "What is the most appropriate meaning of 'think-tank' in 'The Book that Saved the Earth'?",
+                a: "A tank that helps you think deeper",
+                b: "Non-stop flow of ideas from a fixed source",
+                c: "A pool of ideas and solutions to various problems",
+                d: "A method by way of which people think collectively",
+                answer: "C"
+            },
+            {
+                question: "Which genre has the original reference to the lines 'Mirror, mirror...' in 'The Book that Saved the Earth'?",
+                a: "Biography",
+                b: "Science-fiction",
+                c: "Mystery",
+                d: "Fairy tale",
+                answer: "D"
+            },
+            {
+                question: "How is the phrase '(after a pause)' categorized in 'The Book that Saved the Earth'?",
+                a: "Aside",
+                b: "Stage direction",
+                c: "Narration",
+                d: "Setting",
+                answer: "B"
+            },
+            {
+                question: "In 'The Midnight Visitor', who is Ausable?",
+                a: "A secret agent",
+                b: "A thief",
+                c: "A scientist",
+                d: "A writer",
+                answer: "A"
+            },
+            {
+                question: "What does Griffin do in 'Footprints without Feet' to become invisible?",
+                a: "Uses a potion",
+                b: "Wears special clothes",
+                c: "Applies chemicals to his body",
+                d: "Eats a special fruit",
+                answer: "C"
+            },
+            {
+                question: "In 'The Necklace', how does Mathilde repay for the lost necklace?",
+                a: "By working hard for 10 years",
+                b: "By borrowing money",
+                c: "By selling her house",
+                d: "By asking for forgiveness",
+                answer: "A"
+            },
+            {
+                question: "Who is the poet of 'Amanda'?",
+                a: "Robert Frost",
+                b: "Robin Klein",
+                c: "Carl Sandburg",
+                d: "William Blake",
+                answer: "B"
+            },
+            {
+                question: "In 'Two Stories about Flying - His First Flight', what does the young seagull do to fly?",
+                a: "Jumps off the cliff",
+                b: "Is pushed by parents",
+                c: "Eats food",
+                d: "Practices on ground",
+                answer: "A"
+            },
+            {
+                question: "What is the theme of 'The Trees' poem?",
+                a: "Freedom of trees",
+                b: "Urban life",
+                c: "Love",
+                d: "War",
+                answer: "A"
+            },
+            {
+                question: "In 'Glimpses of India', what is famous in Coorg?",
+                a: "Tea plantations",
+                b: "Spice gardens",
+                c: "Coffee plantations",
+                d: "Rice fields",
+                answer: "C"
+            },
+            {
+                question: "Who is the antagonist in 'The Thief's Story'?",
+                a: "Hari Singh",
+                b: "Anil",
+                c: "The police",
+                d: "The neighbor",
+                answer: "A"
+            },
+            {
+                question: "In 'From the Diary of Anne Frank', where is Anne hiding?",
+                a: "Annex",
+                b: "Basement",
+                c: "Forest",
+                d: "School",
+                answer: "A"
+            },
+            {
+                question: "What destroys Lencho's crops in 'A Letter to God'?",
+                a: "Drought",
+                b: "Hailstorm",
+                c: "Flood",
+                d: "Locusts",
+                answer: "B"
+            },
+            {
+                question: "In 'Black Aeroplane', why does the pilot follow the black aeroplane?",
+                a: "To get directions",
+                b: "To escape storm",
+                c: "For fuel",
+                d: "To land safely",
+                answer: "B"
+            },
+            {
+                question: "What is the moral of 'The Proposal'?",
+                a: "Love conquers all",
+                b: "Avoid misunderstandings",
+                c: "Farm life is best",
+                d: "Education is key",
+                answer: "B"
+            },
+            {
+                question: "In 'Bholi', why does Bholi speak with a stammer?",
+                a: "Childhood illness",
+                b: "Shyness",
+                c: "Injury",
+                d: "Practice",
+                answer: "A"
+            },
+            {
+                question: "Who saves the Earth in 'The Book that Saved the Earth'?",
+                a: "Think-Tank",
+                b: "Mother Goose",
+                c: "Noodle",
+                d: "Omega",
+                answer: "B"
+            },
+            {
+                question: "In 'A Tiger in the Zoo', how does the tiger feel in the zoo?",
+                a: "Happy",
+                b: "Terrified",
+                c: "Free",
+                d: "Hungry",
+                answer: "B"
+            },
+            {
+                question: "What is Anne Frank's famous quote about people?",
+                a: "People are good",
+                b: "Despite everything, I believe people are good",
+                c: "War is bad",
+                d: "Hide and seek",
+                answer: "B"
+            },
+            {
+                question: "In 'Mijbil the Otter', where does Mijbil play?",
+                a: "Bathroom",
+                b: "Garden",
+                c: "Street",
+                d: "Plane",
+                answer: "A"
+            },
+            {
+                question: "The poem 'Fire and Ice' is written by?",
+                a: "Robert Frost",
+                b: "John Berryman",
+                c: "Adrienne Rich",
+                d: "Pablo Neruda",
+                answer: "A"
+            },
+            {
+                question: "In 'The Midnight Visitor', what trick does Ausable use?",
+                a: "Balcony story",
+                b: "Poison",
+                c: "Gun",
+                d: "Call police",
+                answer: "A"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-text').innerText = q.question;
+            document.getElementById('option-a').innerText = q.a;
+            document.getElementById('option-b').innerText = q.b;
+            document.getElementById('option-c').innerText = q.c;
+            document.getElementById('option-d').innerText = q.d;
+            document.querySelectorAll('input[name="answer"]').forEach(r => r.checked = false);
+            document.getElementById('progress').innerText = `Question ${currentQuestion + 1} of 40`;
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                alert('Please select an answer!');
+                return;
+            }
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < 40) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.querySelector('.question').style.display = 'none';
+            document.getElementById('progress').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('final-score').innerText = score;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('result').style.display = 'none';
+            document.querySelector('.question').style.display = 'block';
+            document.getElementById('progress').style.display = 'block';
+            loadQuestion();
+        }
+
+        // Load first question
+        loadQuestion();
+    </script>
+</body>
+</html>

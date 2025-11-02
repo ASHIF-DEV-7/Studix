@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Studix (Light Theme)</title>
+
+    <style>
+        /* Light Theme CSS */
+        :root {
+            --color-primary: #007bff; /* Blue for highlights */
+            --color-text-main: #212529; /* Dark gray for main text */
+            --color-text-secondary: #6c757d; /* Lighter gray for secondary text */
+            --color-background-main: #f8f9fa; /* Off-white main background */
+            --color-background-card: #ffffff; /* White card background */
+            --color-border: #dee2e6; /* Light gray border */
+            --color-input-bg: #e9ecef; /* Very light gray input background */
+            --color-search-btn-bg: #e2e6ea; /* Light gray search button */
+            --color-search-btn-hover: #dae0e5;
+            --color-chip-bg: #e9ecef;
+            --color-chip-hover: #dee2e6;
+            --color-badge-bg: #e9ecef;
+            --color-badge-text: #495057;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Roboto", "Arial", sans-serif;
+            background: var(--color-background-main);
+            color: var(--color-text-main);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--color-background-card);
+            padding: 0.5rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--color-border);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 640px;
+            display: flex;
+        }
+
+        .search-wrapper {
+            display: flex;
+            flex: 1;
+            border: 1px solid var(--color-border);
+            border-radius: 20px; /* Rounded corners */
+            overflow: hidden;
+            background: var(--color-background-card);
+        }
+
+        .search-wrapper:focus-within {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        .search-input {
+            flex: 1;
+            background: var(--color-input-bg);
+            border: none;
+            padding: 0.7rem 1.2rem;
+            color: var(--color-text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--color-text-secondary);
+        }
+
+        .search-btn {
+            background: var(--color-search-btn-bg);
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--color-search-btn-hover);
+            color: var(--color-text-main);
+        }
+
+        .back-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 18px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--color-search-btn-bg);
+            color: var(--color-text-main);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        /* Chips styling */
+        .chips {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .chips::-webkit-scrollbar {
+            height: 0;
+        }
+
+        .chip {
+            background: var(--color-chip-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .chip:hover {
+            background: var(--color-chip-hover);
+        }
+
+        .chip.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Results styling */
+        .results-info {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .results-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-card {
+            text-decoration: none;
+            color: var(--color-text-main);
+            display: block;
+            background: var(--color-background-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.2rem;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .video-card:hover {
+            background: #f1f1f1;
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .video-card:hover .video-title {
+            color: var(--color-primary);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--color-text-main);
+            flex: 1;
+            transition: color 0.2s;
+        }
+
+        .result-badge {
+            background: var(--color-badge-bg);
+            color: var(--color-badge-text);
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 1rem;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .video-metadata {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Categories styling */
+        .categories {
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-border);
+            color: var(--color-text-main);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-item {
+            background: var(--color-background-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .category-item:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+            opacity: 0.8;
+        }
+
+        .category-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--color-text-main);
+        }
+
+        .category-count {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* No Results styling */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--color-text-secondary);
+            background: var(--color-background-card);
+            border: 1px dashed var(--color-border);
+            border-radius: 8px;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .search-container {
+                order: 3;
+                width: 100%;
+                max-width: none;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="main.html" class="logo">Studix</a>
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        id="searchInput"
+                        placeholder="Search for notes, formulas, or PYQs..."
+                        autocomplete="off"
+                        enterkeyhint="search"
+                    >
+                    <button class="search-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <a href="main.html" class="back-link">Back to Home</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chips">
+            <button class="chip active" data-filter="all">All Content</button>
+            <button class="chip" data-filter="math_notes">Math Notes</button>
+            <button class="chip" data-filter="english_notes">English Notes</button>
+            <button class="chip" data-filter="sci_notes">Science Notes</button>
+            <button class="chip" data-filter="sst_notes">SST Notes</button>
+            <button class="chip" data-filter="formula">Formulas</button>
+            <button class="chip" data-filter="pyq">PYQ Papers</button>
+        </div>
+
+        <div class="results-info" id="resultsInfo" style="display:none;"></div>
+        <div class="results-grid" id="resultsGrid"></div>
+
+        <div class="categories" id="categories">
+            <div class="section-title">Browse by Category</div>
+            <div class="category-grid" id="categoryGrid"></div>
+        </div>
+    </div>
+
+<script>
+        // The following masterData is a placeholder. 
+        // In a real application, you would ensure 'master.json' is fetched and available, 
+        // but for this standalone HTML, I'll include a small, sample masterData structure 
+        // so the search logic functions immediately upon loading.
+        const masterData = {
+            "notes": {
+                "mathematics": {
+                    "chapters": [
+                        {"title": "Real Numbers", "chapter": 1, "url": "#", "keywords": ["number", "HCF", "LCM"]},
+                        {"title": "Polynomials", "chapter": 2, "url": "#", "keywords": ["quadratic", "cubic", "zeroes"]}
+                    ]
+                },
+                "english": {
+                    "books": {
+                        "firstFlight": {
+                            "prose": [
+                                {"title": "A Letter to God", "url": "#", "keywords": ["lencho", "faith"]}
+                            ]
+                        }
+                    }
+                },
+                "science": {
+                    "branches": {
+                        "physics": {
+                            "branchName": "Physics",
+                            "chapters": [
+                                {"title": "Light: Reflection and Refraction", "chapter": 10, "url": "#", "keywords": ["mirror", "lens", "ray"]}
+                            ]
+                        }
+                    }
+                },
+                "socialScience": {
+                    "branches": {
+                        "history": {
+                            "branchName": "History",
+                            "chapters": [
+                                {"title": "The Rise of Nationalism in Europe", "chapter": 1, "url": "#", "keywords": ["revolution", "frédéric", "french"]}
+                            ]
+                        }
+                    }
+                }
+            },
+            "formulas": {
+                "mathematics": [
+                    {"title": "Quadratic Formula", "url": "#", "branch": "Mathematics", "keywords": ["roots", "bhaskara"]}
+                ],
+                "science": [
+                    {"title": "Ohm's Law", "url": "#", "branch": "Physics", "keywords": ["voltage", "current"]}
+                ]
+            },
+            "previousYearQuestions": {
+                "mathematics": {
+                    "complete": [
+                        {"title": "CBSE Board Paper", "year": "2023", "url": "#", "keywords": ["full paper"]}
+                    ]
+                },
+                "science": {
+                    "complete": [
+                        {"title": "Science Term II Paper", "year": "2022", "url": "#", "keywords": ["chemistry", "biology"]}
+                    ],
+                    "physics": [
+                        {"title": "Electricity PYQ", "chapter": 12, "url": "#", "branch": "Physics", "keywords": ["circuit"]}
+                    ]
+                }
+            }
+        };
+
+        let allData = [];
+        let currentFilter = 'all';
+
+        // NOTE: loadData() is modified to use the embedded masterData object 
+        // instead of an external fetch, as the prompt requested a single HTML file.
+        function loadData() {
+            init();
+        }
+
+        function flattenData() {
+            const items = [];
+
+            // Math Notes
+            masterData.notes?.mathematics?.chapters?.forEach(ch => {
+                items.push({...ch, cat: 'math_notes', sub: 'Mathematics', type: 'Notes'});
+            });
+
+            // English Notes
+            const eng = masterData.notes?.english?.books;
+            eng?.firstFlight?.prose?.forEach(ch => items.push({...ch, cat: 'english_notes', sub: 'English', book: 'First Flight'}));
+            eng?.firstFlight?.poetry?.forEach(ch => items.push({...ch, cat: 'english_notes', sub: 'English', book: 'First Flight'}));
+            eng?.footprintsWithoutFeet?.supplementary?.forEach(ch => items.push({...ch, cat: 'english_notes', sub: 'English', book: 'Footprints'}));
+
+            // Science Notes
+            const sci = masterData.notes?.science?.branches;
+            ['physics', 'chemistry', 'biology'].forEach(b => {
+                sci?.[b]?.chapters?.forEach(ch => items.push({...ch, cat: 'sci_notes', sub: sci[b].branchName, type: 'Notes'}));
+            });
+
+            // SST Notes
+            const sst = masterData.notes?.socialScience?.branches;
+            ['history', 'geography', 'civics', 'economics'].forEach(b => {
+                sst?.[b]?.chapters?.forEach(ch => items.push({...ch, cat: 'sst_notes', sub: sst[b].branchName, type: 'Notes'}));
+            });
+
+            // Formulas
+            masterData.formulas?.mathematics?.forEach(f => items.push({...f, cat: 'formula', sub: 'Mathematics', type: 'Formula'}));
+            masterData.formulas?.science?.forEach(f => items.push({...f, cat: 'formula', sub: f.branch || 'Science', type: 'Formula'}));
+
+            // PYQ
+            const pyq = masterData.previousYearQuestions;
+            pyq?.mathematics?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'Mathematics', type: 'PYQ'}));
+            pyq?.mathematics?.chapterWise?.forEach(p => items.push({...p, cat: 'pyq', sub: 'Mathematics', type: 'PYQ'}));
+            pyq?.science?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'Science', type: 'PYQ'}));
+            ['physics', 'chemistry', 'biology'].forEach(b => {
+                pyq?.science?.[b]?.forEach(p => items.push({...p, cat: 'pyq', sub: p.branch || 'Science', type: 'PYQ'}));
+            });
+            pyq?.english?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'English', type: 'PYQ'}));
+            ['firstFlight', 'footprintsWithoutFeet', 'poetry'].forEach(s => {
+                pyq?.english?.[s]?.forEach(p => items.push({...p, cat: 'pyq', sub: 'English', type: 'PYQ'}));
+            });
+            pyq?.socialScience?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'SST', type: 'PYQ'}));
+
+            return items;
+        }
+
+        function search(query) {
+            const info = document.getElementById('resultsInfo');
+            const grid = document.getElementById('resultsGrid');
+            const cats = document.getElementById('categories');
+
+            if (!query || query.length < 2) {
+                info.style.display = 'none';
+                grid.innerHTML = '';
+                cats.style.display = 'block';
+                return;
+            }
+
+            const terms = query.toLowerCase().split(' ');
+            const results = [];
+
+            allData.forEach(item => {
+                // Filter by selected chip category
+                if (currentFilter !== 'all' && item.cat !== currentFilter) return;
+
+                let score = 0;
+                const title = (item.title || '').toLowerCase();
+                // Ensure keywords is an array before joining
+                const keywords = (Array.isArray(item.keywords) ? item.keywords.join(' ') : '').toLowerCase(); 
+                const subject = (item.sub || '').toLowerCase();
+                const chapter = (item.chapter || item.chapterNumber || '').toString();
+                const year = (item.year || '').toString();
+
+                terms.forEach(term => {
+                    if (title.includes(term)) score += 10;
+                    if (keywords.includes(term)) score += 5;
+                    if (subject.includes(term)) score += 3;
+                    if (chapter.includes(term)) score += 8;
+                    if (year.includes(term)) score += 8;
+                });
+
+                if (score > 0) results.push({...item, score});
+            });
+
+            results.sort((a, b) => b.score - a.score);
+            displayResults(results.slice(0, 40));
+        }
+
+        function displayResults(results) {
+            const info = document.getElementById('resultsInfo');
+            const grid = document.getElementById('resultsGrid');
+            const cats = document.getElementById('categories');
+            const query = document.getElementById('searchInput').value.trim();
+
+            cats.style.display = 'none';
+
+            if (results.length === 0) {
+                info.style.display = 'none';
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">
+                            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                        </div>
+                        <div>No results found for **"${query}"** in the selected category.</div>
+                    </div>
+                `;
+                // Show categories again if no search term is entered, but not after a failed search
+                // Note: The original logic shows categories after no results, I'll keep that for now.
+                // cats.style.display = 'block'; 
+                return;
+            }
+
+            info.style.display = 'block';
+            info.textContent = `${results.length} results for "${query}" (filtered by: ${currentFilter === 'all' ? 'All Content' : document.querySelector(`.chip[data-filter="${currentFilter}"]`).textContent})`;
+
+            const badges = {
+                'math_notes': 'Math Notes',
+                'english_notes': 'English Notes',
+                'sci_notes': 'Science Notes',
+                'sst_notes': 'SST Notes',
+                'formula': 'Formula',
+                'pyq': 'PYQ'
+            };
+
+            grid.innerHTML = results.map(item => {
+                const type = badges[item.cat] || 'Content';
+                const subject = item.sub || '';
+                const chapter = item.chapter || item.chapterNumber;
+                const year = item.year;
+                
+                let description = '';
+                if (type.includes('Notes')) {
+                    description = `${type} - ${subject}`;
+                    if (chapter) description += ` - Chapter ${chapter}`;
+                } else if (type === 'Formula') {
+                    description = `${subject} Formula`;
+                } else if (type === 'PYQ') {
+                    description = `Previous Year Question Paper - ${subject}`;
+                    if (year) description += ` - ${year}`;
+                    if (chapter) description += ` - Chapter ${chapter}`;
+                }
+
+                return `
+                    <a href="${item.url}" class="video-card">
+                        <div class="result-header">
+                            <div class="video-title">${item.title}</div>
+                            <div class="result-badge">${type}</div>
+                        </div>
+                        <div class="video-metadata">${description}</div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        function showCategories() {
+            const categories = [
+                {icon: '∑', name: 'Math Notes', count: allData.filter(i => i.cat === 'math_notes').length},
+                {icon: 'A', name: 'English Notes', count: allData.filter(i => i.cat === 'english_notes').length},
+                {icon: '⚛', name: 'Science Notes', count: allData.filter(i => i.cat === 'sci_notes').length},
+                {icon: '⊕', name: 'SST Notes', count: allData.filter(i => i.cat === 'sst_notes').length},
+                {icon: 'ƒ', name: 'Formulas', count: allData.filter(i => i.cat === 'formula').length},
+                {icon: '?', name: 'PYQ Papers', count: allData.filter(i => i.cat === 'pyq').length}
+            ];
+
+            document.getElementById('categoryGrid').innerHTML = categories.map(c => `
+                <div class="category-item">
+                    <div class="category-icon">${c.icon}</div>
+                    <div class="category-name">${c.name}</div>
+                    <div class="category-count">${c.count} items</div>
+                </div>
+            `).join('');
+        }
+
+        function init() {
+            allData = flattenData();
+            showCategories();
+
+            const input = document.getElementById('searchInput');
+
+            input.addEventListener('input', e => {
+                search(e.target.value.trim());
+            });
+
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    currentFilter = chip.dataset.filter;
+                    // Re-run search with the new filter if there is a query
+                    if (input.value.trim()) {
+                        search(input.value.trim());
+                    } else {
+                        // Clear results and show categories if no query is present
+                        document.getElementById('resultsInfo').style.display = 'none';
+                        document.getElementById('resultsGrid').innerHTML = '';
+                        document.getElementById('categories').style.display = 'block';
+                    }
+                });
+            });
+            
+            // Allow clicking the search button to trigger search
+            document.querySelector('.search-btn').addEventListener('click', () => {
+                search(input.value.trim());
+            });
+        }
+
+        // Start the application
+        loadData();
+    </script>
+</body>
+</html>

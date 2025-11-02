@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metals and Non-Metals Notes</title>
+    <style>
+        :root {
+            --bg-color: #e3f2fd;
+            --text-color: #1a1a1a;
+            --primary: #0288d1;
+            --secondary: #ff4081;
+            --box-bg: #ffffff;
+            --box-border: #4fc3f7;
+            --box-hover-shadow: rgba(2, 136, 209, 0.4);
+            --header-bg: #f5faff;
+            --footer-bg: #1a1a1a;
+            --sidenav-bg: #f5faff;
+            --sidenav-dark-bg: #212121;
+        }
+
+        .dark {
+            --bg-color: #1e272e;
+            --text-color: #e0e7ff;
+            --primary: #29b6f6;
+            --secondary: #f06292;
+            --box-bg: #2d3748;
+            --box-border: #80deea;
+            --box-hover-shadow: rgba(41, 182, 246, 0.4);
+            --header-bg: #212121;
+            --footer-bg: #1a1a1a;
+            --sidenav-bg: #212121;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: var(--primary);
+        }
+
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 60px;
+            width: 200px;
+            height: calc(100% - 60px);
+            background-color: var(--sidenav-bg);
+            padding: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 900;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        .dark .side-nav {
+            background-color: var(--sidenav-dark-bg);
+        }
+
+        .side-nav.open {
+            transform: translateX(0);
+        }
+
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-nav li {
+            margin-bottom: 15px;
+        }
+
+        .side-nav button {
+            text-decoration: none;
+            color: var(--text-color);
+            background: none;
+            border: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .side-nav button:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        #side-toggle {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.6em;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 5px 10px;
+            transition: color 0.3s;
+            z-index: 1100;
+        }
+
+        #side-toggle:hover {
+            color: var(--secondary);
+        }
+
+        #close-nav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #close-nav:hover {
+            color: var(--primary);
+        }
+
+        main {
+            margin-top: 70px;
+            padding: 20px;
+            margin-left: 0;
+            transition: margin-left 0.3s;
+            flex: 1;
+        }
+
+        .notes-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .topic {
+            margin-bottom: 15px;
+            background-color: var(--box-bg);
+            border: 2px solid var(--box-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .topic:hover {
+            box-shadow: 0 4px 15px var(--box-hover-shadow);
+        }
+
+        .topic-header {
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--box-bg);
+        }
+
+        .topic-header::after {
+            content: '▼';
+            font-size: 0.9em;
+            transition: transform 0.3s;
+        }
+
+        .topic-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .topic-content {
+            display: none;
+            padding: 15px;
+            font-size: 1em;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        .topic-content.active {
+            display: block;
+        }
+
+        .topic-content ul {
+            list-style-type: disc;
+            margin: 10px 0 0 20px;
+            padding: 0;
+        }
+
+        .topic-content li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--footer-bg);
+            color: #ffffff;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (min-width: 768px) {
+            .side-nav {
+                transform: translateX(0);
+            }
+
+            #side-toggle {
+                display: none;
+            }
+
+            main {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .notes-section {
+                padding: 10px;
+            }
+
+            .topic-header {
+                font-size: 1.1em;
+            }
+
+            .topic-content {
+                font-size: 0.95em;
+            }
+
+            .side-nav.open + main {
+                pointer-events: none;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="side-toggle" onclick="toggleSideNav()">☰</button>
+        <h1>Metals and Non-Metals</h1>
+    </header>
+
+    <aside class="side-nav">
+        <button id="close-nav" onclick="toggleSideNav()">✖</button>
+        <ul>
+            <li><button onclick="toggleMode()">Dark/Light Mode Toggle</button></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="notes-section">
+            <div class="topic">
+                <div class="topic-header">Physical Properties of Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Shiny (lustrous), good conductors of heat and electricity, malleable, ductile, solid (except Hg).</li>
+                        <li>High melting/boiling points, high density (except alkali metals).</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Copper: Shiny, conducts electricity (used in wires).</li>
+                                <li>Iron: Malleable, used in construction.</li>
+                                <li>Aluminium: Ductile, drawn into wires.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Physical Properties of Non-Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Dull, poor conductors, brittle, low melting/boiling points, low density (except diamond).</li>
+                        <li>Can be solid, liquid, or gas.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Carbon (graphite): Brittle, conducts electricity slightly.</li>
+                                <li>Sulphur: Dull, poor conductor, brittle solid.</li>
+                                <li>Bromine: Liquid, non-conductor.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Chemical Properties of Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Form basic oxides, lose electrons (form cations), react with acids to form H₂.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Zn + 2HCl → ZnCl₂ + H₂ (reaction with acid).</li>
+                                <li>2Na + O₂ → Na₂O (basic oxide formation).</li>
+                                <li>Mg + H₂SO₄ → MgSO₄ + H₂ (hydrogen gas production).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Chemical Properties of Non-Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Form acidic or neutral oxides, gain electrons (form anions), do not react with acids.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>C + O₂ → CO₂ (acidic oxide).</li>
+                                <li>2H₂ + O₂ → 2H₂O (neutral oxide).</li>
+                                <li>S + O₂ → SO₂ (acidic oxide).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Reactivity Series</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Order of metals by reactivity: K > Na > Ca > Mg > Al > Zn > Fe > Pb > H > Cu > Hg > Ag > Au.</li>
+                        <li>More reactive metals displace less reactive ones from compounds.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Zn + CuSO₄ → ZnSO₄ + Cu (Zn more reactive than Cu).</li>
+                                <li>Fe + CuSO₄ → FeSO₄ + Cu (Fe displaces Cu).</li>
+                                <li>Cu + AgNO₃ → Cu(NO₃)₂ + Ag (Cu displaces Ag).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Extraction of Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Highly reactive: Electrolysis (e.g., Na, K).</li>
+                        <li>Moderately reactive: Reduction with carbon (e.g., Zn, Fe).</li>
+                        <li>Low reactive: Roasting/smelting (e.g., Cu, Hg).</li>
+                        <li>Examples:
+                            <ul>
+                                <li>NaCl → Na + Cl₂ (electrolysis for sodium).</li>
+                                <li>Fe₂O₃ + 3C → 2Fe + 3CO (reduction for iron).</li>
+                                <li>HgS → Hg + S (roasting for mercury).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Refining of Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Purification of extracted metals (e.g., electrolytic refining).</li>
+                        <li>Process: Impure metal (anode), pure metal (cathode), electrolyte.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Copper refining: CuSO₄ electrolyte, pure Cu deposited.</li>
+                                <li>Aluminium refining: Electrolysis in molten Al₂O₃.</li>
+                                <li>Zinc refining: ZnSO₄ electrolyte used.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Corrosion</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Deterioration of metals by chemical reaction with environment.</li>
+                        <li>Prevention: Painting, galvanizing, alloying.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Rusting: 4Fe + 3O₂ + 2xH₂O → 2Fe₂O₃·xH₂O.</li>
+                                <li>Copper patina: 2Cu + O₂ + CO₂ + H₂O → Cu₂(OH)₂CO₃.</li>
+                                <li>Silver tarnishing: 2Ag + H₂S → Ag₂S + H₂.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Alloys</div>
+                <div class="topic-content">
+                    <ul>
+                        <li>Mixture of metals or metal with non-metal, enhances properties.</li>
+                        <li>Examples:
+                            <ul>
+                                <li>Steel: Fe + C (strong, used in construction).</li>
+                                <li>Brass: Cu + Zn (corrosion-resistant, decorative).</li>
+                                <li>Bronze: Cu + Sn (durable, used in statues).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header">Uses of Metals and Non-Metals</div>
+                <div class="topic-content">
+                    <ul>
+                        <li><strong>Metals</strong>:
+                            <ul>
+                                <li>Copper: Electrical wires, utensils.</li>
+                                <li>Iron: Construction, machinery.</li>
+                                <li>Aluminium: Aircraft, packaging.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Non-Metals</strong>:
+                            <ul>
+                                <li>Carbon: Fuel (coal), electrodes (graphite).</li>
+                                <li>Oxygen: Respiration, combustion.</li>
+                                <li>Nitrogen: Fertilizers, explosives.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © 2025. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark');
+        }
+
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            sideNav.classList.toggle('open');
+            if (sideNav.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Toggle topic content visibility
+        document.querySelectorAll('.topic-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = content.classList.contains('active');
+                
+                // Close all other sections
+                document.querySelectorAll('.topic-content').forEach(c => {
+                    c.classList.remove('active');
+                });
+                document.querySelectorAll('.topic-header').forEach(h => {
+                    h.classList.remove('active');
+                });
+
+                // Toggle current section
+                if (!isActive) {
+                    content.classList.add('active');
+                    header.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+<script src="script.js"></script>
+</html>

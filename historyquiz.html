@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th History Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 20%, #f3e8ff 40%, #ede9fe 60%, #e0e7ff 80%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .quiz-container {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            max-width: 750px;
+            width: 100%;
+            text-align: center;
+            border: 3px solid #fdf2f8;
+            position: relative;
+        }
+
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #f59e0b, #d97706, #dc2626, #b91c1c);
+            border-radius: 25px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .header {
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .header h1 {
+            color: #92400e;
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f59e0b, #d97706, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .header h1::after {
+            content: '🏛️📜';
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            font-size: 2rem;
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header p {
+            color: #78350f;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .progress-container {
+            background: #fef3c7;
+            height: 12px;
+            border-radius: 25px;
+            margin-bottom: 35px;
+            overflow: hidden;
+            border: 3px solid #fbbf24;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #f59e0b, #d97706, #dc2626);
+            height: 100%;
+            border-radius: 25px;
+            transition: width 0.8s ease;
+            width: 0%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .question-number {
+            color: #dc2626;
+            font-weight: 900;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .score-display {
+            color: #7c2d12;
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #fed7aa, #fdba74);
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 3px solid #f97316;
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .question-area {
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .question {
+            color: #451a03;
+            font-size: 1.4rem;
+            margin-bottom: 28px;
+            line-height: 1.8;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 25px;
+            border-radius: 18px;
+            border-left: 8px solid #f59e0b;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+            position: relative;
+        }
+
+        .question::before {
+            
+            position: absolute;
+            top: -12px;
+            right: 25px;
+            font-size: 2rem;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .options {
+            display: grid;
+            gap: 18px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 3px solid #fbbf24;
+            border-radius: 18px;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.15rem;
+            text-align: left;
+            position: relative;
+            font-weight: 600;
+            color: #78350f;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: #fbbf24;
+            border-radius: 18px 0 0 18px;
+            transition: all 0.4s ease;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, #fde68a, #f59e0b);
+            color: white;
+            border-color: #d97706;
+            transform: translateX(10px) translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .option:hover::before {
+            background: #d97706;
+            width: 10px;
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border-color: #b45309;
+            transform: translateX(10px) translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.5);
+            font-weight: 700;
+        }
+
+        .option.selected::before {
+            background: #b45309;
+            width: 10px;
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-color: #047857;
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .option.correct::before {
+            background: #047857;
+            width: 10px;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-color: #b91c1c;
+            box-shadow: 0 12px 30px rgba(239, 68, 68, 0.5);
+        }
+
+        .option.incorrect::before {
+            background: #b91c1c;
+            width: 10px;
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 35px;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 800;
+            min-width: 150px;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid #b45309;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.6);
+        }
+
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            border-color: #6b7280;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-color: #991b1b;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.6);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            border-color: #5b21b6;
+        }
+
+        .check-btn:hover:not(:disabled) {
+            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.6);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .results {
+            text-align: center;
+            padding: 35px;
+        }
+
+        .results-title {
+            font-size: 2.8rem;
+            color: #451a03;
+            margin-bottom: 30px;
+            font-weight: 900;
+        }
+
+        .final-score {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 30px 0;
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .results-message {
+            font-size: 1.6rem;
+            color: #78350f;
+            margin-bottom: 35px;
+            font-weight: 800;
+        }
+
+        .stats-grid {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 35px;
+            border-radius: 20px;
+            margin: 35px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 30px;
+            border: 3px solid #f59e0b;
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .stat-box {
+            text-align: center;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 2px solid #fbbf24;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #78350f;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .replay-btn {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            font-size: 1.4rem;
+            padding: 20px 50px;
+            margin-top: 25px;
+            border-color: #4c1d95;
+        }
+
+        .replay-btn:hover {
+            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.6);
+        }
+
+        @media (max-width: 780px) {
+            .quiz-container {
+                padding: 30px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quiz-info {
+                flex-direction: column;
+                gap: 18px;
+                text-align: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .question {
+                font-size: 1.3rem;
+                padding: 20px;
+            }
+        }
+
+        .ancient-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046 8.954-20 20-20s20 8.954 20 20-8.954 20-20 20-20-8.954-20-20zm-10-10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="ancient-pattern">
+    <div class="quiz-container">
+        <div class="header">
+            <h1>History Quiz 🏛️</h1>
+            <p>Class 10th CBSE Syllabus</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div id="quizContent">
+            <div class="quiz-info">
+                <div class="question-number" id="questionNumber">Question 1 of 40</div>
+                <div class="score-display" id="currentScore">Score: 0/40</div>
+            </div>
+            
+            <div class="question-area">
+                <div class="question" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <div class="controls">
+                <button id="submitBtn" class="submit-btn">Submit Answer</button>
+                <button id="checkBtn" class="check-btn hidden">Check Answer</button>
+                <button id="nextBtn" class="hidden">Next Question</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="results hidden">
+            <div class="results-title"> Quiz Completed!</div>
+            <div class="final-score" id="finalScore">0/40</div>
+            <div class="results-message" id="resultMessage"></div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="incorrectCount">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="accuracyScore">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="finalGrade">-</div>
+                    <div class="stat-label">Grade</div>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="location.reload()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // The Rise of Nationalism in Europe
+            {
+                question: "When did the French Revolution begin?",
+                options: ["1789", "1790", "1791", "1792"],
+                correct: 0
+            },
+            {
+                question: "Who was known as the 'Iron Chancellor' of Germany?",
+                options: ["Kaiser Wilhelm I", "Otto von Bismarck", "Frederick III", "Wilhelm II"],
+                correct: 1
+            },
+            {
+                question: "The concept of 'Nation-state' means:",
+                options: ["A state with multiple nations", "A nation without a state", "A state that corresponds to one nation", "A federal state"],
+                correct: 2
+            },
+            {
+                question: "Which treaty was signed after Napoleon's defeat?",
+                options: ["Treaty of Vienna", "Treaty of Versailles", "Treaty of Paris", "Treaty of Berlin"],
+                correct: 0
+            },
+            {
+                question: "Who led the unification of Italy?",
+                options: ["Count Cavour", "Giuseppe Garibaldi", "Giuseppe Mazzini", "All of the above"],
+                correct: 3
+            },
+
+            // The Nationalist Movement in Indo-China
+            {
+                question: "Which European country colonized Vietnam?",
+                options: ["Britain", "Netherlands", "France", "Portugal"],
+                correct: 2
+            },
+            {
+                question: "Who founded the Revolutionary Society in Vietnam?",
+                options: ["Phan Boi Chau", "Ho Chi Minh", "Phan Chu Trinh", "Cuong De"],
+                correct: 0
+            },
+            {
+                question: "The French established their control over Vietnam in:",
+                options: ["1857", "1858", "1859", "1860"],
+                correct: 1
+            },
+            {
+                question: "What was the main crop grown in the Mekong delta?",
+                options: ["Wheat", "Rice", "Cotton", "Sugarcane"],
+                correct: 1
+            },
+            {
+                question: "The Vietnamese fought against the French and which other power?",
+                options: ["British", "American", "Japanese", "Chinese"],
+                correct: 2
+            },
+
+            // Nationalism in India
+            {
+                question: "Who founded the All India Muslim League?",
+                options: ["Sir Syed Ahmed Khan", "Aga Khan III", "Nawab Salimullah", "Muhammad Ali Jinnah"],
+                correct: 1
+            },
+            {
+                question: "The Rowlatt Act was passed in:",
+                options: ["1917", "1918", "1919", "1920"],
+                correct: 2
+            },
+            {
+                question: "Who designed the Swaraj flag?",
+                options: ["Mahatma Gandhi", "Pingali Venkayya", "Bankim Chandra Chattopadhyay", "Rabindranath Tagore"],
+                correct: 1
+            },
+            {
+                question: "The Non-Cooperation Movement was launched in:",
+                options: ["1919", "1920", "1921", "1922"],
+                correct: 1
+            },
+            {
+                question: "Who wrote 'Hind Swaraj'?",
+                options: ["Jawaharlal Nehru", "Mahatma Gandhi", "Bal Gangadhar Tilak", "Gopal Krishna Gokhale"],
+                correct: 1
+            },
+
+            // The Making of a Global World
+            {
+                question: "The Silk Routes connected Asia with:",
+                options: ["Africa only", "Europe only", "Europe and North Africa", "America"],
+                correct: 2
+            },
+            {
+                question: "Which disease spread from Europe to America and killed native populations?",
+                options: ["Malaria", "Smallpox", "Typhoid", "Cholera"],
+                correct: 1
+            },
+            {
+                question: "The Great Depression began in which year?",
+                options: ["1928", "1929", "1930", "1931"],
+                correct: 1
+            },
+            {
+                question: "What was the main reason for indentured labor migration?",
+                options: ["Adventure", "Better opportunities", "Shortage of labor in plantations", "Political reasons"],
+                correct: 2
+            },
+            {
+                question: "The Bretton Woods system was established in:",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: 1
+            },
+
+             // The Age of Industrialization
+            {
+                question: "The first cotton mill in India was established in:",
+                options: ["Calcutta", "Mumbai", "Madras", "Ahmedabad"],
+                correct: 1
+            },
+            {
+                question: "Who is known as the pioneer of the textile industry in India?",
+                options: ["Jamsetjee Jejeebhoy", "Dinshaw Petit", "J.N. Tata", "G.D. Birla"],
+                correct: 1
+            },
+            {
+                question: "The spinning jenny was invented by:",
+                options: ["James Hargreaves", "Richard Arkwright", "Samuel Crompton", "James Watt"],
+                correct: 0
+            },
+            {
+                question: "When did the Industrial Revolution begin in Britain?",
+                options: ["1750", "1760", "1770", "1780"],
+                correct: 1
+            },
+            {
+                question: "The proto-industrial system was also known as:",
+                options: ["Factory system", "Guild system", "Put-out system", "Domestic system"],
+                correct: 2
+            },
+
+            // Work, Life and Leisure
+            {
+                question: "Which city was known as the 'Shock City' of the 1840s?",
+                options: ["London", "Manchester", "Birmingham", "Liverpool"],
+                correct: 1
+            },
+            {
+                question: "The London Underground railway was opened in:",
+                options: ["1853", "1863", "1873", "1883"],
+                correct: 1
+            },
+            {
+                question: "Who wrote 'The Condition of the Working Class in England'?",
+                options: ["Charles Dickens", "Friedrich Engels", "Karl Marx", "Max Weber"],
+                correct: 1
+            },
+            {
+                question: "The Temperance Movement was associated with:",
+                options: ["Education reform", "Labor rights", "Prohibition of alcohol", "Women's suffrage"],
+                correct: 2
+            },
+            {
+                question: "The first underground railway in the world was built in:",
+                options: ["New York", "London", "Paris", "Berlin"],
+                correct: 1
+            },
+
+            // Print Culture and the Modern World
+            {
+                question: "Who invented the printing press?",
+                options: ["Johann Gutenberg", "William Caxton", "Aldus Manutius", "Christopher Plantin"],
+                correct: 0
+            },
+            {
+                question: "The first printed book was:",
+                options: ["The Diamond Sutra", "The Bible", "The Iliad", "The Quran"],
+                correct: 0
+            },
+            {
+                question: "In India, the first printing press was set up by:",
+                options: ["Portuguese missionaries", "Dutch traders", "English officers", "French merchants"],
+                correct: 0
+            },
+            {
+                question: "Which was the first newspaper published in India?",
+                options: ["Bengal Gazette", "Bombay Herald", "Madras Courier", "The Pioneer"],
+                correct: 0
+            },
+            {
+                question: "The printing press came to India in:",
+                options: ["1556", "1557", "1558", "1559"],
+                correct: 0
+            },
+
+            // Additional Important Questions
+            {
+                question: "Who was the first Viceroy of India?",
+                options: ["Lord Canning", "Lord Dalhousie", "Lord Curzon", "Lord Mountbatten"],
+                correct: 0
+            },
+            {
+                question: "The Sepoy Mutiny began in:",
+                options: ["1857", "1858", "1859", "1860"],
+                correct: 0
+            },
+            {
+                question: "Who wrote 'The Wealth of Nations'?",
+                options: ["Karl Marx", "Adam Smith", "David Ricardo", "John Stuart Mill"],
+                correct: 1
+            },
+            {
+                question: "The Berlin Wall was built in:",
+                options: ["1959", "1960", "1961", "1962"],
+                correct: 2
+            },
+            {
+                question: "The term 'Industrial Revolution' was first used by:",
+                options: ["Arnold Toynbee", "T.S. Ashton", "David Landes", "E.P. Thompson"],
+                correct: 0
+            },
+            {
+                question: "The first railway line in India was opened between:",
+                options: ["Mumbai to Thane", "Calcutta to Raniganj", "Madras to Arakkonam", "Delhi to Agra"],
+                correct: 0
+            },
+            {
+                question: "Who established the Asiatic Society of Bengal?",
+                options: ["Warren Hastings", "William Jones", "James Mill", "Max Mueller"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let score = 0;
+        let hasAnswered = false;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of 40`;
+            document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            document.getElementById('questionText').textContent = q.question;
+            
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.textContent = option;
+                div.onclick = () => selectOption(index);
+                container.appendChild(div);
+            });
+
+            // Update progress
+            const progress = ((currentQuestion) / 40) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            resetUI();
+        }
+
+        function resetUI() {
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('submitBtn').disabled = false;
+            selectedAnswer = null;
+            hasAnswered = false;
+        }
+
+        function selectOption(index) {
+            if (hasAnswered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            if (selectedAnswer === null) {
+                alert('Please select an answer! ');
+                return;
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('checkBtn').classList.remove('hidden');
+            hasAnswered = true;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.add('disabled');
+            });
+        }
+
+        function checkAnswer() {
+            const correctIndex = questions[currentQuestion].correct;
+            const options = document.querySelectorAll('.option');
+            
+            options[correctIndex].classList.add('correct');
+            
+            if (selectedAnswer !== correctIndex) {
+                options[selectedAnswer].classList.add('incorrect');
+            } else {
+                score++;
+                document.getElementById('currentScore').textContent = `Score: ${score}/40`;
+            }
+
+            document.getElementById('checkBtn').classList.add('hidden');
+            
+            if (currentQuestion < 39) {
+                document.getElementById('nextBtn').classList.remove('hidden');
+            } else {
+                setTimeout(displayResults, 2000);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+            });
+            
+            loadQuestion();
+        }
+
+        function displayResults() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const accuracy = Math.round((score / 40) * 100);
+            
+            document.getElementById('finalScore').textContent = `${score}/40`;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('incorrectCount').textContent = 40 - score;
+            document.getElementById('accuracyScore').textContent = accuracy + '%';
+            
+            // Calculate grade
+            let grade = '';
+            if (accuracy >= 90) grade = 'A+';
+            else if (accuracy >= 80) grade = 'A';
+            else if (accuracy >= 70) grade = 'B+';
+            else if (accuracy >= 60) grade = 'B';
+            else if (accuracy >= 50) grade = 'C';
+            else if (accuracy >= 40) grade = 'D';
+            else grade = 'F';
+            
+            document.getElementById('finalGrade').textContent = grade;
+            
+            // Result messages
+            let message = '';
+            if (accuracy >= 90) {
+                message = 'Outstanding! You are a History Master! 👑📚';
+            } else if (accuracy >= 80) {
+                message = 'Excellent! Great knowledge of history! 🏛️';
+            } else if (accuracy >= 70) {
+                message = 'Good work! Keep studying history! 📜✨';
+            } else if (accuracy >= 60) {
+                message = 'Fair attempt! Focus more on historical events! 🏺📖';
+            } else if (accuracy >= 50) {
+                message = 'Keep learning! History needs more attention! 🗿💪';
+            } else {
+                message = 'Study harder! Focus on historical facts! 📚🔍';
+            }
+            
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // Event listeners
+        document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+        document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+
+        // Initialize quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

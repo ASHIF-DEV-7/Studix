@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Math Quiz 2025-26</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #4a6ee0;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #4a6ee0;
+            width: 5%;
+            transition: width 0.3s ease;
+        }
+        
+        .question-count {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .options {
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            display: block;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .option.selected {
+            background-color: #dbeafe;
+            border-color: #4a6ee0;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        #submit-btn {
+            background-color: #4a6ee0;
+            color: white;
+        }
+        
+        #submit-btn:hover {
+            background-color: #3b5fc7;
+        }
+        
+        #check-btn {
+            background-color: #0ca678;
+            color: white;
+            display: none;
+        }
+        
+        #check-btn:hover {
+            background-color: #099268;
+        }
+        
+        #next-btn {
+            background-color: #fab005;
+            color: white;
+            display: none;
+        }
+        
+        #next-btn:hover {
+            background-color: #f59f00;
+        }
+        
+        .result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .score {
+            font-size: 2rem;
+            color: #4a6ee0;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .correct {
+            background-color: #d3f9d8;
+            border: 1px solid #40c057;
+        }
+        
+        .incorrect {
+            background-color: #ffe3e3;
+            border: 1px solid #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CBSE Math Quiz 2025-26</h1>
+            <p class="subtitle">Test your mathematics knowledge with 20 MCQs</p>
+        </header>
+        
+        <div class="progress-container">
+            <div class="question-count">Question <span id="current-question">1</span> of 20</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+        
+        <div id="quiz-container">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            
+            <div class="feedback" id="feedback"></div>
+            
+            <div class="buttons">
+                <button id="submit-btn">Submit</button>
+                <button id="check-btn">Check Answer</button>
+                <button id="next-btn">Next Question</button>
+            </div>
+        </div>
+        
+        <div class="result" id="result">
+            <h2>Quiz Completed!</h2>
+            <div class="score">Your Score: <span id="score">0</span>/20</div>
+            <div class="message" id="message"></div>
+            <button id="restart-btn" onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions based on CBSE 2025-26 syllabus
+        const questions = [
+            {
+                question: "What is the value of π (pi) correct to two decimal places?",
+                options: ["3.14", "3.15", "3.16", "3.17"],
+                answer: 0
+            },
+            {
+                question: "If a triangle has angles of 45°, 45°, and 90°, what type of triangle is it?",
+                options: ["Equilateral", "Isosceles", "Scalene", "Right-angled"],
+                answer: 1
+            },
+            {
+                question: "What is the HCF of 36 and 48?",
+                options: ["6", "12", "18", "24"],
+                answer: 1
+            },
+            {
+                question: "If x + 5 = 10, what is the value of x?",
+                options: ["2", "5", "10", "15"],
+                answer: 1
+            },
+            {
+                question: "What is the area of a circle with radius 7 cm?",
+                options: ["44 cm²", "154 cm²", "308 cm²", "616 cm²"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a prime number?",
+                options: ["21", "23", "25", "27"],
+                answer: 1
+            },
+            {
+                question: "What is the value of 5² + 12²?",
+                options: ["169", "179", "189", "199"],
+                answer: 0
+            },
+            {
+                question: "If a number is divisible by both 2 and 3, it must also be divisible by:",
+                options: ["5", "6", "8", "9"],
+                answer: 1
+            },
+            {
+                question: "What is the formula for the volume of a cylinder?",
+                options: ["πr²", "2πr", "πr²h", "2πrh"],
+                answer: 2
+            },
+            {
+                question: "Simplify: 2(x + 3) - 3(x - 1)",
+                options: ["-x + 9", "-x + 3", "x + 9", "x + 3"],
+                answer: 0
+            },
+            {
+                question: "What is the decimal equivalent of 3/8?",
+                options: ["0.325", "0.375", "0.425", "0.475"],
+                answer: 1
+            },
+            {
+                question: "Which of these is a Pythagorean triplet?",
+                options: ["(2, 3, 4)", "(5, 12, 13)", "(6, 7, 8)", "(8, 9, 10)"],
+                answer: 1
+            },
+            {
+                question: "What is the value of (-1)¹⁰⁰?",
+                options: ["-100", "-1", "0", "1"],
+                answer: 3
+            },
+            {
+                question: "If the angles of a quadrilateral are in the ratio 1:2:3:4, what is the measure of the largest angle?",
+                options: ["40°", "80°", "120°", "144°"],
+                answer: 3
+            },
+            {
+                question: "What is the next prime number after 41?",
+                options: ["42", "43", "45", "47"],
+                answer: 1
+            },
+            {
+                question: "Solve for x: 2x - 7 = 11",
+                options: ["x = 2", "x = 7", "x = 9", "x = 18"],
+                answer: 2
+            },
+            {
+                question: "What is the formula for the area of a triangle?",
+                options: ["½ × base × height", "base × height", "πr²", "length × width"],
+                answer: 0
+            },
+            {
+                question: "Which of these numbers is a perfect square?",
+                options: ["24", "36", "50", "72"],
+                answer: 1
+            },
+            {
+                question: "What is the sum of the angles in a pentagon?",
+                options: ["360°", "450°", "540°", "720°"],
+                answer: 2
+            },
+            {
+                question: "If 20% of a number is 50, what is the number?",
+                options: ["100", "200", "250", "500"],
+                answer: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedOption = null;
+        
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const feedbackElement = document.getElementById('feedback');
+        const submitButton = document.getElementById('submit-btn');
+        const checkButton = document.getElementById('check-btn');
+        const nextButton = document.getElementById('next-btn');
+        const progressElement = document.getElementById('progress');
+        const currentQuestionElement = document.getElementById('current-question');
+        const resultElement = document.getElementById('result');
+        const scoreElement = document.getElementById('score');
+        const messageElement = document.getElementById('message');
+        
+        // Initialize the quiz
+        function loadQuestion() {
+            currentQuestionElement.textContent = currentQuestion + 1;
+            progressElement.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+            
+            const question = questions[currentQuestion];
+            questionElement.textContent = question.question;
+            
+            optionsElement.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                optionElement.setAttribute('data-index', index);
+                optionElement.addEventListener('click', selectOption);
+                optionsElement.appendChild(optionElement);
+            });
+            
+            submitButton.style.display = 'block';
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            feedbackElement.style.display = 'none';
+            selectedOption = null;
+        }
+        
+        function selectOption(e) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            e.target.classList.add('selected');
+            selectedOption = parseInt(e.target.getAttribute('data-index'));
+            
+            // Enable submit button
+            submitButton.disabled = false;
+        }
+        
+        function checkAnswer() {
+            if (selectedOption === null) return;
+            
+            const question = questions[currentQuestion];
+            const isCorrect = selectedOption === question.answer;
+            
+            feedbackElement.style.display = 'block';
+            if (isCorrect) {
+                feedbackElement.textContent = "Correct! Well done.";
+                feedbackElement.className = "feedback correct";
+                score++;
+            } else {
+                feedbackElement.textContent = `Incorrect. The correct answer is: ${question.options[question.answer]}`;
+                feedbackElement.className = "feedback incorrect";
+            }
+            
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'block';
+        }
+        
+        function nextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                // Show results
+                document.getElementById('quiz-container').style.display = 'none';
+                resultElement.style.display = 'block';
+                scoreElement.textContent = score;
+                
+                // Set message based on score
+                if (score >= 18) {
+                    messageElement.textContent = "Excellent! You have a strong grasp of mathematics.";
+                } else if (score >= 12) {
+                    messageElement.textContent = "Good job! You have a solid understanding of the concepts.";
+                } else if (score >= 8) {
+                    messageElement.textContent = "Not bad! Keep practicing to improve your skills.";
+                } else {
+                    messageElement.textContent = "You need to study more. Keep trying!";
+                }
+            }
+        }
+        
+        // Event listeners
+        submitButton.addEventListener('click', function() {
+            if (selectedOption === null) {
+                alert("Please select an answer before submitting.");
+                return;
+            }
+            
+            submitButton.style.display = 'none';
+            checkButton.style.display = 'block';
+            
+            // Disable options after submission
+            document.querySelectorAll('.option').forEach(option => {
+                option.removeEventListener('click', selectOption);
+                option.style.cursor = 'default';
+            });
+        });
+        
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', nextQuestion);
+        
+        // Start the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

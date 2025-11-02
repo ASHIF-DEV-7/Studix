@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Mensuration Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .quiz-container {
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .question p {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .options label:hover {
+            background-color: #dfe6e9;
+            color: #2c3e50;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #3498db;
+        }
+        #submit-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #submit-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        #result {
+            text-align: center;
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f8f5;
+            border-radius: 10px;
+            display: none;
+            animation: slideIn 0.5s ease-in;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Class 10th Mensuration Quiz</h1>
+        <form id="quiz-form">
+            <!-- Question 1 -->
+            <div class="question">
+                <p>1. What is the area of a rectangle with length 6 cm and breadth 4 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> 24 cm²</label>
+                    <label><input type="radio" name="q1" value="b"> 20 cm²</label>
+                    <label><input type="radio" name="q1" value="c"> 10 cm²</label>
+                    <label><input type="radio" name="q1" value="d"> 12 cm²</label>
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <p>2. What is the perimeter of a square with side 5 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> 20 cm</label>
+                    <label><input type="radio" name="q2" value="b"> 25 cm</label>
+                    <label><input type="radio" name="q2" value="c"> 15 cm</label>
+                    <label><input type="radio" name="q2" value="d"> 10 cm</label>
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <p>3. What is the area of a circle with radius 7 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> 154 cm²</label>
+                    <label><input type="radio" name="q3" value="b"> 44 cm²</label>
+                    <label><input type="radio" name="q3" value="c"> 49 cm²</label>
+                    <label><input type="radio" name="q3" value="d"> 77 cm²</label>
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question">
+                <p>4. What is the circumference of a circle with diameter 14 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> 44 cm</label>
+                    <label><input type="radio" name="q4" value="b"> 88 cm</label>
+                    <label><input type="radio" name="q4" value="c"> 22 cm</label>
+                    <label><input type="radio" name="q4" value="d"> 28 cm</label>
+                </div>
+            </div>
+            <!-- Question 5 -->
+            <div class="question">
+                <p>5. What is the area of a triangle with base 8 cm and height 6 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> 24 cm²</label>
+                    <label><input type="radio" name="q5" value="b"> 48 cm²</label>
+                    <label><input type="radio" name="q5" value="c"> 12 cm²</label>
+                    <label><input type="radio" name="q5" value="d"> 36 cm²</label>
+                </div>
+            </div>
+            <!-- Question 6 -->
+            <div class="question">
+                <p>6. What is the volume of a cube with side 4 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="a"> 16 cm³</label>
+                    <label><input type="radio" name="q6" value="b"> 64 cm³</label>
+                    <label><input type="radio" name="q6" value="c"> 32 cm³</label>
+                    <label><input type="radio" name="q6" value="d"> 48 cm³</label>
+                </div>
+            </div>
+            <!-- Question 7 -->
+            <div class="question">
+                <p>7. What is the total surface area of a cube with side 6 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="a"> 216 cm²</label>
+                    <label><input type="radio" name="q7" value="b"> 36 cm²</label>
+                    <label><input type="radio" name="q7" value="c"> 144 cm²</label>
+                    <label><input type="radio" name="q7" value="d"> 108 cm²</label>
+                </div>
+            </div>
+            <!-- Question 8 -->
+            <div class="question">
+                <p>8. What is the volume of a cylinder with radius 3 cm and height 7 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="a"> 198 cm³</label>
+                    <label><input type="radio" name="q8" value="b"> 66 cm³</label>
+                    <label><input type="radio" name="q8" value="c"> 132 cm³</label>
+                    <label><input type="radio" name="q8" value="d"> 231 cm³</label>
+                </div>
+            </div>
+            <!-- Question 9 -->
+            <div class="question">
+                <p>9. What is the curved surface area of a cylinder with radius 5 cm and height 10 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> 220 cm²</label>
+                    <label><input type="radio" name="q9" value="b"> 314 cm²</label>
+                    <label><input type="radio" name="q9" value="c"> 110 cm²</label>
+                    <label><input type="radio" name="q9" value="d"> 157 cm²</label>
+                </div>
+            </div>
+            <!-- Question 10 -->
+            <div class="question">
+                <p>10. What is the volume of a sphere with radius 3 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> 36π cm³</label>
+                    <label><input type="radio" name="q10" value="b"> 108π cm³</label>
+                    <label><input type="radio" name="q10" value="c"> 113.14 cm³</label>
+                    <label><input type="radio" name="q10" value="d"> 81 cm³</label>
+                </div>
+            </div>
+            <!-- Question 11 -->
+            <div class="question">
+                <p>11. What is the surface area of a sphere with radius 7 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="a"> 616 cm²</label>
+                    <label><input type="radio" name="q11" value="b"> 308 cm²</label>
+                    <label><input type="radio" name="q11" value="c"> 154 cm²</label>
+                    <label><input type="radio" name="q11" value="d"> 462 cm²</label>
+                </div>
+            </div>
+            <!-- Question 12 -->
+            <div class="question">
+                <p>12. What is the area of a parallelogram with base 10 cm and height 5 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="a"> 50 cm²</label>
+                    <label><input type="radio" name="q12" value="b"> 25 cm²</label>
+                    <label><input type="radio" name="q12" value="c"> 15 cm²</label>
+                    <label><input type="radio" name="q12" value="d"> 100 cm²</label>
+                </div>
+            </div>
+            <!-- Question 13 -->
+            <div class="question">
+                <p>13. What is the perimeter of a rectangle with length 12 cm and breadth 8 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="a"> 40 cm</label>
+                    <label><input type="radio" name="q13" value="b"> 20 cm</label>
+                    <label><input type="radio" name="q13" value="c"> 96 cm</label>
+                    <label><input type="radio" name="q13" value="d"> 32 cm</label>
+                </div>
+            </div>
+            <!-- Question 14 -->
+            <div class="question">
+                <p>14. What is the volume of a cone with radius 6 cm and height 8 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="a"> 288π cm³</label>
+                    <label><input type="radio" name="q14" value="b"> 96π cm³</label>
+                    <label><input type="radio" name="q14" value="c"> 301.71 cm³</label>
+                    <label><input type="radio" name="q14" value="d"> 192 cm³</label>
+                </div>
+            </div>
+            <!-- Question 15 -->
+            <div class="question">
+                <p>15. What is the curved surface area of a cone with radius 3 cm and slant height 5 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="a"> 47.14 cm²</label>
+                    <label><input type="radio" name="q15" value="b"> 15 cm²</label>
+                    <label><input type="radio" name="q15" value="c"> 33 cm²</label>
+                    <label><input type="radio" name="q15" value="d"> 66 cm²</label>
+                </div>
+            </div>
+            <!-- Question 16 -->
+            <div class="question">
+                <p>16. What is the area of an equilateral triangle with side 6 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="a"> 9√3 cm²</label>
+                    <label><input type="radio" name="q16" value="b"> 18 cm²</label>
+                    <label><input type="radio" name="q16" value="c"> 6√3 cm²</label>
+                    <label><input type="radio" name="q16" value="d"> 12 cm²</label>
+                </div>
+            </div>
+            <!-- Question 17 -->
+            <div class="question">
+                <p>17. What is the total surface area of a cylinder with radius 4 cm and height 10 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="a"> 352 cm²</label>
+                    <label><input type="radio" name="q17" value="b"> 176 cm²</label>
+                    <label><input type="radio" name="q17" value="c"> 264 cm²</label>
+                    <label><input type="radio" name="q17" value="d"> 88 cm²</label>
+                </div>
+            </div>
+            <!-- Question 18 -->
+            <div class="question">
+                <p>18. What is the area of a sector of a circle with radius 14 cm and sector angle 60°? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="a"> 308/3 cm²</label>
+                    <label><input type="radio" name="q18" value="b"> 616 cm²</label>
+                    <label><input type="radio" name="q18" value="c"> 154 cm²</label>
+                    <label><input type="radio" name="q18" value="d"> 44 cm²</label>
+                </div>
+            </div>
+            <!-- Question 19 -->
+            <div class="question">
+                <p>19. What is the volume of a cuboid with length 5 cm, breadth 4 cm, and height 3 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="a"> 60 cm³</label>
+                    <label><input type="radio" name="q19" value="b"> 20 cm³</label>
+                    <label><input type="radio" name="q19" value="c"> 12 cm³</label>
+                    <label><input type="radio" name="q19" value="d"> 48 cm³</label>
+                </div>
+            </div>
+            <!-- Question 20 -->
+            <div class="question">
+                <p>20. What is the perimeter of an equilateral triangle with side 8 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="a"> 24 cm</label>
+                    <label><input type="radio" name="q20" value="b"> 16 cm</label>
+                    <label><input type="radio" name="q20" value="c"> 32 cm</label>
+                    <label><input type="radio" name="q20" value="d"> 12 cm</label>
+                </div>
+            </div>
+            <!-- Question 21 -->
+            <div class="question">
+                <p>21. What is the volume of a hemisphere with radius 6 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q21" value="a"> 144π cm³</label>
+                    <label><input type="radio" name="q21" value="b"> 288π cm³</label>
+                    <label><input type="radio" name="q21" value="c"> 72π cm³</label>
+                    <label><input type="radio" name="q21" value="d"> 432π cm³</label>
+                </div>
+            </div>
+            <!-- Question 22 -->
+            <div class="question">
+                <p>22. What is the total surface area of a hemisphere with radius 7 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q22" value="a"> 462 cm²</label>
+                    <label><input type="radio" name="q22" value="b"> 308 cm²</label>
+                    <label><input type="radio" name="q22" value="c"> 154 cm²</label>
+                    <label><input type="radio" name="q22" value="d"> 616 cm²</label>
+                </div>
+            </div>
+            <!-- Question 23 -->
+            <div class="question">
+                <p>23. What is the area of a trapezium with parallel sides 10 cm and 6 cm, and height 4 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q23" value="a"> 32 cm²</label>
+                    <label><input type="radio" name="q23" value="b"> 64 cm²</label>
+                    <label><input type="radio" name="q23" value="c"> 16 cm²</label>
+                    <label><input type="radio" name="q23" value="d"> 48 cm²</label>
+                </div>
+            </div>
+            <!-- Question 24 -->
+            <div class="question">
+                <p>24. What is the diagonal of a square with side 10 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q24" value="a"> 10√2 cm</label>
+                    <label><input type="radio" name="q24" value="b"> 20 cm</label>
+                    <label><input type="radio" name="q24" value="c"> 5√2 cm</label>
+                    <label><input type="radio" name="q24" value="d"> 10 cm</label>
+                </div>
+            </div>
+            <!-- Question 25 -->
+            <div class="question">
+                <p>25. What is the total surface area of a cuboid with dimensions 8 cm, 6 cm, and 4 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q25" value="a"> 208 cm²</label>
+                    <label><input type="radio" name="q25" value="b"> 192 cm²</label>
+                    <label><input type="radio" name="q25" value="c"> 144 cm²</label>
+                    <label><input type="radio" name="q25" value="d"> 96 cm²</label>
+                </div>
+            </div>
+            <!-- Question 26 -->
+            <div class="question">
+                <p>26. What is the area of a rhombus with diagonals 12 cm and 16 cm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q26" value="a"> 96 cm²</label>
+                    <label><input type="radio" name="q26" value="b"> 192 cm²</label>
+                    <label><input type="radio" name="q26" value="c"> 48 cm²</label>
+                    <label><input type="radio" name="q26" value="d"> 128 cm²</label>
+                </div>
+            </div>
+            <!-- Question 27 -->
+           <div class="question">
+                <p>27. What is the volume of a frustum of a cone with radii 6 cm, 3 cm, and height 4 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q27" value="a"> 132π cm³</label>
+                    <label><input type="radio" name="q27" value="b"> 396π cm³</label>
+                    <label><input type="radio" name="q27" value="c"> 198π cm³</label>
+                    <label><input type="radio" name="q27" value="d"> 66π cm³</label>
+                </div>
+            </div>
+            <!-- Question 28 -->
+            <div class="question">
+                <p>28. What is the perimeter of a semicircle with radius 7 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q28" value="a"> 36 cm</label>
+                    <label><input type="radio" name="q28" value="b"> 22 cm</label>
+                    <label><input type="radio" name="q28" value="c"> 29 cm</label>
+                    <label><input type="radio" name="q28" value="d"> 44 cm</label>
+                </div>
+            </div>
+            <!-- Question 29 -->
+            <div class="question">
+                <p>29. What is the lateral surface area of a cone with radius 4 cm and height 3 cm? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q29" value="a"> 88 cm²</label>
+                    <label><input type="radio" name="q29" value="b"> 44 cm²</label>
+                    <label><input type="radio" name="q29" value="c"> 20π cm²</label>
+                    <label><input type="radio" name="q29" value="d"> 62.86 cm²</label>
+                </div>
+            </div>
+            <!-- Question 30 -->
+            <div class="question">
+                <p>30. What is the area of a sector of a circle with radius 21 cm and sector angle 120°? (Use π = 22/7)</p>
+                <div class="options">
+                    <label><input type="radio" name="q30" value="a"> 462 cm²</label>
+                    <label><input type="radio" name="q30" value="b"> 1386 cm²</label>
+                    <label><input type="radio" name="q30" value="c"> 231 cm²</label>
+                    <label><input type="radio" name="q30" value="d"> 693 cm²</label>
+                </div>
+            </div>
+            <button type="button" id="submit-btn">Submit Quiz</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'a', q2: 'a', q3: 'a', q4: 'a', q5: 'a', q6: 'b', q7: 'a', q8: 'a', q9: 'a', q10: 'c',
+            q11: 'a', q12: 'a', q13: 'a', q14: 'c', q15: 'a', q16: 'a', q17: 'a', q18: 'a', q19: 'a', q20: 'a',
+            q21: 'a', q22: 'a', q23: 'a', q24: 'a', q25: 'a', q26: 'a', q27: 'c', q28: 'a', q29: 'd', q30: 'a'
+        };
+
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            let score = 0;
+            const form = document.getElementById('quiz-form');
+            const resultDiv = document.getElementById('result');
+
+            for (let i = 1; i <= 30; i++) {
+                const selected = form.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Your Score: ${score}/30 (${(score / 30 * 100).toFixed(2)}%)`;
+        });
+    </script>
+</body>
+</html>

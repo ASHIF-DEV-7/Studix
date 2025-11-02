@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe vs AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .difficulty-selector {
+            margin-bottom: 20px;
+        }
+
+        .difficulty-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .difficulty-btn.active {
+            background: #e74c3c;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 300px;
+            margin: 20px auto;
+            background: #34495e;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .cell {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cell:hover {
+            background: #ecf0f1;
+            transform: scale(1.05);
+        }
+
+        .cell.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .cell.x {
+            color: #e74c3c;
+            background: #ffebee;
+        }
+
+        .cell.o {
+            color: #3498db;
+            background: #e3f2fd;
+        }
+
+        .game-status {
+            margin: 20px 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .status-playing {
+            color: #2ecc71;
+        }
+
+        .status-win {
+            color: #e74c3c;
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        .status-draw {
+            color: #f39c12;
+        }
+
+        .status-ai-thinking {
+            color: #9b59b6;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn.secondary {
+            background: #95a5a6;
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+        }
+
+        .scoreboard {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 10px;
+        }
+
+        .score {
+            text-align: center;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .player-score { color: #e74c3c; }
+        .ai-score { color: #3498db; }
+        .draw-score { color: #f39c12; }
+
+        .ai-thinking {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: #9b59b6;
+            font-weight: bold;
+        }
+
+        .thinking-dots {
+            display: inline-block;
+        }
+
+        .thinking-dots::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .winning-line {
+            position: relative;
+            z-index: 10;
+        }
+
+        .winning-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 4px;
+            background: #e74c3c;
+            border-radius: 2px;
+            animation: drawLine 0.5s ease-out;
+        }
+
+        @keyframes drawLine {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .game-mode {
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .mode-btn.active {
+            background: #8e44ad;
+            box-shadow: 0 3px 10px rgba(142, 68, 173, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .game-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cell {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+
+            .game-board {
+                max-width: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎯 Tic Tac Toe</h1>
+        <p class="subtitle">Challenge the AI!</p>
+        
+        <div class="game-mode">
+            <button class="mode-btn active" onclick="setGameMode('ai')">vs AI</button>
+            <button class="mode-btn" onclick="setGameMode('human')">2 Players</button>
+        </div>
+
+        <div class="difficulty-selector" id="difficultySelector">
+            <button class="difficulty-btn active" onclick="setDifficulty('easy')">Easy</button>
+            <button class="difficulty-btn" onclick="setDifficulty('medium')">Medium</button>
+            <button class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
+        </div>
+
+        <div class="scoreboard">
+            <div class="score">
+                <div class="score-label">You</div>
+                <div class="score-value player-score" id="playerScore">0</div>
+            </div>
+            <div class="score">
+                <div class="score-label">Draws</div>
+                <div class="score-value draw-score" id="drawScore">0</div>
+            </div>
+            <div class="score">
+                <div class="score-label" id="opponentLabel">AI</div>
+                <div class="score-value ai-score" id="aiScore">0</div>
+            </div>
+        </div>
+
+        <div class="game-status status-playing" id="gameStatus">Your turn! Click a cell</div>
+
+        <div class="game-board" id="gameBoard">
+            <button class="cell" onclick="makeMove(0)"></button>
+            <button class="cell" onclick="makeMove(1)"></button>
+            <button class="cell" onclick="makeMove(2)"></button>
+            <button class="cell" onclick="makeMove(3)"></button>
+            <button class="cell" onclick="makeMove(4)"></button>
+            <button class="cell" onclick="makeMove(5)"></button>
+            <button class="cell" onclick="makeMove(6)"></button>
+            <button class="cell" onclick="makeMove(7)"></button>
+            <button class="cell" onclick="makeMove(8)"></button>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="resetGame()">🔄 New Game</button>
+            <button class="btn secondary" onclick="resetScore()">📊 Reset Score</button>
+        </div>
+    </div>
+
+    <script>
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameActive = true;
+        let gameMode = 'ai'; // 'ai' or 'human'
+        let difficulty = 'medium'; // 'easy', 'medium', 'hard'
+        let scores = { player: 0, ai: 0, draws: 0 };
+
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6] // Diagonals
+        ];
+
+        function setGameMode(mode) {
+            gameMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const difficultySelector = document.getElementById('difficultySelector');
+            const opponentLabel = document.getElementById('opponentLabel');
+            
+            if (mode === 'ai') {
+                difficultySelector.style.display = 'block';
+                opponentLabel.textContent = 'AI';
+            } else {
+                difficultySelector.style.display = 'none';
+                opponentLabel.textContent = 'Player 2';
+            }
+            
+            resetGame();
+        }
+
+        function setDifficulty(level) {
+            difficulty = level;
+            document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            resetGame();
+        }
+
+        function makeMove(index) {
+            if (board[index] !== '' || !gameActive) return;
+            
+            board[index] = currentPlayer;
+            updateBoard();
+            
+            if (checkWin()) {
+                endGame(currentPlayer);
+                return;
+            }
+            
+            if (board.every(cell => cell !== '')) {
+                endGame('draw');
+                return;
+            }
+            
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            
+            if (gameMode === 'ai' && currentPlayer === 'O') {
+                document.getElementById('gameStatus').innerHTML = 
+                    '<div class="ai-thinking">🤖 AI is thinking<span class="thinking-dots"></span></div>';
+                document.getElementById('gameStatus').className = 'game-status status-ai-thinking';
+                
+                setTimeout(() => {
+                    if (gameActive) {
+                        aiMove();
+                    }
+                }, 1000);
+            } else {
+                updateStatus();
+            }
+        }
+
+        function aiMove() {
+            let move;
+            
+            switch(difficulty) {
+                case 'easy':
+                    move = easyAI();
+                    break;
+                case 'medium':
+                    move = mediumAI();
+                    break;
+                case 'hard':
+                    move = hardAI();
+                    break;
+            }
+            
+            if (move !== -1) {
+                board[move] = 'O';
+                updateBoard();
+                
+                if (checkWin()) {
+                    endGame('O');
+                    return;
+                }
+                
+                if (board.every(cell => cell !== '')) {
+                    endGame('draw');
+                    return;
+                }
+                
+                currentPlayer = 'X';
+                updateStatus();
+            }
+        }
+
+        function easyAI() {
+            // Random move
+            const availableMoves = board.map((cell, index) => cell === '' ? index : null)
+                                       .filter(val => val !== null);
+            return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+        }
+
+        function mediumAI() {
+            // 70% smart moves, 30% random
+            if (Math.random() < 0.7) {
+                return hardAI();
+            } else {
+                return easyAI();
+            }
+        }
+
+        function hardAI() {
+            // Minimax algorithm
+            return minimax(board, 'O').index;
+        }
+
+        function minimax(newBoard, player) {
+            const availableSpots = newBoard.map((cell, index) => cell === '' ? index : null)
+                                          .filter(val => val !== null);
+
+            if (checkWinForBoard(newBoard, 'X')) {
+                return { score: -10 };
+            } else if (checkWinForBoard(newBoard, 'O')) {
+                return { score: 10 };
+            } else if (availableSpots.length === 0) {
+                return { score: 0 };
+            }
+
+            const moves = [];
+
+            for (let i = 0; i < availableSpots.length; i++) {
+                const move = {};
+                move.index = availableSpots[i];
+                newBoard[availableSpots[i]] = player;
+
+                if (player === 'O') {
+                    const result = minimax(newBoard, 'X');
+                    move.score = result.score;
+                } else {
+                    const result = minimax(newBoard, 'O');
+                    move.score = result.score;
+                }
+
+                newBoard[availableSpots[i]] = '';
+                moves.push(move);
+            }
+
+            let bestMove;
+            if (player === 'O') {
+                let bestScore = -10000;
+                for (let i = 0; i < moves.length; i++) {
+                    if (moves[i].score > bestScore) {
+                        bestScore = moves[i].score;
+                        bestMove = i;
+                    }
+                }
+            } else {
+                let bestScore = 10000;
+                for (let i = 0; i < moves.length; i++) {
+                    if (moves[i].score < bestScore) {
+                        bestScore = moves[i].score;
+                        bestMove = i;
+                    }
+                }
+            }
+
+            return moves[bestMove];
+        }
+
+        function checkWinForBoard(board, player) {
+            return winPatterns.some(pattern => 
+                pattern.every(index => board[index] === player)
+            );
+        }
+
+        function checkWin() {
+            return winPatterns.find(pattern => 
+                pattern.every(index => board[index] === currentPlayer)
+            );
+        }
+
+        function updateBoard() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                cell.textContent = board[index];
+                cell.className = 'cell';
+                if (board[index] !== '') {
+                    cell.classList.add(board[index].toLowerCase());
+                    cell.classList.add('disabled');
+                }
+            });
+        }
+
+        function updateStatus() {
+            const status = document.getElementById('gameStatus');
+            if (gameMode === 'ai') {
+                status.textContent = currentPlayer === 'X' ? 'Your turn!' : "AI's turn";
+            } else {
+                status.textContent = `Player ${currentPlayer}'s turn`;
+            }
+            status.className = 'game-status status-playing';
+        }
+
+        function endGame(winner) {
+            gameActive = false;
+            const status = document.getElementById('gameStatus');
+            
+            if (winner === 'draw') {
+                status.textContent = "It's a draw! 🤝";
+                status.className = 'game-status status-draw';
+                scores.draws++;
+                document.getElementById('drawScore').textContent = scores.draws;
+            } else {
+                const winningPattern = checkWin();
+                if (winningPattern) {
+                    winningPattern.forEach(index => {
+                        document.querySelectorAll('.cell')[index].classList.add('winning-line');
+                    });
+                }
+                
+                if (gameMode === 'ai') {
+                    if (winner === 'X') {
+                        status.textContent = "You won! 🎉";
+                        status.className = 'game-status status-win';
+                        scores.player++;
+                        document.getElementById('playerScore').textContent = scores.player;
+                    } else {
+                        status.textContent = "AI won! 🤖";
+                        status.className = 'game-status status-win';
+                        scores.ai++;
+                        document.getElementById('aiScore').textContent = scores.ai;
+                    }
+                } else {
+                    status.textContent = `Player ${winner} won! 🎉`;
+                    status.className = 'game-status status-win';
+                    if (winner === 'X') {
+                        scores.player++;
+                        document.getElementById('playerScore').textContent = scores.player;
+                    } else {
+                        scores.ai++;
+                        document.getElementById('aiScore').textContent = scores.ai;
+                    }
+                }
+            }
+            
+            // Disable all cells
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.add('disabled');
+            });
+        }
+
+        function resetGame() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            gameActive = true;
+            
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+                cell.className = 'cell';
+            });
+            
+            updateStatus();
+        }
+
+        function resetScore() {
+            scores = { player: 0, ai: 0, draws: 0 };
+            document.getElementById('playerScore').textContent = '0';
+            document.getElementById('aiScore').textContent = '0';
+            document.getElementById('drawScore').textContent = '0';
+            resetGame();
+        }
+
+        // Initialize game
+        updateStatus();
+    </script>
+</body>
+</html>

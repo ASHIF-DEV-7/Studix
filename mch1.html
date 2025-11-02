@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 - Real Numbers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5)); }
+            to { filter: drop-shadow(0 0 15px rgba(118, 75, 162, 0.8)); }
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 1.4rem;
+            margin: 25px 0 10px 0;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        p, li {
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        li:hover {
+            color: #667eea;
+            transform: translateX(10px);
+        }
+
+        .definition {
+            background: linear-gradient(135deg, #e6f3ff, #f0f8ff);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #667eea;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
+        }
+
+        .example {
+            background: linear-gradient(135deg, #fff5f5, #ffe6e6);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #e53e3e;
+            animation: slideInRight 1.2s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .example h4 {
+            color: #e53e3e;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            animation: flash 2s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .formula {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            border: 2px solid #cbd5e0;
+            animation: rotateIn 1.5s ease-out;
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotateX(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #2d3748;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .step {
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            animation: expandIn 1s ease-out;
+        }
+
+        @keyframes expandIn {
+            from {
+                opacity: 0;
+                transform: scaleY(0);
+            }
+            to {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-number {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .floating-number:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-number:nth-child(2) { left: 30%; animation-delay: 3s; }
+        .floating-number:nth-child(3) { left: 50%; animation-delay: 6s; }
+        .floating-number:nth-child(4) { left: 70%; animation-delay: 9s; }
+        .floating-number:nth-child(5) { left: 90%; animation-delay: 12s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
+            p, li { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-number">π</div>
+        <div class="floating-number">√2</div>
+        <div class="floating-number">∞</div>
+        <div class="floating-number">∑</div>
+        <div class="floating-number">∫</div>
+    </div>
+
+    <div class="main-content">
+        <h1>Real Numbers - Class 10</h1>
+        
+        <div class="definition">
+            <h3>Definition of Real Numbers</h3>
+            <p>Real numbers are the set of all rational and irrational numbers. They include all numbers that can be represented on the number line.</p>
+        </div>
+
+        <h2>Key Points about Real Numbers</h2>
+        <ul>
+            <li>Real numbers include both <span class="highlight">rational</span> and <span class="highlight">irrational</span> numbers</li>
+            <li>Rational numbers can be expressed as p/q where p and q are integers and q ≠ 0</li>
+            <li>Irrational numbers cannot be expressed as a fraction of two integers</li>
+            <li>Every rational number has either a terminating or repeating decimal representation</li>
+            <li>Irrational numbers have non-terminating, non-repeating decimal representations</li>
+            <li>The set of real numbers is denoted by the symbol ℝ</li>
+            <li>Real numbers satisfy the properties of closure, commutativity, and associativity</li>
+            <li>Zero is the additive identity for real numbers</li>
+            <li>One is the multiplicative identity for real numbers</li>
+            <li>Every real number (except zero) has a multiplicative inverse</li>
+            <li>The distributive property holds for real numbers: a(b + c) = ab + ac</li>
+            <li>Real numbers are ordered, meaning any two real numbers can be compared</li>
+            <li>The density property states that between any two real numbers, there exists another real number</li>
+            <li>Real numbers include natural numbers, whole numbers, integers, and decimals</li>
+            <li>√2, √3, π, and e are examples of irrational numbers</li>
+            <li>0.5, -3, 7/4, and 2.25 are examples of rational numbers</li>
+            <li>The sum of two rational numbers is always rational</li>
+            <li>The sum of a rational and an irrational number is always irrational</li>
+            <li>The product of two non-zero rational numbers is always rational</li>
+            <li>The product of a non-zero rational and an irrational number is always irrational</li>
+            <li>Real numbers can be represented geometrically on the number line</li>
+            <li>The absolute value of a real number represents its distance from zero</li>
+            <li>Real numbers form a complete ordered field</li>
+            <li>Every bounded set of real numbers has a least upper bound (supremum)</li>
+            <li>Real numbers are used in measuring continuous quantities like length, area, and volume</li>
+        </ul>
+
+        <h2>Important Theorems and Properties</h2>
+        
+        <h3>Euclid's Division Algorithm</h3>
+        <div class="definition">
+            <p>For any two positive integers a and b, there exist unique integers q and r such that:</p>
+            <div class="formula">a = bq + r, where 0 ≤ r < b</div>
+            <p>Here, a is the dividend, b is the divisor, q is the quotient, and r is the remainder.</p>
+        </div>
+
+        <h3>Fundamental Theorem of Arithmetic</h3>
+        <div class="definition">
+            <p>Every composite number can be expressed as a product of primes, and this factorization is unique, apart from the order of the prime factors.</p>
+        </div>
+
+        <h2>Solved Examples</h2>
+
+        <div class="example">
+            <h4>Example 1: Using Euclid's Division Algorithm</h4>
+            <p><strong>Problem:</strong> Use Euclid's division algorithm to find the HCF of 455 and 42.</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Apply the division algorithm to 455 and 42<br>
+                455 = 42 × 10 + 35
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Since remainder ≠ 0, apply the algorithm to 42 and 35<br>
+                42 = 35 × 1 + 7
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Since remainder ≠ 0, apply the algorithm to 35 and 7<br>
+                35 = 7 × 5 + 0
+            </div>
+            
+            <div class="step">
+                <strong>Answer:</strong> Since the remainder is now 0, HCF(455, 42) = 7
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example 2: Proving Irrationality</h4>
+            <p><strong>Problem:</strong> Prove that √3 is an irrational number.</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Assume √3 is rational, i.e., √3 = p/q where p, q are integers with no common factor and q ≠ 0
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Squaring both sides: 3 = p²/q²<br>
+                Therefore: 3q² = p²
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> This means p² is divisible by 3, so p is also divisible by 3<br>
+                Let p = 3k for some integer k
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Substituting: 3q² = (3k)² = 9k²<br>
+                Therefore: q² = 3k²
+            </div>
+            
+            <div class="step">
+                <strong>Step 5:</strong> This means q² is divisible by 3, so q is also divisible by 3<br>
+                But this contradicts our assumption that p and q have no common factor
+            </div>
+            
+            <div class="step">
+                <strong>Answer:</strong> Therefore, √3 is irrational
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example 3: Finding LCM and HCF</h4>
+            <p><strong>Problem:</strong> Find the LCM and HCF of 12 and 18 using prime factorization.</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Find prime factorization<br>
+                12 = 2² × 3<br>
+                18 = 2 × 3²
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> For HCF, take the lowest power of common prime factors<br>
+                Common factors: 2 and 3<br>
+                HCF = 2¹ × 3¹ = 6
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> For LCM, take the highest power of all prime factors<br>
+                LCM = 2² × 3² = 4 × 9 = 36
+            </div>
+            
+            <div class="step">
+                <strong>Verification:</strong> HCF × LCM = 6 × 36 = 216<br>
+                12 × 18 = 216 ✓
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example 4: Decimal Representation</h4>
+            <p><strong>Problem:</strong> Without actually performing the division, determine whether 17/8 has a terminating or non-terminating decimal representation.</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Check if the fraction is in its simplest form<br>
+                HCF(17, 8) = 1, so 17/8 is already in simplest form
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Find the prime factorization of the denominator<br>
+                8 = 2³
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Check if the denominator has factors other than 2 and 5<br>
+                Since 8 = 2³ has only powers of 2, the decimal will be terminating
+            </div>
+            
+            <div class="step">
+                <strong>Answer:</strong> 17/8 has a terminating decimal representation<br>
+                (17/8 = 2.125)
+            </div>
+        </div>
+
+        <div class="definition">
+            <h3>Remember</h3>
+            <p>A rational number p/q (in lowest terms) has a terminating decimal representation if and only if the prime factorization of q contains only powers of 2 and 5.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add staggered animation delays to list items
+        document.addEventListener('DOMContentLoaded', function() {
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add scroll-triggered animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            const animatedElements = document.querySelectorAll('.example, .definition');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+    /* General styles for a clean, millennial aesthetic */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    color: #334e68;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+/* Add these new classes to your existing style.css file */
+
+.option-btn.correct {
+    background-color: #d4edda; /* Light green background */
+    border-color: #28a745;     /* Dark green border */
+    color: #155724;           /* Dark text */
+    font-weight: 600;
+    pointer-events: none; /* Disable clicking after selecting */
+}
+
+.option-btn.wrong {
+    background-color: #f8d7da; /* Light red background */
+    border-color: #dc3545;     /* Dark red border */
+    color: #721c24;           /* Dark text */
+    font-weight: 600;
+    pointer-events: none; /* Disable clicking after selecting */
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    text-align: center;
+    color: #102a43;
+    margin-bottom: 30px;
+    font-weight: 600;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #5d7e99;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Chapter box grid for the dashboard */
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.chapter-box {
+    background-color: #e6eef7;
+    border: none;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: #334e68;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.chapter-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(93, 126, 153, 0.1) 0%, rgba(93, 126, 153, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chapter-box:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.chapter-box:hover::before {
+    opacity: 1;
+}
+
+.box-content h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #102a43;
+}
+
+.box-content p {
+    font-size: 0.9em;
+    color: #5d7e99;
+}
+
+/* Quiz section styling for embedded questions */
+.quiz-section-container {
+    background-color: #f8faff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: none; /* Initially hidden */
+}
+
+.quiz-section-container.active {
+    display: block;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.question-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.question-text {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #102a43;
+    line-height: 1.6;
+    margin-top: 0;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.option-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #cedbe9;
+    background-color: #ffffff;
+    text-align: left;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #334e68;
+}
+
+.option-btn:hover {
+    background-color: #e6eef7;
+    border-color: #9fb3c8;
+    transform: translateX(5px);
+}
+
+.option-btn.correct {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.option-btn.wrong {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+/* Animations for smoothness */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Class 10 Physics Quizzes</h1>
+        <div class="chapters-grid">
+            <a href="quiz.html" class="chapter-box">
+                <div class="box-content">
+                    <h2>Light: Reflection & Refraction</h2>
+                    <p>Redirects to quiz page</p>
+                </div>
+            </a>
+            <div class="chapter-box" data-chapter="humanEye">
+                <div class="box-content">
+                    <h2>Human Eye & Colourful World</h2>
+                    <p>Starts quiz on this page</p>
+                </div>
+            </div>
+            <div class="chapter-box" data-chapter="electricity">
+                <div class="box-content">
+                    <h2>Electricity</h2>
+                    <p>Starts quiz on this page</p>
+                </div>
+            </div>
+            <div class="chapter-box" data-chapter="magneticEffects">
+                <div class="box-content">
+                    <h2>Magnetic Effects of Current</h2>
+                    <p>Starts quiz on this page</p>
+                </div>
+            </div>
+        </div>
+        <div id="quiz-section" class="quiz-section-container">
+            </div>
+    </div>
+    
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const chapterBoxes = document.querySelectorAll('.chapter-box');
+    const quizSection = document.getElementById('quiz-section');
+
+    const chapterQuestions = {
+        humanEye: [
+            {
+                question: "1. The human eye forms the image of an object at its:",
+                options: ["A) Cornea", "B) Iris", "C) Pupil", "D) Retina"],
+                answer: "D) Retina"
+            },
+            {
+                question: "2. The ability of the eye lens to adjust its focal length is called:",
+                options: ["A) Myopia", "B) Hypermetropia", "C) Power of accommodation", "D) Presbyopia"],
+                answer: "C) Power of accommodation"
+            },
+            {
+                question: "3. Myopia is the condition of an eye in which the image of a distant object is formed:",
+                options: ["A) on the retina", "B) behind the retina", "C) in front of the retina", "D) on the blind spot"],
+                answer: "C) in front of the retina"
+            },
+            {
+                question: "4. The prism splits the incident white light into seven colours. This phenomenon is called:",
+                options: ["A) Refraction", "B) Dispersion", "C) Reflection", "D) Scattering"],
+                answer: "B) Dispersion"
+            },
+            {
+                question: "5. The red colour of the sun at sunrise and sunset is due to:",
+                options: ["A) Reflection", "B) Refraction", "C) Scattering of light", "D) Dispersion of light"],
+                answer: "C) Scattering of light"
+            },
+            {
+                question: "6. The change in the focal length of the eye lens is caused by the action of the:",
+                options: ["A) Pupil", "B) Retina", "C) Ciliary muscles", "D) Optic nerve"],
+                answer: "C) Ciliary muscles"
+            },
+            {
+                question: "7. The least distance of distinct vision for a normal human eye is about:",
+                options: ["A) 25 cm", "B) 2.5 cm", "C) 25 m", "D) 2.5 m"],
+                answer: "A) 25 cm"
+            },
+            {
+                question: "8. The far point of a normal human eye is:",
+                options: ["A) 25 cm", "B) 2.5 m", "C) Infinity", "D) 25 m"],
+                answer: "C) Infinity"
+            },
+            {
+                question: "9. Which part of the eye controls the amount of light entering the eye?",
+                options: ["A) Cornea", "B) Iris", "C) Lens", "D) Retina"],
+                answer: "B) Iris"
+            },
+            {
+                question: "10. Which defect of vision is also known as short-sightedness?",
+                options: ["A) Myopia", "B) Hypermetropia", "C) Presbyopia", "D) Astigmatism"],
+                answer: "A) Myopia"
+            }
+        ],
+        electricity: [
+            {
+                question: "1. The SI unit of electric current is:",
+                options: ["A) Ohm", "B) Volt", "C) Ampere", "D) Watt"],
+                answer: "C) Ampere"
+            },
+            {
+                question: "2. What is the amount of work done in moving a charge of 2C across two points with a potential difference of 12V?",
+                options: ["A) 6 J", "B) 24 J", "C) 12 J", "D) 0.16 J"],
+                answer: "B) 24 J"
+            },
+            {
+                question: "3. The resistance of a conductor is directly proportional to its:",
+                options: ["A) Length", "B) Area of cross-section", "C) Temperature", "D) Voltage"],
+                answer: "A) Length"
+            },
+            {
+                question: "4. A fuse wire is made of an alloy of tin and lead. It has a:",
+                options: ["A) high melting point and low resistance", "B) low melting point and high resistance", "C) low melting point and low resistance", "D) high melting point and high resistance"],
+                answer: "B) low melting point and high resistance"
+            },
+            {
+                question: "5. The heating effect of electric current is used in:",
+                options: ["A) Electric motor", "B) Electric generator", "C) Electric heater", "D) Transformer"],
+                answer: "C) Electric heater"
+            },
+            {
+                question: "6. What is the equivalent resistance of three resistors, each of resistance R, connected in parallel?",
+                options: ["A) 3R", "B) R/3", "C) R + 3", "D) 1/3R"],
+                answer: "B) R/3"
+            },
+            {
+                question: "7. The instrument used to measure electric current is:",
+                options: ["A) Voltmeter", "B) Ammeter", "C) Galvanometer", "D) Ohmmeter"],
+                answer: "B) Ammeter"
+            },
+            {
+                question: "8. The work done per unit charge is defined as:",
+                options: ["A) Current", "B) Power", "C) Voltage", "D) Resistance"],
+                answer: "C) Voltage"
+            },
+            {
+                question: "9. A conductor has a resistance of 10 Ω. If a potential difference of 50 V is applied across it, what will be the current flowing through it?",
+                options: ["A) 5 A", "B) 0.5 A", "C) 500 A", "D) 10 A"],
+                answer: "A) 5 A"
+            },
+            {
+                question: "10. Which of the following is an insulator?",
+                options: ["A) Copper", "B) Aluminium", "C) Wood", "D) Mercury"],
+                answer: "C) Wood"
+            }
+        ],
+        magneticEffects: [
+            {
+                question: "1. The direction of the magnetic field lines around a straight current-carrying conductor is given by:",
+                options: ["A) Fleming's Left-Hand Rule", "B) Fleming's Right-Hand Rule", "C) Maxwell's Corkscrew Rule", "D) Right-Hand Thumb Rule"],
+                answer: "D) Right-Hand Thumb Rule"
+            },
+            {
+                question: "2. An electric motor converts:",
+                options: ["A) Electrical energy to mechanical energy", "B) Mechanical energy to electrical energy", "C) Chemical energy to electrical energy", "D) Electrical energy to sound energy"],
+                answer: "A) Electrical energy to mechanical energy"
+            },
+            {
+                question: "3. The phenomenon of electromagnetic induction is:",
+                options: ["A) The process of charging a body", "B) The process of generating magnetic field due to current", "C) The process of generating induced current in a coil due to relative motion with a magnet", "D) The process of heating a body"],
+                answer: "C) The process of generating induced current in a coil due to relative motion with a magnet"
+            },
+            {
+                question: "4. The magnetic field lines inside a long current-carrying solenoid are:",
+                options: ["A) Parallel straight lines", "B) Circular loops", "C) Curved lines", "D) Diverging from the centre"],
+                answer: "A) Parallel straight lines"
+            },
+            {
+                question: "5. Which rule is used to determine the direction of the force on a current-carrying conductor in a magnetic field?",
+                options: ["A) Right-Hand Thumb Rule", "B) Fleming's Left-Hand Rule", "C) Fleming's Right-Hand Rule", "D) Ohm's Law"],
+                answer: "B) Fleming's Left-Hand Rule"
+            },
+            {
+                question: "6. A device that works on the principle of electromagnetic induction is:",
+                options: ["A) Electric bell", "B) Electric generator", "C) Electric motor", "D) Electric heater"],
+                answer: "B) Electric generator"
+            },
+            {
+                question: "7. The strength of the magnetic field produced by a solenoid can be increased by:",
+                options: ["A) decreasing the current", "B) increasing the number of turns", "C) increasing the diameter of the wire", "D) using a non-magnetic core"],
+                answer: "B) increasing the number of turns"
+            },
+            {
+                question: "8. The core of an electromagnet is made of:",
+                options: ["A) Steel", "B) Iron", "C) Copper", "D) Aluminium"],
+                answer: "B) Iron"
+            },
+            {
+                question: "9. The frequency of AC (alternating current) in India is:",
+                options: ["A) 25 Hz", "B) 50 Hz", "C) 60 Hz", "D) 100 Hz"],
+                answer: "B) 50 Hz"
+            },
+            {
+                question: "10. The phenomenon of short circuiting occurs when:",
+                options: ["A) A switch is turned on", "B) A switch is turned off", "C) Live and neutral wires touch each other", "D) An appliance is connected to the circuit"],
+                answer: "C) Live and neutral wires touch each other"
+            }
+        ]
+    };
+
+    function renderQuiz(chapter) {
+        const questions = chapterQuestions[chapter];
+        let quizHTML = '';
+
+        if (!questions) {
+            quizSection.innerHTML = '<p>No questions available for this chapter.</p>';
+            return;
+        }
+
+        questions.forEach((q, index) => {
+            quizHTML += `
+                <div class="question-card" data-answer="${q.answer}">
+                    <p class="question-text">${q.question}</p>
+                    <div class="options">
+                        ${q.options.map(option => `<button class="option-btn">${option}</button>`).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        
+        quizSection.innerHTML = quizHTML;
+        quizSection.classList.add('active'); // Show the quiz section
+        addQuizLogic(); // Call the new function to add click listeners
+    }
+
+    function addQuizLogic() {
+        const questionCards = document.querySelectorAll('.question-card');
+        questionCards.forEach(card => {
+            const correctAnswer = card.dataset.answer;
+            const options = card.querySelectorAll('.option-btn');
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Check if an option has already been selected for this question
+                    if (card.classList.contains('answered')) {
+                        return; // Exit if already answered
+                    }
+
+                    card.classList.add('answered'); // Mark question as answered
+
+                    if (option.textContent === correctAnswer) {
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('wrong');
+                        // Optional: Highlight the correct answer as well
+                        options.forEach(o => {
+                            if (o.textContent === correctAnswer) {
+                                o.classList.add('correct');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    }
+
+    chapterBoxes.forEach(box => {
+        box.addEventListener('click', (event) => {
+            const chapter = box.dataset.chapter;
+            if (chapter) {
+                event.preventDefault(); // Stop the default link behavior
+                renderQuiz(chapter);
+            }
+        });
+    });
+});
+
+</script>
+</html>

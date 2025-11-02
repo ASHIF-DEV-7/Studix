@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Studix</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #3498DB;
+            --accent-hover: #2980B9;
+        }
+
+        body.dark-mode {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #2a2a2a;
+            --card-bg: #1a1a1a;
+            --shadow: rgba(255, 255, 255, 0.05);
+            --accent: #3ea6ff;
+            --accent-hover: #5ab3ff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background 0.5s ease, color 0.5s ease;
+            padding-bottom: 70px;
+        }
+
+        .header {
+            background: var(--bg-primary);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            gap: 12px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s, background 0.2s;
+            color: var(--text-primary);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .back-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 640px;
+            display: flex;
+        }
+
+        .search-wrapper {
+            display: flex;
+            flex: 1;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .search-wrapper:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            background: var(--bg-secondary);
+            border: none;
+            padding: 10px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-btn {
+            background: var(--accent);
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .clear-btn {
+            background: none;
+            border: none;
+            padding: 0 12px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            display: none;
+            transition: color 0.2s;
+        }
+
+        .clear-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .clear-btn.show {
+            display: block;
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .theme-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon {
+            width: 22px;
+            height: 22px;
+            color: #f59e0b;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon.sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .theme-icon.moon {
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+            position: absolute;
+            color: #60a5fa;
+        }
+
+        body.dark-mode .theme-icon-wrapper {
+            background: #1e3a5f;
+        }
+
+        body.dark-mode .theme-icon.sun {
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+        }
+
+        body.dark-mode .theme-icon.moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .search-stats {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .stats-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stats-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .stats-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .stats-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 6px;
+            background: var(--bg-secondary);
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .view-btn {
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .view-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .view-btn.active {
+            background: var(--card-bg);
+            color: var(--accent);
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .view-btn svg {
+            display: block;
+        }
+
+        .chips {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .chips::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .chips::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+
+        .chips::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .chips::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        .chip {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chip:hover {
+            background: var(--card-bg);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .chip.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
+        }
+
+        .results-info {
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: none;
+        }
+
+        .results-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .results-grid.grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .results-grid.grid-view .video-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results-grid.grid-view .result-header {
+            flex: 1;
+        }
+
+        .video-card {
+            text-decoration: none;
+            color: var(--text-primary);
+            display: block;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .video-card:hover .video-title {
+            color: var(--accent);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            gap: 12px;
+        }
+
+        .video-title {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-primary);
+            flex: 1;
+            transition: color 0.3s;
+        }
+
+        .result-badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .video-metadata {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .categories {
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .category-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .category-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 12px;
+            transition: transform 0.3s;
+            color: var(--accent);
+        }
+
+        .category-item:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .category-name {
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .category-count {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .no-results-icon {
+            font-size: 60px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .no-results-text {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .no-results-hint {
+            font-size: 13px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 90;
+            padding: 0 8px;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .bottom-nav-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 12px;
+            opacity: 0.1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .bottom-nav-item:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-item.active {
+            color: var(--accent);
+        }
+
+        .bottom-nav-item.active::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bottom-nav-item.active .bottom-nav-icon {
+            transform: scale(1.1);
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1.1); }
+            50% { transform: scale(1.25); }
+        }
+
+        .bottom-nav-label {
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-item.active .bottom-nav-label {
+            font-weight: 600;
+        }
+
+        /* Loading Animation - Removed */
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .search-container {
+                order: 3;
+                width: 100%;
+                max-width: none;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-stats {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chips {
+                padding: 6px;
+            }
+
+            .chip {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .results-grid.grid-view {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <a href="main.html" class="logo">Studix Search</a>
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        id="searchInput"
+                        placeholder="Search notes, formulas, PYQs..."
+                        autocomplete="off"
+                        enterkeyhint="search"
+                    >
+                    <button class="clear-btn" id="clearBtn" onclick="clearSearch()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                    <button class="search-btn" onclick="performSearch()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <div class="theme-icon-wrapper">
+                    <svg class="theme-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                        <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <svg class="theme-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-stats" id="searchStats" style="display:none;">
+            <div class="stats-left">
+                <div class="stats-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </div>
+                <div class="stats-info">
+                    <h3 id="resultsCount">0 Results</h3>
+                    <p id="searchQuery">Search results</p>
+                </div>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="list" onclick="toggleView('list')" title="List View">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="8" y1="6" x2="21" y2="6"/>
+                        <line x1="8" y1="12" x2="21" y2="12"/>
+                        <line x1="8" y1="18" x2="21" y2="18"/>
+                        <line x1="3" y1="6" x2="3.01" y2="6"/>
+                        <line x1="3" y1="12" x2="3.01" y2="12"/>
+                        <line x1="3" y1="18" x2="3.01" y2="18"/>
+                    </svg>
+                </button>
+                <button class="view-btn" data-view="grid" onclick="toggleView('grid')" title="Grid View">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="chips">
+            <button class="chip active" data-filter="all">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                All
+            </button>
+            <button class="chip" data-filter="math_notes">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M2 12h20"/>
+                </svg>
+                Math Notes
+            </button>
+            <button class="chip" data-filter="english_notes">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                </svg>
+                English Notes
+            </button>
+            <button class="chip" data-filter="sci_notes">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 2v6m6-6v6M5.8 9h12.4c1 0 1.8.8 1.8 1.8v8.4a1.8 1.8 0 01-1.8 1.8H5.8A1.8 1.8 0 014 19.2v-8.4C4 9.8 4.8 9 5.8 9z"/>
+                    <path d="M8 15h8M8 18h5"/>
+                </svg>
+                Science Notes
+            </button>
+            <button class="chip" data-filter="sst_notes">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20"/>
+                </svg>
+                SST Notes
+            </button>
+            <button class="chip" data-filter="formula">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                </svg>
+                Formulas
+            </button>
+            <button class="chip" data-filter="pyq">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                </svg>
+                PYQ
+            </button>
+        </div>
+
+        <div class="results-info" id="resultsInfo"></div>
+        <div class="results-grid" id="resultsGrid"></div>
+
+        <div class="categories" id="categories">
+            <div class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                Browse by Category
+            </div>
+            <div class="category-grid" id="categoryGrid">
+                <div class="category-item" onclick="filterByCategory('math_notes')">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                    <div class="category-name">Math Notes</div>
+                    <div class="category-count" id="math-count">0 items</div>
+                </div>
+                <div class="category-item" onclick="filterByCategory('english_notes')">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                    </svg>
+                    <div class="category-name">English Notes</div>
+                    <div class="category-count" id="english-count">0 items</div>
+                </div>
+                <div class="category-item" onclick="filterByCategory('sci_notes')">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 2v6m6-6v6M5.8 9h12.4c1 0 1.8.8 1.8 1.8v8.4a1.8 1.8 0 01-1.8 1.8H5.8A1.8 1.8 0 014 19.2v-8.4C4 9.8 4.8 9 5.8 9z"/>
+                        <path d="M8 15h8M8 18h5"/>
+                    </svg>
+                    <div class="category-name">Science Notes</div>
+                    <div class="category-count" id="sci-count">0 items</div>
+                </div>
+                <div class="category-item" onclick="filterByCategory('sst_notes')">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20"/>
+                    </svg>
+                    <div class="category-name">SST Notes</div>
+                    <div class="category-count" id="sst-count">0 items</div>
+                </div>
+                <div class="category-item" onclick="filterByCategory('formula')">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                    </svg>
+                    <div class="category-name">Formulas</div>
+                    <div class="category-count" id="formula-count">0 items</div>
+                </div>
+                <div class="category-item" onclick="filterByCategory('pyq')">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                    </svg>
+                    <div class="category-name">PYQ Papers</div>
+                    <div class="category-count" id="pyq-count">0 items</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="main.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+        <a href="all-notes.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            <span class="bottom-nav-label">Notes</span>
+        </a>
+        <a href="library.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            <span class="bottom-nav-label">Keep</span>
+        </a>
+        <a href="quizopt.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            <span class="bottom-nav-label">Quiz</span>
+        </a>
+        <a href="chatbot.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                <path d="M9 14c.5.5 1.5 1 3 1s2.5-.5 3-1"/>
+            </svg>
+            <span class="bottom-nav-label">Chatbot</span>
+        </a>
+    </div>
+
+<script>
+        let masterData = null;
+        let allData = [];
+        let currentFilter = 'all';
+        let currentView = 'list';
+
+        // Theme Management
+        function setupTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            });
+        }
+
+        // Go Back Function
+        function goBack() {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                history.back();
+            } else {
+                window.location.href = 'main.html';
+            }
+        }
+
+        // Clear Search
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            document.getElementById('clearBtn').classList.remove('show');
+            const info = document.getElementById('resultsInfo');
+            const grid = document.getElementById('resultsGrid');
+            const cats = document.getElementById('categories');
+            const stats = document.getElementById('searchStats');
+            
+            info.style.display = 'none';
+            grid.innerHTML = '';
+            cats.style.display = 'block';
+            stats.style.display = 'none';
+            input.focus();
+        }
+
+        // Perform Search
+        function performSearch() {
+            const input = document.getElementById('searchInput');
+            search(input.value.trim());
+        }
+
+        // Toggle View
+        function toggleView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === view);
+            });
+            
+            const grid = document.getElementById('resultsGrid');
+            if (view === 'grid') {
+                grid.classList.add('grid-view');
+            } else {
+                grid.classList.remove('grid-view');
+            }
+            
+            // Save preference
+            localStorage.setItem('searchView', view);
+        }
+
+        async function loadData() {
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = '<div class="loading"><div class="loading-spinner"></div><div></div></div>';
+            
+            try {
+                const res = await fetch('master.json');
+                masterData = await res.json();
+                init();
+            } catch (e) {
+                console.error('Error:', e);
+                grid.innerHTML = '<div class="no-results"><div class="no-results-icon">⚠️</div><div class="no-results-text">Error loading data</div><div class="no-results-hint">Please refresh the page</div></div>';
+            }
+        }
+
+        function flattenData() {
+            const items = [];
+
+            // Math Notes
+            masterData.notes?.mathematics?.chapters?.forEach(ch => {
+                items.push({...ch, cat: 'math_notes', sub: 'Mathematics', type: 'Notes'});
+            });
+
+            // English Notes
+            const eng = masterData.notes?.english?.books;
+            eng?.firstFlight?.prose?.forEach(ch => items.push({...ch, cat: 'english_notes', sub: 'English', book: 'First Flight'}));
+            eng?.firstFlight?.poetry?.forEach(ch => items.push({...ch, cat: 'english_notes', sub: 'English', book: 'First Flight'}));
+            eng?.footprintsWithoutFeet?.supplementary?.forEach(ch => items.push({...ch, cat: 'english_notes', sub: 'English', book: 'Footprints'}));
+
+            // Science Notes
+            const sci = masterData.notes?.science?.branches;
+            ['physics', 'chemistry', 'biology'].forEach(b => {
+                sci?.[b]?.chapters?.forEach(ch => items.push({...ch, cat: 'sci_notes', sub: sci[b].branchName}));
+            });
+
+            // SST Notes
+            const sst = masterData.notes?.socialScience?.branches;
+            ['history', 'geography', 'civics', 'economics'].forEach(b => {
+                sst?.[b]?.chapters?.forEach(ch => items.push({...ch, cat: 'sst_notes', sub: sst[b].branchName}));
+            });
+
+            // Formulas
+            masterData.formulas?.mathematics?.forEach(f => items.push({...f, cat: 'formula', sub: 'Mathematics', type: 'Formula'}));
+            masterData.formulas?.science?.forEach(f => items.push({...f, cat: 'formula', sub: f.branch || 'Science', type: 'Formula'}));
+
+            // PYQ
+            const pyq = masterData.previousYearQuestions;
+            pyq?.mathematics?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'Mathematics', type: 'PYQ'}));
+            pyq?.mathematics?.chapterWise?.forEach(p => items.push({...p, cat: 'pyq', sub: 'Mathematics', type: 'PYQ'}));
+            pyq?.science?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'Science', type: 'PYQ'}));
+            ['physics', 'chemistry', 'biology'].forEach(b => {
+                pyq?.science?.[b]?.forEach(p => items.push({...p, cat: 'pyq', sub: p.branch || 'Science', type: 'PYQ'}));
+            });
+            pyq?.english?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'English', type: 'PYQ'}));
+            ['firstFlight', 'footprintsWithoutFeet', 'poetry'].forEach(s => {
+                pyq?.english?.[s]?.forEach(p => items.push({...p, cat: 'pyq', sub: 'English', type: 'PYQ'}));
+            });
+            pyq?.socialScience?.complete?.forEach(p => items.push({...p, cat: 'pyq', sub: 'SST', type: 'PYQ'}));
+
+            return items;
+        }
+
+        function search(query) {
+            const info = document.getElementById('resultsInfo');
+            const grid = document.getElementById('resultsGrid');
+            const cats = document.getElementById('categories');
+            const stats = document.getElementById('searchStats');
+            const clearBtn = document.getElementById('clearBtn');
+
+            if (query.length > 0) {
+                clearBtn.classList.add('show');
+            } else {
+                clearBtn.classList.remove('show');
+            }
+
+            if (!query || query.length < 2) {
+                info.style.display = 'none';
+                grid.innerHTML = '';
+                cats.style.display = 'block';
+                stats.style.display = 'none';
+                return;
+            }
+
+            const terms = query.toLowerCase().split(' ');
+            const results = [];
+
+            allData.forEach(item => {
+                if (currentFilter !== 'all' && item.cat !== currentFilter) return;
+
+                let score = 0;
+                const title = (item.title || '').toLowerCase();
+                const keywords = (item.keywords || []).join(' ').toLowerCase();
+                const subject = (item.sub || '').toLowerCase();
+                const chapter = (item.chapter || item.chapterNumber || '').toString();
+                const year = (item.year || '').toString();
+
+                terms.forEach(term => {
+                    if (title.includes(term)) score += 10;
+                    if (keywords.includes(term)) score += 5;
+                    if (subject.includes(term)) score += 3;
+                    if (chapter.includes(term)) score += 8;
+                    if (year.includes(term)) score += 8;
+                });
+
+                if (score > 0) results.push({...item, score});
+            });
+
+            results.sort((a, b) => b.score - a.score);
+            displayResults(results.slice(0, 50), query);
+        }
+
+        function displayResults(results, query) {
+            const info = document.getElementById('resultsInfo');
+            const grid = document.getElementById('resultsGrid');
+            const cats = document.getElementById('categories');
+            const stats = document.getElementById('searchStats');
+            const resultsCount = document.getElementById('resultsCount');
+            const searchQuery = document.getElementById('searchQuery');
+
+            cats.style.display = 'none';
+
+            if (results.length === 0) {
+                info.style.display = 'none';
+                stats.style.display = 'none';
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                        </div>
+                        <div class="no-results-text">No results found for "${escapeHtml(query)}"</div>
+                        <div class="no-results-hint">Try different keywords or browse categories below</div>
+                    </div>
+                `;
+                cats.style.display = 'block';
+                return;
+            }
+
+            stats.style.display = 'flex';
+            resultsCount.textContent = `${results.length} Result${results.length !== 1 ? 's' : ''}`;
+            searchQuery.textContent = `Search: "${query}"`;
+            info.style.display = 'none';
+
+            const badges = {
+                'math_notes': 'Math',
+                'english_notes': 'English',
+                'sci_notes': 'Science',
+                'sst_notes': 'SST',
+                'formula': 'Formula',
+                'pyq': 'PYQ'
+            };
+
+            grid.innerHTML = results.map(item => {
+                const type = badges[item.cat] || 'Content';
+                const subject = item.sub || '';
+                const chapter = item.chapter || item.chapterNumber;
+                const year = item.year;
+                
+                let description = '';
+                if (type === 'Math' || type === 'English' || type === 'Science' || type === 'SST') {
+                    description = `${type} Notes - ${subject}`;
+                    if (chapter) description += ` • Chapter ${chapter}`;
+                } else if (type === 'Formula') {
+                    description = `${subject} Formula`;
+                    if (chapter) description += ` • Chapter ${chapter}`;
+                } else if (type === 'PYQ') {
+                    description = `Previous Year Question Paper - ${subject}`;
+                    if (year) description += ` • ${year}`;
+                    if (chapter) description += ` • Ch ${chapter}`;
+                }
+
+                return `
+                    <a href="${item.url}" class="video-card">
+                        <div class="result-header">
+                            <div class="video-title">${escapeHtml(item.title)}</div>
+                            <div class="result-badge">${type}</div>
+                        </div>
+                        <div class="video-metadata">${escapeHtml(description)}</div>
+                    </a>
+                `;
+            }).join('');
+            
+            // Apply saved view preference
+            if (currentView === 'grid') {
+                grid.classList.add('grid-view');
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showCategories() {
+            const categories = [
+                {icon: '🔢', name: 'Math Notes', count: allData.filter(i => i.cat === 'math_notes').length, filter: 'math_notes'},
+                {icon: '📖', name: 'English Notes', count: allData.filter(i => i.cat === 'english_notes').length, filter: 'english_notes'},
+                {icon: '🧪', name: 'Science Notes', count: allData.filter(i => i.cat === 'sci_notes').length, filter: 'sci_notes'},
+                {icon: '🌍', name: 'SST Notes', count: allData.filter(i => i.cat === 'sst_notes').length, filter: 'sst_notes'},
+                {icon: '📐', name: 'Formulas', count: allData.filter(i => i.cat === 'formula').length, filter: 'formula'},
+                {icon: '📝', name: 'PYQ Papers', count: allData.filter(i => i.cat === 'pyq').length, filter: 'pyq'}
+            ];
+
+            document.getElementById('categoryGrid').innerHTML = categories.map(c => `
+                <div class="category-item" onclick="filterByCategory('${c.filter}')">
+                    <div class="category-icon">${c.icon}</div>
+                    <div class="category-name">${c.name}</div>
+                    <div class="category-count">${c.count} items</div>
+                </div>
+            `).join('');
+        }
+
+        function filterByCategory(filter) {
+            // Update chip active state
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.classList.toggle('active', chip.dataset.filter === filter);
+            });
+            currentFilter = filter;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Focus on search input
+            document.getElementById('searchInput').focus();
+        }
+
+        function init() {
+            allData = flattenData();
+            showCategories();
+            setupTheme();
+
+            const input = document.getElementById('searchInput');
+
+            // Load saved view preference
+            const savedView = localStorage.getItem('searchView') || 'list';
+            currentView = savedView;
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === savedView);
+            });
+
+            input.addEventListener('input', e => {
+                search(e.target.value.trim());
+            });
+
+            input.addEventListener('keypress', e => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    currentFilter = chip.dataset.filter;
+                    if (input.value.trim()) search(input.value.trim());
+                });
+            });
+
+            // Auto focus on search input
+            setTimeout(() => input.focus(), 300);
+        }
+
+        // Header scroll behavior
+        let lastScroll = 0;
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.style.transform = 'translateY(0)';
+            } else if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+            // Escape to clear search
+            if (e.key === 'Escape') {
+                clearSearch();
+            }
+            // Ctrl/Cmd + L for list view
+            if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                e.preventDefault();
+                toggleView('list');
+            }
+            // Ctrl/Cmd + G for grid view
+            if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
+                e.preventDefault();
+                toggleView('grid');
+            }
+        });
+
+        // Initialize
+        loadData();
+</script>
+</html>

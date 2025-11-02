@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Progression - Class 10 CBSE Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .formula {
+            font-size: 1.3em;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .example {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196F3;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .note-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        ul {
+            margin: 15px 0 15px 30px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .calculator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .calculator h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .calc-button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+
+        .calc-button:hover {
+            transform: scale(1.05);
+        }
+
+        .result {
+            background: white;
+            color: #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📐 Arithmetic Progression</h1>
+            <p>Class 10 CBSE Mathematics | Complete Formula Sheet</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>📚 Definition</h2>
+                <p class="description">
+                    An <span class="highlight">Arithmetic Progression (AP)</span> is a sequence of numbers in which the difference between any two consecutive terms is constant. This constant difference is called the <span class="highlight">common difference (d)</span>.
+                </p>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    2, 5, 8, 11, 14, ... (Here, d = 3)<br>
+                    10, 7, 4, 1, -2, ... (Here, d = -3)
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔢 Important Terms</h2>
+                <ul>
+                    <li><strong>First term (a):</strong> The first number in the AP</li>
+                    <li><strong>Common difference (d):</strong> The difference between consecutive terms</li>
+                    <li><strong>nth term (aₙ):</strong> The term at position n</li>
+                    <li><strong>Sum of n terms (Sₙ):</strong> Sum of first n terms of the AP</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>📐 Key Formulas</h2>
+                
+                <h3>1. Common Difference</h3>
+                <div class="formula-box">
+                    <div class="formula">d = a₂ - a₁ = a₃ - a₂ = aₙ - aₙ₋₁</div>
+                    <p class="description">Where a₁, a₂, a₃, ... are consecutive terms</p>
+                </div>
+
+                <h3>2. nth Term Formula</h3>
+                <div class="formula-box">
+                    <div class="formula">aₙ = a + (n - 1)d</div>
+                    <p class="description">
+                        Where:<br>
+                        • aₙ = nth term<br>
+                        • a = first term<br>
+                        • n = number of terms<br>
+                        • d = common difference
+                    </p>
+                </div>
+
+                <h3>3. Sum of First n Terms (When last term is known)</h3>
+                <div class="formula-box">
+                    <div class="formula">Sₙ = n/2 × (a + l)</div>
+                    <p class="description">
+                        Where:<br>
+                        • Sₙ = sum of first n terms<br>
+                        • n = number of terms<br>
+                        • a = first term<br>
+                        • l = last term = aₙ
+                    </p>
+                </div>
+
+                <h3>4. Sum of First n Terms (When last term is NOT known)</h3>
+                <div class="formula-box">
+                    <div class="formula">Sₙ = n/2 × [2a + (n - 1)d]</div>
+                    <p class="description">
+                        Where:<br>
+                        • Sₙ = sum of first n terms<br>
+                        • n = number of terms<br>
+                        • a = first term<br>
+                        • d = common difference
+                    </p>
+                </div>
+
+                <h3>5. Middle Term Formula</h3>
+                <div class="formula-box">
+                    <div class="formula">
+                        If n is odd: Middle term = ((n+1)/2)th term<br>
+                        If n is even: Middle terms = (n/2)th and (n/2 + 1)th terms
+                    </div>
+                </div>
+
+                <h3>6. Last Term</h3>
+                <div class="formula-box">
+                    <div class="formula">l = a + (n - 1)d</div>
+                    <p class="description">Last term is same as nth term</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💡 Important Properties</h2>
+                <ul>
+                    <li>If a constant is added or subtracted from each term, the resulting sequence is also an AP with the same common difference</li>
+                    <li>If each term is multiplied or divided by a non-zero constant k, the resulting sequence is an AP with common difference kd or d/k</li>
+                    <li>Three numbers a, b, c are in AP if and only if: <strong>2b = a + c</strong></li>
+                    <li>If aₙ represents the nth term, then: aₙ = Sₙ - Sₙ₋₁ (for n > 1)</li>
+                    <li>Sum of first n natural numbers: <strong>Sₙ = n(n+1)/2</strong></li>
+                    <li>Sum of first n odd numbers: <strong>n²</strong></li>
+                    <li>Sum of first n even numbers: <strong>n(n+1)</strong></li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>📝 Solved Examples</h2>
+                
+                <div class="example">
+                    <div class="example-title">Example 1: Find the 15th term</div>
+                    <p><strong>Question:</strong> Find the 15th term of the AP: 3, 8, 13, 18, ...</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>a = 3, d = 8 - 3 = 5, n = 15</p>
+                    <p>aₙ = a + (n - 1)d</p>
+                    <p>a₁₅ = 3 + (15 - 1) × 5</p>
+                    <p>a₁₅ = 3 + 14 × 5 = 3 + 70 = <strong>73</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 2: Find the sum</div>
+                    <p><strong>Question:</strong> Find the sum of first 20 terms of the AP: 2, 7, 12, 17, ...</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>a = 2, d = 7 - 2 = 5, n = 20</p>
+                    <p>Sₙ = n/2 × [2a + (n - 1)d]</p>
+                    <p>S₂₀ = 20/2 × [2(2) + (20 - 1) × 5]</p>
+                    <p>S₂₀ = 10 × [4 + 95]</p>
+                    <p>S₂₀ = 10 × 99 = <strong>990</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 3: Three numbers in AP</div>
+                    <p><strong>Question:</strong> Three numbers are in AP. Their sum is 27 and product is 648. Find the numbers.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Let the three numbers be: (a - d), a, (a + d)</p>
+                    <p>Sum: (a - d) + a + (a + d) = 27</p>
+                    <p>3a = 27, so a = 9</p>
+                    <p>Product: (a - d) × a × (a + d) = 648</p>
+                    <p>(9 - d) × 9 × (9 + d) = 648</p>
+                    <p>9(81 - d²) = 648</p>
+                    <p>81 - d² = 72, d² = 9, d = ±3</p>
+                    <p>Numbers are: <strong>6, 9, 12</strong> or <strong>12, 9, 6</strong></p>
+                </div>
+            </div>
+
+            <div class="note">
+                <div class="note-title">📌 Important Note:</div>
+                <ul>
+                    <li>Always identify a, d, and n before using formulas</li>
+                    <li>Common difference can be positive, negative, or zero</li>
+                    <li>If d = 0, all terms are equal (constant sequence)</li>
+                    <li>For negative d, the AP is decreasing</li>
+                </ul>
+            </div>
+
+            <div class="calculator">
+                <h3>🧮 AP Calculator</h3>
+                <div class="input-group">
+                    <label>Choose Calculation Type:</label>
+                    <select id="calcType">
+                        <option value="nthTerm">Find nth Term</option>
+                        <option value="sum">Find Sum of n Terms</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>First Term (a):</label>
+                    <input type="number" id="firstTerm" placeholder="Enter first term">
+                </div>
+                <div class="input-group">
+                    <label>Common Difference (d):</label>
+                    <input type="number" id="commonDiff" placeholder="Enter common difference">
+                </div>
+                <div class="input-group">
+                    <label>Number of Terms (n):</label>
+                    <input type="number" id="numTerms" placeholder="Enter n">
+                </div>
+                <button class="calc-button" onclick="calculate()">Calculate</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const calcType = document.getElementById('calcType').value;
+            const a = parseFloat(document.getElementById('firstTerm').value);
+            const d = parseFloat(document.getElementById('commonDiff').value);
+            const n = parseInt(document.getElementById('numTerms').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(a) || isNaN(d) || isNaN(n)) {
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = '❌ Please enter all values!';
+                return;
+            }
+
+            if (n <= 0) {
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = '❌ Number of terms must be positive!';
+                return;
+            }
+
+            let result;
+            if (calcType === 'nthTerm') {
+                result = a + (n - 1) * d;
+                resultDiv.innerHTML = `✅ The ${n}th term is: <strong>${result}</strong>`;
+            } else {
+                result = (n / 2) * (2 * a + (n - 1) * d);
+                resultDiv.innerHTML = `✅ Sum of first ${n} terms is: <strong>${result}</strong>`;
+            }
+
+            resultDiv.style.display = 'block';
+        }
+
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Math Quiz 2025-26</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFB74D 0%, #FFB74D  100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .question-number {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .option:hover {
+            background: #e3f2fd;
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .option.correct {
+            background: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #6691DD, #0E2DD9);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result-container {
+            text-align: center;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            color: #2ecc71;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .result-message {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .result-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="header">
+            <h1>🧮 Math Quiz</h1>
+            <p>CBSE 2025-26 Syllabus</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div id="quizContent">
+            <div class="question-container">
+                <div class="question-number" id="questionNumber">Question 1 of 20</div>
+                <div class="question" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <div class="buttons">
+                <button id="submitBtn" class="submit-btn">Submit</button>
+                <button id="checkBtn" class="check-btn hidden">Check Answer</button>
+                <button id="nextBtn" class="hidden">Next Question</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="result-container hidden">
+            <h2>🎉 Quiz Complete!</h2>
+            <div class="result-score" id="finalScore"></div>
+            <div class="result-message" id="resultMessage"></div>
+            <div class="result-details">
+                <p>Correct Answers: <span id="correctCount"></span>/20</p>
+                <p>Incorrect Answers: <span id="incorrectCount"></span>/20</p>
+                <p>Accuracy: <span id="accuracy"></span>%</p>
+            </div>
+            <button onclick="location.reload()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "If 2x + 3 = 11, what is the value of x?",
+                options: ["2", "3", "4", "5"],
+                correct: 2
+            },
+            {
+                question: "What is the area of a circle with radius 7 cm? (Use π = 22/7)",
+                options: ["154 cm²", "144 cm²", "164 cm²", "174 cm²"],
+                correct: 0
+            },
+            {
+                question: "Simplify: 3⁴ ÷ 3²",
+                options: ["3", "6", "9", "12"],
+                correct: 2
+            },
+            {
+                question: "If the angles of a triangle are in ratio 2:3:4, find the largest angle.",
+                options: ["60°", "70°", "80°", "90°"],
+                correct: 2
+            },
+            {
+                question: "What is the HCF of 24 and 36?",
+                options: ["6", "8", "12", "18"],
+                correct: 2
+            },
+            {
+                question: "If a = 2 and b = 3, what is the value of a² + b²?",
+                options: ["12", "13", "14", "15"],
+                correct: 1
+            },
+            {
+                question: "The probability of getting a head when flipping a fair coin is:",
+                options: ["1/4", "1/3", "1/2", "2/3"],
+                correct: 2
+            },
+            {
+                question: "What is the volume of a cube with side 4 cm?",
+                options: ["16 cm³", "32 cm³", "48 cm³", "64 cm³"],
+                correct: 3
+            },
+            {
+                question: "Solve: 5x - 2 = 3x + 8",
+                options: ["x = 3", "x = 4", "x = 5", "x = 6"],
+                correct: 2
+            },
+            {
+                question: "What is the mean of 2, 4, 6, 8, 10?",
+                options: ["5", "6", "7", "8"],
+                correct: 1
+            },
+            {
+                question: "If the perimeter of a square is 24 cm, what is its area?",
+                options: ["24 cm²", "30 cm²", "36 cm²", "48 cm²"],
+                correct: 2
+            },
+            {
+                question: "What is 25% of 80?",
+                options: ["15", "20", "25", "30"],
+                correct: 1
+            },
+            {
+                question: "The sum of interior angles of a pentagon is:",
+                options: ["360°", "450°", "540°", "630°"],
+                correct: 2
+            },
+            {
+                question: "If 3/4 of a number is 24, what is the number?",
+                options: ["18", "24", "30", "32"],
+                correct: 3
+            },
+            {
+                question: "What is the LCM of 12 and 15?",
+                options: ["45", "50", "60", "75"],
+                correct: 2
+            },
+            {
+                question: "Simplify: √144",
+                options: ["10", "11", "12", "13"],
+                correct: 2
+            },
+            {
+                question: "If the ratio of two numbers is 3:5 and their sum is 48, find the larger number.",
+                options: ["18", "24", "30", "35"],
+                correct: 2
+            },
+            {
+                question: "What is the surface area of a cube with edge 5 cm?",
+                options: ["100 cm²", "125 cm²", "150 cm²", "175 cm²"],
+                correct: 2
+            },
+            {
+                question: "If compound interest on ₹1000 for 2 years at 10% per annum is ₹210, what is simple interest for same period?",
+                options: ["₹200", "₹210", "₹220", "₹250"],
+                correct: 0
+            },
+            {
+                question: "In how many ways can 5 different books be arranged on a shelf?",
+                options: ["60", "100", "120", "150"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let score = 0;
+        let answers = [];
+
+        function displayQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of 20`;
+            document.getElementById('questionText').textContent = q.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Update progress bar
+            const progress = ((currentQuestion) / 20) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Reset buttons
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            
+            selectedAnswer = null;
+        }
+
+        function selectOption(index) {
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select current option
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            if (selectedAnswer === null) {
+                alert('Please select an answer!');
+                return;
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('checkBtn').classList.remove('hidden');
+            
+            // Disable all options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+        }
+
+        function checkAnswer() {
+            const correctIndex = questions[currentQuestion].correct;
+            const options = document.querySelectorAll('.option');
+            
+            // Show correct answer
+            options[correctIndex].classList.add('correct');
+            
+            // Show incorrect if selected wrong
+            if (selectedAnswer !== correctIndex) {
+                options[selectedAnswer].classList.add('incorrect');
+            } else {
+                score++;
+            }
+
+            answers[currentQuestion] = {
+                selected: selectedAnswer,
+                correct: correctIndex,
+                isCorrect: selectedAnswer === correctIndex
+            };
+
+            document.getElementById('checkBtn').classList.add('hidden');
+            
+            if (currentQuestion < 19) {
+                document.getElementById('nextBtn').classList.remove('hidden');
+            } else {
+                // Show results
+                setTimeout(showResults, 1000);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            // Re-enable options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.style.pointerEvents = 'auto';
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            displayQuestion();
+        }
+
+        function showResults() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const accuracy = Math.round((score / 20) * 100);
+            
+            document.getElementById('finalScore').textContent = `${score}/20`;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('incorrectCount').textContent = 20 - score;
+            document.getElementById('accuracy').textContent = accuracy;
+            
+            let message = '';
+            if (accuracy >= 90) {
+                message = 'Excellent! You\'re a math genius! 🌟';
+            } else if (accuracy >= 80) {
+                message = 'Great job! Keep up the good work! 👏';
+            } else if (accuracy >= 70) {
+                message = 'Good effort! Practice makes perfect! 💪';
+            } else if (accuracy >= 60) {
+                message = 'Not bad! Keep studying and you\'ll improve! 📚';
+            } else {
+                message = 'Keep practicing! You\'ll get better! 🎯';
+            }
+            
+            document.getElementById('resultMessage').textContent = message;
+            
+            // Update progress bar to 100%
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // Event listeners
+        document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+        document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+
+        // Initialize quiz
+        displayQuestion();
+    </script>
+</body>
+</html>

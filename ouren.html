@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Environment - Class 10 Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .waste-management {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .waste-step {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .waste-management {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.waste-step {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.waste-step::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(135deg, #A8E6CF 0%, #52D681 100%);
+}
+
+.waste-step:hover {
+    transform: translateX(15px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.2);
+}
+
+.waste-icon {
+    background: linear-gradient(135deg, #A8E6CF 0%, #52D681 100%);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+    animation: wasteIcon 3s ease-in-out infinite;
+}
+
+@keyframes wasteIcon {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.05); }
+}
+
+.carbon-cycle {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(46, 204, 113, 0.05);
+    border-radius: 15px;
+}
+
+.carbon-process {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.carbon-process:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.2);
+}
+
+.collapsible {
+    margin: 1rem 0;
+}
+
+.collapsible-header {
+    background: linear-gradient(135deg, #A8E6CF 0%, #52D681 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapsible-header:hover {
+    background: linear-gradient(135deg, #52D681 0%, #2ECC71 100%);
+    transform: scale(1.02);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 0 0 10px 10px;
+}
+
+.collapsible-content.active {
+    max-height: 500px;
+    padding: 1.5rem;
+}
+
+.collapsible-arrow {
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header.active .collapsible-arrow {
+    transform: rotate(180deg);
+}
+
+.ozone-depletion {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(243, 156, 18, 0.1));
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    border-left: 5px solid #E74C3C;
+    position: relative;
+}
+
+.ozone-depletion::before {
+    content: '⚠️';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    background: #E74C3C;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    animation: alertPulse 1.5s infinite;
+}
+
+@keyframes alertPulse {
+    0% { background: #E74C3C; }
+    50% { background: #F39C12; }
+    100% { background: #E74C3C; }
+}
+
+.interactive-quiz {
+    background: linear-gradient(135deg, #52D681 0%, #2ECC71 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.quiz-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.quiz-button:hover::before {
+    left: 100%;
+}
+
+.quiz-button:hover {
+    background: white;
+    color: #2ECC71;
+    transform: scale(1.05);
+}
+
+.key-points {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.key-points ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.key-points li {
+    padding: 0.8rem 0;
+    padding-left: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.key-points li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    animation: checkmark 0.5s ease-in-out;
+}
+
+@keyframes checkmark {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.key-points li:hover {
+    transform: translateX(10px);
+    color: #2ECC71;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .waste-management {
+        gap: 1rem;
+    }
+    
+    .waste-step {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .carbon-cycle {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .quiz-button {
+        display: block;
+        margin: 0.5rem auto;
+        width: 80%;
+    }
+    
+    .key-points {
+        padding: 1.5rem;
+    }
+}
+
+        .waste-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--gradient-3);
+        }
+
+        .waste-step:hover {
+            transform: translateX(15px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.2);
+        }
+
+        .waste-icon {
+            background: var(--gradient-3);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+            animation: wasteIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes wasteIcon {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.05); }
+        }
+
+        .carbon-cycle {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(46, 204, 113, 0.05);
+            border-radius: 15px;
+        }
+
+        .carbon-process {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .carbon-process:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.2);
+        }
+
+        .carbon-process::before {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: var(--gradient-1);
+        }
+
+        .carbon-process.photosynthesis::before { content: '🌱'; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .carbon-process.respiration::before { content: '🫁'; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .carbon-process.decomposition::before { content: '🍂'; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .carbon-process.combustion::before { content: '🔥'; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+
+        .collapsible {
+            margin: 1rem 0;
+        }
+
+        .collapsible-header {
+            background: var(--gradient-3);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible-header:hover {
+            background: var(--gradient-2);
+            transform: scale(1.02);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .collapsible-content.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .collapsible-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-header.active .collapsible-arrow {
+            transform: rotate(180deg);
+        }
+
+        .ozone-depletion {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(243, 156, 18, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--danger-color);
+            position: relative;
+        }
+
+        .ozone-depletion::before {
+            content: '⚠️';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--danger-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            animation: alertPulse 1.5s infinite;
+        }
+
+        @keyframes alertPulse {
+            0% { background: var(--danger-color); }
+            50% { background: var(--warning-color); }
+            100% { background: var(--danger-color); }
+        }
+
+        .interactive-quiz {
+            background: var(--gradient-2);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .quiz-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-button:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .key-points li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            animation: checkmark 0.5s ease-in-out;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .key-points li:hover {
+            transform: translateX(10px);
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .section { padding: 1.5rem; }
+            .food-chain, .carbon-cycle { grid-template-columns: 1fr; }
+            .trophic-level { min-width: 100px; height: 100px; }
+            .trophic-level::after { display: none; }
+        }
+        :root {
+            --primary-color: #2ECC71;
+            --secondary-color: #27AE60;
+            --accent-color: #52D681;
+            --danger-color: #E74C3C;
+            --warning-color: #F39C12;
+            --info-color: #3498DB;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #ECFDF5;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient-1: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+            --gradient-2: linear-gradient(135deg, #52D681 0%, #2ECC71 100%);
+            --gradient-3: linear-gradient(135deg, #A8E6CF 0%, #52D681 100%);
+            --earth-gradient: linear-gradient(135deg, #4A90E2 0%, #7ED321 50%, #D0021B 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--gradient-1);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Earth Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(52, 208, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(46, 204, 113, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(168, 230, 207, 0.1) 0%, transparent 70%);
+            animation: environmentFloat 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes environmentFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            33% { transform: translateY(-15px) scale(1.02); }
+            66% { transform: translateY(-8px) scale(0.98); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '🌍';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            animation: earthSpin 10s linear infinite;
+        }
+
+        @keyframes earthSpin {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #A8E6CF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(168,230,207,0.8)); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(46, 204, 113, 0.25);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--secondary-color);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .section h3::before {
+            position: absolute;
+            left: 0;
+            animation: bounce 2s infinite;
+            font-size: 1.2rem;
+        }
+
+        .section h3.ecosystem::before { content: '🌿'; }
+        .section h3.foodchain::before { content: '🔗'; }
+        .section h3.pollution::before { content: '⚠️'; }
+        .section h3.waste::before { content: '♻️'; }
+        .section h3.ozone::before { content: '☀️'; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .ecosystem-card {
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(168, 230, 207, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .ecosystem-card::before {
+            content: '🌱';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            animation: ecosystemPulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        @keyframes ecosystemPulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
+        }
+
+        .food-chain {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(52, 208, 129, 0.1);
+            border-radius: 15px;
+        }
+
+        .trophic-level {
+            background: var(--gradient-2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 50%;
+            min-width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .trophic-level:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.4);
+        }
+
+        .trophic-level::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: flowArrow 2s ease-in-out infinite;
+        }
+
+        .trophic-level:last-child::after {
+            display: none;
+        }
+
+        @keyframes flowArrow {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(5px); }
+        }
+
+        .pollution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pollution-card {
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid;
+        }
+
+        .pollution-card.air {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .pollution-card.water {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .pollution-card.soil {
+            background: linear-gradient(135deg, rgba(211, 84, 0, 0.1), rgba(243, 156, 18, 0.1));
+            border-color: rgba(211, 84, 0, 0.3);
+        }
+
+        .pollution-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shimmer 6s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .pollution-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pollution-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Our Environment</h1>
+            <p>Understanding Ecosystems, Food Chains, and Environmental Management</p>
+        </header>
+
+        <section class="section">
+            <h2>1. What is Environment?</h2>
+            <div class="ecosystem-card">
+                <h4><strong>Environment</strong> includes all living (biotic) and non-living (abiotic) factors that surround and affect organisms.</h4>
+                <p><strong>Biotic Components:</strong> Plants, animals, microorganisms</p>
+                <p><strong>Abiotic Components:</strong> Air, water, soil, temperature, light</p>
+            </div>
+
+            <h3 class="ecosystem">Components of Environment</h3>
+            <div class="pollution-grid">
+                <div class="pollution-card air">
+                    <h4>🏞️ Natural Environment</h4>
+                    <p>Land, water, air, plants and animals</p>
+                </div>
+                <div class="pollution-card water">
+                    <h4>👥 Human Environment</h4>
+                    <p>Human activities and their impacts</p>
+                </div>
+                <div class="pollution-card soil">
+                    <h4>🏗️ Human-made Environment</h4>
+                    <p>Buildings, roads, bridges, etc.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>2. Ecosystem</h2>
+            <div class="ecosystem-card">
+                <h4>An <strong>ecosystem</strong> is a self-contained unit consisting of living organisms and their physical environment, interacting as a system.</h4>
+            </div>
+
+            <h3 class="ecosystem">Types of Ecosystems</h3>
+            <div class="pollution-grid">
+                <div class="pollution-card air">
+                    <h4>🏞️ Natural Ecosystem</h4>
+                    <p><strong>Examples:</strong> Forest, grassland, desert, aquatic ecosystems</p>
+                    <p><strong>Characteristics:</strong> Self-regulating, balanced</p>
+                </div>
+                <div class="pollution-card water">
+                    <h4>🏭 Artificial Ecosystem</h4>
+                    <p><strong>Examples:</strong> Crop fields, aquariums, gardens</p>
+                    <p><strong>Characteristics:</strong> Maintained by humans</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>3. Food Chains and Food Webs</h2>
+            
+            <h3 class="foodchain">Food Chain</h3>
+            <div class="ecosystem-card">
+                <p>A <strong>food chain</strong> is a linear sequence showing the transfer of energy from one organism to another.</p>
+            </div>
+
+            <div class="food-chain">
+                <div class="trophic-level">
+                    <div>🌱</div>
+                    <strong>Producers</strong>
+                    <small>(Autotrophs)</small>
+                </div>
+                <div class="trophic-level">
+                    <div>🐰</div>
+                    <strong>Primary Consumers</strong>
+                    <small>(Herbivores)</small>
+                </div>
+                <div class="trophic-level">
+                    <div>🐺</div>
+                    <strong>Secondary Consumers</strong>
+                    <small>(Carnivores)</small>
+                </div>
+                <div class="trophic-level">
+                    <div>🦅</div>
+                    <strong>Tertiary Consumers</strong>
+                    <small>(Top Carnivores)</small>
+                </div>
+            </div>
+        </section>
+    </div>
+            <!-- Remaining HTML Content -->
+        <section class="section">
+            <h3 class="foodchain">Trophic Levels</h3>
+            <div class="waste-management">
+                <div class="waste-step">
+                    <div class="waste-icon">1️⃣</div>
+                    <div>
+                        <h4>First Trophic Level - Producers</h4>
+                        <p>Green plants and autotrophs that make their own food through photosynthesis</p>
+                    </div>
+                </div>
+                <div class="waste-step">
+                    <div class="waste-icon">2️⃣</div>
+                    <div>
+                        <h4>Second Trophic Level - Primary Consumers</h4>
+                        <p>Herbivores that feed directly on producers (e.g., deer, rabbits)</p>
+                    </div>
+                </div>
+                <div class="waste-step">
+                    <div class="waste-icon">3️⃣</div>
+                    <div>
+                        <h4>Third Trophic Level - Secondary Consumers</h4>
+                        <p>Carnivores that feed on herbivores (e.g., fox, snake)</p>
+                    </div>
+                </div>
+                <div class="waste-step">
+                    <div class="waste-icon">4️⃣</div>
+                    <div>
+                        <h4>Fourth Trophic Level - Tertiary Consumers</h4>
+                        <p>Top carnivores that feed on other carnivores (e.g., lion, hawk)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>4. Energy Flow in Ecosystem</h2>
+            <div class="ecosystem-card">
+                <h4>Energy flows in one direction - from sun to producers to consumers</h4>
+                <p><strong>10% Rule:</strong> Only 10% of energy is transferred from one trophic level to the next</p>
+            </div>
+
+            <h3 class="ecosystem">Energy Pyramid</h3>
+            <div class="carbon-cycle">
+                <div class="carbon-process photosynthesis">
+                    <h4>🌞 Solar Energy</h4>
+                    <p>100% energy from sun</p>
+                </div>
+                <div class="carbon-process respiration">
+                    <h4>🌱 Producers</h4>
+                    <p>1% solar energy captured</p>
+                </div>
+                <div class="carbon-process decomposition">
+                    <h4>🐰 Primary Consumers</h4>
+                    <p>10% energy transferred</p>
+                </div>
+                <div class="carbon-process combustion">
+                    <h4>🐺 Secondary Consumers</h4>
+                    <p>1% energy available</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>5. Environmental Problems</h2>
+
+            <h3 class="pollution">Types of Pollution</h3>
+            <div class="pollution-grid">
+                <div class="pollution-card air">
+                    <h4>🌫️ Air Pollution</h4>
+                    <p><strong>Causes:</strong> Vehicle emissions, industrial smoke, burning fossil fuels</p>
+                    <p><strong>Effects:</strong> Respiratory diseases, acid rain, global warming</p>
+                    <p><strong>Control:</strong> Use of CNG, electric vehicles, pollution control devices</p>
+                </div>
+                <div class="pollution-card water">
+                    <h4>💧 Water Pollution</h4>
+                    <p><strong>Causes:</strong> Industrial waste, sewage, pesticides, plastic waste</p>
+                    <p><strong>Effects:</strong> Water-borne diseases, aquatic life destruction</p>
+                    <p><strong>Control:</strong> Sewage treatment, industrial waste management</p>
+                </div>
+                <div class="pollution-card soil">
+                    <h4>🌍 Soil Pollution</h4>
+                    <p><strong>Causes:</strong> Chemical fertilizers, pesticides, industrial waste</p>
+                    <p><strong>Effects:</strong> Reduced fertility, food chain contamination</p>
+                    <p><strong>Control:</strong> Organic farming, proper waste disposal</p>
+                </div>
+            </div>
+
+            <div class="ozone-depletion">
+                <h4>🌍 Ozone Layer Depletion</h4>
+                <p><strong>Causes:</strong> CFCs (Chlorofluorocarbons) from refrigerators, air conditioners, aerosols</p>
+                <p><strong>Effects:</strong> Increased UV radiation, skin cancer, damage to plants</p>
+                <p><strong>Montreal Protocol:</strong> International agreement to phase out CFCs</p>
+            </div>
+        </section>
+        <!-- Part 2 Content Starts Here -->
+        
+        <section class="section">
+            <h3 class="foodchain">Trophic Levels</h3>
+            <div class="waste-management">
+                <div class="waste-step">
+                    <div class="waste-icon">1️⃣</div>
+                    <div>
+                        <h4>First Trophic Level - Producers</h4>
+                        <p>Green plants and autotrophs that make their own food through photosynthesis</p>
+                    </div>
+                </div>
+                <div class="waste-step">
+                    <div class="waste-icon">2️⃣</div>
+                    <div>
+                        <h4>Second Trophic Level - Primary Consumers</h4>
+                        <p>Herbivores that feed directly on producers (e.g., deer, rabbits)</p>
+                    </div>
+                </div>
+                <div class="waste-step">
+                    <div class="waste-icon">3️⃣</div>
+                    <div>
+                        <h4>Third Trophic Level - Secondary Consumers</h4>
+                        <p>Carnivores that feed on herbivores (e.g., fox, snake)</p>
+                    </div>
+                </div>
+                <div class="waste-step">
+                    <div class="waste-icon">4️⃣</div>
+                    <div>
+                        <h4>Fourth Trophic Level - Tertiary Consumers</h4>
+                        <p>Top carnivores that feed on other carnivores (e.g., lion, hawk)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🔗 Food Web vs Food Chain</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="pollution-grid">
+                        <div class="pollution-card air">
+                            <h4>Food Chain</h4>
+                            <p>• Linear pathway</p>
+                            <p>• Simple energy transfer</p>
+                            <p>• Limited interactions</p>
+                            <p>• Example: Grass → Rabbit → Fox</p>
+                        </div>
+                        <div class="pollution-card water">
+                            <h4>Food Web</h4>
+                            <p>• Network of food chains</p>
+                            <p>• Complex interactions</p>
+                            <p>• Multiple feeding relationships</p>
+                            <p>• More realistic representation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>4. Energy Flow in Ecosystem</h2>
+            <div class="ecosystem-card">
+                <h4>Energy flows in one direction - from sun to producers to consumers</h4>
+                <p><strong>10% Rule:</strong> Only 10% of energy is transferred from one trophic level to the next</p>
+            </div>
+
+            <h3 class="ecosystem">Energy Pyramid</h3>
+            <div class="carbon-cycle">
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🌞</div>
+                    <h4>Solar Energy</h4>
+                    <p>100% energy from sun</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🌱</div>
+                    <h4>Producers</h4>
+                    <p>1% solar energy captured</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🐰</div>
+                    <h4>Primary Consumers</h4>
+                    <p>10% energy transferred</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🐺</div>
+                    <h4>Secondary Consumers</h4>
+                    <p>1% energy available</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>5. Biogeochemical Cycles</h2>
+            
+            <h3 class="ecosystem">Carbon Cycle</h3>
+            <div class="carbon-cycle">
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🌱</div>
+                    <h4>Photosynthesis</h4>
+                    <p>CO₂ → Glucose</p>
+                    <p>Carbon fixation by plants</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🫁</div>
+                    <h4>Respiration</h4>
+                    <p>Glucose → CO₂</p>
+                    <p>Carbon released back</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🍂</div>
+                    <h4>Decomposition</h4>
+                    <p>Dead matter → CO₂</p>
+                    <p>Carbon recycling</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🔥</div>
+                    <h4>Combustion</h4>
+                    <p>Fossil fuels → CO₂</p>
+                    <p>Human activities</p>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>💧 Nitrogen Cycle</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="waste-management">
+                        <div class="waste-step">
+                            <div class="waste-icon">🦠</div>
+                            <div>
+                                <h4>Nitrogen Fixation</h4>
+                                <p>Atmospheric N₂ → Ammonia (NH₃) by bacteria</p>
+                            </div>
+                        </div>
+                        <div class="waste-step">
+                            <div class="waste-icon">🔄</div>
+                            <div>
+                                <h4>Nitrification</h4>
+                                <p>Ammonia → Nitrites → Nitrates by soil bacteria</p>
+                            </div>
+                        </div>
+                        <div class="waste-step">
+                            <div class="waste-icon">🌱</div>
+                            <div>
+                                <h4>Assimilation</h4>
+                                <p>Plants absorb nitrates from soil for protein synthesis</p>
+                            </div>
+                        </div>
+                        <div class="waste-step">
+                            <div class="waste-icon">💨</div>
+                            <div>
+                                <h4>Denitrification</h4>
+                                <p>Nitrates → N₂ gas returned to atmosphere</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>6. Environmental Problems</h2>
+
+            <h3 class="pollution">Types of Pollution</h3>
+            <div class="pollution-grid">
+                <div class="pollution-card air">
+                    <h4>🌫️ Air Pollution</h4>
+                    <p><strong>Causes:</strong> Vehicle emissions, industrial smoke, burning fossil fuels</p>
+                    <p><strong>Effects:</strong> Respiratory diseases, acid rain, global warming</p>
+                    <p><strong>Control:</strong> Use of CNG, electric vehicles, pollution control devices</p>
+                </div>
+                <div class="pollution-card water">
+                    <h4>💧 Water Pollution</h4>
+                    <p><strong>Causes:</strong> Industrial waste, sewage, pesticides, plastic waste</p>
+                    <p><strong>Effects:</strong> Water-borne diseases, aquatic life destruction</p>
+                    <p><strong>Control:</strong> Sewage treatment, industrial waste management</p>
+                </div>
+                <div class="pollution-card soil">
+                    <h4>🌍 Soil Pollution</h4>
+                    <p><strong>Causes:</strong> Chemical fertilizers, pesticides, industrial waste</p>
+                    <p><strong>Effects:</strong> Reduced fertility, food chain contamination</p>
+                    <p><strong>Control:</strong> Organic farming, proper waste disposal</p>
+                </div>
+            </div>
+
+            <div class="ozone-depletion">
+                <h4>🌍 Ozone Layer Depletion</h4>
+                <p><strong>Causes:</strong> CFCs (Chlorofluorocarbons) from refrigerators, air conditioners, aerosols</p>
+                <p><strong>Effects:</strong> Increased UV radiation, skin cancer, damage to plants</p>
+                <p><strong>Montreal Protocol:</strong> International agreement to phase out CFCs</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>7. Waste Management</h2>
+
+            <h3 class="waste">3 R's Principle</h3>
+            <div class="food-chain">
+                <div class="trophic-level">
+                    <div>♻️</div>
+                    <strong>Reduce</strong>
+                    <small>Minimize waste generation</small>
+                </div>
+                <div class="trophic-level">
+                    <div>🔄</div>
+                    <strong>Reuse</strong>
+                    <small>Use items multiple times</small>
+                </div>
+                <div class="trophic-level">
+                    <div>🗂️</div>
+                    <strong>Recycle</strong>
+                    <small>Process waste into new products</small>
+                </div>
+            </div>
+
+            <h3 class="waste">Types of Waste</h3>
+            <div class="pollution-grid">
+                <div class="pollution-card water">
+                    <h4>🍃 Biodegradable Waste</h4>
+                    <p><strong>Definition:</strong> Waste that can be broken down by microorganisms</p>
+                    <p><strong>Examples:</strong> Food scraps, paper, cotton, wool</p>
+                    <p><strong>Management:</strong> Composting, biogas production</p>
+                </div>
+                <div class="pollution-card soil">
+                    <h4>🏭 Non-biodegradable Waste</h4>
+                    <p><strong>Definition:</strong> Waste that cannot be broken down naturally</p>
+                    <p><strong>Examples:</strong> Plastics, metals, glass, synthetic materials</p>
+                    <p><strong>Management:</strong> Recycling, proper disposal, incineration</p>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🗑️ Waste Management Methods</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="waste-management">
+                        <div class="waste-step">
+                            <div class="waste-icon">🌱</div>
+                            <div>
+                                <h4>Composting</h4>
+                                <p>Decomposition of organic waste into nutrient-rich compost</p>
+                            </div>
+                        </div>
+                        <div class="waste-step">
+                            <div class="waste-icon">🔥</div>
+                            <div>
+                                <h4>Incineration</h4>
+                                <p>Controlled burning of waste to reduce volume</p>
+                            </div>
+                        </div>
+                        <div class="waste-step">
+                            <div class="waste-icon">🕳️</div>
+                            <div>
+                                <h4>Landfilling</h4>
+                                <p>Disposal in specially designed sites with proper lining</p>
+                            </div>
+                        </div>
+                        <div class="waste-step">
+                            <div class="waste-icon">⚡</div>
+                            <div>
+                                <h4>Biogas Production</h4>
+                                <p>Anaerobic decomposition producing methane for energy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>8. Natural Resource Management</h2>
+
+            <h3 class="ecosystem">Forest Conservation</h3>
+            <div class="ecosystem-card">
+                <h4>Importance of Forests</h4>
+                <p>• Oxygen production and CO₂ absorption</p>
+                <p>• Water cycle regulation</p>
+                <p>• Soil conservation</p>
+                <p>• Biodiversity preservation</p>
+                <p>• Raw materials and medicines</p>
+            </div>
+
+            <div class="ozone-depletion">
+                <h4>🌳 Deforestation Consequences</h4>
+                <p><strong>Climate Change:</strong> Increased CO₂ levels, global warming</p>
+                <p><strong>Biodiversity Loss:</strong> Extinction of species</p>
+                <p><strong>Soil Erosion:</strong> Loss of fertile topsoil</p>
+                <p><strong>Water Cycle Disruption:</strong> Reduced rainfall, floods</p>
+            </div>
+
+            <h3 class="ecosystem">Water Conservation</h3>
+            <div class="carbon-cycle">
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🌧️</div>
+                    <h4>Rainwater Harvesting</h4>
+                    <p>Collection and storage of rainwater</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">💧</div>
+                    <h4>Watershed Management</h4>
+                    <p>Sustainable use of water resources</p>
+                </div>
+                <div class="carbon-process">
+                    <div style="font-size: 2rem;">🔄</div>
+                    <h4>Water Recycling</h4>
+                    <p>Treatment and reuse of wastewater</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>9. Key Terms & Definitions</h2>
+            <div class="key-points">
+                <ul>
+                    <li><strong>Ecosystem:</strong> A community of living organisms interacting with their environment</li>
+                    <li><strong>Biodiversity:</strong> Variety of life forms in an ecosystem</li>
+                    <li><strong>Food Chain:</strong> Linear sequence of energy transfer between organisms</li>
+                    <li><strong>Trophic Level:</strong> Position of organism in a food chain</li>
+                    <li><strong>Biomagnification:</strong> Increase in concentration of toxic substances up the food chain</li>
+                    <li><strong>Decomposers:</strong> Organisms that break down dead organic matter</li>
+                    <li><strong>Carbon Footprint:</strong> Total greenhouse gas emissions by human activities</li>
+                    <li><strong>Sustainable Development:</strong> Meeting present needs without compromising future generations</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="interactive-quiz">
+                <h3>🧠 Quick Revision Quiz</h3>
+                <p>Test your understanding of environmental concepts!</p>
+                <button class="quiz-button" onclick="alert('Correct! Producers are at the first trophic level.')">What is the first trophic level?</button>
+                <button class="quiz-button" onclick="alert('Great! Only 10% of energy transfers between levels.')">What is the 10% rule?</button>
+                <button class="quiz-button" onclick="alert('Excellent! The 3 Rs are Reduce, Reuse, Recycle.')">What are the 3 Rs?</button>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>10. Important Points for Exam</h2>
+            <div class="key-points">
+                <h3>🎯 Remember These:</h3>
+                <ul>
+                    <li>Energy flow is unidirectional in ecosystems</li>
+                    <li>Ozone layer protects Earth from harmful UV radiation</li>
+                    <li>CFCs are responsible for ozone depletion</li>
+                    <li>Biodegradable waste can be composted naturally</li>
+                    <li>Food webs are more complex than food chains</li>
+                    <li>Producers convert solar energy to chemical energy</li>
+                    <li>Decomposers play crucial role in nutrient cycling</li>
+                    <li>Human activities are major cause of environmental problems</li>
+                </ul>
+            </div>
+        </section>
+
+    <!-- JavaScript for Interactive Features -->
+    <script>
+        function toggleCollapsible(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Close all other collapsibles
+            document.querySelectorAll('.collapsible-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.collapsible-header').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current collapsible
+            if (!isActive) {
+                content.classList.add('active');
+                element.classList.add('active');
+            }
+        }
+
+        // Add scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.pollution-card, .carbon-process, .waste-step').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+
+        <!-- Part 2 Content Ends Here -->
+</body>
+<script src="script.js"></script>
+</html>

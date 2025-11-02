@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Math - Linear Equations in Two Variables</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-info {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .example {
+            background: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .example h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .definition {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .key-points {
+            background: #e8f6f3;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .key-points h3 {
+            color: #16a085;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .important {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <div class="container">
+            <h1>Class 10 Mathematics</h1>
+            <p class="chapter-info">Chapter 3: Linear Equations in Two Variables</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Introduction</h2>
+                    <p>Linear equations in two variables are algebraic expressions of the form ax + by + c = 0, where a, b, and c are real numbers, and a and b are not both zero. This chapter explores the properties, solutions, and graphical representations of these equations.</p>
+                    
+                    <div class="definition">
+                        <h3>Definition</h3>
+                        <p>A linear equation in two variables is an equation that can be written in the form <strong>ax + by + c = 0</strong>, where a, b, and c are real numbers, and a and b are not both zero.</p>
+                    </div>
+                    
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li>Solution of a linear equation in two variables</li>
+                        <li>Graph of a linear equation in two variables</li>
+                        <li>Geometrical representation of linear equations</li>
+                        <li>Algebraic methods for solving systems of linear equations</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2>Important Points</h2>
+                    <div class="key-points">
+                        <ol>
+                            <li>Every linear equation in two variables has infinitely many solutions.</li>
+                            <li>The graph of a linear equation in two variables is a straight line.</li>
+                            <li>If a point lies on the graph of a linear equation, it is a solution of the equation.</li>
+                            <li>The solution of a linear equation is not affected when:
+                                <ul>
+                                    <li>The same number is added to (or subtracted from) both sides of the equation.</li>
+                                    <li>You multiply or divide both sides of the equation by the same non-zero number.</li>
+                                </ul>
+                            </li>
+                            <li>An equation of the form y = mx represents a line passing through the origin.</li>
+                            <li>The equation of the x-axis is y = 0.</li>
+                            <li>The equation of the y-axis is x = 0.</li>
+                            <li>A linear equation in two variables represents a straight line on the Cartesian plane.</li>
+                            <li>The coordinates of every point on the line satisfy the equation of the line.</li>
+                            <li>Two lines in a plane can either be intersecting lines or parallel lines.</li>
+                            <li>If two lines intersect, they have exactly one point in common.</li>
+                            <li>If two lines are parallel, they have no point in common.</li>
+                            <li>If two lines are coincident, they have infinitely many points in common.</li>
+                            <li>The general form of a linear equation in two variables is ax + by + c = 0.</li>
+                            <li>The standard form of a linear equation in two variables is ax + by = c.</li>
+                            <li>A system of linear equations may have a unique solution, infinitely many solutions, or no solution.</li>
+                            <li>For the equations a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0:
+                                <ul>
+                                    <li>If a₁/a₂ ≠ b₁/b₂, the system has a unique solution.</li>
+                                    <li>If a₁/a₂ = b₁/b₂ = c₁/c₂, the system has infinitely many solutions.</li>
+                                    <li>If a₁/a₂ = b₁/b₂ ≠ c₁/c₂, the system has no solution.</li>
+                                </ul>
+                            </li>
+                            <li>The graphical method can be used to solve a system of linear equations.</li>
+                            <li>The algebraic methods for solving systems of linear equations are:
+                                <ul>
+                                    <li>Substitution method</li>
+                                    <li>Elimination method</li>
+                                    <li>Cross-multiplication method</li>
+                                </ul>
+                            </li>
+                            <li>Linear equations can be used to solve real-life problems.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Examples</h2>
+                    
+                    <div class="example">
+                        <h4>Example 1: Representing an equation graphically</h4>
+                        <p>Draw the graph of the equation x + y = 7.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>To draw the graph, we need at least two solutions of the equation.</p>
+                        <p>When x = 0, y = 7 → (0, 7)</p>
+                        <p>When y = 0, x = 7 → (7, 0)</p>
+                        <p>Plot these points on the Cartesian plane and draw a line through them.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Example 2: Solving a system of equations</h4>
+                        <p>Solve the following system of equations:</p>
+                        <p>2x + 3y = 12</p>
+                        <p>x - y = 1</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Using substitution method:</p>
+                        <p>From the second equation, x = y + 1</p>
+                        <p>Substitute into the first equation: 2(y + 1) + 3y = 12</p>
+                        <p>2y + 2 + 3y = 12 → 5y = 10 → y = 2</p>
+                        <p>Then x = y + 1 = 2 + 1 = 3</p>
+                        <p>So the solution is x = 3, y = 2.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Example 3: Word problem</h4>
+                        <p>The sum of the digits of a two-digit number is 9. If 27 is added to the number, the digits get reversed. Find the number.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Let the units digit be x and tens digit be y.</p>
+                        <p>Then the number is 10y + x</p>
+                        <p>Given: x + y = 9 (Equation 1)</p>
+                        <p>When 27 is added: 10y + x + 27 = 10x + y</p>
+                        <p>Simplifying: 9y - 9x + 27 = 0 → x - y = 3 (Equation 2)</p>
+                        <p>Adding Equations 1 and 2: 2x = 12 → x = 6</p>
+                        <p>Then from Equation 1: y = 3</p>
+                        <p>So the number is 10 × 3 + 6 = 36.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="card">
+                    <h2>Chapter Contents</h2>
+                    <ul>
+                        <li>Introduction</li>
+                        <li>Linear Equations</li>
+                        <li>Solution of Linear Equations</li>
+                        <li>Graph of a Linear Equation</li>
+                        <li>Equations of Lines Parallel to Axes</li>
+                        <li>System of Linear Equations</li>
+                        <li>Algebraic Methods</li>
+                        <li>Word Problems</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2>Important Formulas</h2>
+                    <div class="formula">
+                        General form: ax + by + c = 0
+                    </div>
+                    <div class="formula">
+                        Standard form: ax + by = c
+                    </div>
+                    <div class="formula">
+                        For lines a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0:
+                    </div>
+                    <div class="formula">
+                        Unique solution: a₁/a₂ ≠ b₁/b₂
+                    </div>
+                    <div class="formula">
+                        Infinitely many solutions: a₁/a₂ = b₁/b₂ = c₁/c₂
+                    </div>
+                    <div class="formula">
+                        No solution: a₁/a₂ = b₁/b₂ ≠ c₁/c₂
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Practice Resources</h2>
+                    <p>Enhance your understanding with these practice materials:</p>
+                    <a href="#" class="btn">Worksheet 1</a>
+                    <a href="#" class="btn">Worksheet 2</a>
+                    <a href="#" class="btn">Previous Year Questions</a>
+                </div>
+                
+                <div class="card">
+                    <h2>Quick Tips</h2>
+                    <ul>
+                        <li>Always verify your solution by substituting back into the original equations</li>
+                        <li>When graphing, choose x-values that make y easy to calculate</li>
+                        <li>For word problems, clearly define your variables first</li>
+                        <li>Practice different methods to solve systems of equations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Class 10 Mathematics Notes - Chapter 3: Linear Equations in Two Variables</p>
+            <p>Based on the latest CBSE syllabus</p>
+        </div>
+    </footer>
+
+    <script>
+        // Progress bar functionality
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+        
+        // Simple animation for examples
+        document.addEventListener('DOMContentLoaded', function() {
+            const examples = document.querySelectorAll('.example');
+            examples.forEach((example, index) => {
+                example.style.opacity = '0';
+                example.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    example.style.opacity = '1';
+                }, 300 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>

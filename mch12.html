@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Formulas - Class 10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .formula-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .formula-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .formula-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .formula-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .formula-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .formula {
+            font-size: 1.3em;
+            color: #e74c3c;
+            margin: 10px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .description {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .where-clause {
+            background: #ecf0f1;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        .where-clause strong {
+            color: #2980b9;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .demo-input {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            width: 120px;
+        }
+
+        .demo-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .demo-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .special-formula {
+            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+            border: 3px solid #e84393;
+        }
+
+        .formula-variants {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .variant {
+            background: #dff0d8;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid #5cb85c;
+            color: #3c763d;
+        }
+
+        @media (max-width: 768px) {
+            .formula-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Circle Formulas - Class 10</h1>
+            <p>Complete Collection of All Circle-Related Formulas</p>
+        </div>
+
+        <!-- Basic Circle Formulas -->
+        <div class="category-section">
+            <div class="category-title">Basic Circle Properties</div>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🅰️</div>
+                        Area of Circle
+                    </div>
+                    <div class="formula">A = πr²</div>
+                    <div class="description">The area enclosed by a circle with radius r.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> r = radius, π ≈ 3.14159 or 22/7
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">A = π(d/2)² = πd²/4</div>
+                        <div class="variant">A = C²/(4π)</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">⭕</div>
+                        Circumference of Circle
+                    </div>
+                    <div class="formula">C = 2πr</div>
+                    <div class="description">The perimeter or boundary length of a circle.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> r = radius, π ≈ 3.14159 or 22/7
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">C = πd</div>
+                        <div class="variant">C = 2√(πA)</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📏</div>
+                        Diameter
+                    </div>
+                    <div class="formula">d = 2r</div>
+                    <div class="description">The distance across the circle through its center.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> r = radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">r = d/2</div>
+                        <div class="variant">d = C/π</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sector Formulas -->
+        <div class="category-section">
+            <div class="category-title">Sector Formulas</div>
+            <div class="formula-grid">
+                <div class="formula-card special-formula">
+                    <div class="formula-title">
+                        <div class="formula-icon">🍰</div>
+                        Area of Sector
+                    </div>
+                    <div class="formula">A = (θ/360°) × πr²</div>
+                    <div class="description">Area of a sector with central angle θ in degrees.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> θ = central angle in degrees, r = radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">A = (θ/2π) × πr² (θ in radians)</div>
+                        <div class="variant">A = (1/2)r²θ (θ in radians)</div>
+                        <div class="variant">A = (arc length × r)/2</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🌙</div>
+                        Arc Length
+                    </div>
+                    <div class="formula">l = (θ/360°) × 2πr</div>
+                    <div class="description">Length of the arc subtended by angle θ.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> θ = central angle in degrees, r = radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">l = rθ (θ in radians)</div>
+                        <div class="variant">l = (θ/180°) × πr</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📐</div>
+                        Central Angle
+                    </div>
+                    <div class="formula">θ = (l/r) × 180°/π</div>
+                    <div class="description">Central angle when arc length and radius are known.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> l = arc length, r = radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">θ = l/r (in radians)</div>
+                        <div class="variant">θ = (360° × l)/(2πr)</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📊</div>
+                        Sector Perimeter
+                    </div>
+                    <div class="formula">P = 2r + l</div>
+                    <div class="description">Perimeter of a sector including two radii and the arc.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> r = radius, l = arc length
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">P = 2r + (θ/360°) × 2πr</div>
+                        <div class="variant">P = r(2 + θ) (θ in radians)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Segment Formulas -->
+        <div class="category-section">
+            <div class="category-title">Segment Formulas</div>
+            <div class="formula-grid">
+                <div class="formula-card special-formula">
+                    <div class="formula-title">
+                        <div class="formula-icon">🥜</div>
+                        Area of Minor Segment
+                    </div>
+                    <div class="formula">A = (θ/360°) × πr² - (1/2)r²sin(θ)</div>
+                    <div class="description">Area between chord and minor arc.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> θ = central angle in degrees, r = radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">A = Area of sector - Area of triangle</div>
+                        <div class="variant">A = r²[θ/2 - sin(θ)/2] (θ in radians)</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🍎</div>
+                        Area of Major Segment
+                    </div>
+                    <div class="formula">A = πr² - Area of minor segment</div>
+                    <div class="description">Area between chord and major arc.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> r = radius
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📏</div>
+                        Chord Length
+                    </div>
+                    <div class="formula">Chord = 2r × sin(θ/2)</div>
+                    <div class="description">Length of chord subtending angle θ at center.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> θ = central angle, r = radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">Chord = 2√(r² - d²)</div>
+                        <div class="variant">d = distance from center to chord</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📐</div>
+                        Height of Segment
+                    </div>
+                    <div class="formula">h = r - d</div>
+                    <div class="description">Height (sagitta) of circular segment.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> r = radius, d = distance from center to chord
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">h = r(1 - cos(θ/2))</div>
+                        <div class="variant">h = c²/(8r) + r/2 (for small segments)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Angle Relationships -->
+        <div class="category-section">
+            <div class="category-title">Circle Angle Relationships</div>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🎯</div>
+                        Inscribed Angle
+                    </div>
+                    <div class="formula">Inscribed Angle = (1/2) × Central Angle</div>
+                    <div class="description">Angle subtended by arc at circumference is half the central angle.</div>
+                    <div class="where-clause">
+                        <strong>Theorem:</strong> Angle in semicircle = 90°
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🔄</div>
+                        Angle in Same Segment
+                    </div>
+                    <div class="formula">All angles in same segment are equal</div>
+                    <div class="description">Angles subtended by same arc from any point on circle are equal.</div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">➕</div>
+                        Opposite Angles in Cyclic Quadrilateral
+                    </div>
+                    <div class="formula">A + C = 180°, B + D = 180°</div>
+                    <div class="description">Sum of opposite angles in cyclic quadrilateral is 180°.</div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📐</div>
+                        Angle Between Tangent and Chord
+                    </div>
+                    <div class="formula">Angle = Inscribed angle in alternate segment</div>
+                    <div class="description">Alternate segment theorem for tangent-chord angle.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tangent and Chord Properties -->
+     <div class="category-section">
+            <div class="category-title">Tangent and Chord Properties</div>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📏</div>
+                        Length of Tangent from External Point
+                    </div>
+                    <div class="formula">Tangent = √(d² - r²)</div>
+                    <div class="description">Length of tangent from external point to circle.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> d = distance from point to center, r = radius
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">⚖️</div>
+                        Power of Point (External)
+                    </div>
+                    <div class="formula">Power = PA × PB = PC × PD</div>
+                    <div class="description">Product of segments from external point through circle.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> P is external point, A,B,C,D are intersection points
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">✂️</div>
+                        Intersecting Chords
+                    </div>
+                    <div class="formula">PA × PB = PC × PD</div>
+                    <div class="description">Product of segments of intersecting chords is constant.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> Two chords intersect at point P inside circle
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📐</div>
+                        Perpendicular from Center to Chord
+                    </div>
+                    <div class="formula">Perpendicular bisects the chord</div>
+                    <div class="description">Distance from center: d = √(r² - (c/2)²)</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> c = chord length, r = radius
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Formulas -->
+        <div class="category-section">
+            <div class="category-title">Additional Circle Formulas</div>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📊</div>
+                        Area of Annulus (Ring)
+                    </div>
+                    <div class="formula">A = π(R² - r²)</div>
+                    <div class="description">Area between two concentric circles.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> R = outer radius, r = inner radius
+                    </div>
+                    <div class="formula-variants">
+                        <div class="variant">A = π(R + r)(R - r)</div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🎭</div>
+                        Area of Lune
+                    </div>
+                    <div class="formula">A = Area of larger segment - Area of smaller segment</div>
+                    <div class="description">Area between two intersecting circular arcs.</div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">📏</div>
+                        Radius from Area
+                    </div>
+                    <div class="formula">r = √(A/π)</div>
+                    <div class="description">Finding radius when area is given.</div>
+                    <div class="where-clause">
+                        <strong>Where:</strong> A = area of circle
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">🔄</div>
+                        Radian-Degree Conversion
+                    </div>
+                    <div class="formula">Radians = (π/180°) × Degrees</div>
+                    <div class="description">Converting between angle measurements.</div>
+                    <div class="formula-variants">
+                        <div class="variant">Degrees = (180°/π) × Radians</div>
+                        <div class="variant">π radians = 180°</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <div class="interactive-demo">
+            <h3>🧮 Interactive Circle Calculator</h3>
+            <p>Enter radius to calculate various circle properties:</p>
+            <div>
+                <input type="number" id="radiusInput" class="demo-input" placeholder="Radius" step="0.1">
+                <input type="number" id="angleInput" class="demo-input" placeholder="Angle (°)" step="1">
+                <button class="demo-button" onclick="calculateCircle()">Calculate All</button>
+            </div>
+            <div id="calculatorResult" class="demo-result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateCircle() {
+            const radius = parseFloat(document.getElementById('radiusInput').value);
+            const angle = parseFloat(document.getElementById('angleInput').value) || 90;
+            const resultDiv = document.getElementById('calculatorResult');
+            
+            if (!radius || radius <= 0) {
+                resultDiv.innerHTML = "Please enter a valid positive radius!";
+                return;
+            }
+            
+            const pi = Math.PI;
+            
+            // Basic calculations
+            const area = pi * radius * radius;
+            const circumference = 2 * pi * radius;
+            const diameter = 2 * radius;
+            
+            // Sector calculations
+            const sectorArea = (angle / 360) * pi * radius * radius;
+            const arcLength = (angle / 360) * 2 * pi * radius;
+            const sectorPerimeter = 2 * radius + arcLength;
+            
+            // Segment calculations
+            const angleRad = (angle * pi) / 180;
+            const triangleArea = 0.5 * radius * radius * Math.sin(angleRad);
+            const segmentArea = sectorArea - triangleArea;
+            
+            // Chord length
+            const chordLength = 2 * radius * Math.sin(angleRad / 2);
+            
+            resultDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: left;">
+                    <div><strong>Area:</strong> ${area.toFixed(2)} units²</div>
+                    <div><strong>Circumference:</strong> ${circumference.toFixed(2)} units</div>
+                    <div><strong>Diameter:</strong> ${diameter.toFixed(2)} units</div>
+                    <div><strong>Sector Area:</strong> ${sectorArea.toFixed(2)} units²</div>
+                    <div><strong>Arc Length:</strong> ${arcLength.toFixed(2)} units</div>
+                    <div><strong>Segment Area:</strong> ${segmentArea.toFixed(2)} units²</div>
+                    <div><strong>Chord Length:</strong> ${chordLength.toFixed(2)} units</div>
+                    <div><strong>Sector Perimeter:</strong> ${sectorPerimeter.toFixed(2)} units</div>
+                </div>
+            `;
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.formula-card');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease forwards';
+            });
+        });
+
+        // Add CSS for fade in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Mixed Subject Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .progress-container {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .question-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .question-number {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .subject-tag {
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .subject-tag.math { background: #e74c3c; }
+        .subject-tag.physics { background: #9b59b6; }
+        .subject-tag.chemistry { background: #f39c12; }
+        .subject-tag.biology { background: #27ae60; }
+        .subject-tag.social { background: #34495e; }
+        .subject-tag.english { background: #e67e22; }
+
+        .question {
+            font-size: 18px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #ffffff;
+            border-left: 4px solid #3498db;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            background: #e3f2fd;
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .option.correct {
+            background: #27ae60;
+            color: white;
+            border-color: #229954;
+        }
+
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 25px;
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .grade {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .grade.excellent { color: #27ae60; }
+        .grade.good { color: #f39c12; }
+        .grade.average { color: #e67e22; }
+        .grade.poor { color: #e74c3c; }
+
+        .subject-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .subject-score {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .question { font-size: 16px; }
+            .subject-breakdown { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Class 10th Mixed Subject Quiz</h1>
+        <div class="subtitle">Test your knowledge across all subjects!</div>
+        
+        <div id="quiz-section">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="question-info">
+                <div class="question-number" id="question-number">Question 1 of 50</div>
+                <div class="subject-tag" id="subject-tag">Mathematics</div>
+            </div>
+            
+            <div class="question" id="question-text"></div>
+            <div class="options" id="options"></div>
+            
+            <div class="controls">
+                <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <div id="results-section" class="hidden">
+            <div class="results">
+                <div class="score-circle" id="score-circle">0/50</div>
+                <div class="grade" id="grade">Your Grade</div>
+                <div id="grade-description">Description</div>
+                <div class="subject-breakdown" id="subject-breakdown"></div>
+                <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // Mathematics (10 questions)
+            {
+                subject: "math",
+                question: "What is the value of sin 30°?",
+                options: ["1/2", "√3/2", "1/√2", "√2/2"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "If the roots of equation x² - 5x + 6 = 0 are α and β, then α + β = ?",
+                options: ["5", "6", "-5", "-6"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "The area of a circle with radius 7 cm is:",
+                options: ["154 cm²", "44 cm²", "22 cm²", "77 cm²"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "What is the LCM of 12 and 18?",
+                options: ["36", "54", "72", "108"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "If log₁₀ 2 = 0.3010, then log₁₀ 8 = ?",
+                options: ["0.9030", "0.6020", "2.408", "1.204"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "The nth term of an AP with first term 'a' and common difference 'd' is:",
+                options: ["a + (n-1)d", "a + nd", "a + (n+1)d", "a - (n-1)d"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "What is the value of cos 60°?",
+                options: ["1/2", "√3/2", "1/√3", "√2/2"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "The surface area of a cube with side 'a' is:",
+                options: ["6a²", "4a²", "a³", "3a²"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "If 3ˣ = 27, then x = ?",
+                options: ["3", "9", "81", "1"],
+                correct: 0
+            },
+            {
+                subject: "math",
+                question: "The median of 3, 7, 9, 12, 15 is:",
+                options: ["9", "7", "12", "10"],
+                correct: 0
+            },
+
+            // Physics (10 questions)
+            {
+                subject: "physics",
+                question: "What is the SI unit of electric current?",
+                options: ["Ampere", "Volt", "Ohm", "Watt"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "The power of a lens is measured in:",
+                options: ["Dioptre", "Metre", "Candela", "Hertz"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "Ohm's law states that V = IR. What does R represent?",
+                options: ["Resistance", "Reactance", "Reluctance", "Resonance"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "The acceleration due to gravity on Earth is approximately:",
+                options: ["9.8 m/s²", "10.8 m/s²", "8.9 m/s²", "6.8 m/s²"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "Which phenomenon is responsible for the twinkling of stars?",
+                options: ["Refraction", "Reflection", "Diffraction", "Interference"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "The focal length of a convex mirror is:",
+                options: ["Positive", "Negative", "Zero", "Infinite"],
+                correct: 1
+            },
+            {
+                subject: "physics",
+                question: "What type of current is supplied by a battery?",
+                options: ["Direct Current", "Alternating Current", "Both", "Neither"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "The unit of magnetic field strength is:",
+                options: ["Tesla", "Weber", "Henry", "Gauss"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "Newton's first law is also known as the law of:",
+                options: ["Inertia", "Momentum", "Energy", "Action-Reaction"],
+                correct: 0
+            },
+            {
+                subject: "physics",
+                question: "The speed of light in vacuum is approximately:",
+                options: ["3 × 10⁸ m/s", "3 × 10⁶ m/s", "3 × 10⁹ m/s", "3 × 10⁷ m/s"],
+                correct: 0
+            },
+
+            // Chemistry (10 questions)
+            {
+                subject: "chemistry",
+                question: "What is the chemical formula of water?",
+                options: ["H₂O", "H₂O₂", "HO₂", "H₃O"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "The atomic number of carbon is:",
+                options: ["6", "12", "14", "8"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "Which gas is produced when zinc reacts with hydrochloric acid?",
+                options: ["Hydrogen", "Oxygen", "Carbon dioxide", "Chlorine"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "The pH of pure water at 25°C is:",
+                options: ["7", "0", "14", "1"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "Which element has the symbol 'Fe'?",
+                options: ["Iron", "Fluorine", "Francium", "Fermium"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "The molecular formula of methane is:",
+                options: ["CH₄", "C₂H₆", "C₃H₈", "C₄H₁₀"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "Which acid is present in vinegar?",
+                options: ["Acetic acid", "Citric acid", "Lactic acid", "Formic acid"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "The number of valence electrons in chlorine is:",
+                options: ["7", "17", "8", "1"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "Which process is used to separate salt from seawater?",
+                options: ["Evaporation", "Filtration", "Decantation", "Sublimation"],
+                correct: 0
+            },
+            {
+                subject: "chemistry",
+                question: "The chemical name of baking soda is:",
+                options: ["Sodium hydrogen carbonate", "Sodium carbonate", "Sodium chloride", "Sodium hydroxide"],
+                correct: 0
+            },
+
+            // Biology (10 questions)
+            {
+                subject: "biology",
+                question: "What is the powerhouse of the cell?",
+                options: ["Mitochondria", "Nucleus", "Ribosome", "Golgi apparatus"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "The process by which plants make their food is called:",
+                options: ["Photosynthesis", "Respiration", "Transpiration", "Digestion"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "Which blood group is known as the universal donor?",
+                options: ["O", "A", "B", "AB"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "The scientific name of human beings is:",
+                options: ["Homo sapiens", "Homo erectus", "Homo habilis", "Homo neanderthalensis"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "Which organ is responsible for filtering blood in humans?",
+                options: ["Kidney", "Liver", "Heart", "Lungs"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "The basic unit of heredity is called:",
+                options: ["Gene", "Chromosome", "DNA", "RNA"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "Which hormone is secreted by the pancreas?",
+                options: ["Insulin", "Thyroxine", "Adrenaline", "Growth hormone"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "The study of birds is called:",
+                options: ["Ornithology", "Ichthyology", "Entomology", "Herpetology"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "Which part of the plant conducts water upwards?",
+                options: ["Xylem", "Phloem", "Cambium", "Cortex"],
+                correct: 0
+            },
+            {
+                subject: "biology",
+                question: "The normal body temperature of humans is:",
+                options: ["37°C", "35°C", "39°C", "40°C"],
+                correct: 0
+            },
+
+            // Social Studies (10 questions)
+            {
+                subject: "social",
+                question: "Who was the first Prime Minister of India?",
+                options: ["Jawaharlal Nehru", "Mahatma Gandhi", "Sardar Patel", "Dr. Rajendra Prasad"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "The Indian Constitution came into effect on:",
+                options: ["26th January 1950", "15th August 1947", "26th November 1949", "2nd October 1950"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "Which river is known as the lifeline of India?",
+                options: ["Ganges", "Yamuna", "Brahmaputra", "Indus"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "The Quit India Movement was launched in:",
+                options: ["1942", "1941", "1943", "1944"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "Which is the largest state in India by area?",
+                options: ["Rajasthan", "Maharashtra", "Uttar Pradesh", "Madhya Pradesh"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "The capital of Mauryan Empire was:",
+                options: ["Pataliputra", "Ujjain", "Taxila", "Mathura"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "Who wrote the national anthem of India?",
+                options: ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Sarojini Naidu", "Subhash Chandra Bose"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "The Tropic of Cancer passes through how many Indian states?",
+                options: ["8", "6", "10", "12"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "Which Mughal emperor built the Taj Mahal?",
+                options: ["Shah Jahan", "Akbar", "Jahangir", "Aurangzeb"],
+                correct: 0
+            },
+            {
+                subject: "social",
+                question: "The term of Lok Sabha is:",
+                options: ["5 years", "6 years", "4 years", "3 years"],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+        let answered = false;
+        let subjectScores = {
+            math: { correct: 0, total: 0 },
+            physics: { correct: 0, total: 0 },
+            chemistry: { correct: 0, total: 0 },
+            biology: { correct: 0, total: 0 },
+            social: { correct: 0, total: 0 },
+            english: { correct: 0, total: 0 }
+        };
+
+        const subjectNames = {
+            math: "Mathematics",
+            physics: "Physics", 
+            chemistry: "Chemistry",
+            biology: "Biology",
+            social: "Social Studies",
+            english: "English"
+        };
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const q = questions[currentQuestion];
+            document.getElementById('question-number').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('question-text').textContent = q.question;
+            
+            // Update subject tag
+            const subjectTag = document.getElementById('subject-tag');
+            subjectTag.textContent = subjectNames[q.subject];
+            subjectTag.className = `subject-tag ${q.subject}`;
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.innerHTML = `<span class="option-label">${String.fromCharCode(65 + index)}.</span> ${option}`;
+                optionDiv.onclick = () => selectAnswer(index, optionDiv);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            updateProgress();
+            selectedAnswer = null;
+            answered = false;
+            document.getElementById('next-btn').disabled = true;
+        }
+
+        function selectAnswer(index, element) {
+            if (answered) return;
+
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            selectedAnswer = index;
+            element.classList.add('selected');
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null) return;
+
+            answered = true;
+            const q = questions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            const correctIndex = q.correct;
+
+            // Update subject scores
+            subjectScores[q.subject].total++;
+            
+            options[correctIndex].classList.add('correct');
+            if (selectedAnswer === correctIndex) {
+                score++;
+                subjectScores[q.subject].correct++;
+            } else {
+                options[selectedAnswer].classList.add('incorrect');
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                loadQuestion();
+            }, 2000);
+        }
+
+        function updateProgress() {
+            const progress = (currentQuestion / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+
+        function showResults() {
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('results-section').classList.remove('hidden');
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('score-circle').textContent = `${score}/${questions.length}`;
+            
+            let grade, gradeClass, description;
+            if (percentage >= 90) {
+                grade = "A+ Excellent!";
+                gradeClass = "excellent";
+                description = "Outstanding performance! You're well prepared for exams.";
+            } else if (percentage >= 80) {
+                grade = "A Good";
+                gradeClass = "good"; 
+                description = "Great job! You have a strong grasp of the subjects.";
+            } else if (percentage >= 70) {
+                grade = "B+ Above Average";
+                gradeClass = "good";
+                description = "Good work! Focus on weaker areas for improvement.";
+            } else if (percentage >= 60) {
+                grade = "B Average";
+                gradeClass = "average";
+                description = "Decent performance. More practice needed in some subjects.";
+            } else if (percentage >= 50) {
+                grade = "C Below Average";
+                gradeClass = "average";
+                description = "You need to study more. Focus on understanding concepts.";
+            } else {
+                grade = "D Needs Improvement";
+                gradeClass = "poor";
+                description = "Requires significant improvement. Consider getting help from teachers.";
+            }
+            
+            const gradeElement = document.getElementById('grade');
+            gradeElement.textContent = grade;
+            gradeElement.className = `grade ${gradeClass}`;
+            document.getElementById('grade-description').textContent = description;
+
+            // Show subject breakdown
+            const breakdownContainer = document.getElementById('subject-breakdown');
+            breakdownContainer.innerHTML = '';
+            
+            Object.keys(subjectScores).forEach(subject => {
+                const subjectData = subjectScores[subject];
+                if (subjectData.total > 0) {
+                    const subjectDiv = document.createElement('div');
+                    subjectDiv.className = 'subject-score';
+                    const subjectPercentage = Math.round((subjectData.correct / subjectData.total) * 100);
+                    subjectDiv.innerHTML = `
+                        <h4>${subjectNames[subject]}</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: #3498db;">
+                            ${subjectData.correct}/${subjectData.total}
+                        </div>
+                        <div style="color: #7f8c8d;">${subjectPercentage}%</div>
+                    `;
+                    breakdownContainer.appendChild(subjectDiv);
+                }
+            });
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            selectedAnswer = null;
+            answered = false;
+            
+            // Reset subject scores
+            Object.keys(subjectScores).forEach(subject => {
+                subjectScores[subject] = { correct: 0, total: 0 };
+            });
+            
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('results-section').classList.add('hidden');
+            
+            loadQuestion();
+        }
+
+        // Start the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

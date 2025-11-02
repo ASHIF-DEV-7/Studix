@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studix - Class 10</title>
+    <script src="universal-settings.js"></script>
+    
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 150;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 200;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-menu {
+    padding: 10px 0;
+}
+
+.sidebar-item {
+    display: block;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.sidebar-item:hover {
+    background: #f5f5f5;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 10px 0;
+}
+
+/* Top Navigation Bar */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 100;
+}
+
+.top-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-nav-center {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.top-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+    color: #000;
+}
+
+.icon-btn:active {
+    opacity: 0.6;
+}
+
+.icon-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Subject Chips Container - FULLY TRANSPARENT */
+.subject-chips-container {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    background: transparent;
+    z-index: 90;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+    
+}
+
+.subject-chips-container::-webkit-scrollbar {
+    display: none;
+}
+
+.subject-chips-container.hide-chips {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.subject-chip {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+}
+
+.subject-chip:active {
+    background: rgba(0,0,0,0);
+    transform: scale(0.95);
+}
+
+.subject-chip.active {
+    background: rgba(0, 0, 0,0.95);
+    color: #fff;
+    border-color: #000;
+}
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    margin-top: 56px;
+    margin-bottom: 72px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
+    padding: 0;
+}
+
+/* Hero Carousel */
+.hero-carousel {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
+    margin-top: 60px;
+}
+
+.hero-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.hero-slide {
+    min-width: 100%;
+    scroll-snap-align: start;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hero-slide-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ddd;
+    transition: all 0.3s;
+}
+
+.indicator-dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: #333;
+}
+
+/* Asymmetric Featured Block */
+.featured-block {
+    padding: 0 16px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 120px 120px;
+    gap: 12px;
+}
+
+.featured-card {
+    border-radius: 16px;
+    padding: 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    text-decoration: none;
+}
+
+.featured-card:active {
+    transform: scale(0.98);
+}
+
+.featured-card.large {
+    grid-row: span 2;
+    background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+}
+
+.featured-card.small-1 {
+    background: linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%);
+}
+
+.featured-card.small-2 {
+    background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+}
+
+.featured-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.featured-subtitle {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* Section Headers */
+.section-header {
+    padding: 20px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.see-more-btn {
+    font-size: 14px;
+    color: #3498DB;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+/* Horizontal Scroll Rows */
+.horizontal-row {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 12px;
+    padding: 0 16px 20px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-row::-webkit-scrollbar {
+    display: none;
+}
+
+.subject-card {
+    min-width: 140px;
+    scroll-snap-align: start;
+    border-radius: 14px;
+    padding: 16px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.subject-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.card-subtitle {
+    font-size: 11px;
+    color: #666;
+}
+
+/* Hero Section (Expandable) */
+.hero-section {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+    background: white;
+    margin: 0 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.hero-section.open {
+    max-height: 2000px;
+    padding: 20px;
+    margin: 0 16px 20px;
+}
+
+.hero-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.hero-close {
+    background: #f0f0f0;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.hero-item {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.hero-item:active {
+    transform: scale(0.95);
+}
+
+/* Widget Row */
+.widget-row {
+    padding: 0 16px 20px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.widget-row::-webkit-scrollbar {
+    display: none;
+}
+
+.widget-card {
+    min-width: 90px;
+    border-radius: 14px;
+    padding: 16px 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.widget-card:active {
+    transform: scale(0.95);
+}
+
+.widget-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.widget-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Mixed Grid Section */
+.mixed-grid {
+    padding: 0 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.grid-item {
+    border-radius: 14px;
+    padding: 20px;
+    color: white;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.grid-item:active {
+    transform: scale(0.98);
+}
+
+.grid-item.wide {
+    grid-column: span 2;
+}
+
+.grid-item.tall {
+    grid-row: span 2;
+    min-height: 252px;
+}
+
+/* Footer */
+.app-footer {
+    background: #f5f5f5;
+    padding: 24px 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-heart {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: #3498DB;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #666;
+    flex: 1;
+    padding: 4px;
+    transition: all 0.2s;
+}
+
+.nav-item.active {
+    color: #fff;
+    background: #000;
+    border-radius: 12px;
+}
+
+.nav-item.active svg {
+    stroke: #fff;
+}
+
+.nav-item svg {
+    width: 28px;
+    height: 28px;
+    transition: stroke 0.2s;
+}
+
+.nav-label {
+    font-size: 11px;
+    font-weight: 500;
+}
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">Menu</div>
+        <div class="sidebar-menu">
+            <a href="profile.html" class="sidebar-item">Profile</a>
+            <a href="library.html" class="sidebar-item">Keep notes</a>
+            <a href="#" class="sidebar-item">Notice</a>
+            <a href="#" class="sidebar-item">Know me</a>
+            <a href="settings.html" class="sidebar-item">Settings</a>
+            <a href="chatbot.html" class="sidebar-item">Chatbot</a>
+            <div class="sidebar-divider"></div>
+            <a href="#" class="sidebar-item">Terms & services</a>
+            <a href="about.html" class="sidebar-item">Support</a>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <div class="top-nav-left">
+            <button class="icon-btn" id="menuBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="top-nav-center">HOME</div>
+        <div class="top-nav-right">
+            <a href="search.html" class="icon-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </a>
+            <a href="library.html" class="icon-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Subject Chips - FULLY TRANSPARENT CONTAINER -->
+    <div class="subject-chips-container">
+        <a href="main.html" class="subject-chip active">Home screen</a>
+        <a href="formulas.html" class="subject-chip">Formula</a>
+        <a href="notes.html" class="subject-chip">Science</a>
+        <a href="math.html" class="subject-chip">Math</a>
+        <a href="english.html" class="subject-chip">English</a>
+        <a href="sst.html" class="subject-chip">Sst</a>
+        <a href="#" class="subject-chip">Chemistry</a>
+        <a href="#" class="subject-chip">Biology</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Hero Carousel -->
+        <div class="hero-carousel" id="heroCarousel">
+            <a href="magnet.html" class="hero-slide" style="background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);">
+                <div>Magnetism Physics</div>
+                <div class="hero-slide-subtitle">Master 15 chapters with ease</div>
+            </a>
+            <a href="carbon.html" class="hero-slide" style="background: linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%);">
+                <div>Carbon And Its Compound</div>
+                <div class="hero-slide-subtitle"></div>
+            </a>
+            <a href="mch10.html" class="hero-slide" style="background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);">
+                <div>Circle</div>
+                <div class="hero-slide-subtitle"> full revisiom notes of circle</div>
+            </a>
+            <a href="#" class="hero-slide" style="background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);">
+                <div>SST Explorer</div>
+                <div class="hero-slide-subtitle">History, Geography, Civics</div>
+            </a>
+        </div>
+        <div class="carousel-indicators">
+            <div class="indicator-dot active"></div>
+            <div class="indicator-dot"></div>
+            <div class="indicator-dot"></div>
+            <div class="indicator-dot"></div>
+        </div>
+
+        <!-- Asymmetric Featured Block -->
+        <div class="featured-block">
+            <a href="mch1.html" class="featured-card large">
+                <div>
+                    <div class="featured-title">Real Numbers</div>
+                    <div class="featured-subtitle">Master the fundamentals</div>
+                </div>
+                <div>Chapter 1</div>
+            </a>
+            <a href="Ench1.html" class="featured-card small-1">
+                <div>
+                    <div class="featured-title">A Letter to God</div>
+                </div>
+                <div>English</div>
+            </a>
+            <a href="chem01.html" class="featured-card small-2">
+                <div>
+                    <div class="featured-title">Chemical Reactions</div>
+                </div>
+                <div>Chemistry</div>
+            </a>
+        </div>
+
+        <!-- Mathematics Section -->
+        <div class="section-header">
+            <div class="section-title" style="color: #3498DB;">Mathematics</div>
+            <a href="#" class="see-more-btn" data-subject="math">See More →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="mch1.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">1</div>
+                <div class="card-title">Real Numbers</div>
+                <div class="card-subtitle">Chapter 1</div>
+            </a>
+            <a href="mch2.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">2</div>
+                <div class="card-title">Polynomials</div>
+                <div class="card-subtitle">Chapter 2</div>
+            </a>
+            <a href="mch3.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">3</div>
+                <div class="card-title">Linear Equations</div>
+                <div class="card-subtitle">Chapter 3</div>
+            </a>
+            <a href="mch4.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">4</div>
+                <div class="card-title">Quadratic Equations</div>
+                <div class="card-subtitle">Chapter 4</div>
+            </a>
+            <a href="mch5.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">5</div>
+                <div class="card-title">AP</div>
+                <div class="card-subtitle">Chapter 5</div>
+            </a>
+        </div>
+
+        <!-- Math Hero Section -->
+        <div class="hero-section" id="mathHero">
+            <div class="hero-header">
+                <div class="section-title" style="color: #3498DB;">All Math Chapters</div>
+                <button class="hero-close" onclick="closeHero('mathHero')">✕</button>
+            </div>
+            <div class="hero-grid">
+                <a href="mch1.html" class="hero-item" style="background: #E3F2FD;">Ch 1<br>Real Numbers</a>
+                <a href="mch2.html" class="hero-item" style="background: #E3F2FD;">Ch 2<br>Polynomials</a>
+                <a href="mch3.html" class="hero-item" style="background: #E3F2FD;">Ch 3<br>Linear Eq.</a>
+                <a href="mch4.html" class="hero-item" style="background: #E3F2FD;">Ch 4<br>Quadratic</a>
+                <a href="mch5.html" class="hero-item" style="background: #E3F2FD;">Ch 5<br>AP</a>
+                <a href="mch6.html" class="hero-item" style="background: #E3F2FD;">Ch 6<br>Triangles</a>
+                <a href="mch7.html" class="hero-item" style="background: #E3F2FD;">Ch 7<br>Coordinate</a>
+                <a href="mch8.html" class="hero-item" style="background: #E3F2FD;">Ch 8<br>Trigonometry</a>
+                <a href="mch9.html" class="hero-item" style="background: #E3F2FD;">Ch 9<br>Applications</a>
+                <a href="mch10.html" class="hero-item" style="background: #E3F2FD;">Ch 10<br>Circles</a>
+                <a href="mch11.html" class="hero-item" style="background: #E3F2FD;">Ch 11<br>Constructions</a>
+                <a href="mch12.html" class="hero-item" style="background: #E3F2FD;">Ch 12<br>Areas</a>
+                <a href="mch13.html" class="hero-item" style="background: #E3F2FD;">Ch 13<br>Volumes</a>
+                <a href="mch14.html" class="hero-item" style="background: #E3F2FD;">Ch 14<br>Statistics</a>
+                <a href="mch15.html" class="hero-item" style="background: #E3F2FD;">Ch 15<br>Probability</a>
+            </div>
+        </div>
+
+        <!-- Widget Row -->
+        <div class="section-header">
+            <div class="section-title">Quick Tools</div>
+        </div>
+        <div class="widget-row">
+            <a href="all-notes.html" class="widget-card">
+                <div class="widget-icon" style="background: #FFF3E0; color: #FF9800;">📝</div>
+                <div class="widget-label">Notes</div>
+            </a>
+            <a href="quizopt.html" class="widget-card">
+                <div class="widget-icon" style="background: #F3E5F5; color: #9C27B0;">❓</div>
+                <div class="widget-label">Quizzes</div>
+            </a>
+            <a href="pyq.html" class="widget-card">
+                <div class="widget-icon" style="background: #E8F5E9; color: #4CAF50;">📇</div>
+                <div class="widget-label">PYQs</div>
+            </a>
+            <a href="formulas.html" class="widget-card">
+                <div class="widget-icon" style="background: #E3F2FD; color: #2196F3;">📐</div>
+                <div class="widget-label">Formulas</div>
+            </a>
+            <a href="chatbot.html" class="widget-card">
+                <div class="widget-icon" style="background: #FCE4EC; color: #E91E63;">🤖</div>
+                <div class="widget-label">AI Tutor</div>
+            </a>
+        </div>
+
+        <!-- English Section -->
+        <div class="section-header">
+            <div class="section-title" style="color: #8E44AD;">English</div>
+            <a href="#" class="see-more-btn" data-subject="english">See More →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="Ench1.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">✉️</div>
+                <div class="card-title">Letter to God</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench2.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">✊</div>
+                <div class="card-title">Nelson Mandela</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench3.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">🕊️</div>
+                <div class="card-title">Flying Stories</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench4.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">📖</div>
+                <div class="card-title">Anne Frank</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench10.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">❄️</div>
+                <div class="card-title">Dust of Snow</div>
+                <div class="card-subtitle">Poetry</div>
+            </a>
+        </div>
+
+        <!-- English Hero Section -->
+        <div class="hero-section" id="englishHero">
+            <div class="hero-header">
+                <div class="section-title" style="color: #8E44AD;">All English Chapters</div>
+                <button class="hero-close" onclick="closeHero('englishHero')">✕</button>
+            </div>
+            <div class="hero-grid">
+                <a href="Ench1.html" class="hero-item" style="background: #F3E5F5;">Letter to God</a>
+                <a href="Ench2.html" class="hero-item" style="background: #F3E5F5;">N. Mandela</a>
+                <a href="Ench3.html" class="hero-item" style="background: #F3E5F5;">Flying</a>
+                <a href="Ench4.html" class="hero-item" style="background: #F3E5F5;">Anne Frank</a>
+                <a href="Ench5.html" class="hero-item" style="background: #F3E5F5;">Glimpses</a>
+                <a href="Ench6.html" class="hero-item" style="background: #F3E5F5;">Mijbil</a>
+                <a href="Ench7.html" class="hero-item" style="background: #F3E5F5;">Madam Bus</a>
+                <a href="Ench8.html" class="hero-item" style="background: #F3E5F5;">Sermon</a>
+                <a href="Ench9.html" class="hero-item" style="background: #F3E5F5;">Proposal</a>
+                <a href="Ench10.html" class="hero-item" style="background: #EDE7F6;">Dust Snow</a>
+                <a href="Ench11.html" class="hero-item" style="background: #EDE7F6;">Fire Ice</a>
+                <a href="Ench12.html" class="hero-item" style="background: #EDE7F6;">Tiger Zoo</a>
+                <a href="Ench13.html" class="hero-item" style="background: #EDE7F6;">Wild Animals</a>
+                <a href="Ench14.html" class="hero-item" style="background: #EDE7F6;">Ball Poem</a>
+                <a href="Ench15.html" class="hero-item" style="background: #EDE7F6;">Amanda</a>
+                <a href="Ench16.html" class="hero-item" style="background: #EDE7F6;">Animals</a>
+                <a href="Ench17.html" class="hero-item" style="background: #EDE7F6;">Trees</a>
+                <a href="Ench18.html" class="hero-item" style="background: #EDE7F6;">Fog</a>
+                <a href="Ench19.html" class="hero-item" style="background: #EDE7F6;">Custard</a>
+                <a href="Ench20.html" class="hero-item" style="background: #EDE7F6;">Anne Gregory</a>
+                <a href="Ench21.html" class="hero-item" style="background: #D1C4E9;">Triumph</a>
+                <a href="Ench22.html" class="hero-item" style="background: #D1C4E9;">Thief Story</a>
+                <a href="Ench23.html" class="hero-item" style="background: #D1C4E9;">Midnight</a>
+                <a href="Ench24.html" class="hero-item" style="background: #D1C4E9;">Trust</a>
+                <a href="Ench25.html" class="hero-item" style="background: #D1C4E9;">Footprints</a>
+                <a href="Ench26.html" class="hero-item" style="background: #D1C4E9;">Scientist</a>
+                <a href="Ench27.html" class="hero-item" style="background: #D1C4E9;">Necklace</a>
+                <a href="Ench28.html" class="hero-item" style="background: #D1C4E9;">Hack Driver</a>
+                <a href="Ench29.html" class="hero-item" style="background: #D1C4E9;">Bholi</a>
+                <a href="Ench30.html" class="hero-item" style="background: #D1C4E9;">Book Earth</a>
+            </div>
+        </div>
+
+        <!-- Science Section -->
+        <div class="section-header">
+            <div class="section-title" style="color: #27AE60;">Science</div>
+            <a href="#" class="see-more-btn" data-subject="science">See More →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="lite.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">💡</div>
+                <div class="card-title">Light</div>
+                <div class="card-subtitle">Physics</div>
+            </a>
+            <a href="heacw.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">👁️</div>
+                <div class="card-title">Human Eye</div>
+                <div class="card-subtitle">Physics</div>
+            </a>
+            <a href="elect.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">⚡</div>
+                <div class="card-title">Electricity</div>
+                <div class="card-subtitle">Physics</div>
+            </a>
+            <a href="chem01.html" class="subject-card">
+                <div class="card-icon" style="background: #FFF9C4; color: #F9A825;">🧪</div>
+                <div class="card-title">Reactions</div>
+                <div class="card-subtitle">Chemistry</div>
+            </a>
+            <a href="bione.html" class="subject-card">
+                <div class="card-icon" style="background: #C8E6C9; color: #388E3C;">🌱</div>
+                <div class="card-title">Life Processes</div>
+                <div class="card-subtitle">Biology</div>
+            </a>
+        </div>
+
+        <!-- Science Hero Section -->
+        <div class="hero-section" id="scienceHero">
+            <div class="hero-header">
+                <div class="section-title" style="color: #27AE60;">All Science Chapters</div>
+                <button class="hero-close" onclick="closeHero('scienceHero')">✕</button>
+            </div>
+            <div class="hero-grid">
+                <a href="lite.html" class="hero-item" style="background: #E8F5E9;">Light</a>
+                <a href="heacw.html" class="hero-item" style="background: #E8F5E9;">Human Eye</a>
+                <a href="elect.html" class="hero-item" style="background: #E8F5E9;">Electricity</a>
+                <a href="magnet.html" class="hero-item" style="background: #E8F5E9;">Magnetism</a>
+                <a href="chem01.html" class="hero-item" style="background: #FFF9C4;">Reactions</a>
+                <a href="acid.html" class="hero-item" style="background: #FFF9C4;">Acids Bases</a>
+                <a href="metal.html" class="hero-item" style="background: #FFF9C4;">Metals</a>
+                <a href="carbon.html" class="hero-item" style="background: #FFF9C4;">Carbon</a>
+                <a href="bione.html" class="hero-item" style="background: #C8E6C9;">Life Process</a>
+                <a href="cc.html" class="hero-item" style="background: #C8E6C9;">Control</a>
+                <a href="repro.html" class="hero-item" style="background: #C8E6C9;">Reproduction</a>
+                <a href="here.html" class="hero-item" style="background: #C8E6C9;">Heredity</a>
+                <a href="ouren.html" class="hero-item" style="background: #C8E6C9;">Environment</a>
+            </div>
+        </div>
+
+        <!-- Mixed Grid Section -->
+        <div class="section-header">
+            <div class="section-title">Popular Topics</div>
+        </div>
+        <div class="mixed-grid">
+            <a href="hch1.html" class="grid-item" style="background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);">
+                <div class="featured-title">Nationalism in Europe</div>
+                <div class="featured-subtitle">History</div>
+            </a>
+            <a href="geoch1.html" class="grid-item tall" style="background: linear-gradient(135deg, #16A085 0%, #138D75 100%);">
+                <div class="featured-title">Resources & Development</div>
+                <div class="featured-subtitle">Geography</div>
+            </a>
+            <a href="cch1.html" class="grid-item" style="background: linear-gradient(135deg, #C0392B 0%, #A93226 100%);">
+                <div class="featured-title">Power Sharing</div>
+                <div class="featured-subtitle">Civics</div>
+            </a>
+            <a href="ecoch1.html" class="grid-item wide" style="background: linear-gradient(135deg, #8E44AD 0%, #7D3C98 100%);">
+                <div class="featured-title">Economic Development</div>
+                <div class="featured-subtitle">Economics</div>
+            </a>
+        </div>
+
+<div class="section-header">
+            <div class="section-title" style="color: #E67E22;">Social Science</div>
+            <a href="#" class="see-more-btn" data-subject="sst">See More →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="hch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">📜</div>
+                <div class="card-title">Nationalism</div>
+                <div class="card-subtitle">History</div>
+            </a>
+            <a href="geoch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">🗺️</div>
+                <div class="card-title">Resources</div>
+                <div class="card-subtitle">Geography</div>
+            </a>
+            <a href="cch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">⚖️</div>
+                <div class="card-title">Power Sharing</div>
+                <div class="card-subtitle">Civics</div>
+            </a>
+            <a href="ecoch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">💰</div>
+                <div class="card-title">Development</div>
+                <div class="card-subtitle">Economics</div>
+            </a>
+            <a href="hch2.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">🇮🇳</div>
+                <div class="card-title">India Freedom</div>
+                <div class="card-subtitle">History</div>
+            </a>
+        </div>
+
+        <!-- SST Hero Section -->
+        <div class="hero-section" id="sstHero">
+            <div class="hero-header">
+                <div class="section-title" style="color: #E67E22;">All SST Chapters</div>
+                <button class="hero-close" onclick="closeHero('sstHero')">✕</button>
+            </div>
+            <div class="hero-grid">
+                <a href="hch1.html" class="hero-item" style="background: #FBE9E7;">Nationalism Europe</a>
+                <a href="hch2.html" class="hero-item" style="background: #FBE9E7;">Nationalism India</a>
+                <a href="hch3.html" class="hero-item" style="background: #FBE9E7;">Global World</a>
+                <a href="geoch1.html" class="hero-item" style="background: #E8F5E9;">Resources</a>
+                <a href="geoch2.html" class="hero-item" style="background: #E8F5E9;">Forest Wildlife</a>
+                <a href="geoch3.html" class="hero-item" style="background: #E8F5E9;">Water Resources</a>
+                <a href="geoch4.html" class="hero-item" style="background: #E8F5E9;">Agriculture</a>
+                <a href="geoch5.html" class="hero-item" style="background: #E8F5E9;">Industries</a>
+                <a href="cch1.html" class="hero-item" style="background: #FCE4EC;">Power Sharing</a>
+                <a href="cch2.html" class="hero-item" style="background: #FCE4EC;">Federalism</a>
+                <a href="cch3.html" class="hero-item" style="background: #FCE4EC;">Democracy</a>
+                <a href="cch4.html" class="hero-item" style="background: #FCE4EC;">Gender Religion</a>
+                <a href="cch5.html" class="hero-item" style="background: #FCE4EC;">Political Parties</a>
+                <a href="ecoch1.html" class="hero-item" style="background: #FFF3E0;">Development</a>
+                <a href="ecoch2.html" class="hero-item" style="background: #FFF3E0;">Sectors Economy</a>
+                <a href="ecoch3.html" class="hero-item" style="background: #FFF3E0;">Money Credit</a>
+                <a href="ecoch4.html" class="hero-item" style="background: #FFF3E0;">Globalisation</a>
+            </div>
+        </div>
+
+        <!-- Recommendations Section -->
+        <div class="section-header">
+            <div class="section-title">Recommended For You</div>
+        </div>
+        <div class="horizontal-row">
+            <a href="mch8.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">📐</div>
+                <div class="card-title">Trigonometry</div>
+                <div class="card-subtitle">Most Popular</div>
+            </a>
+            <a href="Ench21.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">📖</div>
+                <div class="card-title">Triumph Surgery</div>
+                <div class="card-subtitle">Trending</div>
+            </a>
+            <a href="elect.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">⚡</div>
+                <div class="card-title">Electricity</div>
+                <div class="card-subtitle">Important</div>
+            </a>
+            <a href="cch2.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">🏛️</div>
+                <div class="card-title">Federalism</div>
+                <div class="card-subtitle">Key Topic</div>
+            </a>
+            <a href="formulas.html" class="subject-card">
+                <div class="card-icon" style="background: #FCE4EC; color: #E91E63;">📝</div>
+                <div class="card-title">All Formulas</div>
+                <div class="card-subtitle">Quick Reference</div>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="app-footer">
+            <div class="footer-heart">Made with ❤️ by Mere Bhai</div>
+            <div class="footer-links">
+                <a href="profile.html" class="footer-link">Profile</a>
+                <a href="about.html" class="footer-link">Feedback</a>
+                <a href="settings.html" class="footer-link">Settings</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" data-page="home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="nav-label">Home</span>
+        </a>
+
+        <a href="all-notes.html" class="nav-item" data-page="notes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span class="nav-label">Notes</span>
+        </a>
+
+        <a href="quizopt.html" class="nav-item" data-page="quiz">
+            <svg viewBox="0 0 700 700" fill="currentColor">
+                <path d="m166.25 110.83c-61.25 0-111.67 50.418-111.67 111.67v0.003906c0 25 8.332 48.332 23.332 66.668-15 18.332-23.332 41.668-23.332 66.668v0.003906c0 61.25 50.418 111.67 111.67 111.67h73.332c3.332 6.668 8.332 13.332 15 18.332l-30 63.332c-3.332 6.668-1.668 15 3.332 20 3.332 3.332 6.668 5 11.668 5 3.332 0 5-1.668 8.332-3.332l63.332-30c5 6.668 11.668 11.668 18.332 15v73.332c0 8.332 6.668 15 15 15s15-6.668 15-15v-73.332c6.668-3.332 13.332-8.332 18.332-15l63.332 30c3.332 1.668 5 3.332 8.332 3.332 5 0 10-1.668 11.668-5 5-5 6.668-13.332 3.332-20l-30-63.332c6.668-5 11.668-11.668 15-18.332h73.332c61.25 0 111.67-50.418 111.67-111.67v-0.003906c0-25-8.332-48.332-23.332-66.668 15-18.332 23.332-41.668 23.332-66.668v-0.003906c0-61.25-50.418-111.67-111.67-111.67zm178.33 0c45 0 81.668 36.668 81.668 81.668v0.003906c0 18.332-6.668 35-16.668 50l-65-65c-6.668-6.668-15-6.668-21.668 0-6.668 6.668-6.668 15 0 21.668l65 65c-15 10-31.668 16.668-50 16.668h-73.332c-3.332-6.668-8.332-13.332-15-18.332l30-63.332c3.332-6.668 1.668-15-3.332-20s-13.332-6.668-20-3.332l-63.332 30c-5-6.668-11.668-11.668-18.332-15v-78.332zm-178.33 0h73.332c3.332 6.668 8.332 13.332 15 18.332l-30 63.332c-3.332 6.668-1.668 15 3.332 20 3.332 3.332 6.668 5 11.668 5 3.332 0 5-1.668 8.332-3.332l63.332-30c5 6.668 11.668 11.668 18.332 15v78.332h-163.33c-45 0-81.668-36.668-81.668-81.668v-0.003906c0-45 36.668-81.668 81.668-81.668zm178.33 111.67c13.332 0 25 11.668 25 25s-11.668 25-25 25-25-11.668-25-25 11.668-25 25-25zm0 111.67c13.332 0 25 11.668 25 25s-11.668 25-25 25-25-11.668-25-25 11.668-25 25-25zm-178.33 55h163.33v78.332c-6.668 3.332-13.332 8.332-18.332 15l-63.332-30c-3.332-1.668-5-3.332-8.332-3.332-5 0-10 1.668-11.668 5-5 5-6.668 13.332-3.332 20l30 63.332c-6.668 5-11.668 11.668-15 18.332h-73.332c-45 0-81.668-36.668-81.668-81.668v-0.003906c0-45 36.668-81.668 81.668-81.668zm178.33 0h163.33c45 0 81.668 36.668 81.668 81.668v0.003906c0 18.332-6.668 35-16.668 50l-65-65c-6.668-6.668-15-6.668-21.668 0-6.668 6.668-6.668 15 0 21.668l65 65c-15 10-31.668 16.668-50 16.668h-73.332c-3.332-6.668-8.332-13.332-15-18.332l30-63.332c3.332-6.668 1.668-15-3.332-20s-13.332-6.668-20-3.332l-63.332 30c-5-6.668-11.668-11.668-18.332-15z"/>
+            </svg>
+            <span class="nav-label">Quiz</span>
+        </a>
+
+        <a href="pyq.html" class="nav-item" data-page="pyqs">
+            <svg viewBox="0 0 700 700" fill="none" stroke="currentColor" stroke-width="40">
+                <circle cx="350" cy="350" r="300"/>
+                <path d="M 350,50 L 450,200 L 350,350 Z"/>
+                <path d="M 550,150 L 650,250 L 500,350 Z"/>
+                <path d="M 600,350 L 600,500 L 450,450 Z"/>
+                <path d="M 500,550 L 350,650 L 350,500 Z"/>
+                <path d="M 200,600 L 100,500 L 250,450 Z"/>
+                <path d="M 50,350 L 50,200 L 200,250 Z"/>
+                <path d="M 150,150 L 250,50 L 300,200 Z"/>
+            </svg>
+            <span class="nav-label">PYQs</span>
+        </a>
+
+        <a href="chatbot.html" class="nav-item" data-page="ai">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="10" r="3"></circle>
+                <path d="M12 13c-3 0-5 2-5 4v2h10v-2c0-2-2-4-5-4z"></path>
+                <path d="M8 8l-2-2M16 8l2-2M8 12H6M18 12h-2"></path>
+            </svg>
+            <span class="nav-label">AI Tutor</span>
+        </a>
+    </div>
+
+    <script>
+        /* PASTE JAVASCRIPT HERE FROM ARTIFACT 2 */
+        // Sidebar Controls
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+function toggleSidebar() {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+menuBtn.addEventListener('click', toggleSidebar);
+overlay.addEventListener('click', closeSidebar);
+
+// Swipe to close sidebar
+let touchStartX = 0;
+let touchEndX = 0;
+
+sidebar.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+sidebar.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+        closeSidebar();
+    }
+});
+
+// Subject chips active state
+const chips = document.querySelectorAll('.subject-chip');
+chips.forEach(chip => {
+    chip.addEventListener('click', function(e) {
+        chips.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Bottom nav active state
+const navItems = document.querySelectorAll('.nav-item');
+navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+        navItems.forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Hero Carousel
+const carousel = document.getElementById('heroCarousel');
+const indicators = document.querySelectorAll('.indicator-dot');
+
+carousel.addEventListener('scroll', () => {
+    const scrollLeft = carousel.scrollLeft;
+    const slideWidth = carousel.offsetWidth;
+    const activeIndex = Math.round(scrollLeft / slideWidth);
+    
+    indicators.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+    });
+});
+
+// Auto-scroll carousel
+let carouselIndex = 0;
+setInterval(() => {
+    carouselIndex = (carouselIndex + 1) % 4;
+    carousel.scrollTo({
+        left: carousel.offsetWidth * carouselIndex,
+        behavior: 'smooth'
+    });
+}, 4000);
+
+// See More buttons - Open Hero Sections
+document.querySelectorAll('.see-more-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const subject = this.getAttribute('data-subject');
+        const heroSection = document.getElementById(`${subject}Hero`);
+        
+        if (heroSection) {
+            heroSection.classList.add('open');
+            setTimeout(() => {
+                heroSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    });
+});
+
+// Close Hero Section
+function closeHero(heroId) {
+    const heroSection = document.getElementById(heroId);
+    if (heroSection) {
+        heroSection.classList.remove('open');
+    }
+}
+
+// Smart Chip Hide/Show on Scroll
+const chipsContainer = document.querySelector('.subject-chips-container');
+const mainContent = document.querySelector('.main-content');
+let lastScrollTop = 0;
+let scrollThreshold = 5;
+
+mainContent.addEventListener('scroll', function() {
+    const scrollTop = mainContent.scrollTop;
+    
+    if (Math.abs(scrollTop - lastScrollTop) < scrollThreshold) {
+        return;
+    }
+    
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Scrolling down
+        chipsContainer.classList.add('hide-chips');
+    } else {
+        // Scrolling up
+        chipsContainer.classList.remove('hide-chips');
+    }
+    
+    lastScrollTop = scrollTop;
+});
+    </script>
+</body>
+</html>

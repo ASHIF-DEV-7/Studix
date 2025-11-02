@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate Geometry - Class 10 Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #764ba2;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin: 15px 0 10px 0;
+        }
+
+        .formula {
+            background: #e3f2fd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #2196F3;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .example {
+            background: #fff3e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+        }
+
+        .example-title {
+            color: #ff9800;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #e8f5e9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .note strong {
+            color: #4caf50;
+        }
+
+        .key-points {
+            background: #f3e5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+        }
+
+        .key-points li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 2px solid #667eea;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .graph-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        canvas {
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            max-width: 100%;
+        }
+
+        .practice-problems {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #f44336;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .solution {
+            display: none;
+            background: #e1f5fe;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #03a9f4;
+        }
+
+        .show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+
+        .coordinate-system {
+            background: #fafafa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Coordinate Geometry</h1>
+            <p class="subtitle">Complete Notes for Class 10 Mathematics</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#distance">Distance Formula</a></li>
+                <li><a href="#section">Section Formula</a></li>
+                <li><a href="#midpoint">Midpoint</a></li>
+                <li><a href="#area">Area of Triangle</a></li>
+                <li><a href="#collinearity">Collinearity</a></li>
+                <li><a href="#formulas">All Formulas</a></li>
+                <li><a href="#practice">Practice</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Introduction Section -->
+            <section id="intro" class="section">
+                <h2>1. Introduction to Coordinate Geometry</h2>
+                
+                <p>Coordinate geometry, also known as <strong>Analytical Geometry</strong>, is a branch of mathematics that describes the position of points on a plane using an ordered pair of numbers called coordinates.</p>
+
+                <h3>The Cartesian Coordinate System</h3>
+                <p>The Cartesian coordinate system was introduced by the French mathematician <strong>René Descartes</strong> in the 17th century. It consists of two perpendicular lines called axes:</p>
+
+                <ul style="margin-left: 40px; margin-top: 15px;">
+                    <li><strong>X-axis:</strong> The horizontal line</li>
+                    <li><strong>Y-axis:</strong> The vertical line</li>
+                    <li><strong>Origin (O):</strong> The point of intersection of both axes, denoted as (0, 0)</li>
+                </ul>
+
+                <div class="coordinate-system">
+                    <h4>Components of the Coordinate System:</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Quadrants:</strong> The axes divide the plane into four parts called quadrants</li>
+                        <li><strong>Coordinates:</strong> Any point P in the plane is represented as P(x, y) where x is the abscissa and y is the ordinate</li>
+                    </ul>
+                </div>
+
+                <h3>The Four Quadrants</h3>
+                <table>
+                    <tr>
+                        <th>Quadrant</th>
+                        <th>Position</th>
+                        <th>x-coordinate</th>
+                        <th>y-coordinate</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>I</td>
+                        <td>Top Right</td>
+                        <td>Positive (+)</td>
+                        <td>Positive (+)</td>
+                        <td>(3, 4)</td>
+                    </tr>
+                    <tr>
+                        <td>II</td>
+                        <td>Top Left</td>
+                        <td>Negative (−)</td>
+                        <td>Positive (+)</td>
+                        <td>(−2, 5)</td>
+                    </tr>
+                    <tr>
+                        <td>III</td>
+                        <td>Bottom Left</td>
+                        <td>Negative (−)</td>
+                        <td>Negative (−)</td>
+                        <td>(−3, −4)</td>
+                    </tr>
+                    <tr>
+                        <td>IV</td>
+                        <td>Bottom Right</td>
+                        <td>Positive (+)</td>
+                        <td>Negative (−)</td>
+                        <td>(5, −2)</td>
+                    </tr>
+                </table>
+
+                <div class="note">
+                    <strong>Important Note:</strong> Points lying on the x-axis have y-coordinate = 0, and points lying on the y-axis have x-coordinate = 0.
+                </div>
+
+                <h3>Applications of Coordinate Geometry</h3>
+                <p>Coordinate geometry is widely used in:</p>
+                <ul style="margin-left: 40px; margin-top: 10px;">
+                    <li>Physics and Engineering for motion analysis</li>
+                    <li>Computer Graphics and Game Development</li>
+                    <li>Navigation and GPS systems</li>
+                    <li>Architecture and Design</li>
+                    <li>Astronomy and Space Science</li>
+                </ul>
+            </section>
+
+            <!-- Distance Formula Section -->
+               <section id="distance" class="section">
+                <h2>2. Distance Formula</h2>
+                
+                <p>The distance formula calculates the distance between two points in a coordinate plane. It is derived using the Pythagorean theorem.</p>
+
+                <h3>Formula Derivation</h3>
+                <p>Let A(x₁, y₁) and B(x₂, y₂) be two points in the coordinate plane. To find the distance AB:</p>
+                
+                <div class="formula">
+                    Distance AB = √[(x₂ − x₁)² + (y₂ − y₁)²]
+                </div>
+
+                <h3>Step-by-Step Process</h3>
+                <ol style="margin-left: 40px; margin-top: 15px;">
+                    <li>Find the difference in x-coordinates: (x₂ − x₁)</li>
+                    <li>Find the difference in y-coordinates: (y₂ − y₁)</li>
+                    <li>Square both differences</li>
+                    <li>Add the squared values</li>
+                    <li>Take the square root of the sum</li>
+                </ol>
+
+                <div class="example">
+                    <div class="example-title">Example 1: Basic Distance Calculation</div>
+                    <p><strong>Problem:</strong> Find the distance between points A(3, 4) and B(7, 1).</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Given: A(3, 4) and B(7, 1)</p>
+                    <p>Here, x₁ = 3, y₁ = 4, x₂ = 7, y₂ = 1</p>
+                    <p>Distance AB = √[(7 − 3)² + (1 − 4)²]</p>
+                    <p>= √[(4)² + (−3)²]</p>
+                    <p>= √[16 + 9]</p>
+                    <p>= √25</p>
+                    <p>= <strong>5 units</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 2: Distance with Negative Coordinates</div>
+                    <p><strong>Problem:</strong> Find the distance between P(−2, 3) and Q(4, −5).</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Given: P(−2, 3) and Q(4, −5)</p>
+                    <p>Distance PQ = √[(4 − (−2))² + (−5 − 3)²]</p>
+                    <p>= √[(4 + 2)² + (−8)²]</p>
+                    <p>= √[36 + 64]</p>
+                    <p>= √100</p>
+                    <p>= <strong>10 units</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 3: Distance from Origin</div>
+                    <p><strong>Problem:</strong> Find the distance of point A(6, 8) from the origin.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Origin = O(0, 0)</p>
+                    <p>Distance OA = √[(6 − 0)² + (8 − 0)²]</p>
+                    <p>= √[36 + 64]</p>
+                    <p>= √100</p>
+                    <p>= <strong>10 units</strong></p>
+                </div>
+
+                <div class="key-points">
+                    <h4>Key Points to Remember:</h4>
+                    <ul>
+                        <li>The distance is always positive (or zero if both points are the same)</li>
+                        <li>Distance from point (x, y) to origin = √(x² + y²)</li>
+                        <li>If two points have the same x-coordinate, distance = |y₂ − y₁|</li>
+                        <li>If two points have the same y-coordinate, distance = |x₂ − x₁|</li>
+                        <li>The order of points doesn't matter: AB = BA</li>
+                    </ul>
+                </div>
+
+                <h3>Special Cases</h3>
+                <div class="note">
+                    <strong>Case 1:</strong> Points on a horizontal line (y₁ = y₂)<br>
+                    Distance = |x₂ − x₁|<br><br>
+                    <strong>Case 2:</strong> Points on a vertical line (x₁ = x₂)<br>
+                    Distance = |y₂ − y₁|<br><br>
+                    <strong>Case 3:</strong> Distance equals zero when both points coincide
+                </div>
+            </section>
+
+            <!-- Section Formula Section -->
+            <section id="section" class="section">
+                <h2>3. Section Formula</h2>
+                
+                <p>The section formula is used to find the coordinates of a point that divides a line segment joining two given points in a given ratio.</p>
+
+                <h3>Internal Division</h3>
+                <p>When a point P divides the line segment joining points A(x₁, y₁) and B(x₂, y₂) internally in the ratio m:n:</p>
+
+                <div class="formula">
+                    P(x, y) = ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))
+                </div>
+
+                <h3>External Division</h3>
+                <p>When a point P divides the line segment externally in the ratio m:n:</p>
+
+                <div class="formula">
+                    P(x, y) = ((mx₂ − nx₁)/(m − n), (my₂ − ny₁)/(m − n))
+                </div>
+
+                <div class="note">
+                    <strong>Important:</strong> For external division, m ≠ n. If m = n, the point lies at infinity.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 4: Internal Division</div>
+                    <p><strong>Problem:</strong> Find the coordinates of the point P that divides the line segment joining A(2, 3) and B(8, 9) in the ratio 2:1 internally.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Given: A(2, 3), B(8, 9), m:n = 2:1</p>
+                    <p>Using section formula for internal division:</p>
+                    <p>x = (2×8 + 1×2)/(2 + 1) = (16 + 2)/3 = 18/3 = 6</p>
+                    <p>y = (2×9 + 1×3)/(2 + 1) = (18 + 3)/3 = 21/3 = 7</p>
+                    <p>Therefore, P = <strong>(6, 7)</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 5: Finding Ratio</div>
+                    <p><strong>Problem:</strong> Point P(4, 5) divides the line segment joining A(2, 3) and B(7, 8) internally. Find the ratio in which it divides.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Let the ratio be m:n</p>
+                    <p>Using x-coordinate: 4 = (7m + 2n)/(m + n)</p>
+                    <p>4(m + n) = 7m + 2n</p>
+                    <p>4m + 4n = 7m + 2n</p>
+                    <p>2n = 3m</p>
+                    <p>m/n = 2/3</p>
+                    <p>Therefore, the ratio is <strong>2:3</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 6: Trisection of Line Segment</div>
+                    <p><strong>Problem:</strong> Find the points that divide the line segment joining A(1, 2) and B(7, 8) into three equal parts.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>First point P divides AB in ratio 1:2</p>
+                    <p>P = ((1×7 + 2×1)/(1+2), (1×8 + 2×2)/(1+2))</p>
+                    <p>P = (9/3, 12/3) = <strong>(3, 4)</strong></p>
+                    <p>Second point Q divides AB in ratio 2:1</p>
+                    <p>Q = ((2×7 + 1×1)/(2+1), (2×8 + 1×2)/(2+1))</p>
+                    <p>Q = (15/3, 18/3) = <strong>(5, 6)</strong></p>
+                </div>
+            </section> 
+                    
+                    
+                    
+                    
+                    
+                    <section id="midpoint" class="section">
+                <h2>4. Midpoint Formula</h2>
+                
+                <p>The midpoint formula is a special case of the section formula where the ratio is 1:1. It finds the exact middle point of a line segment.</p>
+
+                <div class="formula">
+                    Midpoint M = ((x₁ + x₂)/2, (y₁ + y₂)/2)
+                </div>
+
+                <p>This formula simply takes the average of the x-coordinates and y-coordinates of the two endpoints.</p>
+
+                <div class="example">
+                    <div class="example-title">Example 7: Finding Midpoint</div>
+                    <p><strong>Problem:</strong> Find the midpoint of the line segment joining A(4, 6) and B(10, 14).</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Midpoint M = ((4 + 10)/2, (6 + 14)/2)</p>
+                    <p>M = (14/2, 20/2)</p>
+                    <p>M = <strong>(7, 10)</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 8: Finding Endpoint</div>
+                    <p><strong>Problem:</strong> The midpoint of a line segment is M(5, 3). If one endpoint is A(2, 1), find the other endpoint B.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Let B = (x, y)</p>
+                    <p>Using midpoint formula:</p>
+                    <p>(2 + x)/2 = 5  →  2 + x = 10  →  x = 8</p>
+                    <p>(1 + y)/2 = 3  →  1 + y = 6  →  y = 5</p>
+                    <p>Therefore, B = <strong>(8, 5)</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 9: Centroid Using Midpoint</div>
+                    <p><strong>Problem:</strong> Find the centroid of a triangle with vertices A(0, 0), B(6, 0), and C(3, 6).</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Centroid G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)</p>
+                    <p>G = ((0 + 6 + 3)/3, (0 + 0 + 6)/3)</p>
+                    <p>G = (9/3, 6/3)</p>
+                    <p>G = <strong>(3, 2)</strong></p>
+                </div>
+
+                <div class="key-points">
+                    <h4>Properties of Midpoint:</h4>
+                    <ul>
+                        <li>The midpoint is equidistant from both endpoints</li>
+                        <li>It divides the line segment in the ratio 1:1</li>
+                        <li>Midpoint always lies on the line segment</li>
+                        <li>Used to find the center of a line segment</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Area of Triangle Section -->
+            <section id="area" class="section">
+                <h2>5. Area of Triangle</h2>
+                
+                <p>When the coordinates of the three vertices of a triangle are given, we can calculate its area using a coordinate geometry formula.</p>
+
+                <div class="formula">
+                    Area = (1/2)|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|
+                </div>
+
+                <h3>Alternative Formula</h3>
+                <div class="formula">
+                    Area = (1/2)|x₁y₂ + x₂y₃ + x₃y₁ − x₂y₁ − x₃y₂ − x₁y₃|
+                </div>
+
+                <div class="note">
+                    <strong>Important:</strong> The area is always taken as positive (absolute value). If the result is negative, take its absolute value.
+                </div>
+
+                <h3>Determinant Method</h3>
+                <p>Area can also be calculated using the determinant:</p>
+                <div class="formula">
+                    Area = (1/2)|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 10: Area with Positive Coordinates</div>
+                    <p><strong>Problem:</strong> Find the area of triangle ABC with vertices A(1, 2), B(4, 6), and C(6, 2).</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Using the formula:</p>
+                    <p>Area = (1/2)|1(6 − 2) + 4(2 − 2) + 6(2 − 6)|</p>
+                    <p>= (1/2)|1(4) + 4(0) + 6(−4)|</p>
+                    <p>= (1/2)|4 + 0 − 24|</p>
+                    <p>= (1/2)|−20|</p>
+                    <p>= (1/2) × 20</p>
+                    <p>= <strong>10 square units</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 11: Area with Mixed Coordinates</div>
+                    <p><strong>Problem:</strong> Find the area of triangle PQR with vertices P(−2, 3), Q(4, 1), and R(2, −3).</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Area = (1/2)|−2(1 − (−3)) + 4(−3 − 3) + 2(3 − 1)|</p>
+                    <p>= (1/2)|−2(4) + 4(−6) + 2(2)|</p>
+                    <p>= (1/2)|−8 − 24 + 4|</p>
+                    <p>= (1/2)|−28|</p>
+                    <p>= <strong>14 square units</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 12: Finding Unknown Coordinate</div>
+                    <p><strong>Problem:</strong> The area of triangle with vertices A(2, 3), B(5, 7), and C(k, 1) is 8 square units. Find the value of k.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>8 = (1/2)|2(7 − 1) + 5(1 − 3) + k(3 − 7)|</p>
+                    <p>16 = |2(6) + 5(−2) + k(−4)|</p>
+                    <p>16 = |12 − 10 − 4k|</p>
+                    <p>16 = |2 − 4k|</p>
+                    <p>±16 = 2 − 4k</p>
+                    <p>If 16 = 2 − 4k: 4k = −14, k = −3.5</p>
+                    <p>If −16 = 2 − 4k: 4k = 18, k = 4.5</p>
+                    <p>Therefore, k = <strong>−3.5 or 4.5</strong></p>
+                </div>
+
+                <h3>Special Cases</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>If area = 0, the three points are collinear</li>
+                        <li>For a right-angled triangle, verify using distance formula and Pythagoras theorem</li>
+                        <li>Area of quadrilateral = Area of two triangles formed by diagonal</li>
+                        <li>Always use absolute value for final answer</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Collinearity Section -->
+            <section id="collinearity" class="section">
+                <h2>6. Collinearity of Points</h2>
+                
+                <p>Three or more points are said to be <strong>collinear</strong> if they lie on the same straight line.</p>
+
+                <h3>Condition for Collinearity</h3>
+                <p>Three points A(x₁, y₁), B(x₂, y₂), and C(x₃, y₃) are collinear if and only if:</p>
+
+                <div class="formula">
+                    Area of triangle ABC = 0
+                </div>
+
+                <p>Or equivalently:</p>
+                <div class="formula">
+                    x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂) = 0
+                </div>
+
+                <h3>Alternative Methods to Check Collinearity</h3>
+                <div class="key-points">
+                    <h4>Method 1: Using Area Formula</h4>
+                    <p>If area of triangle = 0, points are collinear</p>
+
+                    <h4>Method 2: Using Distance</h4>
+                    <p>If AB + BC = AC (or any similar combination), points are collinear</p>
+
+                    <h4>Method 3: Using Slope</h4>
+                    <p>If slope of AB = slope of BC, points are collinear</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 13: Checking Collinearity</div>
+                    <p><strong>Problem:</strong> Check whether points A(1, 2), B(3, 6), and C(5, 10) are collinear.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Using area formula:</p>
+                    <p>Area = (1/2)|1(6 − 10) + 3(10 − 2) + 5(2 − 6)|</p>
+                    <p>= (1/2)|1(−4) + 3(8) + 5(−4)|</p>
+                    <p>= (1/2)|−4 + 24 − 20|</p>
+                    <p>= (1/2)|0|</p>
+                    <p>= 0</p>
+                    <p>Since area = 0, points are <strong>collinear</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 14: Non-Collinear Points</div>
+                    <p><strong>Problem:</strong> Verify if points P(2, 3), Q(4, 7), and R(6, 9) are collinear.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Area = (1/2)|2(7 − 9) + 4(9 − 3) + 6(3 − 7)|</p>
+                    <p>= (1/2)|2(−2) + 4(6) + 6(−4)|</p>
+                    <p>= (1/2)|−4 + 24 − 24|</p>
+                    <p>= (1/2)|−4|</p>
+                    <p>= 2 ≠ 0</p>
+                    <p>Since area ≠ 0, points are <strong>not collinear</strong></p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Example 15: Finding Value for Collinearity</div>
+                    <p><strong>Problem:</strong> For what value of k are the points A(k, 2), B(3, 4), and C(5, 6) collinear?</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>For collinearity, area = 0</p>
+                    <p>k(4 − 6) + 3(6 − 2) + 5(2 − 4) = 0</p>
+                    <p>k(−2) + 3(4) + 5(−2) = 0</p>
+                    <p>−2k + 12 − 10 = 0</p>
+                    <p>−2k + 2 = 0</p>
+                    <p>k = <strong>1</strong></p>
+                </div>
+            </section>
+
+            <!-- All Formulas Section -->
+            <section id="formulas" class="section">
+                <h2>7. Summary of All Formulas</h2>
+
+                <h3>1. Distance Formula</h3>
+                <div class="formula">
+                    Distance between A(x₁, y₁) and B(x₂, y₂):<br>
+                    AB = √[(x₂ − x₁)² + (y₂ − y₁)²]
+                </div>
+
+                <h3>2. Section Formula (Internal Division)</h3>
+                <div class="formula">
+                    Point dividing AB in ratio m:n internally:<br>
+                    P = ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))
+                </div>
+
+                <h3>3. Section Formula (External Division)</h3>
+                <div class="formula">
+                    Point dividing AB in ratio m:n externally:<br>
+                    P = ((mx₂ − nx₁)/(m − n), (my₂ − ny₁)/(m − n))
+                </div>
+
+                <h3>4. Midpoint Formula</h3>
+                <div class="formula">
+                    Midpoint of AB:<br>
+                    M = ((x₁ + x₂)/2, (y₁ + y₂)/2)
+                </div>
+
+                <h3>5. Area of Triangle</h3>
+                <div class="formula">
+                    Area with vertices A(x₁, y₁), B(x₂, y₂), C(x₃, y₃):<br>
+                    Area = (1/2)|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|
+                </div>
+
+                <h3>6. Collinearity Condition</h3>
+                <div class="formula">
+                    Three points are collinear if:<br>
+                    x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂) = 0
+                </div>
+
+                <h3>7. Centroid of Triangle</h3>
+                <div class="formula">
+                    Centroid G:<br>
+                    G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)
+                </div>
+
+                <h3>Additional Important Formulas</h3>
+                <table>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Formula</th>
+                    </tr>
+                    <tr>
+                        <td>Distance from origin</td>
+                        <td>√(x² + y²)</td>
+                    </tr>
+                    <tr>
+                        <td>Slope of line through two points</td>
+                        <td>m = (y₂ − y₁)/(x₂ − x₁)</td>
+                    </tr>
+                    <tr>
+                        <td>Condition for parallel lines</td>
+                        <td>m₁ = m₂</td>
+                    </tr>
+                    <tr>
+                        <td>Condition for perpendicular lines</td>
+                        <td>m₁ × m₂ = −1</td>
+                    </tr>
+                    <tr>
+                        <td>Area of quadrilateral ABCD</td>
+                        <td>Area of △ABC + Area of △ACD</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Practice Problems Section -->
+            <section id="practice" class="section">
+                <h2>8. Practice Problems</h2>
+
+                <div class="practice-problems">
+                    <h3>Problem 1</h3>
+                    <p>Find the distance between points A(−3, 4) and B(5, −2).</p>
+                    <button class="btn" onclick="toggleSolution('sol1')">Show Solution</button>
+                    <div id="sol1" class="solution">
+                        <p><strong>Solution:</strong></p>
+                        <p>Distance = √[(5−(−3))² + (−2−4)²]</p>
+                        <p>= √[(8)² + (−6)²]</p>
+                        <p>= √[64 + 36]</p>
+                        <p>= √100</p>
+                        <p>= <strong>10 units</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-problems">
+                    <h3>Problem 2</h3>
+                    <p>Find the point that divides the line segment joining A(2, 5) and B(8, 11) in the ratio 3:2 internally.</p>
+                    <button class="btn" onclick="toggleSolution('sol2')">Show Solution</button>
+                    <div id="sol2" class="solution">
+                        <p><strong>Solution:</strong></p>
+                        <p>x = (3×8 + 2×2)/(3+2) = (24+4)/5 = 28/5 = 5.6</p>
+                        <p>y = (3×11 + 2×5)/(3+2) = (33+10)/5 = 43/5 = 8.6</p>
+                        <p>Point = <strong>(5.6, 8.6)</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-problems">
+                    <h3>Problem 3</h3>
+                    <p>Find the midpoint of the line segment joining P(−4, 6) and Q(8, −2).</p>
+                    <button class="btn" onclick="toggleSolution('sol3')">Show Solution</button>
+                    <div id="sol3" class="solution">
+                        <p><strong>Solution:</strong></p>
+                        <p>Midpoint M = ((−4+8)/2, (6+(−2))/2)</p>
+                        <p>= (4/2, 4/2)</p>
+                        <p>= <strong>(2, 2)</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-problems">
+                    <h3>Problem 4</h3>
+                    <p>Find the area of triangle with vertices A(0, 0), B(6, 0), and C(0, 8).</p>
+                    <button class="btn" onclick="toggleSolution('sol4')">Show Solution</button>
+                    <div id="sol4" class="solution">
+                        <p><strong>Solution:</strong></p>
+                        <p>Area = (1/2)|0(0−8) + 6(8−0) + 0(0−0)|</p>
+                        <p>= (1/2)|0 + 48 + 0|</p>
+                        <p>= (1/2) × 48</p>
+                        <p>= <strong>24 square units</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-problems">
+                    <h3>Problem 5</h3>
+                    <p>Check if points A(1, 4), B(3, 8), and C(4, 10) are collinear.</p>
+                    <button class="btn" onclick="toggleSolution('sol5')">Show Solution</button>
+                    <div id="sol5" class="solution">
+                        <p><strong>Solution:</strong></p>
+                        <p>Using collinearity condition:</p>
+                        <p>1(8−10) + 3(10−4) + 4(4−8)</p>
+                        <p>= 1(−2) + 3(6) + 4(−4)</p>
+                        <p>= −2 + 18 − 16</p>
+                        <p>= 0</p>
+                        <p>Since result = 0, points are <strong>collinear</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-problems">
+                    <h3>Problem 6</h3>
+                    <p>The vertices of a triangle are A(3, 1), B(2, 3), and C(−2, 2). Find its centroid.</p>
+                    <button class="btn" onclick="toggleSolution('sol6')">Show Solution</button>
+                    <div id="sol6" class="solution">
+                        <p><strong>Solution:</strong></p>
+                        <p>Centroid G = ((3+2+(−2))/3, (1+3+2)/3)</p>
+                        <p>= (3/3, 6/3)</p>
+                        <p>= <strong>(1, 2)</strong></p>
+                    </div>
+                </div>
+
+                <h3>Important Tips for Exams</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Always write the formula before substituting values</li>
+                        <li>Be careful with negative signs in coordinates</li>
+                        <li>For area problems, always take absolute value</li>
+                        <li>Show all steps clearly for full marks</li>
+                        <li>Verify your answer using an alternative method if time permits</li>
+                        <li>Draw diagrams wherever possible</li>
+                        <li>Remember: Practice is the key to mastering coordinate geometry!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Graph Visualization -->
+            <div class="graph-container">
+                <h3>Interactive Coordinate Plane</h3>
+                <canvas id="graphCanvas" width="500" height="500"></canvas>
+                <p style="margin-top: 10px; color: #666;">Click on the canvas to plot points!</p>
+            </div>
+
+        </div>
+
+        <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+            ↑
+        </div>
+    </div>
+
+    <script>
+        // Toggle solution visibility
+        function toggleSolution(id) {
+            const solution = document.getElementById(id);
+            solution.classList.toggle('show');
+        }
+
+        // Scroll to top functionality
+        window.onscroll = function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTop.style.display = 'flex';
+            } else {
+                scrollTop.style.display = 'none';
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Interactive graph drawing
+        const canvas = document.getElementById('graphCanvas');
+        const ctx = canvas.getContext('2d');
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const scale = 40;
+
+        function drawGraph() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw grid
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= canvas.width; i += scale) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+     

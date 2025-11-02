@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heredity Notes</title>
+    <style>
+        :root {
+            --bg-color: linear-gradient(135deg, #e6f7fa, #f0e4d7);
+            --text-color: #2d3436;
+            --primary: #00b4d8;
+            --secondary: #ff6b6b;
+            --accent: #51cf66;
+            --tab-bg: #ffffff;
+            --tab-active-bg: #00b4d8;
+            --tab-hover-bg: #90e0ef;
+            --header-bg: #dfe6e9;
+            --footer-bg: #2d3436;
+            --sidenav-bg: #dfe6e9;
+            --sidenav-dark-bg: #2d3436;
+            --content-bg: #ffffff;
+            --content-border: #b2bec3;
+        }
+
+        .dark {
+            --bg-color: linear-gradient(135deg, #2d3436, #636e72);
+            --text-color: #dfe6e9;
+            --primary: #48cae4;
+            --secondary: #ff8787;
+            --accent: #76ff7a;
+            --tab-bg: #3b3f46;
+            --tab-active-bg: #48cae4;
+            --tab-hover-bg: #adb5bd;
+            --header-bg: #2d3436;
+            --footer-bg: #2d3436;
+            --sidenav-bg: #2d3436;
+            --content-bg: #3b3f46;
+            --content-border: #6c757d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.6em;
+            color: var(--primary);
+        }
+
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 60px;
+            width: 180px;
+            height: calc(100% - 60px);
+            background-color: var(--sidenav-bg);
+            padding: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 900;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        .dark .side-nav {
+            background-color: var(--sidenav-dark-bg);
+        }
+
+        .side-nav.open {
+            transform: translateX(0);
+        }
+
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-nav li {
+            margin-bottom: 15px;
+        }
+
+        .side-nav button {
+            text-decoration: none;
+            color: var(--text-color);
+            background: none;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 10px 15px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .side-nav button:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        #side-toggle {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.6em;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 5px 10px;
+            transition: color 0.3s;
+            z-index: 1100;
+        }
+
+        #side-toggle:hover {
+            color: var(--secondary);
+        }
+
+        #close-nav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #close-nav:hover {
+            color: var(--primary);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 20px;
+            margin-left: 0;
+            transition: margin-left 0.3s;
+            flex: 1;
+        }
+
+        .notes-section {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab {
+            background-color: var(--tab-bg);
+            padding: 12px 20px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab:hover {
+            background-color: var(--tab-hover-bg);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background-color: var(--tab-active-bg);
+            color: #ffffff;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .topic-content {
+            display: none;
+            background-color: var(--content-bg);
+            border: 2px solid var(--content-border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-content.active {
+            display: block;
+        }
+
+        .topic-content h2 {
+            font-size: 1.3em;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .topic-content ul {
+            list-style-type: disc;
+            margin: 10px 0 0 20px;
+            padding: 0;
+        }
+
+        .topic-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--footer-bg);
+            color: #ffffff;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (min-width: 768px) {
+            .side-nav {
+                transform: translateX(0);
+            }
+
+            #side-toggle {
+                display: none;
+            }
+
+            main {
+                margin-left: 180px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab {
+                width: 100%;
+                text-align: center;
+                border-radius: 8px;
+            }
+
+            .notes-section {
+                padding: 10px;
+            }
+
+            .topic-content h2 {
+                font-size: 1.2em;
+            }
+
+            .topic-content li {
+                font-size: 0.95em;
+            }
+
+            .side-nav.open + main {
+                pointer-events: none;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="side-toggle" onclick="toggleSideNav()">☰</button>
+        <h1>Heredity</h1>
+    </header>
+
+    <aside class="side-nav">
+        <button id="close-nav" onclick="toggleSideNav()">✖</button>
+        <ul>
+            <li><button onclick="toggleMode()">Dark/Light Mode Toggle</button></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="notes-section">
+            <div class="tabs">
+                <div class="tab active" data-target="variation">Variation</div>
+                <div class="tab" data-target="heredity-traits">Heredity and Inherited Traits</div>
+                <div class="tab" data-target="mendel-laws">Mendel's Experiments and Laws</div>
+                <div class="tab" data-target="sex-determination">Sex Determination</div>
+                <div class="tab" data-target="evolution-traits">Evolution and Acquired Traits</div>
+                <div class="tab" data-target="speciation">Speciation</div>
+            </div>
+
+            <div class="topic-content active" id="variation">
+                <h2>Variation</h2>
+                <ul>
+                    <li>Definition: Differences in physical or genetic traits among individuals of a species, essential for survival and adaptation.</li>
+                    <li>Sources: Genetic recombination (crossing over), mutations, environmental factors (diet, climate).</li>
+                    <li>Significance: Drives evolution, enables adaptation to changing environments, increases species diversity.</li>
+                    <li>Examples:
+                        <ul>
+                            <li>Human height varies due to genetic factors and nutrition (e.g., tall parents, balanced diet).</li>
+                            <li>Pea plant flower color (purple vs. white) due to genetic variation.</li>
+                            <li>Camouflage in chameleons varies by habitat (forest vs. desert).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="topic-content" id="heredity-traits">
+                <h2>Heredity and Inherited Traits</h2>
+                <ul>
+                    <li>Definition: Process of passing genetic traits from parents to offspring via genes on chromosomes.</li>
+                    <li>Types of Traits: Dominant (expressed in presence of one allele), Recessive (expressed only if homozygous).</li>
+                    <li>Mechanism: Genes carried by sperm and egg combine during fertilization.</li>
+                    <li>Examples:
+                        <ul>
+                            <li>Brown eyes (dominant) over blue eyes (recessive) in humans.</li>
+                            <li>Tall pea plants (dominant) vs. short plants (recessive).</li>
+                            <li>Free earlobes (dominant) vs. attached earlobes (recessive).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="topic-content" id="mendel-laws">
+                <h2>Mendel's Experiments and Laws</h2>
+                <ul>
+                    <li>Mendel’s Work: Studied pea plants, established principles of inheritance.</li>
+                    <li><strong>Law of Dominance</strong>: One allele (dominant) masks the other (recessive).</li>
+                    <li><strong>Law of Segregation</strong>: Alleles separate during gamete formation, each gamete carries one allele.</li>
+                    <li><strong>Law of Independent Assortment</strong>: Genes for different traits assort independently during gamete formation.</li>
+                    <li>Examples:
+                        <ul>
+                            <li>Monohybrid cross: TT (tall) × tt (short) → Tt (all tall in F1).</li>
+                            <li>Dihybrid cross: RrYy (round, yellow) × RrYy → 9:3:3:1 ratio in F2.</li>
+                            <li>Round seeds (dominant) vs. wrinkled seeds (recessive) in peas.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="topic-content" id="sex-determination">
+                <h2>Sex Determination</h2>
+                <ul>
+                    <li>Definition: Mechanism determining the sex of offspring based on sex chromosomes.</li>
+                    <li>In Humans: Females (XX), Males (XY); father’s sperm (X or Y) determines sex.</li>
+                    <li>Other Systems: Birds (ZW female, ZZ male), insects (haploid-diploid).</li>
+                    <li>Examples:
+                        <ul>
+                            <li>Human XY male + XX female → 50% male (XY), 50% female (XX).</li>
+                            <li>Birds: ZW hen + ZZ rooster → ZW (female) or ZZ (male).</li>
+                            <li>Honeybees: Fertilized egg (diploid, female) vs. unfertilized (haploid, male).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="topic-content" id="evolution-traits">
+                <h2>Evolution and Acquired Traits</h2>
+                <ul>
+                    <li>Evolution: Gradual change in species over generations due to natural selection.</li>
+                    <li>Inherited Traits: Passed via genes, contribute to evolution (e.g., Darwin’s theory).</li>
+                    <li>Acquired Traits: Gained during lifetime, not inherited (e.g., Lamarck’s theory, disproved).</li>
+                    <li>Examples:
+                        <ul>
+                            <li>Antibiotic resistance in bacteria (inherited, evolved trait).</li>
+                            <li>Giraffe long neck (thought acquired by stretching, but inherited via selection).</li>
+                            <li>Beak size in Darwin’s finches (adapted to food sources).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="topic-content" id="speciation">
+                <h2>Speciation</h2>
+                <ul>
+                    <li>Definition: Formation of new species from existing ones due to isolation or genetic changes.</li>
+                    <li>Causes: Geographical isolation, reproductive isolation, genetic drift, mutations.</li>
+                    <li>Types: Allopatric (geographic), Sympatric (same area, different niches).</li>
+                    <li>Examples:
+                        <ul>
+                            <li>Darwin’s finches: Different beak shapes on Galapagos islands.</li>
+                            <li>Kaibab squirrel: Separated by Grand Canyon, distinct species.</li>
+                            <li>Apple maggot fly: Evolved to prefer apple vs. hawthorn fruit.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © 2025. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark');
+        }
+
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            sideNav.classList.toggle('open');
+            if (sideNav.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Toggle tab content visibility
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.topic-content').forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+<script src="script.js"></script>
+</html>

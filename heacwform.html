@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Eye and Colourful World - All Formulas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-20px, -20px) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .formula-card {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        .formula-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #4ecdc4;
+        }
+
+        .formula-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .formula-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .formula {
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .formula:hover {
+            transform: scale(1.02);
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .variables {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .variables h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .variables ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .variables li {
+            margin: 5px 0;
+            padding: 5px 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        .important-note {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            color: #2d3436;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #e17055;
+        }
+
+        .important-note h3 {
+            margin-bottom: 10px;
+            color: #d63031;
+        }
+
+        .interactive-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .formula-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .formula {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 Human Eye and Colourful World</h1>
+            <p>Class 10th Physics - Complete Formula Collection</p>
+        </div>
+        
+        <div class="content">
+            <div class="section-title">All Important Formulas</div>
+            
+            <div class="important-note">
+                <h3>📚 Chapter Overview</h3>
+                <p>This chapter covers the structure of human eye, defects of vision, refraction of light, and dispersion of light. Here are all the important formulas you need to know.</p>
+            </div>
+
+            <button class="interactive-btn" onclick="showAllFormulas()">Show All Formulas</button>
+            <button class="interactive-btn" onclick="hideDescriptions()">Hide Descriptions</button>
+
+            <div class="formula-grid" id="formulaGrid">
+                
+                <!-- Lens Formula -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">1</div>
+                        Lens Formula
+                    </div>
+                    <div class="formula">1/f = 1/v - 1/u</div>
+                    <div class="description">
+                        This formula relates the focal length, object distance, and image distance for lenses.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>f</strong> = Focal length</li>
+                            <li><strong>v</strong> = Image distance</li>
+                            <li><strong>u</strong> = Object distance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Power of Lens -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">2</div>
+                        Power of Lens
+                    </div>
+                    <div class="formula">P = 1/f</div>
+                    <div class="description">
+                        The power of a lens is the reciprocal of its focal length. Unit: Dioptre (D)
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>P</strong> = Power in Dioptre</li>
+                            <li><strong>f</strong> = Focal length in meters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Magnification -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">3</div>
+                        Magnification
+                    </div>
+                    <div class="formula">m = v/u = h₂/h₁</div>
+                    <div class="description">
+                        Magnification is the ratio of image size to object size.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>m</strong> = Magnification</li>
+                            <li><strong>v</strong> = Image distance</li>
+                            <li><strong>u</strong> = Object distance</li>
+                            <li><strong>h₂</strong> = Image height</li>
+                            <li><strong>h₁</strong> = Object height</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Refractive Index -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">4</div>
+                        Refractive Index
+                    </div>
+                    <div class="formula">n = c/v = sin i/sin r</div>
+                    <div class="description">
+                        Refractive index is the ratio of speed of light in vacuum to speed in the medium.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>n</strong> = Refractive index</li>
+                            <li><strong>c</strong> = Speed of light in vacuum</li>
+                            <li><strong>v</strong> = Speed of light in medium</li>
+                            <li><strong>i</strong> = Angle of incidence</li>
+                            <li><strong>r</strong> = Angle of refraction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Snell's Law -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">5</div>
+                        Snell's Law
+                    </div>
+                    <div class="formula">n₁ sin i = n₂ sin r</div>
+                    <div class="description">
+                        Snell's law describes refraction of light when it passes from one medium to another.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>n₁</strong> = Refractive index of first medium</li>
+                            <li><strong>n₂</strong> = Refractive index of second medium</li>
+                            <li><strong>i</strong> = Angle of incidence</li>
+                            <li><strong>r</strong> = Angle of refraction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Critical Angle -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">6</div>
+                        Critical Angle
+                    </div>
+                    <div class="formula">sin θc = n₂/n₁</div>
+                    <div class="description">
+                        Critical angle is the angle of incidence for which angle of refraction is 90°.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>θc</strong> = Critical angle</li>
+                            <li><strong>n₁</strong> = Refractive index of denser medium</li>
+                            <li><strong>n₂</strong> = Refractive index of rarer medium</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Prism Formula -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">7</div>
+                        Prism Formula
+                    </div>
+                    <div class="formula">n = sin[(A + δm)/2] / sin(A/2)</div>
+                    <div class="description">
+                        This formula relates refractive index with angle of prism and minimum deviation.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>n</strong> = Refractive index</li>
+                            <li><strong>A</strong> = Angle of prism</li>
+                            <li><strong>δm</strong> = Angle of minimum deviation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Prism Relations -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">8</div>
+                        Prism Relations
+                    </div>
+                    <div class="formula">A = r₁ + r₂<br>δ = i₁ + e₂ - A</div>
+                    <div class="description">
+                        These are basic relations for a prism between angles of incidence, emergence, and deviation.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>A</strong> = Angle of prism</li>
+                            <li><strong>δ</strong> = Angle of deviation</li>
+                            <li><strong>i₁</strong> = Angle of incidence</li>
+                            <li><strong>e₂</strong> = Angle of emergence</li>
+                            <li><strong>r₁, r₂</strong> = Angles of refraction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Near Point Distance -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">9</div>
+                        Near Point Distance
+                    </div>
+                    <div class="formula">D = 25 cm (for normal eye)</div>
+                    <div class="description">
+                        The least distance of distinct vision is the minimum distance at which objects can be seen clearly.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>D</strong> = Near point distance</li>
+                            <li>For normal human eye = 25 cm</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Range of Vision -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">10</div>
+                        Range of Vision
+                    </div>
+                    <div class="formula">Range = 25 cm to ∞</div>
+                    <div class="description">
+                        Normal human eye can see objects clearly from 25 cm (near point) to infinity (far point).
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>Near point</strong> = 25 cm</li>
+                            <li><strong>Far point</strong> = Infinity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Myopia Correction -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">11</div>
+                        Myopia Correction
+                    </div>
+                    <div class="formula">P = -1/d (in meters)</div>
+                    <div class="description">
+                        Power of concave lens needed to correct myopia, where d is the distance of far point.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>P</strong> = Power of lens (negative)</li>
+                            <li><strong>d</strong> = Distance of far point in meters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hypermetropia Correction -->
+                <div class="formula-card">
+                    <div class="formula-title">
+                        <div class="formula-icon">12</div>
+                        Hypermetropia Correction
+                    </div>
+                    <div class="formula">P = 1/0.25 - 1/d</div>
+                    <div class="description">
+                        Power of convex lens needed to correct hypermetropia.
+                    </div>
+                    <div class="variables">
+                        <h4>Where:</h4>
+                        <ul>
+                            <li><strong>P</strong> = Power of lens (positive)</li>
+                            <li><strong>d</strong> = Distance of near point in meters</li>
+                            <li><strong>0.25 m</strong> = Normal near point (25 cm)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="important-note" style="margin-top: 40px;">
+                <h3>🎯 Important Points to Remember</h3>
+                <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Sign Convention:</strong> Distances measured opposite to direction of incident light are negative</li>
+                    <li><strong>Convex lens:</strong> Positive focal length, converging lens</li>
+                    <li><strong>Concave lens:</strong> Negative focal length, diverging lens</li>
+                    <li><strong>Myopia (Short sight):</strong> Far point comes closer, corrected by concave lens</li>
+                    <li><strong>Hypermetropia (Long sight):</strong> Near point goes farther, corrected by convex lens</li>
+                    <li><strong>Presbyopia:</strong> Both near and far vision affected, corrected by bifocal lens</li>
+                    <li><strong>Dispersion:</strong> White light splits into VIBGYOR (7 colors)</li>
+                    <li><strong>Scattering:</strong> Blue light scatters more than red (why sky is blue)</li>
+                    <li><strong>Rainbow formation:</strong> Due to dispersion and total internal reflection in water droplets</li>
+                    <li><strong>Tyndall effect:</strong> Scattering of light by colloidal particles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAllFormulas() {
+            const cards = document.querySelectorAll('.formula-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        function hideDescriptions() {
+            const descriptions = document.querySelectorAll('.description, .variables');
+            descriptions.forEach(desc => {
+                if (desc.style.display === 'none') {
+                    desc.style.display = 'block';
+                } else {
+                    desc.style.display = 'none';
+                }
+            });
+        }
+
+        // Add interactive hover effects
+        document.querySelectorAll('.formula-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) rotateY(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateY(0)';
+            });
+        });
+
+        // Add click effect to formulas
+        document.querySelectorAll('.formula').forEach(formula => {
+            formula.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+                
+                // Copy formula to clipboard
+                navigator.clipboard.writeText(this.textContent).then(() => {
+                    const originalBg = this.style.background;
+                    this.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+                    setTimeout(() => {
+                        this.style.background = originalBg;
+                    }, 500);
+                    
+                    // Show copied message
+                    alert('Formula copied to clipboard!');
+                });
+            });
+        });
+
+        // Add loading animation on page load
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.formula-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Trigonometry Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .quiz-container {
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .question p {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .options label:hover {
+            background-color: #dfe6e9;
+            color: #2c3e50;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #3498db;
+        }
+        #submit-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #submit-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        #result {
+            text-align: center;
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f8f5;
+            border-radius: 10px;
+            display: none;
+            animation: slideIn 0.5s ease-in;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Class 10th Trigonometry Quiz</h1>
+        <form id="quiz-form">
+            <!-- Question 1 -->
+            <div class="question">
+                <p>1. What is the value of sin 30°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> 1/2</label>
+                    <label><input type="radio" name="q1" value="b"> √3/2</label>
+                    <label><input type="radio" name="q1" value="c"> 1</label>
+                    <label><input type="radio" name="q1" value="d"> 0</label>
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <p>2. What is the value of cos 60°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> 1/2</label>
+                    <label><input type="radio" name="q2" value="b"> √3/2</label>
+                    <label><input type="radio" name="q2" value="c"> 1</label>
+                    <label><input type="radio" name="q2" value="d"> 0</label>
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <p>3. What is the value of tan 45°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> 0</label>
+                    <label><input type="radio" name="q3" value="b"> 1</label>
+                    <label><input type="radio" name="q3" value="c"> √3</label>
+                    <label><input type="radio" name="q3" value="d"> 1/√3</label>
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question">
+                <p>4. Which of the following is a Pythagorean identity?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> sin²θ + cos²θ = 1</label>
+                    <label><input type="radio" name="q4" value="b"> sinθ + cosθ = 1</label>
+                    <label><input type="radio" name="q4" value="c"> tan²θ + 1 = sec²θ</label>
+                    <label><input type="radio" name="q4" value="d"> Both a and c</label>
+                </div>
+            </div>
+            <!-- Question 5 -->
+            <div class="question">
+                <p>5. What is the value of cot 60°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> 1/√3</label>
+                    <label><input type="radio" name="q5" value="b"> √3</label>
+                    <label><input type="radio" name="q5" value="c"> 1</label>
+                    <label><input type="radio" name="q5" value="d"> 0</label>
+                </div>
+            </div>
+            <!-- Question 6 -->
+            <div class="question">
+                <p>6. What is sin 90°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="a"> 0</label>
+                    <label><input type="radio" name="q6" value="b"> 1</label>
+                    <label><input type="radio" name="q6" value="c"> 1/2</label>
+                    <label><input type="radio" name="q6" value="d"> √3/2</label>
+                </div>
+            </div>
+            <!-- Question 7 -->
+            <div class="question">
+                <p>7. The relationship between tanθ and secθ is?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="a"> tan²θ + 1 = sec²θ</label>
+                    <label><input type="radio" name="q7" value="b"> tan²θ = sec²θ + 1</label>
+                    <label><input type="radio" name="q7" value="c"> tanθ = secθ</label>
+                    <label><input type="radio" name="q7" value="d"> tanθ + secθ = 1</label>
+                </div>
+            </div>
+            <!-- Question 8 -->
+            <div class="question">
+                <p>8. What is the value of cosec 30°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="a"> 2</label>
+                    <label><input type="radio" name="q8" value="b"> 1</label>
+                    <label><input type="radio" name="q8" value="c"> 1/2</label>
+                    <label><input type="radio" name="q8" value="d"> √3</label>
+                </div>
+            </div>
+            <!-- Question 9 -->
+            <div class="question">
+                <p>9. If sinθ = 3/5, what is cosθ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> 4/5</label>
+                    <label><input type="radio" name="q9" value="b"> 3/4</label>
+                    <label><input type="radio" name="q9" value="c"> 5/3</label>
+                    <label><input type="radio" name="q9" value="d"> 2/5</label>
+                </div>
+            </div>
+            <!-- Question 10 -->
+            <div class="question">
+                <p>10. What is the value of sec 0°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> 0</label>
+                    <label><input type="radio" name="q10" value="b"> 1</label>
+                    <label><input type="radio" name="q10" value="c"> ∞</label>
+                    <label><input type="radio" name="q10" value="d"> -1</label>
+                </div>
+            </div>
+            <!-- Question 11 -->
+            <div class="question">
+                <p>11. The angle of elevation is measured from?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="a"> The horizontal upward</label>
+                    <label><input type="radio" name="q11" value="b"> The vertical upward</label>
+                    <label><input type="radio" name="q11" value="c"> The horizontal downward</label>
+                    <label><input type="radio" name="q11" value="d"> The vertical downward</label>
+                </div>
+            </div>
+            <!-- Question 12 -->
+            <div class="question">
+                <p>12. If tanθ = 1, what is θ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="a"> 30°</label>
+                    <label><input type="radio" name="q12" value="b"> 45°</label>
+                    <label><input type="radio" name="q12" value="c"> 60°</label>
+                    <label><input type="radio" name="q12" value="d"> 90°</label>
+                </div>
+            </div>
+            <!-- Question 13 -->
+            <div class="question">
+                <p>13. What is the value of sin² 45° + cos² 45°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="a"> 0</label>
+                    <label><input type="radio" name="q13" value="b"> 1</label>
+                    <label><input type="radio" name="q13" value="c"> 1/2</label>
+                    <label><input type="radio" name="q13" value="d"> √2</label>
+                </div>
+            </div>
+            <!-- Question 14 -->
+            <div class="question">
+                <p>14. If cosθ = 4/5, what is secθ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="a"> 5/4</label>
+                    <label><input type="radio" name="q14" value="b"> 4/5</label>
+                    <label><input type="radio" name="q14" value="c"> 3/5</label>
+                    <label><input type="radio" name="q14" value="d"> 5/3</label>
+                </div>
+            </div>
+            <!-- Question 15 -->
+            <div class="question">
+                <p>15. The value of cot²θ - cosec²θ is?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="a"> 1</label>
+                    <label><input type="radio" name="q15" value="b"> -1</label>
+                    <label><input type="radio" name="q15" value="c"> 0</label>
+                    <label><input type="radio" name="q15" value="d"> tan²θ</label>
+                </div>
+            </div>
+            <!-- Question 16 -->
+            <div class="question">
+                <p>16. What is the value of sin 60°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="a"> 1/2</label>
+                    <label><input type="radio" name="q16" value="b"> √3/2</label>
+                    <label><input type="radio" name="q16" value="c"> 1</label>
+                    <label><input type="radio" name="q16" value="d"> 0</label>
+                </div>
+            </div>
+            <!-- Question 17 -->
+            <div class="question">
+                <p>17. If sinθ = cosθ, what is θ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="a"> 30°</label>
+                    <label><input type="radio" name="q17" value="b"> 45°</label>
+                    <label><input type="radio" name="q17" value="c"> 60°</label>
+                    <label><input type="radio" name="q17" value="d"> 90°</label>
+                </div>
+            </div>
+            <!-- Question 18 -->
+            <div class="question">
+                <p>18. The reciprocal of sinθ is?</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="a"> cosθ</label>
+                    <label><input type="radio" name="q18" value="b"> secθ</label>
+                    <label><input type="radio" name="q18" value="c"> cosecθ</label>
+                    <label><input type="radio" name="q18" value="d"> cotθ</label>
+                </div>
+            </div>
+            <!-- Question 19 -->
+            <div class="question">
+                <p>19. What is the value of tan 30°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="a"> 1/√3</label>
+                    <label><input type="radio" name="q19" value="b"> √3</label>
+                    <label><input type="radio" name="q19" value="c"> 1</label>
+                    <label><input type="radio" name="q19" value="d"> 0</label>
+                </div>
+            </div>
+            <!-- Question 20 -->
+            <div class="question">
+                <p>20. If cosecθ = 2, what is sinθ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="a"> 1/2</label>
+                    <label><input type="radio" name="q20" value="b"> 2</label>
+                    <label><input type="radio" name="q20" value="c"> 1</label>
+                    <label><input type="radio" name="q20" value="d"> √2</label>
+                </div>
+            </div>
+            <!-- Question 21 -->
+            <div class="question">
+                <p>21. The angle of depression is measured from?</p>
+                <div class="options">
+                    <label><input type="radio" name="q21" value="a"> The horizontal downward</label>
+                    <label><input type="radio" name="q21" value="b"> The vertical upward</label>
+                    <label><input type="radio" name="q21" value="c"> The horizontal upward</label>
+                    <label><input type="radio" name="q21" value="d"> The vertical downward</label>
+                </div>
+            </div>
+            <!-- Question 22 -->
+            <div class="question">
+                <p>22. What is the value of sec²θ - tan²θ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q22" value="a"> 0</label>
+                    <label><input type="radio" name="q22" value="b"> 1</label>
+                    <label><input type="radio" name="q22" value="c"> -1</label>
+                    <label><input type="radio" name="q22" value="d"> sin²θ</label>
+                </div>
+            </div>
+            <!-- Question 23 -->
+            <div class="question">
+                <p>23. If tanθ = 3/4, what is cotθ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q23" value="a"> 4/3</label>
+                    <label><input type="radio" name="q23" value="b"> 3/4</label>
+                    <label><input type="radio" name="q23" value="c"> 3/5</label>
+                    <label><input type="radio" name="q23" value="d"> 4/5</label>
+                </div>
+            </div>
+            <!-- Question 24 -->
+            <div class="question">
+                <p>24. What is the value of cos 45°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q24" value="a"> 1/√2</label>
+                    <label><input type="radio" name="q24" value="b"> √3/2</label>
+                    <label><input type="radio" name="q24" value="c"> 1/2</label>
+                    <label><input type="radio" name="q24" value="d"> 0</label>
+                </div>
+            </div>
+            <!-- Question 25 -->
+            <div class="question">
+                <p>25. If sinθ = 1/2, what is θ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q25" value="a"> 30°</label>
+                    <label><input type="radio" name="q25" value="b"> 45°</label>
+                    <label><input type="radio" name="q25" value="c"> 60°</label>
+                    <label><input type="radio" name="q25" value="d"> 90°</label>
+                </div>
+            </div>
+            <!-- Question 26 -->
+            <div class="question">
+                <p>26. The value of 1 + cot²θ is equal to?</p>
+                <div class="options">
+                    <label><input type="radio" name="q26" value="a"> sec²θ</label>
+                    <label><input type="radio" name="q26" value="b"> cosec²θ</label>
+                    <label><input type="radio" name="q26" value="c"> tan²θ</label>
+                    <label><input type="radio" name="q26" value="d"> sin²θ</label>
+                </div>
+            </div>
+            <!-- Question 27 -->
+            <div class="question">
+                <p>27. If the angle of elevation of a tower from a point is 30°, and the distance from the point to the base of the tower is 60 m, what is the height of the tower?</p>
+                <div class="options">
+                    <label><input type="radio" name="q27" value="a"> 20√3 m</label>
+                    <label><input type="radio" name="q27" value="b"> 30√3 m</label>
+                    <label><input type="radio" name="q27" value="c"> 60 m</label>
+                    <label><input type="radio" name="q27" value="d"> 30 m</label>
+                </div>
+            </div>
+            <!-- Question 28 -->
+            <div class="question">
+                <p>28. What is the value of sin 0°?</p>
+                <div class="options">
+                    <label><input type="radio" name="q28" value="a"> 0</label>
+                    <label><input type="radio" name="q28" value="b"> 1</label>
+                    <label><input type="radio" name="q28" value="c"> 1/2</label>
+                    <label><input type="radio" name="q28" value="d"> √3/2</label>
+                </div>
+            </div>
+            <!-- Question 29 -->
+            <div class="question">
+                <p>29. If cosθ = 12/13, what is tanθ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q29" value="a"> 5/12</label>
+                    <label><input type="radio" name="q29" value="b"> 12/5</label>
+                    <label><input type="radio" name="q29" value="c"> 13/12</label>
+                    <label><input type="radio" name="q29" value="d"> 5/13</label>
+                </div>
+            </div>
+            <!-- Question 30 -->
+            <div class="question">
+                <p>30. In a right-angled triangle, if the angle of elevation from the base to the top is 60°, and the base is 10 m, what is the height?</p>
+                <div class="options">
+                    <label><input type="radio" name="q30" value="a"> 10√3 m</label>
+                    <label><input type="radio" name="q30" value="b"> 10 m</label>
+                    <label><input type="radio" name="q30" value="c"> 5√3 m</label>
+                    <label><input type="radio" name="q30" value="d"> 20 m</label>
+                </div>
+            </div>
+            <button type="button" id="submit-btn">Submit Quiz</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'a', q2: 'a', q3: 'b', q4: 'd', q5: 'a', q6: 'b', q7: 'a', q8: 'a', q9: 'a', q10: 'b',
+            q11: 'a', q12: 'b', q13: 'b', q14: 'a', q15: 'b', q16: 'b', q17: 'b', q18: 'c', q19: 'a', q20: 'a',
+            q21: 'a', q22: 'b', q23: 'a', q24: 'a', q25: 'a', q26: 'b', q27: 'a', q28: 'a', q29: 'a', q30: 'a'
+        };
+
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            let score = 0;
+            const form = document.getElementById('quiz-form');
+            const resultDiv = document.getElementById('result');
+
+            for (let i = 1; i <= 30; i++) {
+                const selected = form.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Your Score: ${score}/30 (${(score / 30 * 100).toFixed(2)}%)`;
+        });
+    </script>
+</body>
+</html>

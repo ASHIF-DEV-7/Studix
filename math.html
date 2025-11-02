@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics - Studix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1E1E2F;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navbar Structure - Double Line */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(30, 30, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFB74D;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+        }
+
+        .search-icon-nav {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-icon-nav:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-links a:hover {
+            color: #FFB74D;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #FFB74D;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            z-index: 1002;
+            transition: left 0.3s ease;
+            border-right: 1px solid rgba(255, 183, 77, 0.2);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .sidebar-overlay.visible {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 183, 77, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: rgba(255, 183, 77, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 183, 77, 0.1);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-item.active {
+            background: rgba(255, 183, 77, 0.15);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-text {
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 8rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 2rem 2rem 3rem;
+            background: linear-gradient(135deg, #1E1E2F 0%, #25273F 100%);
+        }
+
+        .page-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #90CAF9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            padding: 0 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #FFB74D;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .cards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 0.5rem 0 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #FFB74D #1E253D;
+        }
+
+        .cards-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cards-row::-webkit-scrollbar-track {
+            background: #1E253D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb {
+            background: #FFB74D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb:hover {
+            background: #FF9800;
+        }
+
+        /* Enhanced Card Styles for Math Content */
+        .card {
+            flex: 0 0 auto;
+            width: 280px;
+            height: 180px;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #FFFFFF;
+            z-index: 1;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Math Notes Cards - Blue Theme */
+        .notes-card {
+            background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .notes-card::before {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .notes-card:hover {
+            border-color: rgba(52, 152, 219, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Construction Quiz Cards - Green Theme */
+        .construction-card {
+            background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+            border-color: rgba(39, 174, 96, 0.3);
+        }
+
+        .construction-card::before {
+            background: rgba(39, 174, 96, 0.2);
+        }
+
+        .construction-card:hover {
+            border-color: rgba(39, 174, 96, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(39, 174, 96, 0.4);
+        }
+
+        /* Trigonometry Quiz Cards - Purple Theme */
+        .trigonometry-card {
+            background: linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%);
+            border-color: rgba(142, 68, 173, 0.3);
+        }
+
+        .trigonometry-card::before {
+            background: rgba(142, 68, 173, 0.2);
+        }
+
+        .trigonometry-card:hover {
+            border-color: rgba(142, 68, 173, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(142, 68, 173, 0.4);
+        }
+
+        /* Mensuration Quiz Cards - Red Theme */
+        .mensuration-card {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+
+        .mensuration-card::before {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .mensuration-card:hover {
+            border-color: rgba(231, 76, 60, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Geometry Quiz Cards - Orange Theme */
+        .geometry-card {
+            background: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+
+        .geometry-card::before {
+            background: rgba(243, 156, 18, 0.2);
+        }
+
+        .geometry-card:hover {
+            border-color: rgba(243, 156, 18, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(243, 156, 18, 0.4);
+        }
+
+        /* Statistics Quiz Cards - Cyan Theme */
+        .statistics-card {
+            background: linear-gradient(135deg, #1ABC9C 0%, #16A085 100%);
+            border-color: rgba(26, 188, 156, 0.3);
+        }
+
+        .statistics-card::before {
+            background: rgba(26, 188, 156, 0.2);
+        }
+
+        .statistics-card:hover {
+            border-color: rgba(26, 188, 156, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(26, 188, 156, 0.4);
+        }
+
+        /* Formula Cards - Dark Blue Theme */
+        .formula-card {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            border-color: rgba(44, 62, 80, 0.3);
+        }
+
+        .formula-card::before {
+            background: rgba(44, 62, 80, 0.2);
+        }
+
+        .formula-card:hover {
+            border-color: rgba(44, 62, 80, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(44, 62, 80, 0.4);
+        }
+
+        /* PYQ Cards - Pink Theme */
+        .pyq-card {
+            background: linear-gradient(135deg, #E91E63 0%, #AD1457 100%);
+            border-color: rgba(233, 30, 99, 0.3);
+        }
+
+        .pyq-card::before {
+            background: rgba(233, 30, 99, 0.2);
+        }
+
+        .pyq-card:hover {
+            border-color: rgba(233, 30, 99, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        /* Category Headers */
+        .category-header {
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+
+        .category-title {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight: 600;
+            color: #B0BEC5;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1A1A2E;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: #B0BEC5;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #90CAF9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFB74D;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1rem 0.5rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .section {
+                padding: 0 1rem;
+            }
+
+            .cards-row {
+                gap: 1rem;
+            }
+
+            .card {
+                width: 240px;
+                height: 160px;
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .card {
+                width: 200px;
+                height: 140px;
+                padding: 0.8rem;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+        }
+
+        .card:focus {
+            outline: 2px solid #FFB74D;
+            outline-offset: 2px;
+        }
+    </style>
+    <script src="universal-settings.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">Studix</div>
+            <button class="sidebar-close" id="sidebar-close">×</button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="main.html" class="sidebar-item">
+                <span class="sidebar-icon">🏠</span>
+                <span class="sidebar-text">Home</span>
+            </a>
+            <a href="#" class="sidebar-item active">
+                <span class="sidebar-icon">📊</span>
+                <span class="sidebar-text">Mathematics</span>
+            </a>
+            <a href="library.html" class="sidebar-item">
+                <span class="sidebar-icon">📝</span>
+                <span class="sidebar-text">Keep Notes</span>
+            </a>
+            <a href="profile.html" class="sidebar-item">
+                <span class="sidebar-icon">👤</span>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+            <a href="feedback.html" class="sidebar-item">
+                <span class="sidebar-icon">💬</span>
+                <span class="sidebar-text">Feedback</span>
+            </a>
+             <a href="pyq.html" class="sidebar-item">
+                <span class="sidebar-icon">📇</span>
+                <span class="sidebar-text">Previous year question</span>
+            </a>
+            <a href="settings.html" class="sidebar-item">
+                <span class="sidebar-icon">⚙️</span>
+                <span class="sidebar-text">Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-top">
+                <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+                <div class="navbar-brand">Math Hub</div>
+                <button class="search-icon-nav" onclick="window.location.href='search.html'">⌕</button>
+            </div>
+            <div class="navbar-links">
+                <a href="main.html">Home</a>
+                <a href="english.html">English</a>
+                <a href="notes.html">Science</a>
+                <a href="sst.html">SST</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Mathematics Mastery</h1>
+            <p class="page-subtitle">Master mathematical concepts through comprehensive notes, formulas, quizzes, and practice questions</p>
+        </div>
+
+        <!-- Notes Section -->
+        <section class="section">
+            <h2 class="section-title">Mathematics Notes</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="notes-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="section">
+            <h2 class="section-title">Topic-wise Quizzes</h2>
+            
+            <!-- Construction Quizzes -->
+            <div class="category-header">
+                <h3 class="category-title">🔨 Construction</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="construction-quiz-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trigonometry Quizzes -->
+            <div class="category-header">
+                <h3 class="category-title">📐 Trigonometry</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="trigonometry-quiz-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mensuration Quizzes -->
+            <div class="category-header">
+                <h3 class="category-title">📏 Mensuration</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="mensuration-quiz-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Geometry Quizzes -->
+            <div class="category-header">
+                <h3 class="category-title">📊 Geometry</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="geometry-quiz-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics and Probability Quizzes -->
+            <div class="category-header">
+                <h3 class="category-title">📈 Statistics and Probability</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="statistics-quiz-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulas Section -->
+        <section class="section">
+            <h2 class="section-title">Mathematical Formulas</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="formula-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PYQs Section -->
+        <section class="section">
+            <h2 class="section-title">Previous Year Questions</h2>
+            <div class="cards-container">
+                <div class="cards-row" id="pyq-row">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">Studix Mathematics</div>
+                <p class="footer-description">
+                    Master mathematics with comprehensive notes, interactive quizzes, formula collections, and practice questions designed for Class 10 students.
+                </p>
+                <div class="footer-links">
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Studix. All rights reserved. Made with ❤️ for mathematics enthusiasts.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+    // Content data for Mathematics
+const mathContent = {
+    notes: [
+        { title: "Real Numbers", url: "mch1.html", description: "Euclid's division lemma and fundamental theorem" },
+        { title: "Polynomials", url: "mch2.html", description: "Degree, zeros, and factorization" },
+        { title: "Pair of Linear Equations in Two Variables", url: "mch3.html", description: "Graphical and algebraic methods" },
+        { title: "Quadratic Equations", url: "mch4.html", description: "Factorization and quadratic formula" },
+        { title: "Arithmetic Progressions", url: "mch5.html", description: "Terms, common difference, and sum" },
+        { title: "Triangles", url: "mch6.html", description: "Similarity and congruence" },
+        { title: "Coordinate Geometry", url: "mch7.html", description: "Distance and section formula" },
+        { title: "Introduction to Trigonometry", url: "mch8.html", description: "Trigonometric ratios and identities" },
+        { title: "Applications of Trigonometry", url: "mch9.html", description: "Heights and distances" },
+        { title: "Circles", url: "mch10.html", description: "Tangents and properties" },
+        { title: "Constructions", url: "mch11.html", description: "Division of line segments and tangents" },
+        { title: "Areas Related to Circles", url: "mch12.html", description: "Area of sectors and segments" },
+        { title: "Surface Areas and Volumes", url: "mch13.html", description: "Combination of solids" },
+        { title: "Statistics", url: "mch14.html", description: "Mean, median, mode, and cumulative frequency" },
+        { title: "Probability", url: "mch15.html", description: "Theoretical probability and experiments" }
+    ],
+    quizzes: {
+        construction: [
+            { title: "Construction Quiz - Basic", url: "#", description: "Fundamental construction techniques" },
+            { title: "Construction Quiz - Advanced", url: "#", description: "Complex constructions and proofs" },
+            { title: "Line Division Quiz", url: "#", description: "Dividing line segments in ratios" },
+            { title: "Tangent Construction Quiz", url: "#", description: "Constructing tangents to circles" }
+        ],
+        trigonometry: [
+            { title: "Trigonometric Ratios Quiz", url: "#", description: "Sin, cos, tan and their relationships" },
+            { title: "Trigonometric Identities Quiz", url: "#", description: "Fundamental identities and proofs" },
+            { title: "Heights and Distances Quiz", url: "#", description: "Real-world trigonometry applications" },
+            { title: "Trigonometry - Advanced Quiz", url: "#", description: "Complex trigonometric problems" }
+        ],
+        mensuration: [
+            { title: "Areas Related to Circles Quiz", url: "#", description: "Sectors, segments, and combinations" },
+            { title: "Surface Areas Quiz", url: "#", description: "TSA and CSA of 3D objects" },
+            { title: "Volume Calculations Quiz", url: "#", description: "Volume of cubes, cylinders, cones" },
+            { title: "Combined Solids Quiz", url: "#", description: "Complex mensuration problems" }
+        ],
+        geometry: [
+            { title: "Triangles Quiz", url: "#", description: "Similarity and congruence" },
+            { title: "Coordinate Geometry Quiz", url: "#", description: "Distance, section, and area formulas" },
+            { title: "Circles Quiz", url: "#", description: "Properties and theorems" },
+            { title: "Geometry - Mixed Quiz", url: "#", description: "Combined geometry concepts" }
+        ],
+        statistics: [
+            { title: "Statistics Quiz - Basic", url: "#", description: "Mean, median, mode calculations" },
+            { title: "Statistics Quiz - Advanced", url: "#", description: "Cumulative frequency and graphs" },
+            { title: "Probability Quiz - Basic", url: "#", description: "Simple probability problems" },
+            { title: "Probability Quiz - Advanced", url: "#", description: "Complex probability scenarios" }
+        ]
+    },
+    formulas: [
+        { title: "Trigonometry", url: "trigonometry.html", description: "All trigonometric formulas and identities" },
+        { title: "Mensuration", url: "mensuration.html", description: "Area and volume formulas" },
+        { title: "Geometry", url: "geometry.html", description: "Coordinate geometry and triangle formulas" },
+        { title: "Statistics and Probability", url: "statics.html", description: "Statistical measures and probability formulas" }
+    ],
+    pyqs: [
+        { title: "Construction PYQ 2024", url: "cp2423.html", description: "Previous year construction problems" },
+        { title: "Trigonometry PYQ 2024", url: "tp2423.html", description: "Heights, distances, and ratios" },
+        { title: "Mensuration PYQ 2024", url: "mp2423.html", description: "Area and volume calculations" },
+        { title: "Geometry PYQ 2024", url: "gp2423.html", description: "Coordinate geometry and circles" },
+        { title: "Construction PYQ 2023", url: "cp2423.html", description: "Line divisions and tangents" },
+        { title: "Trigonometry PYQ 2023", url: "tp2423.html", description: "Trigonometric applications" },
+        { title: "Mensuration PYQ 2023", url: "mp2423.html", description: "Surface areas and volumes" },
+        { title: "Geometry PYQ 2023", url: "gp2423.html", description: "Triangles and coordinate geometry" },
+        { title: "Statistics PYQ 2022", url: "stp2022.html", description: "Mean, median, mode problems" },
+        { title: "Probability PYQ 2022", url: "pp24.html", description: "Theoretical probability questions" }
+    ]
+};
+
+// Create a card element
+function createCard(item, cardType = 'default') {
+    const card = document.createElement('a');
+    card.className = `card ${cardType}`;
+    card.href = item.url;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Open ${item.title}`);
+    
+    card.innerHTML = `
+        <div class="card-title">${item.title}</div>
+        ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+    `;
+
+    return card;
+}
+
+// Initialize all content rows
+function initializeContent() {
+    // Mathematics Notes
+    const notesRow = document.getElementById('notes-row');
+    mathContent.notes.forEach(note => {
+        const card = createCard(note, 'notes-card');
+        notesRow.appendChild(card);
+    });
+
+    // Construction Quizzes
+    const constructionQuizRow = document.getElementById('construction-quiz-row');
+    mathContent.quizzes.construction.forEach(quiz => {
+        const card = createCard(quiz, 'construction-card');
+        constructionQuizRow.appendChild(card);
+    });
+
+    // Trigonometry Quizzes
+    const trigonometryQuizRow = document.getElementById('trigonometry-quiz-row');
+    mathContent.quizzes.trigonometry.forEach(quiz => {
+        const card = createCard(quiz, 'trigonometry-card');
+        trigonometryQuizRow.appendChild(card);
+    });
+
+    // Mensuration Quizzes
+    const mensurationQuizRow = document.getElementById('mensuration-quiz-row');
+    mathContent.quizzes.mensuration.forEach(quiz => {
+        const card = createCard(quiz, 'mensuration-card');
+        mensurationQuizRow.appendChild(card);
+    });
+
+    // Geometry Quizzes
+    const geometryQuizRow = document.getElementById('geometry-quiz-row');
+    mathContent.quizzes.geometry.forEach(quiz => {
+        const card = createCard(quiz, 'geometry-card');
+        geometryQuizRow.appendChild(card);
+    });
+
+    // Statistics and Probability Quizzes
+    const statisticsQuizRow = document.getElementById('statistics-quiz-row');
+    mathContent.quizzes.statistics.forEach(quiz => {
+        const card = createCard(quiz, 'statistics-card');
+        statisticsQuizRow.appendChild(card);
+    });
+
+    // Formulas
+    const formulaRow = document.getElementById('formula-row');
+    mathContent.formulas.forEach(formula => {
+        const card = createCard(formula, 'formula-card');
+        formulaRow.appendChild(card);
+    });
+
+    // PYQs
+    const pyqRow = document.getElementById('pyq-row');
+    mathContent.pyqs.forEach(pyq => {
+        const card = createCard(pyq, 'pyq-card');
+        pyqRow.appendChild(card);
+    });
+}
+
+// Sidebar functionality
+function initializeSidebar() {
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebar-close');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        sidebarOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('visible');
+        document.body.style.overflow = 'auto';
+    }
+
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+            closeSidebar();
+        }
+    });
+
+    // Sidebar menu active state
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', () => {
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+}
+
+// Section visibility animations
+function initializeScrollAnimations() {
+    const sections = document.querySelectorAll('.section');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeContent();
+    initializeSidebar();
+    initializeScrollAnimations();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 - Polynomials</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .main-content {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border-radius: 25px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            animation: slideInDown 1.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px) rotateX(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24, #fd79a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes rainbow {
+            0%, 100% { 
+                background: linear-gradient(45deg, #ff6b6b, #ee5a24, #fd79a8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            33% { 
+                background: linear-gradient(45deg, #74b9ff, #0984e3, #6c5ce7);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            66% { 
+                background: linear-gradient(45deg, #00b894, #00cec9, #55a3ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 2rem;
+            margin: 35px 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 4px solid #ff6b6b;
+            animation: slideInLeft 1.2s ease-out;
+            position: relative;
+        }
+
+        h2:before {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #74b9ff, #0984e3);
+            animation: expandWidth 2s ease-out 0.5s forwards;
+        }
+
+        @keyframes expandWidth {
+            to { width: 100%; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+            animation: zoomIn 1.5s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3) rotate(180deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        p, li {
+            line-height: 1.9;
+            margin-bottom: 15px;
+            font-size: 1.15rem;
+            animation: typewriter 0.1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 18px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+        }
+
+        li:before {
+            content: "📐";
+            position: absolute;
+            left: 0;
+            font-size: 1.3rem;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        li:hover {
+            color: #ff6b6b;
+            transform: translateX(15px) scale(1.02);
+            text-shadow: 1px 1px 3px rgba(255, 107, 107, 0.3);
+        }
+
+        .definition {
+            background: linear-gradient(135deg, #e8f5e8, #f0fff0);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border-left: 6px solid #00b894;
+            animation: heartbeat 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.2);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(0, 184, 148, 0.2);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+            }
+        }
+
+        .example {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 30px;
+            margin: 35px 0;
+            border-radius: 20px;
+            border-left: 6px solid #f39c12;
+            animation: bounceIn 1.5s ease-out;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.2);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05) translateY(-10px);
+            }
+            70% {
+                transform: scale(0.9) translateY(5px);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .example h4 {
+            color: #e67e22;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 5px #e67e22, 0 0 10px #e67e22;
+            }
+            to {
+                text-shadow: 0 0 10px #e67e22, 0 0 20px #e67e22, 0 0 30px #e67e22;
+            }
+        }
+
+        .formula {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            border: 3px solid #6c757d;
+            animation: matrix 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula:before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #74b9ff, #00b894, #fdcb6e);
+            z-index: -1;
+            border-radius: 15px;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes matrix {
+            from {
+                opacity: 0;
+                transform: rotateY(-90deg) scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: rotateY(0deg) scale(1);
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+            }
+        }
+
+        .step {
+            margin: 20px 0;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(116, 185, 255, 0.1), rgba(116, 185, 255, 0.05));
+            border-radius: 12px;
+            border-left: 4px solid #74b9ff;
+            animation: slideInRight 1.2s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(116, 185, 255, 0.2);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) rotateY(45deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0deg);
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-symbol {
+            position: absolute;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.15);
+            animation: floatComplex 20s ease-in-out infinite;
+        }
+
+        @keyframes floatComplex {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(0.5); 
+                opacity: 0; 
+            }
+            10% { 
+                opacity: 1; 
+                transform: translateY(90vh) rotate(36deg) scale(0.7); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translateY(50vh) rotate(180deg) scale(1); 
+            }
+            90% { 
+                opacity: 1; 
+                transform: translateY(10vh) rotate(324deg) scale(0.7); 
+            }
+            100% { 
+                transform: translateY(-10vh) rotate(360deg) scale(0.5); 
+                opacity: 0; 
+            }
+        }
+
+        .floating-symbol:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .floating-symbol:nth-child(2) { left: 20%; animation-delay: 4s; }
+        .floating-symbol:nth-child(3) { left: 40%; animation-delay: 8s; }
+        .floating-symbol:nth-child(4) { left: 60%; animation-delay: 12s; }
+        .floating-symbol:nth-child(5) { left: 80%; animation-delay: 16s; }
+        .floating-symbol:nth-child(6) { left: 95%; animation-delay: 20s; }
+
+        .theorem {
+            background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+            padding: 25px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 6px solid #3498db;
+            animation: shake 0.5s ease-in-out;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.2);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+                border-radius: 20px;
+            }
+            
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            p, li { font-size: 1rem; }
+            
+            .formula { font-size: 0.9rem; }
+        }
+
+        /* Interactive hover effects */
+        .main-content:hover .floating-symbol {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-symbol">ax²</div>
+        <div class="floating-symbol">p(x)</div>
+        <div class="floating-symbol">∆</div>
+        <div class="floating-symbol">∑</div>
+        <div class="floating-symbol">f(x)</div>
+        <div class="floating-symbol">x³</div>
+    </div>
+
+    <div class="main-content">
+        <h1>Polynomials - Class 10</h1>
+        
+        <div class="definition">
+            <h3>Definition of Polynomial</h3>
+            <p>A polynomial in one variable x is an algebraic expression of the form:</p>
+            <div class="formula">p(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀</div>
+            <p>where aₙ, aₙ₋₁, ..., a₁, a₀ are real numbers and aₙ ≠ 0</p>
+        </div>
+
+        <h2>Key Points about Polynomials</h2>
+        <ul>
+            <li>A polynomial is an expression consisting of variables and coefficients with non-negative integer exponents</li>
+            <li>The <span class="highlight">degree</span> of a polynomial is the highest power of the variable in the polynomial</li>
+            <li>A <span class="highlight">constant polynomial</span> has degree 0 (except for the zero polynomial)</li>
+            <li>A <span class="highlight">linear polynomial</span> has degree 1 and is of the form ax + b</li>
+            <li>A <span class="highlight">quadratic polynomial</span> has degree 2 and is of the form ax² + bx + c</li>
+            <li>A <span class="highlight">cubic polynomial</span> has degree 3 and is of the form ax³ + bx² + cx + d</li>
+            <li>The zero polynomial has all coefficients equal to zero and degree is undefined</li>
+            <li>A monomial is a polynomial with only one term</li>
+            <li>A binomial is a polynomial with exactly two terms</li>
+            <li>A trinomial is a polynomial with exactly three terms</li>
+            <li>The leading coefficient is the coefficient of the term with the highest degree</li>
+            <li>A polynomial is said to be in standard form when terms are arranged in descending order of degree</li>
+            <li>If p(a) = 0, then a is called a zero or root of the polynomial p(x)</li>
+            <li>Every linear polynomial has exactly one zero</li>
+            <li>A quadratic polynomial can have at most 2 zeros</li>
+            <li>A cubic polynomial can have at most 3 zeros</li>
+            <li>In general, a polynomial of degree n can have at most n zeros</li>
+            <li>The value of a polynomial p(x) at x = a is denoted by p(a)</li>
+            <li>If p(x) and g(x) are two polynomials, then p(x) + g(x) and p(x) × g(x) are also polynomials</li>
+            <li>The sum of polynomials of degrees m and n has degree max(m,n)</li>
+            <li>The product of polynomials of degrees m and n has degree m + n</li>
+            <li>Division algorithm for polynomials: p(x) = g(x) × q(x) + r(x)</li>
+            <li>The remainder theorem states that when p(x) is divided by (x-a), the remainder is p(a)</li>
+            <li>The factor theorem states that (x-a) is a factor of p(x) if and only if p(a) = 0</li>
+            <li>Polynomials are continuous and differentiable functions</li>
+        </ul>
+
+        <h2>Important Relationships for Quadratic Polynomials</h2>
+        
+        <div class="theorem">
+            <h3>Relationship between Zeros and Coefficients</h3>
+            <p>For a quadratic polynomial ax² + bx + c, if α and β are the zeros, then:</p>
+            <div class="formula">Sum of zeros: α + β = -b/a</div>
+            <div class="formula">Product of zeros: α × β = c/a</div>
+        </div>
+
+        <div class="theorem">
+            <h3>Relationship for Cubic Polynomials</h3>
+            <p>For a cubic polynomial ax³ + bx² + cx + d, if α, β, and γ are the zeros, then:</p>
+            <div class="formula">α + β + γ = -b/a</div>
+            <div class="formula">αβ + βγ + γα = c/a</div>
+            <div class="formula">αβγ = -d/a</div>
+        </div>
+
+        <h2>Solved Examples</h2>
+
+        <div class="example">
+            <h4>Example 1: Finding Zeros of a Quadratic Polynomial</h4>
+            <p><strong>Problem:</strong> Find the zeros of the polynomial p(x) = 2x² - 8x + 6</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Factor out the common factor<br>
+                p(x) = 2x² - 8x + 6 = 2(x² - 4x + 3)
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Factor the quadratic expression<br>
+                x² - 4x + 3 = (x - 1)(x - 3)
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> So p(x) = 2(x - 1)(x - 3)<br>
+                For zeros: p(x) = 0<br>
+                2(x - 1)(x - 3) = 0
+            </div>
+            
+            <div class="step">
+                <strong>Answer:</strong> The zeros are x = 1 and x = 3<br>
+                <strong>Verification:</strong> Sum = 1 + 3 = 4 = -(-8)/2 ✓<br>
+                Product = 1 × 3 = 3 = 6/2 ✓
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example 2: Using Division Algorithm</h4>
+            <p><strong>Problem:</strong> Divide p(x) = x³ - 3x² + x + 2 by g(x) = x - 1</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Use synthetic division or long division<br>
+                Dividing x³ - 3x² + x + 2 by (x - 1)
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> First term: x³ ÷ x = x²<br>
+                x²(x - 1) = x³ - x²<br>
+                Subtract: (x³ - 3x² + x + 2) - (x³ - x²) = -2x² + x + 2
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Second term: -2x² ÷ x = -2x<br>
+                -2x(x - 1) = -2x² + 2x<br>
+                Subtract: (-2x² + x + 2) - (-2x² + 2x) = -x + 2
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Third term: -x ÷ x = -1<br>
+                -1(x - 1) = -x + 1<br>
+                Subtract: (-x + 2) - (-x + 1) = 1
+            </div>
+            
+            <div class="step">
+                <strong>Answer:</strong> p(x) = (x - 1)(x² - 2x - 1) + 1<br>
+                Quotient: q(x) = x² - 2x - 1, Remainder: r(x) = 1
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example 3: Verification using Remainder Theorem</h4>
+            <p><strong>Problem:</strong> Find the remainder when p(x) = x³ - 6x² + 2x - 4 is divided by (x - 1)</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Apply remainder theorem<br>
+                When p(x) is divided by (x - a), remainder = p(a)
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Here, we're dividing by (x - 1), so a = 1<br>
+                Remainder = p(1)
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Calculate p(1)<br>
+                p(1) = (1)³ - 6(1)² + 2(1) - 4<br>
+                p(1) = 1 - 6 + 2 - 4 = -7
+            </div>
+            
+            <div class="step">
+                <strong>Answer:</strong> The remainder is -7<br>
+                Since p(1) = -7 ≠ 0, (x - 1) is not a factor of p(x)
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example 4: Finding a Polynomial from Given Zeros</h4>
+            <p><strong>Problem:</strong> Find a quadratic polynomial whose zeros are 3 and -2</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Use the relationship between zeros and coefficients<br>
+                Sum of zeros = α + β = 3 + (-2) = 1<br>
+                Product of zeros = α × β = 3 × (-2) = -6
+            </div>
+            
+          <div class="step">
+                <strong>Step 2:</strong> For a quadratic polynomial ax² + bx + c:<br>
+                Sum of zeros = -b/a = 1, so b/a = -1<br>
+                Product of zeros = c/a = -6
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Let a = 1, then b = -1 and c = -6<br>
+                The polynomial is: x² - x - 6
+            </div>
+            
+            <div class="step">
+                <strong>Verification:</strong> (x - 3)(x + 2) = x² + 2x - 3x - 6 = x² - x - 6 ✓<br>
+                <strong>Alternative form:</strong> Any polynomial k(x² - x - 6) where k ≠ 0 will have the same zeros
+            </div>
+        </div>
+
+        <div class="definition">
+            <h3>Important Formulas to Remember</h3>
+            <div class="formula">For quadratic ax² + bx + c: Sum of zeros = -b/a, Product = c/a</div>
+            <div class="formula">Quadratic with zeros α, β: x² - (α + β)x + αβ = 0</div>
+            <div class="formula">Division Algorithm: p(x) = g(x) × q(x) + r(x)</div>
+            <div class="formula">Remainder Theorem: Remainder when p(x) is divided by (x - a) is p(a)</div>
+        </div>
+    </div>
+
+    <script>
+        // Add staggered animation delays to list items
+        document.addEventListener('DOMContentLoaded', function() {
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.05}s`;
+            });
+
+            // Add scroll-triggered animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const animatedElements = document.querySelectorAll('.example, .definition, .theorem');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px) scale(0.9)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(el);
+            });
+
+            // Interactive formula highlighting
+            const formulas = document.querySelectorAll('.formula');
+            formulas.forEach(formula => {
+                formula.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                formula.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add particle effects on scroll
+            let particleCount = 0;
+            window.addEventListener('scroll', function() {
+                if (particleCount < 5) {
+                    createParticle();
+                    particleCount++;
+                    setTimeout(() => particleCount--, 3000);
+                }
+            });
+
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.innerHTML = ['x²', 'ax+b', 'p(x)', '∆', 'α+β'][Math.floor(Math.random() * 5)];
+                particle.style.cssText = `
+                    position: fixed;
+                    font-size: 1.5rem;
+                    color: rgba(255, 107, 107, 0.6);
+                    pointer-events: none;
+                    z-index: 1000;
+                    left: ${Math.random() * 100}vw;
+                    top: 100vh;
+                    animation: particleFloat 3s ease-out forwards;
+                `;
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 3000);
+            }
+
+            // Add CSS for particle animation
+            if (!document.querySelector('#particle-styles')) {
+                const style = document.createElement('style');
+                style.id = 'particle-styles';
+                style.textContent = `
+                    @keyframes particleFloat {
+                        to {
+                            transform: translateY(-110vh) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Math - Quadratic Equations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #38b000;
+            --warning: #ff9e00;
+            --info: #4361ee;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            padding-bottom: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 0 0 40px 40px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .chapter-info {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--secondary);
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary);
+            font-size: 2.2rem;
+        }
+        
+        h3 {
+            color: var(--primary);
+            margin: 1.8rem 0 1.2rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .example {
+            background: linear-gradient(to right, #e8f4fc, #f0f8ff);
+            border-left: 5px solid var(--info);
+            padding: 1.8rem;
+            margin: 2.2rem 0;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example::before {
+            content: 'Example';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--info);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 0 0 12px 0;
+        }
+        
+        .example h4 {
+            color: var(--info);
+            margin: 1.2rem 0 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .definition {
+            background: linear-gradient(to right, #fff6f6, #fff);
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin: 1.8rem 0;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .definition h3 {
+            color: var(--accent);
+        }
+        
+        .key-points {
+            background: linear-gradient(to right, #e8f6f3, #f0fffd);
+            padding: 2.2rem;
+            border-radius: 12px;
+            margin: 2.2rem 0;
+            border: 2px dashed var(--success);
+            position: relative;
+        }
+        
+        .key-points h3 {
+            color: var(--success);
+        }
+        
+        .key-points::before {
+            content: '✓';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--success);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(58, 134, 255, 0.5);
+        }
+        
+        .important {
+            color: var(--accent);
+            font-weight: 700;
+            background: rgba(255, 0, 110, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+        }
+        
+        .formula {
+            font-family: 'Merriweather', serif;
+            background: linear-gradient(to right, #f8f9fa, #f1f3f5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-size: 1.3rem;
+            border: 1px solid #e9ecef;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: #6c757d;
+            font-size: 1rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .chapter-info {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 1.8rem;
+            }
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        
+        .section-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        
+        .sidebar-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .sidebar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar-card h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .topic-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .topic-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .topic-list li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .formula-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .formula-list li {
+            margin-bottom: 1.2rem;
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .resource-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .resource-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .resource-list li:hover {
+            background: #e9ecef;
+        }
+        
+        .tip-box {
+            background: linear-gradient(to right, #fff3cd, #fff);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--warning);
+        }
+        
+        .tip-box h4 {
+            color: var(--warning);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .keyword {
+            background: rgba(58, 134, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <div class="container">
+            <h1>Class 10 Mathematics</h1>
+            <p class="chapter-info">Chapter 4: Quadratic Equations</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="card">
+                    <h2><span class="section-icon">📘</span>Introduction</h2>
+                    <p>A quadratic equation is a polynomial equation of degree 2. It's a fundamental concept in algebra that appears in various mathematical and real-world applications.</p>
+                    
+                    <div class="definition">
+                        <h3>Definition</h3>
+                        <p>A quadratic equation in the variable <span class="keyword">x</span> is an equation of the form <span class="important">ax² + bx + c = 0</span>, where a, b, c are real numbers and <span class="important">a ≠ 0</span>.</p>
+                    </div>
+                    
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li>Standard form of quadratic equations</li>
+                        <li>Solutions or roots of quadratic equations</li>
+                        <li>Discriminant and nature of roots</li>
+                        <li>Methods for solving quadratic equations</li>
+                        <li>Applications of quadratic equations</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="section-icon">⭐</span>Important Points</h2>
+                    <div class="key-points">
+                        <ol>
+                            <li>A quadratic equation is a second-degree polynomial equation in one variable.</li>
+                            <li>The standard form of a quadratic equation is ax² + bx + c = 0, where a, b, c are constants and a ≠ 0.</li>
+                            <li>The solutions to a quadratic equation are called roots or zeros of the equation.</li>
+                            <li>A quadratic equation has at most two real roots.</li>
+                            <li>The discriminant (D) of a quadratic equation is given by D = b² - 4ac.</li>
+                            <li>If D > 0, the equation has two distinct real roots.</li>
+                            <li>If D = 0, the equation has two equal real roots (coincident roots).</li>
+                            <li>If D < 0, the equation has no real roots (imaginary roots).</li>
+                            <li>Quadratic equations can be solved by:
+                                <ul>
+                                    <li>Factorization method</li>
+                                    <li>Completing the square method</li>
+                                    <li>Using the quadratic formula</li>
+                                </ul>
+                            </li>
+                            <li>The quadratic formula is: x = [-b ± √(b² - 4ac)] / (2a)</li>
+                            <li>The sum of the roots of a quadratic equation is -b/a.</li>
+                            <li>The product of the roots of a quadratic equation is c/a.</li>
+                            <li>For the quadratic equation ax² + bx + c = 0, the graph is a parabola.</li>
+                            <li>If a > 0, the parabola opens upward.</li>
+                            <li>If a < 0, the parabola opens downward.</li>
+                            <li>The vertex of the parabola is at (-b/2a, -D/4a).</li>
+                            <li>The quadratic equation can be expressed in terms of its roots as x² - (sum of roots)x + (product of roots) = 0.</li>
+                            <li>Many real-world problems can be modeled and solved using quadratic equations.</li>
+                            <li>The method of completing the square is useful for deriving the quadratic formula.</li>
+                            <li>Quadratic equations are fundamental to higher mathematics including calculus.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="section-icon">🔍</span>Examples</h2>
+                    
+                    <div class="example">
+                        <h4>Example 1: Solving by Factorization</h4>
+                        <p>Solve the quadratic equation: x² - 5x + 6 = 0</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>x² - 5x + 6 = 0</p>
+                        <p>⇒ x² - 2x - 3x + 6 = 0</p>
+                        <p>⇒ x(x - 2) - 3(x - 2) = 0</p>
+                        <p>⇒ (x - 2)(x - 3) = 0</p>
+                        <p>⇒ x - 2 = 0 or x - 3 = 0</p>
+                        <p>⇒ x = 2 or x = 3</p>
+                        <p>∴ The roots are 2 and 3.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Example 2: Solving by Quadratic Formula</h4>
+                        <p>Solve the quadratic equation: 2x² - 4x - 6 = 0</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Here, a = 2, b = -4, c = -6</p>
+                        <p>Discriminant (D) = b² - 4ac = (-4)² - 4(2)(-6) = 16 + 48 = 64</p>
+                        <p>Using quadratic formula: x = [-b ± √D] / (2a)</p>
+                        <p>x = [4 ± √64] / (4) = [4 ± 8] / 4</p>
+                        <p>⇒ x = (4 + 8)/4 = 12/4 = 3</p>
+                        <p>⇒ x = (4 - 8)/4 = (-4)/4 = -1</p>
+                        <p>∴ The roots are 3 and -1.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Example 3: Word Problem</h4>
+                        <p>The product of two consecutive positive integers is 306. Find the integers.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Let the first integer be x. Then the next consecutive integer is x + 1.</p>
+                        <p>According to the problem: x(x + 1) = 306</p>
+                        <p>⇒ x² + x - 306 = 0</p>
+                        <p>⇒ x² + 18x - 17x - 306 = 0</p>
+                        <p>⇒ x(x + 18) - 17(x + 18) = 0</p>
+                        <p>⇒ (x + 18)(x - 17) = 0</p>
+                        <p>⇒ x = -18 or x = 17</p>
+                        <p>Since we need positive integers, x = 17</p>
+                        <p>∴ The integers are 17 and 18.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="section-icon">📈</span>Practice Problems</h2>
+                    <p>Try solving these problems to test your understanding:</p>
+                    <ol>
+                        <li>Solve the equation: x² - 4x + 4 = 0</li>
+                        <li>Find the roots of: 3x² + 5x - 2 = 0</li>
+                        <li>Determine the nature of roots of: 4x² - 12x + 9 = 0</li>
+                        <li>The area of a rectangular field is 200 m². If its length is 10 m more than its width, find the dimensions.</li>
+                        <li>A train travels a distance of 300 km at a uniform speed. If the speed had been 5 km/h more, the journey would have taken 2 hours less. Find the original speed.</li>
+                    </ol>
+                    <p>Check your answers using the quadratic formula or factorization method.</p>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <h3><span class="section-icon">📋</span>Chapter Contents</h3>
+                    <ul class="topic-list">
+                        <li>Introduction to Quadratic Equations</li>
+                        <li>Standard Form of Quadratic Equations</li>
+                        <li>Solutions of Quadratic Equations</li>
+                        <li>Factorization Method</li>
+                        <li>Completing the Square Method</li>
+                        <li>Quadratic Formula</li>
+                        <li>Discriminant and Nature of Roots</li>
+                        <li>Relations between Roots and Coefficients</li>
+                        <li>Applications of Quadratic Equations</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3><span class="section-icon">🧮</span>Important Formulas</h3>
+                    <ul class="formula-list">
+                        <li>Standard form: ax² + bx + c = 0</li>
+                        <li>Quadratic formula: x = [-b ± √(b² - 4ac)] / (2a)</li>
+                        <li>Discriminant: D = b² - 4ac</li>
+                        <li>Sum of roots: α + β = -b/a</li>
+                        <li>Product of roots: αβ = c/a</li>
+                        <li>Equation from roots: x² - (α+β)x + αβ = 0</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3><span class="section-icon">🔔</span>Study Tips</h3>
+           

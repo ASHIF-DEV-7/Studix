@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studix - Class 10</title>
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border-color: #e0e0e0;
+    --card-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --border-color: #2a2a2a;
+    --card-bg: #1a1a1a;
+    --shadow: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+    padding-bottom: 70px;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 150;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-primary);
+    box-shadow: 2px 0 10px var(--shadow);
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200;
+    overflow-y: auto;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Theme Toggle - Simple Animation */
+.theme-toggle {
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fef3c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    color: #f59e0b;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-icon.sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.theme-icon.moon {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    position: absolute;
+    color: #60a5fa;
+}
+
+body.dark-mode .theme-icon-wrapper {
+    background: #1e3a5f;
+}
+
+body.dark-mode .theme-icon.sun {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+}
+
+body.dark-mode .theme-icon.moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.sidebar-menu {
+    padding: 10px 0;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.sidebar-item:hover {
+    background: var(--bg-secondary);
+}
+
+.sidebar-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 10px 0;
+}
+
+/* Top Navigation */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+    will-change: transform;
+}
+
+.top-nav-main {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.top-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-nav-center {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.top-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s, background 0.2s;
+    color: var(--text-primary);
+    border-radius: 8px;
+}
+
+.icon-btn:hover {
+    background: var(--bg-secondary);
+}
+
+.icon-btn:active {
+    opacity: 0.6;
+}
+
+.icon-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Profile Circle - Simple Border */
+.profile-btn {
+    padding: 4px;
+}
+
+.profile-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.profile-circle svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-primary);
+}
+
+.profile-btn:hover .profile-circle {
+    transform: scale(1.1);
+    border-color: #3498DB;
+}
+
+.profile-btn:hover .profile-circle svg {
+    color: #3498DB;
+}
+
+/* Subject Chips */
+.subject-chips-container {
+    padding: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.subject-chips-container::-webkit-scrollbar {
+    display: none;
+}
+
+.subject-chip {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 8px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid var(--border-color);
+}
+
+.subject-chip:active {
+    transform: scale(0.95);
+}
+
+.subject-chip.active {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+/* Main Content */
+.main-content {
+    margin-top: 112px;
+    padding-bottom: 40px;
+}
+
+/* Hero Carousel */
+.hero-carousel {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    scrollbar-width: none;
+    margin-bottom: 12px;
+}
+
+.hero-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.hero-slide {
+    min-width: 100%;
+    scroll-snap-align: start;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 16px;
+    margin: 0 16px;
+}
+
+.hero-slide-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 0;
+}
+
+.indicator-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-color);
+    transition: all 0.3s;
+}
+
+.indicator-dot.active {
+    width: 20px;
+    border-radius: 3px;
+    background: var(--text-primary);
+}
+
+/* Section Headers */
+.section-header {
+    padding: 20px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.see-more-btn {
+    font-size: 14px;
+    color: #3498DB;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.see-more-btn:hover {
+    opacity: 0.7;
+}
+
+/* Horizontal Chapter Row */
+.horizontal-row {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 12px;
+    padding: 0 16px 20px;
+    scrollbar-width: none;
+}
+
+.horizontal-row::-webkit-scrollbar {
+    display: none;
+}
+
+.subject-card {
+    min-width: 140px;
+    scroll-snap-align: start;
+    border-radius: 14px;
+    padding: 16px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 8px var(--shadow);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.subject-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.card-subtitle {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* Enhanced Widget Row */
+.widget-row {
+    padding: 0 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.widget-card {
+    border-radius: 16px;
+    padding: 20px 12px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 12px var(--shadow);
+    text-decoration: none;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.widget-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3498DB, #9B59B6);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.widget-card:hover::before {
+    transform: scaleX(1);
+}
+
+.widget-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.widget-card:active {
+    transform: translateY(-3px) scale(0.98);
+}
+
+.widget-icon {
+    width: 32px;
+    height: 32px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.widget-card:hover .widget-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.widget-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 90;
+    padding: 0 8px;
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: all 0.2s;
+    flex: 1;
+    max-width: 80px;
+}
+
+.bottom-nav-item:hover {
+    background: var(--bg-secondary);
+}
+
+.bottom-nav-item.active {
+    color: #3498DB;
+}
+
+.bottom-nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+    transition: transform 0.2s;
+}
+
+.bottom-nav-item.active .bottom-nav-icon {
+    transform: scale(1.1);
+}
+
+.bottom-nav-label {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Enhanced Chapters Modal */
+.chapters-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary);
+    z-index: 300;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+.chapters-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.modal-header-custom {
+    position: sticky;
+    top: 0;
+    background: var(--bg-primary);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.modal-title-custom {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modal-close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+    background: var(--border-color);
+    transform: rotate(90deg);
+}
+
+.modal-close-btn svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+}
+
+.chapters-grid-modal {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chapter-item-modal {
+    aspect-ratio: 1;
+    border-radius: 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-item-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.chapter-item-modal:hover::before {
+    opacity: 1;
+}
+
+.chapter-item-modal:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+.chapter-item-modal:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Footer */
+.app-footer {
+    background: var(--bg-secondary);
+    padding: 24px 16px;
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-heart {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: #3498DB;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.footer-link:hover {
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chapters-grid-modal {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .widget-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slide {
+        font-size: 20px;
+        height: 160px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .bottom-nav {
+        height: 56px;
+    }
+    
+    .bottom-nav-icon {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .bottom-nav-label {
+        font-size: 10px;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Loading Animation for Cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subject-card,
+.widget-card {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Pulse Animation for Active States */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.bottom-nav-item.active .bottom-nav-icon {
+    animation: pulse 2s ease-in-out infinite;
+} 
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span>Menu</span>
+            <button class="theme-toggle" id="themeToggle">
+                <div class="theme-icon-wrapper">
+                    <svg class="theme-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="theme-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="pyq.html" class="sidebar-item">
+                <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                </svg>
+                Previous Year Questions
+            </a>
+            <a href="quizopt.html" class="sidebar-item">
+                <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+                Practice Quiz
+            </a>
+            <a href="formulas.html" class="sidebar-item">
+                <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                </svg>
+                All Formulas
+            </a>
+            <a href="settings.html" class="sidebar-item">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="2.8"></circle>
+    <path d="M19.4 13a7.77 7.77 0 0 0 0-2l2.1-1.6a0.5 0.5 0 0 0 .1-0.7l-2-3.4a0.5 0.5 0 0 0-.6-0.2l-2.5 1a7.4 7.4 0 0 0-1.7-1l-0.4-2.7A0.5 0.5 0 0 0 14.8 2h-5.6a0.5 0.5 0 0 0-.5.4L8.3 5a7.4 7.4 0 0 0-1.7 1l-2.5-1a0.5 0.5 0 0 0-.6.2l-2 3.4a0.5 0.5 0 0 0 .1.7L3.7 11a7.77 7.77 0 0 0 0 2l-2.1 1.6a0.5 0.5 0 0 0-.1.7l2 3.4a0.5 0.5 0 0 0 .6.2l2.5-1a7.4 7.4 0 0 0 1.7 1l0.4 2.7a0.5 0.5 0 0 0 .5.4h5.6a0.5 0.5 0 0 0 .5-.4l0.4-2.7a7.4 7.4 0 0 0 1.7-1l2.5 1a0.5 0.5 0 0 0 .6-.2l2-3.4a0.5 0.5 0 0 0-.1-.7Z" />
+</svg>
+                Settings
+            </a>
+            <a href="#" class="sidebar-item">
+                <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 01-3.46 0"/>
+                </svg>
+                Notice Board
+            </a>
+            <a href="video.html" class="sidebar-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="10,8 16,12 10,16" fill="#fff" />
+              </svg>Access Video lecture</a>
+            <a href="about.html" class="sidebar-item">
+                <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                </svg>
+                Support & Feedback
+            </a>
+        </div>
+    </div>
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="top-nav-main">
+            <div class="top-nav-left">
+                <button class="icon-btn" id="menuBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="top-nav-center">STUDIX</div>
+            <div class="top-nav-right">
+                <a href="cal.html" class="icon-btn" title="Calculator">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                        <line x1="8" y1="6" x2="16" y2="6"/>
+                        <line x1="9" y1="10" x2="9" y2="10" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="12" y1="10" x2="12" y2="10" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="15" y1="10" x2="15" y2="10" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="9" y1="14" x2="9" y2="14" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="12" y1="14" x2="12" y2="14" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="15" y1="14" x2="15" y2="14" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="9" y1="18" x2="9" y2="18" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="12" y1="18" x2="12" y2="18" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="15" y1="18" x2="15" y2="18" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a href="search.html" class="icon-btn" title="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </a>
+                <a href="profile.html" class="icon-btn profile-btn" title="Profile">
+                    <div class="profile-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Subject Chips -->
+        <div class="subject-chips-container">
+            <a href="main.html" class="subject-chip active">🏠 Home</a>
+            <a href="video.html" class="subject-chip">▶️ video lecture</a>
+            <a href="notes.html" class="subject-chip">📚 Science</a>
+            <a href="math.html" class="subject-chip">🔢 Math</a>
+            <a href="english.html" class="subject-chip">📖 English</a>
+            <a href="sst.html" class="subject-chip">🗺️ SST</a>
+            <a href="#" class="subject-chip">🧪 Chemistry</a>
+            <a href="#" class="subject-chip">🌱 Biology</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Carousel -->
+        <div class="hero-carousel" id="heroCarousel">
+            <a href="magnet.html" class="hero-slide" style="background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);">
+                <div>⚡ Magnetism Physics</div>
+                <div class="hero-slide-subtitle">Master electromagnetic concepts</div>
+            </a>
+            <a href="carbon.html" class="hero-slide" style="background: linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%);">
+                <div>🧪 Carbon Compounds</div>
+                <div class="hero-slide-subtitle">Organic chemistry made easy</div>
+            </a>
+            <a href="mch10.html" class="hero-slide" style="background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);">
+                <div>⭕ Circles</div>
+                <div class="hero-slide-subtitle">Complete geometry guide</div>
+            </a>
+            <a href="#" class="hero-slide" style="background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);">
+                <div>🌍 SST Explorer</div>
+                <div class="hero-slide-subtitle">History, Geography, Civics</div>
+            </a>
+        </div>
+        <div class="carousel-indicators">
+            <div class="indicator-dot active"></div>
+            <div class="indicator-dot"></div>
+            <div class="indicator-dot"></div>
+            <div class="indicator-dot"></div>
+        </div>
+
+        <!-- Quick Tools -->
+        <div class="section-header">
+            <div class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                Quick Access
+            </div>
+        </div>
+        <div class="widget-row">
+            <a href="all-notes.html" class="widget-card" data-color="#3498DB">
+                <svg class="widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <line x1="10" y1="9" x2="8" y2="9"/>
+                </svg>
+                <div class="widget-label">Notes</div>
+            </a>
+            <a href="quizopt.html" class="widget-card" data-color="#9B59B6">
+                <svg class="widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+                <div class="widget-label">Quizzes</div>
+            </a>
+            <a href="pyq.html" class="widget-card" data-color="#27AE60">
+                <svg class="widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                    <rect x="9" y="3" width="6" height="4" rx="1"/>
+                    <path d="M9 14l2 2 4-4"/>
+                </svg>
+                <div class="widget-label">PYQs</div>
+            </a>
+            <a href="formulas.html" class="widget-card" data-color="#E67E22">
+                <svg class="widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3"/>
+                    <path d="M9 20h6"/>
+                    <path d="M12 4v16"/>
+                </svg>
+                <div class="widget-label">Formulas</div>
+            </a>
+            <a href="chatbot.html" class="widget-card" data-color="#E74C3C">
+                <svg class="widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                    <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                    <path d="M9 14c.5.5 1.5 1 3 1s2.5-.5 3-1"/>
+                </svg>
+                <div class="widget-label">AI Tutor</div>
+            </a>
+            <a href="cal.html" class="widget-card" data-color="#1ABC9C">
+                <svg class="widget-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                    <line x1="8" y1="6" x2="16" y2="6"/>
+                    <line x1="9" y1="10" x2="9" y2="10" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="12" y1="10" x2="12" y2="10" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="15" y1="10" x2="15" y2="10" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="9" y1="14" x2="9" y2="14" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="12" y1="14" x2="12" y2="14" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="15" y1="14" x2="15" y2="14" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="widget-label">Calculator</div>
+            </a>
+        </div>
+
+        <!-- Mathematics -->
+        <div class="section-header">
+            <div class="section-title" style="color: #3498DB;">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+                Mathematics
+            </div>
+            <a href="#" class="see-more-btn" data-subject="math">See All →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="mch1.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">1</div>
+                <div class="card-title">Real Numbers</div>
+                <div class="card-subtitle">Chapter 1</div>
+            </a>
+            <a href="mch2.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">2</div>
+                <div class="card-title">Polynomials</div>
+                <div class="card-subtitle">Chapter 2</div>
+            </a>
+            <a href="mch3.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">3</div>
+                <div class="card-title">Linear Equations</div>
+                <div class="card-subtitle">Chapter 3</div>
+            </a>
+            <a href="mch4.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">4</div>
+                <div class="card-title">Quadratic Equations</div>
+                <div class="card-subtitle">Chapter 4</div>
+            </a>
+            <a href="mch5.html" class="subject-card">
+                <div class="card-icon" style="background: #E3F2FD; color: #3498DB;">5</div>
+                <div class="card-title">AP</div>
+                <div class="card-subtitle">Chapter 5</div>
+            </a>
+        </div>
+
+        <!-- English -->
+        <div class="section-header">
+            <div class="section-title" style="color: #8E44AD;">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                </svg>
+                English
+            </div>
+            <a href="#" class="see-more-btn" data-subject="english">See All →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="Ench1.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <div class="card-title">Letter to God</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench2.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="card-title">Nelson Mandela</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench3.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M17 18a5 5 0 00-10 0"/>
+                        <line x1="12" y1="2" x2="12" y2="9"/>
+                        <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+                        <line x1="1" y1="18" x2="3" y2="18"/>
+                        <line x1="21" y1="18" x2="23" y2="18"/>
+                        <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+                        <line x1="23" y1="22" x2="1" y2="22"/>
+                        <polyline points="8 6 12 2 16 6"/>
+                    </svg>
+                </div>
+                <div class="card-title">Flying Stories</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench4.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Anne Frank</div>
+                <div class="card-subtitle">Prose</div>
+            </a>
+            <a href="Ench10.html" class="subject-card">
+                <div class="card-icon" style="background: #F3E5F5; color: #8E44AD;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <path d="M14 2v6h6"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                </div>
+                <div class="card-title">Dust of Snow</div>
+                <div class="card-subtitle">Poetry</div>
+            </a>
+        </div>
+
+        <!-- Science -->
+        <div class="section-header">
+            <div class="section-title" style="color: #27AE60;">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 2v6m6-6v6M9 18c.5 1.5 2 3 3 3s2.5-1.5 3-3"/>
+                    <path d="M6 15h12"/>
+                    <path d="M3 9h18"/>
+                </svg>
+                Science
+            </div>
+            <a href="#" class="see-more-btn" data-subject="science">See All →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="lite.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </div>
+                <div class="card-title">Light</div>
+                <div class="card-subtitle">Physics</div>
+            </a>
+            <a href="heacw.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+                <div class="card-title">Human Eye</div>
+                <div class="card-subtitle">Physics</div>
+            </a>
+            <a href="elect.html" class="subject-card">
+                <div class="card-icon" style="background: #E8F5E9; color: #27AE60;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <div class="card-title">Electricity</div>
+                <div class="card-subtitle">Physics</div>
+            </a>
+            <a href="chem01.html" class="subject-card">
+                <div class="card-icon" style="background: #FFF9C4; color: #F9A825;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M9 2v6m6-6v6M9 18c.5 1.5 2 3 3 3s2.5-1.5 3-3"/>
+                        <path d="M6 15h12"/>
+                        <path d="M3 9h18"/>
+                    </svg>
+                </div>
+                <div class="card-title">Reactions</div>
+                <div class="card-subtitle">Chemistry</div>
+            </a>
+            <a href="bione.html" class="subject-card">
+                <div class="card-icon" style="background: #C8E6C9; color: #388E3C;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <div class="card-title">Life Processes</div>
+                <div class="card-subtitle">Biology</div>
+            </a>
+        </div>
+
+        <!-- Social Science -->
+        <div class="section-header">
+            <div class="section-title" style="color: #E67E22;">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                </svg>
+                Social Science
+            </div>
+            <a href="#" class="see-more-btn" data-subject="sst">See All →</a>
+        </div>
+        <div class="horizontal-row">
+            <a href="hch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <path d="M14 2v6h6"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                </div>
+                <div class="card-title">Nationalism</div>
+                <div class="card-subtitle">History</div>
+            </a>
+            <a href="geoch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <div class="card-title">Resources</div>
+                <div class="card-subtitle">Geography</div>
+            </a>
+            <a href="cch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+                <div class="card-title">Power Sharing</div>
+                <div class="card-subtitle">Civics</div>
+            </a>
+            <a href="ecoch1.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                    </svg>
+                </div>
+                <div class="card-title">Development</div>
+                <div class="card-subtitle">Economics</div>
+            </a>
+            <a href="hch2.html" class="subject-card">
+                <div class="card-icon" style="background: #FBE9E7; color: #E67E22;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                <div class="card-title">India Freedom</div>
+                <div class="card-subtitle">History</div>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="app-footer">
+            <div class="footer-heart">Made with ❤️ for Students</div>
+            <div class="footer-links">
+                <a href="profile.html" class="footer-link">Profile</a>
+                <a href="about.html" class="footer-link">Feedback</a>
+                <a href="settings.html" class="footer-link">Settings</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="main.html" class="bottom-nav-item active">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+        <a href="all-notes.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            <span class="bottom-nav-label">Notes</span>
+        </a>
+        <a href="library.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            <span class="bottom-nav-label">Keep</span>
+        </a>
+        <a href="quizopt.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            <span class="bottom-nav-label">Quiz</span>
+        </a>
+        <a href="chatbot.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                <path d="M9 14c.5.5 1.5 1 3 1s2.5-.5 3-1"/>
+            </svg>
+            <span class="bottom-nav-label">Chatbot</span>
+        </a>
+    </div>
+
+    <!-- Chapters Modal -->
+    <div class="chapters-modal" id="chaptersModal">
+        <div class="modal-header-custom">
+            <div class="modal-title-custom" id="modalTitle">All Chapters</div>
+            <button class="modal-close-btn" id="closeChaptersModal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="chapters-grid-modal" id="modalChaptersGrid">
+            <!-- Chapters will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+      
+     // Sidebar & Menu Controls
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+function toggleSidebar() {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+menuBtn.addEventListener('click', toggleSidebar);
+overlay.addEventListener('click', closeSidebar);
+
+// Simple Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+// Check saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// Facebook-style Navigation Scroll Behavior
+const topNav = document.querySelector('.top-nav');
+let lastScroll = 0;
+let navbarHeight = topNav.offsetHeight;
+let currentTranslate = 0;
+
+window.addEventListener('scroll', function() {
+    let currentScroll = window.pageYOffset;
+    let scrollDifference = currentScroll - lastScroll;
+
+    if (currentScroll <= 0) {
+        currentTranslate = 0;
+        topNav.style.transform = `translateY(0px)`;
+    } else {
+        currentTranslate -= scrollDifference;
+        
+        if (currentTranslate < -navbarHeight) {
+            currentTranslate = -navbarHeight;
+        }
+        if (currentTranslate > 0) {
+            currentTranslate = 0;
+        }
+        
+        topNav.style.transform = `translateY(${currentTranslate}px)`;
+    }
+
+    lastScroll = currentScroll;
+});
+
+// Swipe to close sidebar
+let touchStartX = 0;
+let touchEndX = 0;
+
+sidebar.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+sidebar.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+        closeSidebar();
+    }
+});
+
+// Subject chips active state
+const chips = document.querySelectorAll('.subject-chip');
+chips.forEach(chip => {
+    chip.addEventListener('click', function(e) {
+        chips.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Hero Carousel
+const carousel = document.getElementById('heroCarousel');
+const indicators = document.querySelectorAll('.indicator-dot');
+
+carousel.addEventListener('scroll', () => {
+    const scrollLeft = carousel.scrollLeft;
+    const slideWidth = carousel.offsetWidth;
+    const activeIndex = Math.round(scrollLeft / slideWidth);
+    
+    indicators.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+    });
+});
+
+// Auto-scroll carousel
+let carouselIndex = 0;
+setInterval(() => {
+    carouselIndex = (carouselIndex + 1) % 4;
+    carousel.scrollTo({
+        left: carousel.offsetWidth * carouselIndex,
+        behavior: 'smooth'
+    });
+}, 4000);
+
+// Widget Cards Dynamic Color Effect
+const widgetCards = document.querySelectorAll('.widget-card');
+widgetCards.forEach(card => {
+    const color = card.getAttribute('data-color');
+    if (color) {
+        card.addEventListener('mouseenter', function() {
+            this.style.borderColor = color;
+            const icon = this.querySelector('.widget-icon');
+            if (icon) {
+                icon.style.stroke = color;
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.borderColor = '';
+            const icon = this.querySelector('.widget-icon');
+            if (icon) {
+                icon.style.stroke = '';
+            }
+        });
+    }
+});
+
+// Bottom Navigation Active State
+const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+const currentPage = window.location.pathname.split('/').pop() || 'main.html';
+
+bottomNavItems.forEach(item => {
+    const href = item.getAttribute('href');
+    if (href === currentPage || (currentPage === '' && href === 'main.html')) {
+        item.classList.add('active');
+    }
+    
+    item.addEventListener('click', function() {
+        bottomNavItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Full Screen Modal for "See More" Chapters
+const chaptersModal = document.getElementById('chaptersModal');
+const closeModalBtn = document.getElementById('closeChaptersModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalChaptersGrid = document.getElementById('modalChaptersGrid');
+
+// Chapter Data
+const chaptersData = {
+    math: {
+        title: 'Mathematics',
+        color: '#3498DB',
+        icon: '🔢',
+        chapters: [
+            { name: 'Ch 1: Real Numbers', link: 'mch1.html' },
+            { name: 'Ch 2: Polynomials', link: 'mch2.html' },
+            { name: 'Ch 3: Linear Equations', link: 'mch3.html' },
+            { name: 'Ch 4: Quadratic Equations', link: 'mch4.html' },
+            { name: 'Ch 5: AP', link: 'mch5.html' },
+            { name: 'Ch 6: Triangles', link: 'mch6.html' },
+            { name: 'Ch 7: Coordinate Geometry', link: 'mch7.html' },
+            { name: 'Ch 8: Trigonometry', link: 'mch8.html' },
+            { name: 'Ch 9: Applications of Trigonometry', link: 'mch9.html' },
+            { name: 'Ch 10: Circles', link: 'mch10.html' },
+            { name: 'Ch 11: Constructions', link: 'mch11.html' },
+            { name: 'Ch 12: Areas Related to Circles', link: 'mch12.html' },
+            { name: 'Ch 13: Surface Areas and Volumes', link: 'mch13.html' },
+            { name: 'Ch 14: Statistics', link: 'mch14.html' },
+            { name: 'Ch 15: Probability', link: 'mch15.html' }
+        ]
+    },
+    english: {
+        title: 'English',
+        color: '#8E44AD',
+        icon: '📖',
+        chapters: [
+            { name: 'Letter to God', link: 'Ench1.html' },
+            { name: 'Nelson Mandela', link: 'Ench2.html' },
+            { name: 'Flying Stories', link: 'Ench3.html' },
+            { name: 'Anne Frank', link: 'Ench4.html' },
+            { name: 'Glimpses of India', link: 'Ench5.html' },
+            { name: 'Mijbil the Otter', link: 'Ench6.html' },
+            { name: 'Madam Rides the Bus', link: 'Ench7.html' },
+            { name: 'The Sermon at Benares', link: 'Ench8.html' },
+            { name: 'The Proposal', link: 'Ench9.html' },
+            { name: 'Dust of Snow', link: 'Ench10.html' },
+            { name: 'Fire and Ice', link: 'Ench11.html' },
+            { name: 'A Tiger in the Zoo', link: 'Ench12.html' },
+            { name: 'How to Tell Wild Animals', link: 'Ench13.html' },
+            { name: 'The Ball Poem', link: 'Ench14.html' },
+            { name: 'Amanda', link: 'Ench15.html' },
+            { name: 'Animals', link: 'Ench16.html' },
+            { name: 'The Trees', link: 'Ench17.html' },
+            { name: 'Fog', link: 'Ench18.html' },
+            { name: 'The Tale of Custard', link: 'Ench19.html' },
+            { name: 'For Anne Gregory', link: 'Ench20.html' },
+            { name: 'A Triumph of Surgery', link: 'Ench21.html' },
+            { name: 'The Thief\'s Story', link: 'Ench22.html' },
+            { name: 'The Midnight Visitor', link: 'Ench23.html' },
+            { name: 'A Question of Trust', link: 'Ench24.html' },
+            { name: 'Footprints without Feet', link: 'Ench25.html' },
+            { name: 'The Making of a Scientist', link: 'Ench26.html' },
+            { name: 'The Necklace', link: 'Ench27.html' },
+            { name: 'The Hack Driver', link: 'Ench28.html' },
+            { name: 'Bholi', link: 'Ench29.html' },
+            { name: 'The Book That Saved the Earth', link: 'Ench30.html' }
+        ]
+    },
+    science: {
+        title: 'Science',
+        color: '#27AE60',
+        icon: '🧪',
+        chapters: [
+            { name: 'Light - Reflection & Refraction', link: 'lite.html' },
+            { name: 'Human Eye and Colourful World', link: 'heacw.html' },
+            { name: 'Electricity', link: 'elect.html' },
+            { name: 'Magnetic Effects of Electric Current', link: 'magnet.html' },
+            { name: 'Chemical Reactions and Equations', link: 'chem01.html' },
+            { name: 'Acids, Bases and Salts', link: 'acid.html' },
+            { name: 'Metals and Non-metals', link: 'metal.html' },
+            { name: 'Carbon and its Compounds', link: 'carbon.html' },
+            { name: 'Life Processes', link: 'bione.html' },
+            { name: 'Control and Coordination', link: 'cc.html' },
+            { name: 'How do Organisms Reproduce', link: 'repro.html' },
+            { name: 'Heredity and Evolution', link: 'here.html' },
+            { name: 'Our Environment', link: 'ouren.html' }
+        ]
+    },
+    sst: {
+        title: 'Social Science',
+        color: '#E67E22',
+        icon: '🌍',
+        chapters: [
+            { name: 'The Rise of Nationalism in Europe', link: 'hch1.html' },
+            { name: 'Nationalism in India', link: 'hch2.html' },
+            { name: 'The Making of a Global World', link: 'hch3.html' },
+            { name: 'Resources and Development', link: 'geoch1.html' },
+            { name: 'Forest and Wildlife Resources', link: 'geoch2.html' },
+            { name: 'Water Resources', link: 'geoch3.html' },
+            { name: 'Agriculture', link: 'geoch4.html' },
+            { name: 'Minerals and Energy Resources', link: 'geoch5.html' },
+            { name: 'Power Sharing', link: 'cch1.html' },
+            { name: 'Federalism', link: 'cch2.html' },
+            { name: 'Democracy and Diversity', link: 'cch3.html' },
+            { name: 'Gender, Religion and Caste', link: 'cch4.html' },
+            { name: 'Political Parties', link: 'cch5.html' },
+            { name: 'Development', link: 'ecoch1.html' },
+            { name: 'Sectors of the Indian Economy', link: 'ecoch2.html' },
+            { name: 'Money and Credit', link: 'ecoch3.html' },
+            { name: 'Globalisation and the Indian Economy', link: 'ecoch4.html' }
+        ]
+    }
+};
+
+// See More buttons - Open Modal
+document.querySelectorAll('.see-more-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const subject = this.getAttribute('data-subject');
+        const data = chaptersData[subject];
+        
+        if (data) {
+            modalTitle.textContent = data.icon + ' ' + data.title;
+            modalTitle.style.color = data.color;
+            
+            modalChaptersGrid.innerHTML = '';
+            data.chapters.forEach((chapter, index) => {
+                const item = document.createElement('a');
+                item.href = chapter.link;
+                item.className = 'chapter-item-modal';
+                item.textContent = chapter.name;
+                item.style.animationDelay = `${index * 0.03}s`;
+                modalChaptersGrid.appendChild(item);
+            });
+            
+            chaptersModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+// Close Modal
+closeModalBtn.addEventListener('click', () => {
+    chaptersModal.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+// Close modal on backdrop click
+chaptersModal.addEventListener('click', (e) => {
+    if (e.target === chaptersModal) {
+        chaptersModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Escape key to close modal
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (chaptersModal.classList.contains('active')) {
+            chaptersModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        if (sidebar.classList.contains('active')) {
+            closeSidebar();
+        }
+    }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add touch feedback for mobile
+document.querySelectorAll('.widget-card, .subject-card, .bottom-nav-item').forEach(element => {
+    element.addEventListener('touchstart', function() {
+        this.style.opacity = '0.7';
+    });
+    
+    element.addEventListener('touchend', function() {
+        this.style.opacity = '1';
+    });
+});
+
+// Performance optimization: Lazy load images if any
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            }
+        });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// Console Easter Egg
+console.log('%c🎓 Studix - Class 10', 'font-size: 24px; font-weight: bold; color: #3498DB;');
+console.log('%cMade with ❤️ for Students', 'font-size: 14px; color: #27AE60;');
+console.log('%cKeep Learning, Keep Growing! 🚀', 'font-size: 14px; color: #E67E22;'); 
+    </script>
+</body>
+</html>

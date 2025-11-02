@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic Effects of Electric Current - Class 10 Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --electric-blue: #00d4ff;
+            --magnetic-red: #ff416c;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #00d4ff 0%, #667eea 100%);
+            --magnetic-gradient: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--gradient-1);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Electric Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 65, 108, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: electricFloat 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes electricFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+
+        /* Electric spark animation */
+        .electric-spark {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            animation: spark 2s infinite;
+        }
+
+        @keyframes spark {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px var(--electric-blue); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '🧲';
+            position: absolute;
+            top: -40px;
+            left: 30%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            animation: magneticSpin 8s linear infinite;
+        }
+
+        .header::after {
+            content: '⚡';
+            position: absolute;
+            top: -40px;
+            right: 30%;
+            transform: translateX(50%);
+            font-size: 3rem;
+            animation: electricPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes magneticSpin {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        @keyframes electricPulse {
+            0%, 100% { transform: translateX(50%) scale(1); filter: brightness(1); }
+            50% { transform: translateX(50%) scale(1.2); filter: brightness(1.5) drop-shadow(0 0 10px #00d4ff); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #00d4ff, #ff416c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+            to { filter: drop-shadow(0 0 25px rgba(0,212,255,0.8)); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-3);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-3);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--secondary-color);
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .section h3::before {
+            position: absolute;
+            left: 0;
+            animation: bounce 2s infinite;
+            font-size: 1.3rem;
+        }
+
+        .section h3.magnetic::before { content: '🧲'; }
+        .section h3.electric::before { content: '⚡'; }
+        .section h3.current::before { content: '🔌'; }
+        .section h3.field::before { content: '🌀'; }
+        .section h3.force::before { content: '💪'; }
+        .section h3.motor::before { content: '⚙️'; }
+        .section h3.generator::before { content: '🏭'; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.1));
+            border-left: 4px solid var(--electric-blue);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card::before {
+            content: '💡';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            animation: conceptPulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes conceptPulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
+        }
+
+        .magnetic-field {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(255, 65, 108, 0.1) 0%, transparent 70%);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .field-line {
+            position: absolute;
+            border: 2px solid var(--magnetic-red);
+            border-radius: 50%;
+            animation: fieldRotate 4s linear infinite;
+        }
+
+        .field-line:nth-child(1) { width: 60px; height: 60px; }
+        .field-line:nth-child(2) { width: 100px; height: 100px; animation-delay: -1s; }
+        .field-line:nth-child(3) { width: 140px; height: 140px; animation-delay: -2s; }
+        .field-line:nth-child(4) { width: 180px; height: 180px; animation-delay: -3s; }
+
+        @keyframes fieldRotate {
+            from { transform: rotate(0deg); opacity: 0.8; }
+            to { transform: rotate(360deg); opacity: 0.3; }
+        }
+
+        .current-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .current-element {
+            background: var(--gradient-3);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 50%;
+            min-width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .current-element:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
+        }
+
+        .current-element::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--electric-blue);
+            animation: currentFlow 2s ease-in-out infinite;
+        }
+
+        .current-element:last-child::after {
+            display: none;
+        }
+
+        @keyframes currentFlow {
+            0%, 100% { transform: translateY(-50%) translateX(0); opacity: 1; }
+            50% { transform: translateY(-50%) translateX(8px); opacity: 0.5; }
+        }
+
+        .experiment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .experiment-card {
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid;
+        }
+
+        .experiment-card.oersted {
+            background: linear-gradient(135deg, rgba(255, 65, 108, 0.1), rgba(255, 75, 43, 0.1));
+            border-color: rgba(255, 65, 108, 0.3);
+        }
+
+        .experiment-card.fleming {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(102, 126, 234, 0.1));
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .experiment-card.faraday {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1));
+            border-color: rgba(240, 147, 251, 0.3);
+        }
+
+        .experiment-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .experiment-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rule-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .rule-step {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rule-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--gradient-3);
+        }
+
+        .rule-step:hover {
+            transform: translateX(15px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .step-icon {
+            background: var(--gradient-3);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+            animation: stepIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes stepIcon {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.05); }
+        }
+
+        .formula-box {
+            background: var(--magnetic-gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b, #00d4ff, #667eea);
+            border-radius: 20px;
+            z-index: -1;
+            animation: formulaBorder 3s linear infinite;
+        }
+
+        @keyframes formulaBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .formula-box h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .formula {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .law-card {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1));
+            border: 2px solid var(--accent-color);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .law-card::before {
+            content: '⚖️';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+        }
+
+        .device-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .device-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .device-card:hover::before {
+            left: 100%;
+        }
+
+        .device-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .device-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: deviceFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes deviceFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .interactive-demo {
+            background: var(--gradient-2);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .demo-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+        }
+
+        .demo-button:hover::before {
+            left: 100%;
+        }
+
+        .demo-button:hover {
+            background: white;
+            color: var(--magnetic-red);
+            transform: scale(1.05);
+        }
+
+        .collapsible {
+            margin: 1rem 0;
+        }
+
+        .collapsible-header {
+            background: var(--gradient-3);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible-header:hover {
+            background: var(--magnetic-gradient);
+            transform: scale(1.02);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .collapsible-content.active {
+            max-height: 800px;
+            padding: 1.5rem;
+        }
+
+        .collapsible-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-header.active .collapsible-arrow {
+            transform: rotate(180deg);
+        }
+
+        .right-hand-rule {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .hand-demo {
+            font-size: 8rem;
+            animation: handRotate 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes handRotate {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+        }
+
+        .direction-arrows {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--electric-blue);
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+
+        .arrow-current { top: -20px; left: 50%; transform: translateX(-50%); }
+        .arrow-field { right: -40px; top: 50%; transform: translateY(-50%); }
+        .arrow-force { bottom: -20px; left: 50%; transform: translateX(-50%); }
+
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .section { padding: 1.5rem; }
+            .current-flow { flex-direction: column; gap: 1rem; }
+            .current-element { min-width: 80px; height: 80px; }
+            .current-element::after { display: none; }
+            .experiment-grid { grid-template-columns: 1fr; }
+            .device-demo { grid-template-columns: 1fr; }
+            .hand-demo { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Magnetic Effects of Electric Current</h1>
+            <p>Understanding the relationship between electricity and magnetism</p>
+        </header>
+
+        <section class="section">
+            <h2>1. Introduction to Magnetism</h2>
+            <div class="concept-card">
+                <h4><strong>Magnetism</strong> is the force of attraction or repulsion that exists between magnetic materials.</h4>
+                <p><strong>Natural Magnets:</strong> Lodestone (magnetite)</p>
+                <p><strong>Artificial Magnets:</strong> Bar magnets, horseshoe magnets, needle magnets</p>
+            </div>
+
+            <h3 class="magnetic">Properties of Magnets</h3>
+            <div class="experiment-grid">
+                <div class="experiment-card oersted">
+                    <h4>🧲 Attraction & Repulsion</h4>
+                    <p><strong>Like poles repel:</strong> N-N, S-S</p>
+                    <p><strong>Unlike poles attract:</strong> N-S</p>
+                    <p><strong>Magnetic force:</strong> Acts through space (field)</p>
+                </div>
+                <div class="experiment-card fleming">
+                    <h4>🌍 Magnetic Field</h4>
+                    <p><strong>Definition:</strong> Region around magnet where magnetic force acts</p>
+                    <p><strong>Direction:</strong> From North to South pole</p>
+                    <p><strong>Representation:</strong> Magnetic field lines</p>
+                </div>
+            </div>
+
+            <div class="magnetic-field">
+                <div class="field-line"></div>
+                <div class="field-line"></div>
+                <div class="field-line"></div>
+                <div class="field-line"></div>
+                <div style="background: #ff416c; width: 20px; height: 40px; border-radius: 5px; position: relative; z-index: 10;">
+                    <div style="color: white; text-align: center; line-height: 40px; font-weight: bold;">N S</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>2. Magnetic Field Due to Electric Current</h2>
+            <div class="concept-card">
+                <h4>When electric current flows through a conductor, it produces a magnetic field around it.</h4>
+                <p>This relationship was first discovered by <strong>Hans Christian Oersted</strong> in 1820.</p>
+            </div>
+
+            <h3 class="current">Oersted's Experiment</h3>
+            <div class="rule-steps">
+                <div class="rule-step">
+                    <div class="step-icon">1️⃣</div>
+                    <div>
+                        <h4>Setup</h4>
+                        <p>Place a compass needle near a straight current-carrying conductor</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">2️⃣</div>
+                    <div>
+                        <h4>Observation</h4>
+                        <p>When current flows, compass needle deflects from its North-South direction</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">3️⃣</div>
+                    <div>
+                        <h4>Conclusion</h4>
+                        <p>Electric current produces magnetic field around the conductor</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🔍 Detailed Observations</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="experiment-grid">
+                        <div class="experiment-card oersted">
+                            <h4>Current Direction Effect</h4>
+                            <p>• Reversing current reverses deflection</p>
+                            <p>• No current = no deflection</p>
+                            <p>• Stronger current = greater deflection</p>
+                        </div>
+                        <div class="experiment-card fleming">
+                            <h4>Distance Effect</h4>
+                            <p>• Closer to wire = stronger field</p>
+                            <p>• Farther from wire = weaker field</p>
+                            <p>• Field strength ∝ 1/distance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>3. Magnetic Field Patterns</h2>
+            
+            <h3 class="field">Straight Current-Carrying Conductor</h3>
+            <div class="concept-card">
+                <h4>Magnetic field around a straight conductor forms concentric circles</h4>
+                <p><strong>Center:</strong> At the conductor</p>
+                <p><strong>Direction:</strong> Given by Right-Hand Thumb Rule</p>
+            </div>
+
+            <div class="formula-box">
+                <h4>🤚 Right-Hand Thumb Rule</h4>
+                <div class="formula">
+                    <div class="formula">Thumb → Current Direction | Fingers → Magnetic Field Direction</div>
+                <p>If thumb points in direction of current, curled fingers show magnetic field direction</p>
+            </div>
+
+            <div class="right-hand-rule">
+                <div class="hand-demo">👍</div>
+                <div class="direction-arrows arrow-current">I ⬆️</div>
+                <div class="direction-arrows arrow-field">B ➡️</div>
+            </div>
+
+            <h3 class="field">Circular Current-Carrying Loop</h3>
+            <div class="experiment-grid">
+                <div class="experiment-card faraday">
+                    <h4>🔄 Single Loop</h4>
+                    <p><strong>At center:</strong> Magnetic field is uniform</p>
+                    <p><strong>Direction:</strong> Perpendicular to the plane of loop</p>
+                    <p><strong>Strength:</strong> Depends on current and radius</p>
+                </div>
+                <div class="experiment-card oersted">
+                    <h4>🎯 Multiple Loops (Coil)</h4>
+                    <p><strong>Effect:</strong> Magnetic field gets concentrated</p>
+                    <p><strong>Strength:</strong> Proportional to number of turns</p>
+                    <p><strong>Application:</strong> Electromagnets</p>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h4>📐 Magnetic Field at Center of Circular Loop</h4>
+                <div class="formula">B = μ₀I/(2r)</div>
+                <p>Where: B = magnetic field, μ₀ = permeability, I = current, r = radius</p>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🧮 Right-Hand Rule for Circular Loop</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="rule-steps">
+                        <div class="rule-step">
+                            <div class="step-icon">👋</div>
+                            <div>
+                                <h4>Curl Fingers</h4>
+                                <p>Curl your right-hand fingers in the direction of current flow in the loop</p>
+                            </div>
+                        </div>
+                        <div class="rule-step">
+                            <div class="step-icon">👍</div>
+                            <div>
+                                <h4>Thumb Direction</h4>
+                                <p>Your thumb will point in the direction of magnetic field inside the loop</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>4. Solenoid</h2>
+            <div class="concept-card">
+                <h4>A <strong>solenoid</strong> is a coil of wire wound in the form of a cylinder.</h4>
+                <p>When current passes through it, it behaves like a bar magnet.</p>
+            </div>
+
+            <h3 class="magnetic">Properties of Solenoid</h3>
+            <div class="device-demo">
+                <div class="device-card">
+                    <div class="device-icon">🌀</div>
+                    <h4>Uniform Field</h4>
+                    <p>Inside solenoid, magnetic field is uniform and parallel to axis</p>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">🧲</div>
+                    <h4>Magnetic Poles</h4>
+                    <p>One end acts as North pole, other as South pole</p>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">💪</div>
+                    <h4>Strong Field</h4>
+                    <p>Field strength depends on current, turns, and core material</p>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h4>🔢 Magnetic Field Inside Solenoid</h4>
+                <div class="formula">B = μ₀nI</div>
+                <p>Where: n = number of turns per unit length, I = current</p>
+            </div>
+
+            <h3 class="current">Factors Affecting Magnetic Field Strength</h3>
+            <div class="current-flow">
+                <div class="current-element">
+                    <div>📈</div>
+                    <strong>Current</strong>
+                    <small>More current = Stronger field</small>
+                </div>
+                <div class="current-element">
+                    <div>🔄</div>
+                    <strong>Turns</strong>
+                    <small>More turns = Stronger field</small>
+                </div>
+                <div class="current-element">
+                    <div>🧲</div>
+                    <strong>Core</strong>
+                    <small>Iron core = Much stronger</small>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🏭 Applications of Solenoids</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="experiment-grid">
+                        <div class="experiment-card fleming">
+                            <h4>🔧 Electromagnets</h4>
+                            <p>• Electric bells</p>
+                            <p>• Magnetic cranes</p>
+                            <p>• MRI machines</p>
+                        </div>
+                        <div class="experiment-card oersted">
+                            <h4>⚙️ Actuators</h4>
+                            <p>• Door locks</p>
+                            <p>• Valves</p>
+                            <p>• Relays</p>
+                        </div>
+                        <div class="experiment-card faraday">
+                            <h4>🔊 Audio Equipment</h4>
+                            <p>• Speakers</p>
+                            <p>• Microphones</p>
+                            <p>• Headphones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>5. Force on Current-Carrying Conductor</h2>
+            <div class="concept-card">
+                <h4>When a current-carrying conductor is placed in a magnetic field, it experiences a force.</h4>
+                <p>This principle is used in electric motors.</p>
+            </div>
+
+            <h3 class="force">Fleming's Left-Hand Rule</h3>
+            <div class="law-card">
+                <h4>🤚 Fleming's Left-Hand Rule</h4>
+                <p><strong>Thumb:</strong> Direction of Force (Motion)</p>
+                <p><strong>First Finger:</strong> Direction of Magnetic Field</p>
+                <p><strong>Middle Finger:</strong> Direction of Current</p>
+                <p><em>All three fingers are perpendicular to each other</em></p>
+            </div>
+
+            <div class="right-hand-rule">
+                <div class="hand-demo">✋</div>
+                <div class="direction-arrows arrow-current">I ➡️</div>
+                <div class="direction-arrows arrow-field">B ⬆️</div>
+                <div class="direction-arrows arrow-force">F ⤴️</div>
+            </div>
+
+            <div class="formula-box">
+                <h4>🧮 Force on Current-Carrying Conductor</h4>
+                <div class="formula">F = BIL</div>
+                <p>Where: F = force, B = magnetic field, I = current, L = length of conductor</p>
+            </div>
+
+            <h3 class="force">Factors Affecting Force</h3>
+            <div class="rule-steps">
+                <div class="rule-step">
+                    <div class="step-icon">⚡</div>
+                    <div>
+                        <h4>Current (I)</h4>
+                        <p>Force is directly proportional to the current flowing through conductor</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">🧲</div>
+                    <div>
+                        <h4>Magnetic Field (B)</h4>
+                        <p>Force is directly proportional to the strength of magnetic field</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">📏</div>
+                    <div>
+                        <h4>Length (L)</h4>
+                        <p>Force is directly proportional to the length of conductor in the field</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">📐</div>
+                    <div>
+                        <h4>Angle (θ)</h4>
+                        <p>Force is maximum when conductor is perpendicular to magnetic field</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🔬 Experimental Demonstration</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="experiment-grid">
+                        <div class="experiment-card oersted">
+                            <h4>📋 Setup</h4>
+                            <p>• Aluminum rod on conducting rails</p>
+                            <p>• Strong horseshoe magnet</p>
+                            <p>• Battery and switch</p>
+                        </div>
+                        <div class="experiment-card fleming">
+                            <h4>👁️ Observation</h4>
+                            <p>• Rod moves when current flows</p>
+                            <p>• Direction depends on current direction</p>
+                            <p>• No current = no movement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>6. Electric Motor</h2>
+            <div class="concept-card">
+                <h4>An <strong>electric motor</strong> converts electrical energy into mechanical energy.</h4>
+                <p>It works on the principle of force on current-carrying conductor in magnetic field.</p>
+            </div>
+
+            <h3 class="motor">Construction of DC Motor</h3>
+            <div class="device-demo">
+                <div class="device-card">
+                    <div class="device-icon">🎯</div>
+                    <h4>Armature</h4>
+                    <p>Rectangular coil that can rotate about an axis</p>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">🧲</div>
+                    <h4>Magnetic Field</h4>
+                    <p>Strong permanent magnet or electromagnet</p>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">🔄</div>
+                    <h4>Commutator</h4>
+                    <p>Split ring that reverses current direction</p>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">⚡</div>
+                    <h4>Brushes</h4>
+                    <p>Carbon contacts that supply current to coil</p>
+                </div>
+            </div>
+
+            <h3 class="motor">Working Principle</h3>
+            <div class="rule-steps">
+                <div class="rule-step">
+                    <div class="step-icon">1️⃣</div>
+                    <div>
+                        <h4>Current Flow</h4>
+                        <p>Current flows through the armature coil via brushes and commutator</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">2️⃣</div>
+                    <div>
+                        <h4>Force Generation</h4>
+                        <p>Current-carrying conductors experience force due to magnetic field</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">3️⃣</div>
+                    <div>
+                        <h4>Rotation</h4>
+                        <p>Forces on opposite sides of coil are in opposite directions, causing rotation</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">4️⃣</div>
+                    <div>
+                        <h4>Commutation</h4>
+                        <p>Commutator reverses current direction every half rotation for continuous rotation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>⚙️ Motor Simulation</h3>
+                <p>Understanding the rotation mechanism</p>
+                <button class="demo-button" onclick="alert('Coil rotates clockwise when current flows from A to B!')">Start Motor</button>
+                <button class="demo-button" onclick="alert('Current reversed! Coil now rotates counter-clockwise.')">Reverse Current</button>
+                <button class="demo-button" onclick="alert('Motor stopped! No current, no rotation.')">Stop Motor</button>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🔧 Types and Applications of Motors</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="experiment-grid">
+                        <div class="experiment-card fleming">
+                            <h4>🔌 DC Motors</h4>
+                            <p>• Electric fans</p>
+                            <p>• Toys</p>
+                            <p>• Electric vehicles</p>
+                            <p>• Computer drives</p>
+                        </div>
+                        <div class="experiment-card oersted">
+                            <h4>⚡ AC Motors</h4>
+                            <p>• Washing machines</p>
+                            <p>• Refrigerators</p>
+                            <p>• Industrial machinery</p>
+                            <p>• Pumps</p>
+                        </div>
+                        <div class="experiment-card faraday">
+                            <h4>🎯 Specialized Motors</h4>
+                            <p>• Servo motors</p>
+                            <p>• Stepper motors</p>
+                            <p>• Linear motors</p>
+                            <p>• Brushless motors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>7. Electromagnetic Induction</h2>
+            <div class="concept-card">
+                <h4><strong>Electromagnetic Induction</strong> is the process of generating electric current using magnetic field.</h4>
+                <p>Discovered by <strong>Michael Faraday</strong> in 1831.</p>
+            </div>
+
+            <h3 class="electric">Faraday's Experiment</h3>
+            <div class="rule-steps">
+                <div class="rule-step">
+                    <div class="step-icon">🧲</div>
+                    <div>
+                        <h4>Moving Magnet</h4>
+                        <p>When magnet moves towards coil, current is induced in the coil</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">🔄</div>
+                    <div>
+                        <h4>Direction Change</h4>
+                        <p>Moving magnet away from coil induces current in opposite direction</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">⏹️</div>
+                    <div>
+                        <h4>No Motion</h4>
+                        <p>When magnet is stationary, no current is induced</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">⚡</div>
+                    <div>
+                        <h4>Conclusion</h4>
+                        <p>Change in magnetic field through coil induces electric current</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="law-card">
+                <h4>📖 Faraday's Law of Electromagnetic Induction</h4>
+                <p><strong>Statement:</strong> The magnitude of induced EMF is directly proportional to the rate of change of magnetic flux.</p>
+                <div class="formula-box">
+                    <div class="formula">ε = -dΦ/dt</div>
+                    <p>Where: ε = induced EMF, Φ = magnetic flux, t = time</p>
+                </div>
+            </div>
+
+            <h3 class="field">Conditions for Electromagnetic Induction</h3>
+            <div class="current-flow">
+                <div class="current-element">
+                    <div>🔄</div>
+                    <strong>Changing Field</strong>
+                    <small>Magnetic field must change</small>
+                </div>
+                <div class="current-element">
+                    <div>📐</div>
+                    <strong>Relative Motion</strong>
+                    <small>Conductor and field move relative to each other</small>
+                </div>
+                <div class="current-element">
+                    <div>🌀</div>
+                    <strong>Closed Loop</strong>
+                    <small>Complete circuit needed for current flow</small>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🔬 Methods of Inducing EMF</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="experiment-grid">
+                        <div class="experiment-card oersted">
+                            <h4>🧲 Moving Magnet</h4>
+                            <p>• Move magnet near coil</p>
+                            <p>• Change in magnetic field</p>
+                            <p>• EMF induced in coil</p>
+                        </div>
+                        <div class="experiment-card fleming">
+                            <h4>🔄 Moving Coil</h4>
+                            <p>• Move coil in magnetic field</p>
+                            <p>• Conductors cut field lines</p>
+                            <p>• EMF induced in coil</p>
+                        </div>
+                        <div class="experiment-card faraday">
+                            <h4>⚡ Changing Current</h4>
+                            <p>• Change current in primary coil</p>
+                            <p>• Changing magnetic field</p>
+                            <p>• EMF induced in secondary coil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="section">
+            <h2>7. Electromagnetic Induction</h2>
+            <div class="concept-card">
+                <h4><strong>Electromagnetic Induction</strong> is the process of generating electric current using magnetic field.</h4>
+                <p>Discovered by <strong>Michael Faraday</strong> in 1831.</p>
+            </div>
+
+            <h3 class="electric">Faraday's Experiment</h3>
+            <div class="rule-steps">
+                <div class="rule-step">
+                    <div class="step-icon">🧲</div>
+                    <div>
+                        <h4>Moving Magnet</h4>
+                        <p>When magnet moves towards coil, current is induced in the coil</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">🔄</div>
+                    <div>
+                        <h4>Direction Change</h4>
+                        <p>Moving magnet away from coil induces current in opposite direction</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">⏹️</div>
+                    <div>
+                        <h4>No Motion</h4>
+                        <p>When magnet is stationary, no current is induced</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">⚡</div>
+                    <div>
+                        <h4>Conclusion</h4>
+                        <p>Change in magnetic field through coil induces electric current</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="law-card">
+                <h4>📖 Faraday's Law of Electromagnetic Induction</h4>
+                <p><strong>Statement:</strong> The magnitude of induced EMF is directly proportional to the rate of change of magnetic flux.</p>
+                <div class="formula-box">
+                    <div class="formula">ε = -dΦ/dt</div>
+                    <p>Where: ε = induced EMF, Φ = magnetic flux, t = time</p>
+                </div>
+            </div>
+
+            <h3 class="field">Conditions for Electromagnetic Induction</h3>
+            <div class="current-flow">
+                <div class="current-element">
+                    <div>🔄</div>
+                    <strong>Changing Field</strong>
+                    <small>Magnetic field must change</small>
+                </div>
+                <div class="current-element">
+                    <div>📐</div>
+                    <strong>Relative Motion</strong>
+                    <small>Conductor and field move relative to each other</small>
+                </div>
+                <div class="current-element">
+                    <div>🌀</div>
+                    <strong>Closed Loop</strong>
+                    <small>Complete circuit needed for current flow</small>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <h4>🔬 Methods of Inducing EMF</h4>
+                    <span class="collapsible-arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="experiment-grid">
+                        <div class="experiment-card oersted">
+                            <h4>🧲 Moving Magnet</h4>
+                            <p>• Move magnet near coil</p>
+                            <p>• Change in magnetic field</p>
+                            <p>• EMF induced in coil</p>
+                        </div>
+                        <div class="experiment-card fleming">
+                            <h4>🔄 Moving Coil</h4>
+                            <p>• Move coil in magnetic field</p>
+                            <p>• Conductors cut field lines</p>
+                            <p>• EMF induced in coil</p>
+                        </div>
+                        <div class="experiment-card faraday">
+                            <h4>⚡ Changing Current</h4>
+                            <p>• Change current in primary coil</p>
+                            <p>• Changing magnetic field</p>
+                            <p>• EMF induced in secondary coil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>8. Lenz's Law</h2>
+            <div class="law-card">
+                <h4>⚖️ Lenz's Law</h4>
+                <p><strong>Statement:</strong> The direction of induced current is such that it opposes the change that produced it.</p>
+                <p><strong>Purpose:</strong> Conservation of energy principle</p>
+            </div>
+
+            <h3 class="electric">Understanding Lenz's Law</h3>
+            <div class="rule-steps">
+                <div class="rule-step">
+                    <div class="step-icon">🧲</div>
+                    <div>
+                        <h4>Approaching Magnet</h4>
+                        <p>When North pole approaches coil, induced current creates North pole to repel</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">🔄</div>
+                    <div>
+                        <h4>Receding Magnet</h4>
+                        <p>When North pole moves away, induced current creates South pole to attract</p>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="step-icon">💪</div>
+                    <div>
+                        <h4>Opposition</h4>
+                        <p>Induced effects always oppose the change causing them</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🧲 Lenz's Law Demo</h3>
+                <p>See how induced current opposes change</p>
+                <button class="demo-button" onclick="alert('North pole approaching: Coil becomes North pole (repulsion)!')">Approach N-Pole</button>
+                <button class="demo-button" onclick="alert('North pole receding: Coil becomes South pole (attraction)!')">Move N-Pole Away</button>
+            </div>
+        </section>
+
+        <!-- JavaScript for Interactive Features -->
+        <script>
+            function toggleCollapsible(element) {
+                const content = element.nextElementSibling;
+                const isActive = content.classList.contains('active');
+                
+                // Close all other collapsibles
+                document.querySelectorAll('.collapsible-content').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.collapsible-header').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current collapsible
+                if (!isActive) {
+                    content.classList.add('active');
+                    element.classList.add('active');
+                }
+            }
+
+            // Add scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add electric spark effects
+            function createSpark() {
+                const spark = document.createElement('div');
+                spark.className = 'electric-spark';
+                spark.style.left = Math.random() * 100 + '%';
+                spark.style.top = Math.random() * 100 + '%';
+                document.body.appendChild(spark);
+                
+                setTimeout(() => {
+                    spark.remove();
+                }, 2000);
+            }
+
+            // Create sparks periodically
+            setInterval(createSpark, 3000);
+
+            // Interactive hover effects
+            document.querySelectorAll('.experiment-card, .device-card, .rule-step').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02) translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Motor simulation effects
+            let motorRunning = false;
+            document.querySelectorAll('.demo-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.textContent.includes('Start')) {
+                        motorRunning = true;
+                        this.style.background = 'green';
+                    } else if (this.textContent.includes('Stop')) {
+                        motorRunning = false;
+                        document.querySelectorAll('.demo-button').forEach(btn => {
+                            btn.style.background = '';
+                        });
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

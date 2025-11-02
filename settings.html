@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: #fafafa;
+            color: #1f1f1f;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .header {
+            margin-bottom: 48px;
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #1f1f1f;
+            letter-spacing: -0.5px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid #e8eaed;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 24px 28px 16px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #1f1f1f;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            border-bottom: 1px solid #f8f9fa;
+            min-height: 72px;
+            transition: background-color 0.15s ease;
+        }
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .setting-row:hover {
+            background: #f8f9fa;
+        }
+
+        .setting-info {
+            flex: 1;
+            margin-right: 24px;
+        }
+
+        .setting-title {
+            font-size: 15px;
+            color: #1f1f1f;
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .setting-desc {
+            font-size: 13px;
+            color: #5f6368;
+            line-height: 1.4;
+        }
+
+        .setting-control {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* Enhanced Toggle Switch */
+        .switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #dadce0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .switch.active {
+            background: #1a73e8;
+        }
+
+        .switch-handle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .switch.active .switch-handle {
+            transform: translateX(20px);
+        }
+
+        .switch:hover .switch-handle {
+            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+        }
+
+        /* Modern Select */
+        select {
+            padding: 10px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: white;
+            color: #1f1f1f;
+            font-size: 14px;
+            min-width: 140px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        select:hover {
+            border-color: #1a73e8;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        /* Enhanced Range */
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type="range"] {
+            width: 120px;
+            height: 6px;
+            background: #e8eaed;
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #1a73e8;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+        }
+
+        .range-value {
+            font-size: 13px;
+            color: #5f6368;
+            min-width: 40px;
+            font-weight: 500;
+        }
+
+        /* Modern Color Input */
+        input[type="color"] {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid #e8eaed;
+            transition: all 0.2s ease;
+        }
+
+        input[type="color"]:hover {
+            border-color: #1a73e8;
+            transform: scale(1.05);
+        }
+
+        /* Time Input */
+        input[type="time"] {
+            padding: 10px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: white;
+            color: #1f1f1f;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        input[type="time"]:hover {
+            border-color: #1a73e8;
+        }
+
+        input[type="time"]:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        /* Enhanced Textarea */
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: white;
+            color: #1f1f1f;
+            font-size: 14px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+            resize: vertical;
+            transition: all 0.2s ease;
+        }
+
+        textarea:hover {
+            border-color: #1a73e8;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        /* Modern Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: white;
+            color: #3c4043;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+        }
+
+        .btn:hover {
+            background: #f8f9fa;
+            border-color: #1a73e8;
+            color: #1a73e8;
+        }
+
+        .btn-primary {
+            background: #1a73e8;
+            border-color: #1a73e8;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1557b0;
+            border-color: #1557b0;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #ea4335;
+            border-color: #ea4335;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d33b2c;
+            border-color: #d33b2c;
+        }
+
+        /* Enhanced Toast */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #323232;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Preview Box */
+        .preview-box {
+            width: 100%;
+            height: 100px;
+            border: 2px dashed #dadce0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #5f6368;
+            margin-top: 16px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaed 100%);
+        }
+
+        /* Full width controls */
+        .control-full-width {
+            width: 100%;
+        }
+
+        .control-full-width textarea {
+            margin-top: 12px;
+        }
+
+        /* Button groups */
+        .setting-control[style*="gap"] {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* File input styling */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Dark theme styles */
+        body.dark-theme {
+            background: #1f1f1f;
+            color: #e8eaed;
+        }
+
+        body.dark-theme .section {
+            background: #2d2d30;
+            border-color: #3c4043;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        body.dark-theme .section:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        body.dark-theme .section-header {
+            border-bottom-color: #3c4043;
+            color: #e8eaed;
+        }
+
+        body.dark-theme .setting-row {
+            border-bottom-color: #3c4043;
+        }
+
+        body.dark-theme .setting-row:hover {
+            background: #35363a;
+        }
+
+        body.dark-theme .setting-title {
+            color: #e8eaed;
+        }
+
+        body.dark-theme select,
+        body.dark-theme input[type="time"],
+        body.dark-theme textarea {
+            background: #3c4043;
+            border-color: #5f6368;
+            color: #e8eaed;
+        }
+
+        body.dark-theme .btn {
+            background: #3c4043;
+            border-color: #5f6368;
+            color: #e8eaed;
+        }
+
+        body.dark-theme .btn:hover {
+            background: #48494c;
+            border-color: #1a73e8;
+            color: #aecbfa;
+        }
+
+        body.dark-theme .preview-box {
+            background: linear-gradient(135deg, #2d2d30 0%, #3c4043 100%);
+            border-color: #5f6368;
+            color: #9aa0a6;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .section-header {
+                padding: 20px 20px 12px;
+            }
+            
+            .setting-row {
+                padding: 16px 20px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            
+            .setting-info {
+                margin-right: 0;
+            }
+            
+            .setting-control {
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Settings</h1>
+        </div>
+
+        <!-- Appearance -->
+        <div class="section">
+            <div class="section-header">Appearance</div>
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Dark theme</div>
+                    <div class="setting-desc">Use dark theme</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="darkTheme">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Auto night mode</div>
+                    <div class="setting-desc">Automatically switch to dark theme at night</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="autoNightMode">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Night mode start time</div>
+                    <div class="setting-desc">When to start dark theme</div>
+                </div>
+                <div class="setting-control">
+                    <input type="time" id="nightModeStart" value="20:00">
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Night mode end time</div>
+                    <div class="setting-desc">When to end dark theme</div>
+                </div>
+                <div class="setting-control">
+                    <input type="time" id="nightModeEnd" value="06:00">
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Background style</div>
+                    <div class="setting-desc">Choose background appearance</div>
+                </div>
+                <div class="setting-control">
+                    <select id="backgroundStyle">
+                        <option value="gradient">Gradient</option>
+                        <option value="solid">Solid color</option>
+                        <option value="pattern">Pattern</option>
+                        <option value="image">Custom image</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Background color</div>
+                    <div class="setting-desc">Base background color</div>
+                </div>
+                <div class="setting-control">
+                    <input type="color" id="backgroundColor" value="#f8f9fa">
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Background pattern</div>
+                    <div class="setting-desc">Pattern type when pattern style is selected</div>
+                </div>
+                <div class="setting-control">
+                    <select id="backgroundPattern">
+                        <option value="dots">Dots</option>
+                        <option value="lines">Lines</option>
+                        <option value="grid">Grid</option>
+                        <option value="waves">Waves</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Accent color</div>
+                    <div class="setting-desc">Theme accent color</div>
+                </div>
+                <div class="setting-control">
+                    <input type="color" id="accentColor" value="#1a73e8">
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="section">
+            <div class="section-header">Typography</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Font size</div>
+                    <div class="setting-desc">Change text size</div>
+                </div>
+                <div class="setting-control">
+                    <div class="range-container">
+                        <input type="range" id="fontSize" min="12" max="24" value="14">
+                        <span class="range-value" id="fontSizeValue">14px</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Font family</div>
+                    <div class="setting-desc">Choose font style</div>
+                </div>
+                <div class="setting-control">
+                    <select id="fontFamily">
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Google Sans', sans-serif" selected>Google Sans</option>
+                        <option value="'Times New Roman', serif">Times</option>
+                        <option value="'Courier New', monospace">Courier</option>
+                        <option value="'Segoe UI', sans-serif">Segoe UI</option>
+                        <option value="system-ui, sans-serif">System</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+    <option value="'Open Sans', sans-serif">Open Sans</option>
+    <option value="'Lato', sans-serif">Lato</option>
+    <option value="'Poppins', sans-serif">Poppins</option>
+    <option value="'Montserrat', sans-serif">Montserrat</option>
+    <option value="'Inter', sans-serif">Inter</option>
+    <option value="'Nunito', sans-serif">Nunito</option>
+    <option value="'Fira Code', monospace">Fira Code</option>
+</select>
+                
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Line height</div>
+                    <div class="setting-desc">Spacing between lines</div>
+                </div>
+                <div class="setting-control">
+                    <div class="range-container">
+                        <input type="range" id="lineHeight" min="1.2" max="2.5" step="0.1" value="1.6">
+                        <span class="range-value" id="lineHeightValue">1.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Letter spacing</div>
+                    <div class="setting-desc">Space between characters</div>
+                </div>
+                <div class="setting-control">
+                    <select id="letterSpacing">
+                        <option value="tight">Tight</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="wide">Wide</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Text alignment</div>
+                    <div class="setting-desc">How text is aligned</div>
+                </div>
+                <div class="setting-control">
+                    <select id="textAlign">
+                        <option value="left" selected>Left</option>
+                        <option value="center">Center</option>
+                        <option value="justify">Justify</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+<div class="setting-title">Text shadow</div>
+                    <div class="setting-desc">Add subtle shadow to text</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="textShadow">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Dyslexia friendly</div>
+                    <div class="setting-desc">Use dyslexia-friendly fonts</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="dyslexiaFriendly">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interface -->
+<div class="section">
+            <div class="section-header">Interface</div>
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Animations</div>
+                    <div class="setting-desc">Enable smooth animations</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="animations">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Hover effects</div>
+                    <div class="setting-desc">Interactive hover animations</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="hoverEffects">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Page transitions</div>
+                    <div class="setting-desc">Smooth page loading effects</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="pageTransitions">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Compact view</div>
+                    <div class="setting-desc">Reduce spacing and padding</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="compactView">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Content width</div>
+                    <div class="setting-desc">Maximum content width</div>
+                </div>
+                <div class="setting-control">
+                    <select id="contentWidth">
+                        <option value="narrow">Narrow</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="wide">Wide</option>
+                        <option value="full">Full width</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Border radius</div>
+                    <div class="setting-desc">Roundness of corners</div>
+                </div>
+                <div class="setting-control">
+                    <div class="range-container">
+                        <input type="range" id="borderRadius" min="0" max="16" value="8">
+                        <span class="range-value" id="borderRadiusValue">8px</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Box shadow</div>
+                    <div class="setting-desc">Add shadows to elements</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="boxShadow">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Card style</div>
+                    <div class="setting-desc">Visual style of cards</div>
+                </div>
+                <div class="setting-control">
+                    <select id="cardStyle">
+                        <option value="flat">Flat</option>
+                        <option value="elevated" selected>Elevated</option>
+                        <option value="outlined">Outlined</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Scroll behavior</div>
+                    <div class="setting-desc">How scrolling works</div>
+                </div>
+                <div class="setting-control">
+                    <select id="scrollBehavior">
+                        <option value="auto">Auto</option>
+                        <option value="smooth" selected>Smooth</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Reading mode</div>
+                    <div class="setting-desc">Optimized for reading content</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="readingMode">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Effects -->
+        <div class="section">
+            <div class="section-header">Effects</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Mouse trail</div>
+                    <div class="setting-desc">Colorful trail following cursor</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="mouseTrail">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Particle effects</div>
+                    <div class="setting-desc">Animated background particles</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="particleEffects">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Sound effects</div>
+                    <div class="setting-desc">Audio feedback for interactions</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="soundEffects">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widgets -->
+        <div class="section">
+            <div class="section-header">Widgets</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Show clock</div>
+                    <div class="setting-desc">Display time widget</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="showClock">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Time format</div>
+                    <div class="setting-desc">12-hour or 24-hour format</div>
+                </div>
+                <div class="setting-control">
+                    <select id="timeFormat">
+                        <option value="12h" selected>12 Hour</option>
+                        <option value="24h">24 Hour</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Date format</div>
+                    <div class="setting-desc">How dates are displayed</div>
+                </div>
+                <div class="setting-control">
+                    <select id="dateFormat">
+                        <option value="DD/MM/YYYY" selected>DD/MM/YYYY</option>
+                        <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Show weather</div>
+                    <div class="setting-desc">Display weather widget</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="showWeather">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Notifications</div>
+                    <div class="setting-desc">Show desktop notifications</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="notifications">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accessibility -->
+        <div class="section">
+            <div class="section-header">Accessibility</div>
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">High contrast</div>
+                    <div class="setting-desc">Increase color contrast</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="highContrast">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Color blind mode</div>
+                    <div class="setting-desc">Color adjustments for color blindness</div>
+                </div>
+                <div class="setting-control">
+                    <select id="colorBlindMode">
+                        <option value="none" selected>None</option>
+                        <option value="protanopia">Protanopia</option>
+                        <option value="deuteranopia">Deuteranopia</option>
+                        <option value="tritanopia">Tritanopia</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Reduce motion</div>
+                    <div class="setting-desc">Minimize animations</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="reduceMotion">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Focus indicators</div>
+                    <div class="setting-desc">Enhanced keyboard navigation</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="focusIndicators">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">RTL mode</div>
+                    <div class="setting-desc">Right-to-left text direction</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch" id="rtlMode">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced -->
+        <div class="section">
+            <div class="section-header">Advanced</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Language</div>
+                    <div class="setting-desc">Interface language</div>
+                </div>
+                <div class="setting-control">
+                    <select id="language">
+                        <option value="en" selected>English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Custom CSS</div>
+                    <div class="setting-desc">Add your own CSS styles</div>
+                    <div class="control-full-width">
+                        <textarea id="customCSS" placeholder="/* Add your custom CSS here */"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="section">
+            <div class="section-header">Preview</div>
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Theme preview</div>
+                    <div class="setting-desc">See how your changes look</div>
+                    <div class="preview-box" id="previewBox">
+                        This is how your theme looks
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Presets -->
+        <div class="section">
+            <div class="section-header">Quick Presets</div>
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Apply preset themes</div>
+                    <div class="setting-desc">Quickly apply predefined settings</div>
+                </div>
+                <div class="setting-control" style="gap: 8px;">
+                    <button class="btn" onclick="window.UniversalSettings?.applyPreset('default')">Default</button>
+                    <button class="btn" onclick="window.UniversalSettings?.applyPreset('dark')">Dark</button>
+                    <button class="btn" onclick="window.UniversalSettings?.applyPreset('minimal')">Minimal</button>
+                    <button class="btn" onclick="window.UniversalSettings?.applyPreset('accessibility')">Accessibility</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="section">
+            <div class="section-header">Data</div>
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Auto save</div>
+                    <div class="setting-desc">Automatically save changes</div>
+                </div>
+                <div class="setting-control">
+                    <div class="switch active" id="autoSave">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Reset settings</div>
+                    <div class="setting-desc">Reset all settings to default</div>
+                </div>
+                <div class="setting-control">
+                    <button class="btn btn-danger" id="resetBtn">Reset</button>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Export settings</div>
+                    <div class="setting-desc">Download settings backup</div>
+                </div>
+                <div class="setting-control">
+                    <button class="btn" id="exportBtn">Export</button>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <div class="setting-title">Import settings</div>
+                    <div class="setting-desc">Restore from backup</div>
+                </div>
+                <div class="setting-control">
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                    <button class="btn" id="importBtn">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="universal-settings.js"></script>
+</body>
+</html>

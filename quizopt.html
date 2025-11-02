@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Hub - Studix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #3498DB;
+        }
+
+        body.dark-mode {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #2a2a2a;
+            --card-bg: #1a1a1a;
+            --shadow: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            padding-bottom: 70px;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+        }
+
+        .top-nav-main {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .top-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s, background 0.2s;
+            color: var(--text-primary);
+            border-radius: 8px;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .top-nav-center {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 50px;
+            height: 50px;
+            background: none;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            color: #f59e0b;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-icon.sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .theme-icon.moon {
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+            position: absolute;
+            color: #60a5fa;
+        }
+
+        body.dark-mode .theme-icon-wrapper {
+            background: #1e3a5f;
+        }
+
+        body.dark-mode .theme-icon.sun {
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+        }
+
+        body.dark-mode .theme-icon.moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 56px;
+            padding: 0 16px 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--accent) 0%, #2980B9 100%);
+            margin: 0 -16px 30px;
+            border-radius: 0 0 20px 20px;
+            color: white;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .quiz-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-count {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Category Header */
+        .category-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 20px 0 12px;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 12px;
+            padding-bottom: 8px;
+        }
+
+        .quiz-card {
+            flex: 0 0 260px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px var(--shadow);
+        }
+
+        .quiz-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Subject Colors */
+        .math-card::before { background: #3498DB; }
+        .science-card::before { background: #27AE60; }
+        .english-card::before { background: #8E44AD; }
+        .sst-card::before { background: #E67E22; }
+        .special-card::before { background: #E91E63; }
+        .mixed-card::before { background: #1ABC9C; }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 90;
+            padding: 0 8px;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .bottom-nav-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 12px;
+            opacity: 0.1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .bottom-nav-item:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-item.active {
+            color: var(--accent);
+        }
+
+        .bottom-nav-item.active::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .bottom-nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bottom-nav-item.active .bottom-nav-icon {
+            transform: scale(1.1);
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1.1); }
+            50% { transform: scale(1.25); }
+        }
+
+        .bottom-nav-label {
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-item.active .bottom-nav-label {
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 24px;
+            }
+
+            .quiz-card {
+                flex: 0 0 220px;
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quiz-card {
+                flex: 0 0 200px;
+                padding: 14px;
+            }
+
+            .card-title {
+                font-size: 14px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="top-nav-main">
+            <div class="top-nav-left">
+                <button class="icon-btn" onclick="goBack()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="top-nav-center">Quiz Hub</div>
+            <div class="top-nav-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <div class="theme-icon-wrapper">
+                        <svg class="theme-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <svg class="theme-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">🎯 Interactive Quiz Center</h1>
+            <p class="page-subtitle">Test your knowledge with engaging quizzes</p>
+        </div>
+
+        <!-- Mathematics Quizzes -->
+        <div class="quiz-section visible">
+            <div class="section-header">
+                <div class="section-title">
+                    🔢 Mathematics
+                </div>
+                <div class="section-count">6 Quizzes</div>
+            </div>
+            
+            <div class="category-header">General Math</div>
+            <div class="cards-container">
+                <div class="cards-row" id="mathGeneralRow"></div>
+            </div>
+
+            <div class="category-header">Topic-wise</div>
+            <div class="cards-container">
+                <div class="cards-row" id="mathTopicsRow"></div>
+            </div>
+        </div>
+
+        <!-- Science Quizzes -->
+        <div class="quiz-section visible">
+            <div class="section-header">
+                <div class="section-title">
+                    🧪 Science
+                </div>
+                <div class="section-count">4 Quizzes</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="scienceRow"></div>
+            </div>
+        </div>
+
+        <!-- English Quizzes -->
+        <div class="quiz-section visible">
+            <div class="section-header">
+                <div class="section-title">
+                    📖 English
+                </div>
+                <div class="section-count">2 Quizzes</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="englishRow"></div>
+            </div>
+        </div>
+
+        <!-- SST Quizzes -->
+        <div class="quiz-section visible">
+            <div class="section-header">
+                <div class="section-title">
+                    🌍 Social Studies
+                </div>
+                <div class="section-count">4 Quizzes</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="sstRow"></div>
+            </div>
+        </div>
+
+        <!-- Special Quizzes -->
+        <div class="quiz-section visible">
+            <div class="section-header">
+                <div class="section-title">
+                    🎮 Special & Games
+                </div>
+                <div class="section-count">3 Items</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="specialRow"></div>
+            </div>
+        </div>
+
+        <!-- Mixed Quizzes -->
+        <div class="quiz-section visible">
+            <div class="section-header">
+                <div class="section-title">
+                    🎲 Mixed Challenges
+                </div>
+                <div class="section-count">3 Quizzes</div>
+            </div>
+            <div class="cards-container">
+                <div class="cards-row" id="mixedRow"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="main.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+        <a href="all-notes.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            <span class="bottom-nav-label">Notes</span>
+        </a>
+        <a href="library.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            <span class="bottom-nav-label">Keep</span>
+        </a>
+        <a href="quizopt.html" class="bottom-nav-item active">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            <span class="bottom-nav-label">Quiz</span>
+        </a>
+        <a href="chatbot.html" class="bottom-nav-item">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                <path d="M9 14c.5.5 1.5 1 3 1s2.5-.5 3-1"/>
+            </svg>
+            <span class="bottom-nav-label">Chatbot</span>
+        </a>
+    </div>
+
+    <script>
+        // Quiz Data
+        const quizContent = {
+            mathGeneral: [
+                { title: "Math Quiz - Basic", url: "mb.html", description: "Fundamental math concepts and operations" },
+                { title: "Math Quiz - Advanced", url: "ma.html", description: "Complex mathematical problems" }
+            ],
+            mathTopics: [
+                { title: "Trigonometry Quiz", url: "trigquiz.html", description: "Trig ratios, identities & applications" },
+                { title: "Mensuration Quiz", url: "mens.html", description: "Area, volume & surface calculations" },
+                { title: "Geometry Quiz", url: "gq.html", description: "Coordinate geometry & triangles" },
+                { title: "Statistics & Probability", url: "spq.html", description: "Statistical measures & probability" }
+            ],
+            science: [
+                { title: "Physics Quiz", url: "phyquiz.html", description: "Light, electricity & magnetism" },
+                { title: "Chemistry Quiz", url: "chemquiz.html", description: "Reactions, acids, bases & metals" },
+                { title: "Biology Quiz", url: "bioquiz.html", description: "Life processes & heredity" },
+                { title: "Chem/Bio Combined", url: "test.html", description: "Combined chemistry & biology" }
+            ],
+            english: [
+                { title: "Grammar Quiz", url: "grquiz.html", description: "Grammar rules & sentence structure" },
+                { title: "Literature Quiz", url: "literaturequiz.html", description: "Prose, poetry & literary analysis" }
+            ],
+            sst: [
+                { title: "History Quiz", url: "historyquiz.html", description: "Historical events & nationalism" },
+                { title: "Geography Quiz", url: "geoquiz.html", description: "Resources & agriculture" },
+                { title: "Economics Quiz", url: "ecoquiz.html", description: "Development & globalization" },
+                { title: "Civics Quiz", url: "civicsquiz.html", description: "Democracy & federalism" }
+            ],
+            special: [
+                { title: "Study Timer", url: "timer.html", description: "Productivity & study timer" },
+                { title: "Tic Tac Toe", url: "tictac.html", description: "Classic brain exercise game" },
+                { title: "IQ Meter", url: "iq.html", description: "Intelligence assessment test" }
+            ],
+            mixed: [
+                { title: "General Knowledge", url: "gk.html", description: "Mixed topics & current affairs" },
+                { title: "Mixed Subject Challenge", url: "msub.html", description: "All subjects combined" },
+                { title: "Brain Teasers", url: "logic.html", description: "Logic puzzles & critical thinking" }
+            ]
+        };
+
+        // Create Card
+        function createCard(item, cardType) {
+            const card = document.createElement('a');
+            card.className = `quiz-card ${cardType}`;
+            card.href = item.url;
+            card.innerHTML = `
+                <div class="card-title">${item.title}</div>
+                <div class="card-description">${item.description}</div>
+            `;
+            return card;
+        }
+
+        // Initialize Content
+        function initializeContent() {
+            const mathGeneralRow = document.getElementById('mathGeneralRow');
+            quizContent.mathGeneral.forEach(quiz => {
+                mathGeneralRow.appendChild(createCard(quiz, 'math-card'));
+            });
+
+            const mathTopicsRow = document.getElementById('mathTopicsRow');
+            quizContent.mathTopics.forEach(quiz => {
+                mathTopicsRow.appendChild(createCard(quiz, 'math-card'));
+            });
+
+            const scienceRow = document.getElementById('scienceRow');
+            quizContent.science.forEach(quiz => {
+                scienceRow.appendChild(createCard(quiz, 'science-card'));
+            });
+
+            const englishRow = document.getElementById('englishRow');
+            quizContent.english.forEach(quiz => {
+                englishRow.appendChild(createCard(quiz, 'english-card'));
+            });
+
+            const sstRow = document.getElementById('sstRow');
+            quizContent.sst.forEach(quiz => {
+                sstRow.appendChild(createCard(quiz, 'sst-card'));
+            });
+
+            const specialRow = document.getElementById('specialRow');
+            quizContent.special.forEach(quiz => {
+                specialRow.appendChild(createCard(quiz, 'special-card'));
+            });
+
+            const mixedRow = document.getElementById('mixedRow');
+            quizContent.mixed.forEach(quiz => {
+                mixedRow.appendChild(createCard(quiz, 'mixed-card'));
+            });
+        }
+
+        // Theme Toggle
+        function setupTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            });
+        }
+
+        // Go Back
+        function goBack() {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                history.back();
+            } else {
+                window.location.href = 'main.html';
+            }
+        }
+
+        // Scroll Animations
+        function initializeScrollAnimations() {
+            const sections = document.querySelectorAll('.quiz-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Navigation Scroll
+        let lastScroll = 0;
+        const topNav = document.querySelector('.top-nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                topNav.style.transform = 'translateY(0)';
+            } else if (currentScroll > lastScroll && currentScroll > 100) {
+                topNav.style.transform = 'translateY(-100%)';
+            } else {
+                topNav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeContent();
+            setupTheme();
+            initializeScrollAnimations();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science - Studix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1E1E2F;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navbar Structure - Double Line */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(30, 30, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFB74D;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+        }
+
+        .search-icon-nav {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-icon-nav:hover {
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .navbar-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-links a:hover {
+            color: #FFB74D;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #FFB74D;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            z-index: 1002;
+            transition: left 0.3s ease;
+            border-right: 1px solid rgba(255, 183, 77, 0.2);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .sidebar-overlay.visible {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 183, 77, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: #FFB74D;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: rgba(255, 183, 77, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 183, 77, 0.1);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-item.active {
+            background: rgba(255, 183, 77, 0.15);
+            border-left-color: #FFB74D;
+            color: #FFB74D;
+        }
+
+        .sidebar-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-text {
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 8rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 2rem 2rem 3rem;
+            background: linear-gradient(135deg, #1E1E2F 0%, #25273F 100%);
+        }
+
+        .page-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #90CAF9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Subject Section Headers */
+        .subject-section {
+            margin-bottom: 5rem;
+            padding: 0 2rem;
+        }
+
+        .subject-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .physics-header {
+            background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+        }
+
+        .chemistry-header {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+        }
+
+        .biology-header {
+            background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+        }
+
+        .subject-title {
+            font-family: Arial Black, Gadget, sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subject-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Content Categories */
+        .content-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight: 600;
+            color: #B0BEC5;
+            margin-bottom: 1.5rem;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 0.5rem 0 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #FFB74D #1E253D;
+        }
+
+        .cards-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cards-row::-webkit-scrollbar-track {
+            background: #1E253D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb {
+            background: #FFB74D;
+            border-radius: 4px;
+        }
+
+        .cards-row::-webkit-scrollbar-thumb:hover {
+            background: #FF9800;
+        }
+
+        /* Enhanced Card Styles */
+        .card {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 160px;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #FFFFFF;
+            z-index: 1;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-description {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Physics Cards */
+        .physics-notes-card {
+            background: linear-gradient(135deg, #3498DB 0%, #2E86C1 100%);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .physics-notes-card::before {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .physics-notes-card:hover {
+            border-color: rgba(52, 152, 219, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .physics-formula-card {
+            background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%);
+            border-color: rgba(93, 173, 226, 0.3);
+        }
+
+        .physics-formula-card::before {
+            background: rgba(93, 173, 226, 0.2);
+        }
+
+        .physics-formula-card:hover {
+            border-color: rgba(93, 173, 226, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(93, 173, 226, 0.4);
+        }
+
+        .physics-pyq-card {
+            background: linear-gradient(135deg, #85C1E9 0%, #5DADE2 100%);
+            border-color: rgba(133, 193, 233, 0.3);
+        }
+
+        .physics-pyq-card::before {
+            background: rgba(133, 193, 233, 0.2);
+        }
+
+        .physics-pyq-card:hover {
+            border-color: rgba(133, 193, 233, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(133, 193, 233, 0.4);
+        }
+
+        /* Chemistry Cards */
+        .chemistry-notes-card {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+
+        .chemistry-notes-card::before {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .chemistry-notes-card:hover {
+            border-color: rgba(231, 76, 60, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .chemistry-formula-card {
+            background: linear-gradient(135deg, #EC7063 0%, #E74C3C 100%);
+            border-color: rgba(236, 112, 99, 0.3);
+        }
+
+        .chemistry-formula-card::before {
+            background: rgba(236, 112, 99, 0.2);
+        }
+
+        .chemistry-formula-card:hover {
+            border-color: rgba(236, 112, 99, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(236, 112, 99, 0.4);
+        }
+
+        .chemistry-pyq-card {
+            background: linear-gradient(135deg, #F1948A 0%, #EC7063 100%);
+            border-color: rgba(241, 148, 138, 0.3);
+        }
+
+        .chemistry-pyq-card::before {
+            background: rgba(241, 148, 138, 0.2);
+        }
+
+        .chemistry-pyq-card:hover {
+            border-color: rgba(241, 148, 138, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(241, 148, 138, 0.4);
+        }
+
+        /* Biology Cards */
+        .biology-notes-card {
+            background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+            border-color: rgba(39, 174, 96, 0.3);
+        }
+
+        .biology-notes-card::before {
+            background: rgba(39, 174, 96, 0.2);
+        }
+
+        .biology-notes-card:hover {
+            border-color: rgba(39, 174, 96, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(39, 174, 96, 0.4);
+        }
+
+        .biology-formula-card {
+            background: linear-gradient(135deg, #58D68D 0%, #27AE60 100%);
+            border-color: rgba(88, 214, 141, 0.3);
+        }
+
+        .biology-formula-card::before {
+            background: rgba(88, 214, 141, 0.2);
+        }
+
+        .biology-formula-card:hover {
+            border-color: rgba(88, 214, 141, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(88, 214, 141, 0.4);
+        }
+
+        .biology-pyq-card {
+            background: linear-gradient(135deg, #82E0AA 0%, #58D68D 100%);
+            border-color: rgba(130, 224, 170, 0.3);
+        }
+
+        .biology-pyq-card::before {
+            background: rgba(130, 224, 170, 0.2);
+        }
+
+        .biology-pyq-card:hover {
+            border-color: rgba(130, 224, 170, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(130, 224, 170, 0.4);
+        }
+  .chatbot-container {
+            margin: 3rem auto 2rem;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+        }
+
+        .chatbot-button {
+            background: #FFB74D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 183, 77, 0.3);
+            text-align: center;
+        }
+
+        .chatbot-button:hover {
+            background: #FFB74D;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(144, 202, 249, 0.4);
+        }
+
+        /* Quiz Cards */
+        .quiz-card {
+            background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);
+            border-color: rgba(155, 89, 182, 0.3);
+        }
+
+        .quiz-card::before {
+            background: rgba(155, 89, 182, 0.2);
+        }
+
+        .quiz-card:hover {
+            border-color: rgba(155, 89, 182, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(155, 89, 182, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1A1A2E;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFB74D;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: #B0BEC5;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #90CAF9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFB74D;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Section animations */
+        .subject-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .subject-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1rem 0.5rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .subject-section {
+                padding: 0 1rem;
+            }
+
+            .cards-row {
+                gap: 1rem;
+            }
+
+            .card {
+                width: 260px;
+                height: 140px;
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 8rem;
+            }
+
+            .card {
+                width: 220px;
+                height: 120px;
+                padding: 0.8rem;
+            }
+
+            .card-title {
+                font-size: 0.8rem;
+            }
+        }
+
+        .card:focus {
+            outline: 2px solid #FFB74D;
+            outline-offset: 2px;
+        }
+    </style>
+        <script src="universal-settings.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">Studix</div>
+            <button class="sidebar-close" id="sidebar-close">×</button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="main.html" class="sidebar-item">
+                <span class="sidebar-icon">🏠</span>
+                <span class="sidebar-text">Home</span>
+            </a>
+            <a href="#" class="sidebar-item active">
+                <span class="sidebar-icon">🔬</span>
+                <span class="sidebar-text">Science</span>
+            </a>
+            <a href="library.html" class="sidebar-item">
+                <span class="sidebar-icon">📝</span>
+                <span class="sidebar-text">Keep Notes</span>
+            </a>
+            <a href="profile.html" class="sidebar-item">
+                <span class="sidebar-icon">👤</span>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+            <a href="feedback.html" class="sidebar-item">
+                <span class="sidebar-icon">💬</span>
+                <span class="sidebar-text">Feedback</span>
+            </a>
+             <a href="pyq.html" class="sidebar-item">
+                <span class="sidebar-icon">📇</span>
+                <span class="sidebar-text">Previous year question</span>
+            </a>
+            <a href="settings.html" class="sidebar-item">
+                <span class="sidebar-icon">⚙️</span>
+                <span class="sidebar-text">Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-top">
+                <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+                <div class="navbar-brand">Science Hub</div>
+                <button class="search-icon-nav" onclick="window.location.href='search.html'">⌕</button>
+            </div>
+            <div class="navbar-links">
+                <a href="main.html">Home</a>
+                <a href="english.html">English</a>
+                <a href="sst.html">SST</a>
+                <a href="math.html">Math</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Science Mastery Center</h1>
+            <p class="page-subtitle">Explore Physics, Chemistry, and Biology through comprehensive notes, formulas, and practice questions</p>
+        </div>
+
+        <!-- Physics Section -->
+        <section class="subject-section" id="physics-section">
+            <div class="subject-header physics-header">
+                <h2 class="subject-title">Physics</h2>
+                <p class="subject-description">Understand the fundamental laws of nature and motion</p>
+            </div>
+
+            <!-- Physics Notes -->
+            <div class="content-category">
+                <h3 class="category-title">📚 Physics Notes</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="physics-notes-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Physics Formulas -->
+            <div class="content-category">
+                <h3 class="category-title">📐 Physics Formulas</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="physics-formulas-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Physics PYQs -->
+            <div class="content-category">
+                <h3 class="category-title">📋 Physics PYQs</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="physics-pyq-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chemistry Section -->
+        <section class="subject-section" id="chemistry-section">
+            <div class="subject-header chemistry-header">
+                <h2 class="subject-title">Chemistry</h2>
+                <p class="subject-description">Discover the world of atoms, molecules, and reactions</p>
+            </div>
+
+            <!-- Chemistry Notes -->
+            <div class="content-category">
+                <h3 class="category-title">📚 Chemistry Notes</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="chemistry-notes-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chemistry Formulas -->
+            <div class="content-category">
+                <h3 class="category-title">⚗️ Chemistry Formulas</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="chemistry-formulas-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chemistry PYQs -->
+            <div class="content-category">
+                <h3 class="category-title">📋 Chemistry PYQs</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="chemistry-pyq-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Biology Section -->
+        <section class="subject-section" id="biology-section">
+            <div class="subject-header biology-header">
+                <h2 class="subject-title">Biology</h2>
+                <p class="subject-description">Explore the fascinating world of life and living organisms</p>
+            </div>
+
+            <!-- Biology Notes -->
+            <div class="content-category">
+                <h3 class="category-title">📚 Biology Notes</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="biology-notes-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biology Formulas -->
+            <div class="content-category">
+                <h3 class="category-title">🧬 Biology Formulas</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="biology-formulas-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biology PYQs -->
+            <div class="content-category">
+                <h3 class="category-title">📋 Biology PYQs</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="biology-pyq-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="subject-section" id="quiz-section">
+            <div class="subject-header" style="background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);">
+                <h2 class="subject-title">Science Quizzes</h2>
+                <p class="subject-description">Test your knowledge with interactive quizzes across all science subjects</p>
+            </div>
+
+            <div class="content-category">
+                <h3 class="category-title">🧠 Interactive Quizzes</h3>
+                <div class="cards-container">
+                    <div class="cards-row" id="quiz-row">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+              <div class="chatbot-container">
+            <a href="chatbot.html" class="chatbot-button">🤖 AI Science Tutor - Ask me anything!</a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">Studix Science</div>
+                <p class="footer-description">
+                    Master Physics, Chemistry, and Biology with comprehensive study materials, formulas, and practice questions designed for Class 10 students.
+                </p>
+                <div class="footer-links">
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Studix. All rights reserved. Made with ❤️ for future scientists.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script>
+    // Content data for Science subjects
+const scienceContent = {
+    physics: {
+        notes: [
+            { title: "Light - Reflection and Refraction", url: "lite.html", description: "Laws of reflection, mirrors, and lenses" },
+            { title: "The Human Eye and Colourful World", url: "heacw.html", description: "Eye structure, vision defects, and dispersion" },
+            { title: "Electricity", url: "elect.html", description: "Current, voltage, resistance, and circuits" },
+            { title: "Magnetic Effects of Electric Current", url: "magnet.html", description: "Electromagnets, motors, and generators" }
+        ],
+        formulas: [
+            { title: "Light - Reflection & Refraction", url: "phyform.html", description: "Mirror and lens formulas" },
+            { title: "Human Eye Formulas", url: "heacwform.html", description: "Power of lens and eye defects" },
+            { title: "Electricity Formulas", url: "electform.html", description: "Ohm's law, power, and energy" },
+            { title: "Magnetism Formulas", url: "magnetismform.html", description: "Magnetic field and force equations" }
+        ],
+        pyqs: [
+            { title: "Physics PYQ 2024", url: "pp2024.html", description: "Complete physics question paper" },
+            { title: "Light & Optics PYQ 2023", url: "lp2023.html", description: "Reflection and refraction questions" },
+            { title: "Electricity PYQ 2023", url: "ep2023.html", description: "Current and circuits problems" },
+            { title: "Magnetism PYQ 2022", url: "mgp2023.html", description: "Electromagnetic effects questions" },
+            { title: "Physics PYQ 2022", url: "php2022.html", description: "All physics topics combined" }
+        ]
+    },
+    chemistry: {
+        notes: [
+            { title: "Chemical Reactions and Equations", url: "chem01.html", description: "Balancing equations and reaction types" },
+            { title: "Acids, Bases and Salts", url: "acid.html", description: "pH, neutralization, and salt formation" },
+            { title: "Metals and Non-metals", url: "metal.html", description: "Properties, extraction, and corrosion" },
+            { title: "Carbon and its Compounds", url: "carbon.html", description: "Organic chemistry fundamentals" }
+        ],
+        formulas: [
+            { title: "Complete Chemistry Formulas", url: "chemform.html", description: "All chemistry formulas and equations" },
+            { title: "Acid-Base Formulas", url: "acidbaseform.html", description: "pH calculations and neutralization" },
+            { title: "Metals & Non-metals Formulas", url: "metalform.html", description: "Extraction and corrosion formulas" },
+            { title: "Carbon Compounds Formulas", url: "carbonform.html", description: "Organic compound structures" }
+        ],
+        pyqs: [
+            { title: "Chemistry PYQ 2024", url: "chp2024.html", description: "Complete chemistry question paper" },
+            { title: "Chemical Reactions PYQ 2023", url: "crp2023.html", description: "Equation balancing and reactions" },
+            { title: "Acids & Bases PYQ 2023", url: "abp2023.html", description: "pH and neutralization problems" },
+            { title: "Metals PYQ 2022", url: "mp2022.html", description: "Properties and extraction questions" },
+            { title: "Carbon Compounds PYQ 2022", url: "cp2022.html", description: "Organic chemistry problems" }
+        ]
+    },
+    biology: {
+        notes: [
+            { title: "Life Processes", url: "bione.html", description: "Nutrition, respiration, and circulation" },
+            { title: "Control and Coordination", url: "cc.html", description: "Nervous system and hormones" },
+            { title: "How do Organisms Reproduce?", url: "repro.html", description: "Reproduction in plants and animals" },
+            { title: "Heredity and Evolution", url: "here.html", description: "Genetics and evolutionary concepts" },
+            { title: "Our Environment", url: "ouren.html", description: "Ecosystem and environmental management" }
+        ],
+        formulas: [
+            { title: "Complete Biology Formulas", url: "bioform.html", description: "All biology calculations and formulas" },
+            { title: "Life Processes Formulas", url: "lifeform.html", description: "Respiration and circulation rates" },
+            { title: "Reproduction Formulas", url: "reproform.html", description: "Growth and development calculations" },
+            { title: "Heredity Formulas", url: "heredityform.html", description: "Genetics probability calculations" }
+        ],
+        pyqs: [
+            { title: "Biology PYQ 2024", url: "bp24.html", description: "Complete biology question paper" },
+            { title: "Life Processes PYQ 2023", url: "lp23.html", description: "Nutrition and respiration questions" },
+            { title: "Control & Coordination PYQ 2023", url: "ccp23.html", description: "Nervous system problems" },
+            { title: "Reproduction PYQ 2022", url: "rp22.html", description: "Plant and animal reproduction" },
+            { title: "Heredity & Evolution PYQ 2022", url: "hp22.html", description: "Genetics and evolution questions" }
+        ]
+    },
+    quizzes: [
+        { title: "Physics Quiz - Light & Optics", url: "#", description: "Test your knowledge of reflection and refraction" },
+        { title: "Physics Quiz - Electricity", url: "#", description: "Current, voltage, and circuit problems" },
+        { title: "Chemistry Quiz - Acids & Bases", url: "#", description: "pH calculations and neutralization" },
+        { title: "Chemistry Quiz - Metals", url: "#", description: "Properties and extraction of metals" },
+        { title: "Biology Quiz - Life Processes", url: "#", description: "Nutrition, respiration, and circulation" },
+        { title: "Biology Quiz - Heredity", url: "#", description: "Genetics and inheritance patterns" },
+        { title: "Science Quiz - Mixed Topics", url: "#", description: "Combined physics, chemistry, and biology" },
+        { title: "Science Quiz - Advanced", url: "#", description: "Challenging questions across all subjects" }
+    ]
+};
+
+// Create a card element
+function createCard(item, cardType = 'default') {
+    const card = document.createElement('a');
+    card.className = `card ${cardType}`;
+    card.href = item.url;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Open ${item.title}`);
+    
+    card.innerHTML = `
+        <div class="card-title">${item.title}</div>
+        ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+    `;
+
+    return card;
+}
+
+// Initialize all content rows
+function initializeContent() {
+    // Physics Notes
+    const physicsNotesRow = document.getElementById('physics-notes-row');
+    scienceContent.physics.notes.forEach(note => {
+        const card = createCard(note, 'physics-notes-card');
+        physicsNotesRow.appendChild(card);
+    });
+
+    // Physics Formulas
+    const physicsFormulasRow = document.getElementById('physics-formulas-row');
+    scienceContent.physics.formulas.forEach(formula => {
+        const card = createCard(formula, 'physics-formula-card');
+        physicsFormulasRow.appendChild(card);
+    });
+
+    // Physics PYQs
+    const physicsPyqRow = document.getElementById('physics-pyq-row');
+    scienceContent.physics.pyqs.forEach(pyq => {
+        const card = createCard(pyq, 'physics-pyq-card');
+        physicsPyqRow.appendChild(card);
+    });
+
+    // Chemistry Notes
+    const chemistryNotesRow = document.getElementById('chemistry-notes-row');
+    scienceContent.chemistry.notes.forEach(note => {
+        const card = createCard(note, 'chemistry-notes-card');
+        chemistryNotesRow.appendChild(card);
+    });
+
+    // Chemistry Formulas
+    const chemistryFormulasRow = document.getElementById('chemistry-formulas-row');
+    scienceContent.chemistry.formulas.forEach(formula => {
+        const card = createCard(formula, 'chemistry-formula-card');
+        chemistryFormulasRow.appendChild(card);
+    });
+
+    // Chemistry PYQs
+    const chemistryPyqRow = document.getElementById('chemistry-pyq-row');
+    scienceContent.chemistry.pyqs.forEach(pyq => {
+        const card = createCard(pyq, 'chemistry-pyq-card');
+        chemistryPyqRow.appendChild(card);
+    });
+
+    // Biology Notes
+    const biologyNotesRow = document.getElementById('biology-notes-row');
+    scienceContent.biology.notes.forEach(note => {
+        const card = createCard(note, 'biology-notes-card');
+        biologyNotesRow.appendChild(card);
+    });
+
+    // Biology Formulas
+    const biologyFormulasRow = document.getElementById('biology-formulas-row');
+    scienceContent.biology.formulas.forEach(formula => {
+        const card = createCard(formula, 'biology-formula-card');
+        biologyFormulasRow.appendChild(card);
+    });
+
+    // Biology PYQs
+    const biologyPyqRow = document.getElementById('biology-pyq-row');
+    scienceContent.biology.pyqs.forEach(pyq => {
+        const card = createCard(pyq, 'biology-pyq-card');
+        biologyPyqRow.appendChild(card);
+    });
+
+    // Quizzes
+    const quizRow = document.getElementById('quiz-row');
+    scienceContent.quizzes.forEach(quiz => {
+        const card = createCard(quiz, 'quiz-card');
+        quizRow.appendChild(card);
+    });
+}
+
+// Sidebar functionality
+function initializeSidebar() {
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebar-close');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        sidebarOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('visible');
+        document.body.style.overflow = 'auto';
+    }
+
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+            closeSidebar();
+        }
+    });
+
+    // Sidebar menu active state
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', () => {
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+}
+
+// Section visibility animations
+function initializeScrollAnimations() {
+    const sections = document.querySelectorAll('.subject-section');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeContent();
+    initializeSidebar();
+    initializeScrollAnimations();
+});
+</script>
+</body>
+</html>

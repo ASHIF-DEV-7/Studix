@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Study Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.main-heading {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    margin-top: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Subjects Grid */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* Subject Card Styles */
+.subject-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.subject-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.subject-card:hover::before {
+    left: 100%;
+}
+
+.subject-card:hover {
+    transform: none;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Card Icon */
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: block;
+    animation: bounce 2s infinite;
+}
+
+.subject-card[data-subject="sst"] .card-icon {
+    animation-delay: 0s;
+}
+
+.subject-card[data-subject="math"] .card-icon {
+    animation-delay: 0.2s;
+}
+
+.subject-card[data-subject="science"] .card-icon {
+    animation-delay: 0.4s;
+}
+
+.subject-card[data-subject="english"] .card-icon {
+    animation-delay: 0.6s;
+}
+
+/* Subject Name */
+.subject-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+/* Subject Description */
+.subject-description {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* Card Stats */
+.card-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    font-size: 0.85rem;
+    color: #6b7280;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+/* Open Notes Button */
+.open-notes-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.open-notes-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.open-notes-btn:hover::before {
+    left: 100%;
+}
+
+.open-notes-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+.open-notes-btn:active {
+    transform: translateY(-1px);
+}
+
+.arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.open-notes-btn:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 300;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive Design */
+
+/* Mobile Devices (320px - 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        justify-content: flex-start;
+        padding-top: 40px;
+    }
+    
+    .main-heading {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .header {
+        margin-bottom: 40px;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 100%;
+    }
+    
+    .subject-card {
+        padding: 25px 20px;
+        margin: 0 5px;
+    }
+    
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    
+    .subject-name {
+        font-size: 1.5rem;
+    }
+    
+    .subject-description {
+        font-size: 0.9rem;
+    }
+    
+    .card-stats {
+        gap: 10px;
+    }
+    
+    .stat {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    .open-notes-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .footer {
+        margin-top: 40px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Tablet Devices (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .subjects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .main-heading {
+        font-size: 3.2rem;
+    }
+    
+    .subject-card {
+        padding: 30px 22px;
+    }
+    
+    .card-icon {
+        font-size: 3.5rem;
+    }
+    
+    .subject-name {
+        font-size: 1.6rem;
+    }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+    .subjects-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .main-heading {
+        font-size: 4.5rem;
+    }
+    
+    .container {
+        padding: 40px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    .main-heading {
+        font-size: 2rem;
+    }
+    
+    .subject-card {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+    
+    .card-stats {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .stat {
+        font-size: 0.75rem;
+    }
+}
+
+/* Hover Effects for Non-Touch Devices */
+@media (hover: hover) {
+    .subject-card:hover .card-icon {
+        transform: scale(1.1);
+    }
+    
+    .subject-card:hover .subject-name {
+        color: #667eea;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .subject-card {
+        background: rgba(45, 55, 72, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .subject-name {
+        color: #f7fafc;
+    }
+    
+    .subject-description {
+        color: #e2e8f0;
+    }
+    
+    .stat {
+        color: #a0aec0;
+        background: rgba(102, 126, 234, 0.2);
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="main-heading">📚 My Study Notes</h1>
+            <p class="subtitle">Your gateway to academic excellence</p>
+        </header>
+
+        <!-- Subject Cards Section -->
+        <main class="subjects-grid">
+            <!-- SST Card -->
+            <div class="subject-card" data-subject="sst">
+                <div class="card-icon">🌍</div>
+                <h2 class="subject-name">Social Science</h2>
+                <p class="subject-description">History, Geography & Civics notes with maps, timelines & important dates for comprehensive understanding.</p>
+                <div class="card-stats">
+                    <span class="stat">📖 15 Chapters</span>
+                    <span class="stat">🎯 PYQs Included</span>
+                </div>
+                <button class="open-notes-btn" data-redirect="sst.html">
+                    <span>Open Notes</span>
+                    <i class="arrow">→</i>
+                </button>
+            </div>
+
+            <!-- Mathematics Card -->
+            <div class="subject-card" data-subject="math">
+                <div class="card-icon">📐</div>
+                <h2 class="subject-name">Mathematics</h2>
+                <p class="subject-description">Complete formulas, theorems & solved examples. From algebra to geometry - master every concept.</p>
+                <div class="card-stats">
+                    <span class="stat">🔢 12 Units</span>
+                    <span class="stat">📊 Formula Sheets</span>
+                </div>
+                <button class="open-notes-btn" data-redirect="math.html">
+                    <span>Open Notes</span>
+                    <i class="arrow">→</i>
+                </button>
+            </div>
+
+            <!-- Science Card -->
+            <div class="subject-card" data-subject="science">
+                <div class="card-icon">🔬</div>
+                <h2 class="subject-name">Science</h2>
+                <p class="subject-description">Physics, Chemistry & Biology concepts with diagrams, experiments & important reactions.</p>
+                <div class="card-stats">
+                    <span class="stat">⚗️ 13 Chapters</span>
+                    <span class="stat">🧪 Lab Notes</span>
+                </div>
+                <button class="open-notes-btn" data-redirect="notes.html">
+                    <span>Open Notes</span>
+                    <i class="arrow">→</i>
+                </button>
+            </div>
+
+            <!-- English Card -->
+            <div class="subject-card" data-subject="english">
+                <div class="card-icon">📝</div>
+                <h2 class="subject-name">English</h2>
+                <p class="subject-description">Literature analysis, grammar rules, essay writing tips & poetry explanations for perfect scores.</p>
+                <div class="card-stats">
+                    <span class="stat">📚 10 Lessons</span>
+                    <span class="stat">✍️ Writing Tips</span>
+                </div>
+                <button class="open-notes-btn" data-redirect="english.html">
+                    <span>Open Notes</span>
+                    <i class="arrow">→</i>
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️ for students • Study smart, not hard!</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const chapterBoxes = document.querySelectorAll('.chapter-box');
+    const quizSection = document.getElementById('quiz-section');
+
+    const chapterQuestions = {
+        humanEye: [
+            {
+                question: "1. The human eye forms the image of an object at its:",
+                options: ["A) Cornea", "B) Iris", "C) Pupil", "D) Retina"],
+                answer: "D) Retina"
+            },
+            {
+                question: "2. The ability of the eye lens to adjust its focal length is called:",
+                options: ["A) Myopia", "B) Hypermetropia", "C) Power of accommodation", "D) Presbyopia"],
+                answer: "C) Power of accommodation"
+            },
+            {
+                question: "3. Myopia is the condition of an eye in which the image of a distant object is formed:",
+                options: ["A) on the retina", "B) behind the retina", "C) in front of the retina", "D) on the blind spot"],
+                answer: "C) in front of the retina"
+            },
+            {
+                question: "4. The prism splits the incident white light into seven colours. This phenomenon is called:",
+                options: ["A) Refraction", "B) Dispersion", "C) Reflection", "D) Scattering"],
+                answer: "B) Dispersion"
+            },
+            {
+                question: "5. The red colour of the sun at sunrise and sunset is due to:",
+                options: ["A) Reflection", "B) Refraction", "C) Scattering of light", "D) Dispersion of light"],
+                answer: "C) Scattering of light"
+            },
+            {
+                question: "6. The change in the focal length of the eye lens is caused by the action of the:",
+                options: ["A) Pupil", "B) Retina", "C) Ciliary muscles", "D) Optic nerve"],
+                answer: "C) Ciliary muscles"
+            },
+            {
+                question: "7. The least distance of distinct vision for a normal human eye is about:",
+                options: ["A) 25 cm", "B) 2.5 cm", "C) 25 m", "D) 2.5 m"],
+                answer: "A) 25 cm"
+            },
+            {
+                question: "8. The far point of a normal human eye is:",
+                options: ["A) 25 cm", "B) 2.5 m", "C) Infinity", "D) 25 m"],
+                answer: "C) Infinity"
+            },
+            {
+                question: "9. Which part of the eye controls the amount of light entering the eye?",
+                options: ["A) Cornea", "B) Iris", "C) Lens", "D) Retina"],
+                answer: "B) Iris"
+            },
+            {
+                question: "10. Which defect of vision is also known as short-sightedness?",
+                options: ["A) Myopia", "B) Hypermetropia", "C) Presbyopia", "D) Astigmatism"],
+                answer: "A) Myopia"
+            }
+        ],
+        electricity: [
+            {
+                question: "1. The SI unit of electric current is:",
+                options: ["A) Ohm", "B) Volt", "C) Ampere", "D) Watt"],
+                answer: "C) Ampere"
+            },
+            {
+                question: "2. What is the amount of work done in moving a charge of 2C across two points with a potential difference of 12V?",
+                options: ["A) 6 J", "B) 24 J", "C) 12 J", "D) 0.16 J"],
+                answer: "B) 24 J"
+            },
+            {
+                question: "3. The resistance of a conductor is directly proportional to its:",
+                options: ["A) Length", "B) Area of cross-section", "C) Temperature", "D) Voltage"],
+                answer: "A) Length"
+            },
+            {
+                question: "4. A fuse wire is made of an alloy of tin and lead. It has a:",
+                options: ["A) high melting point and low resistance", "B) low melting point and high resistance", "C) low melting point and low resistance", "D) high melting point and high resistance"],
+                answer: "B) low melting point and high resistance"
+            },
+            {
+                question: "5. The heating effect of electric current is used in:",
+                options: ["A) Electric motor", "B) Electric generator", "C) Electric heater", "D) Transformer"],
+                answer: "C) Electric heater"
+            },
+            {
+                question: "6. What is the equivalent resistance of three resistors, each of resistance R, connected in parallel?",
+                options: ["A) 3R", "B) R/3", "C) R + 3", "D) 1/3R"],
+                answer: "B) R/3"
+            },
+            {
+                question: "7. The instrument used to measure electric current is:",
+                options: ["A) Voltmeter", "B) Ammeter", "C) Galvanometer", "D) Ohmmeter"],
+                answer: "B) Ammeter"
+            },
+            {
+                question: "8. The work done per unit charge is defined as:",
+                options: ["A) Current", "B) Power", "C) Voltage", "D) Resistance"],
+                answer: "C) Voltage"
+            },
+            {
+                question: "9. A conductor has a resistance of 10 Ω. If a potential difference of 50 V is applied across it, what will be the current flowing through it?",
+                options: ["A) 5 A", "B) 0.5 A", "C) 500 A", "D) 10 A"],
+                answer: "A) 5 A"
+            },
+            {
+                question: "10. Which of the following is an insulator?",
+                options: ["A) Copper", "B) Aluminium", "C) Wood", "D) Mercury"],
+                answer: "C) Wood"
+            }
+        ],
+        magneticEffects: [
+            {
+                question: "1. The direction of the magnetic field lines around a straight current-carrying conductor is given by:",
+                options: ["A) Fleming's Left-Hand Rule", "B) Fleming's Right-Hand Rule", "C) Maxwell's Corkscrew Rule", "D) Right-Hand Thumb Rule"],
+                answer: "D) Right-Hand Thumb Rule"
+            },
+            {
+                question: "2. An electric motor converts:",
+                options: ["A) Electrical energy to mechanical energy", "B) Mechanical energy to electrical energy", "C) Chemical energy to electrical energy", "D) Electrical energy to sound energy"],
+                answer: "A) Electrical energy to mechanical energy"
+            },
+            {
+                question: "3. The phenomenon of electromagnetic induction is:",
+                options: ["A) The process of charging a body", "B) The process of generating magnetic field due to current", "C) The process of generating induced current in a coil due to relative motion with a magnet", "D) The process of heating a body"],
+                answer: "C) The process of generating induced current in a coil due to relative motion with a magnet"
+            },
+            {
+                question: "4. The magnetic field lines inside a long current-carrying solenoid are:",
+                options: ["A) Parallel straight lines", "B) Circular loops", "C) Curved lines", "D) Diverging from the centre"],
+                answer: "A) Parallel straight lines"
+            },
+            {
+                question: "5. Which rule is used to determine the direction of the force on a current-carrying conductor in a magnetic field?",
+                options: ["A) Right-Hand Thumb Rule", "B) Fleming's Left-Hand Rule", "C) Fleming's Right-Hand Rule", "D) Ohm's Law"],
+                answer: "B) Fleming's Left-Hand Rule"
+            },
+            {
+                question: "6. A device that works on the principle of electromagnetic induction is:",
+                options: ["A) Electric bell", "B) Electric generator", "C) Electric motor", "D) Electric heater"],
+                answer: "B) Electric generator"
+            },
+            {
+                question: "7. The strength of the magnetic field produced by a solenoid can be increased by:",
+                options: ["A) decreasing the current", "B) increasing the number of turns", "C) increasing the diameter of the wire", "D) using a non-magnetic core"],
+                answer: "B) increasing the number of turns"
+            },
+            {
+           question: "8. The core of an electromagnet is made of:",
+                options: ["A) Steel", "B) Iron", "C) Copper", "D) Aluminium"],
+                answer: "B) Iron"
+            },
+            {
+                question: "9. The frequency of AC (alternating current) in India is:",
+                options: ["A) 25 Hz", "B) 50 Hz", "C) 60 Hz", "D) 100 Hz"],
+                answer: "B) 50 Hz"
+            },
+            {
+                question: "10. The phenomenon of short circuiting occurs when:",
+                options: ["A) A switch is turned on", "B) A switch is turned off", "C) Live and neutral wires touch each other", "D) An appliance is connected to the circuit"],
+                answer: "C) Live and neutral wires touch each other"
+            }
+        ]
+    };
+
+    function renderQuiz(chapter) {
+        const questions = chapterQuestions[chapter];
+        let quizHTML = '';
+
+        if (!questions) {
+            quizSection.innerHTML = '<p>No questions available for this chapter.</p>';
+            return;
+        }
+
+        questions.forEach((q, index) => {
+            quizHTML += `
+                <div class="question-card">
+                    <p class="question-text">${q.question}</p>
+                    <div class="options">
+                        ${q.options.map(option => `<button class="option-btn">${option}</button>`).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        
+        quizSection.innerHTML = quizHTML;
+        quizSection.classList.add('active'); // Show the quiz section
+    }
+
+    chapterBoxes.forEach(box => {
+        box.addEventListener('click', (event) => {
+            const chapter = box.dataset.chapter;
+            if (chapter) {
+                event.preventDefault(); // Stop the default link behavior
+                renderQuiz(chapter);
+            }
+        });
+    });
+});
+
+    </script>
+    <script>
+document.querySelectorAll('.open-notes-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const page = btn.getAttribute('data-redirect');
+    if(page){ window.location.href = page; }
+  });
+});
+</script>
+</body>
+</html>

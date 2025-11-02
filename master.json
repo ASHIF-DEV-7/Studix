@@ -1,0 +1,1509 @@
+{
+  "metadata": {
+    "appName": "Studix",
+    "version": "1.0",
+    "description": "Complete data structure for Class 10 study platform",
+    "lastUpdated": "2024"
+  },
+  "navigation": {
+    "mainPages": [
+      {
+        "id": "home",
+        "title": "Home",
+        "url": "main.html",
+        "icon": "🏠",
+        "category": "main"
+      },
+      {
+        "id": "notes",
+        "title": "Keep Notes",
+        "url": "library.html",
+        "icon": "📝",
+        "category": "main"
+      },
+      {
+        "id": "profile",
+        "title": "My Profile",
+        "url": "profile.html",
+        "icon": "👤",
+        "category": "main"
+      },
+      {
+        "id": "feedback",
+        "title": "Feedback",
+        "url": "about.html",
+        "icon": "💬",
+        "category": "main"
+      },
+      {
+        "id": "settings",
+        "title": "Settings",
+        "url": "settings.html",
+        "icon": "⚙️",
+        "category": "main"
+      },
+      {
+        "id": "quiz",
+        "title": "Quiz Questions",
+        "url": "quizopt.html",
+        "icon": "❓",
+        "category": "main"
+      },
+      {
+        "id": "pyq",
+        "title": "Previous Year Questions",
+        "url": "pyq.html",
+        "icon": "📇",
+        "category": "main"
+      },
+      {
+        "id": "search",
+        "title": "Search",
+        "url": "search.html",
+        "icon": "⌕",
+        "category": "main"
+      },
+      {
+        "id": "chatbot",
+        "title": "AI Chatbot",
+        "url": "chatbot.html",
+        "icon": "🤖",
+        "category": "main"
+      },
+      {
+        "id": "allnotes",
+        "title": "All Notes",
+        "url": "all-notes.html",
+        "icon": "📚",
+        "category": "main"
+      }
+    ],
+    "subjectPages": [
+      {
+        "id": "math_main",
+        "title": "Mathematics",
+        "url": "math.html",
+        "category": "subject"
+      },
+      {
+        "id": "english_main",
+        "title": "English",
+        "url": "english.html",
+        "category": "subject"
+      },
+      {
+        "id": "science_main",
+        "title": "Science",
+        "url": "notes.html",
+        "category": "subject"
+      },
+      {
+        "id": "sst_main",
+        "title": "Social Science",
+        "url": "sst.html",
+        "category": "subject"
+      },
+      {
+        "id": "formulas_main",
+        "title": "Formulas Hub",
+        "url": "formulas.html",
+        "category": "subject"
+      }
+    ]
+  },
+  "notes": {
+    "mathematics": {
+      "subject": "Mathematics",
+      "chapters": [
+        {
+          "id": "mch1",
+          "chapterNumber": 1,
+          "title": "Real Numbers",
+          "url": "mch1.html",
+          "keywords": ["real", "numbers", "rational", "irrational", "euclid", "division"]
+        },
+        {
+          "id": "mch2",
+          "chapterNumber": 2,
+          "title": "Polynomials",
+          "url": "mch2.html",
+          "keywords": ["polynomials", "degree", "factorization", "zeroes", "quadratic"]
+        },
+        {
+          "id": "mch3",
+          "chapterNumber": 3,
+          "title": "Pair of Linear Equations in Two Variables",
+          "url": "mch3.html",
+          "keywords": ["linear", "equations", "variables", "graphical", "substitution", "elimination"]
+        },
+        {
+          "id": "mch4",
+          "chapterNumber": 4,
+          "title": "Quadratic Equations",
+          "url": "mch4.html",
+          "keywords": ["quadratic", "equations", "roots", "discriminant", "formula"]
+        },
+        {
+          "id": "mch5",
+          "chapterNumber": 5,
+          "title": "Arithmetic Progressions",
+          "url": "mch5.html",
+          "keywords": ["arithmetic", "progressions", "AP", "sequence", "series", "nth term"]
+        },
+        {
+          "id": "mch6",
+          "chapterNumber": 6,
+          "title": "Triangles",
+          "url": "mch6.html",
+          "keywords": ["triangles", "similarity", "congruence", "pythagoras", "geometry"]
+        },
+        {
+          "id": "mch7",
+          "chapterNumber": 7,
+          "title": "Coordinate Geometry",
+          "url": "mch7.html",
+          "keywords": ["coordinate", "geometry", "distance", "section", "formula", "midpoint"]
+        },
+        {
+          "id": "mch8",
+          "chapterNumber": 8,
+          "title": "Introduction to Trigonometry",
+          "url": "mch8.html",
+          "keywords": ["trigonometry", "ratios", "angles", "sin", "cos", "tan", "identities"]
+        },
+        {
+          "id": "mch9",
+          "chapterNumber": 9,
+          "title": "Applications of Trigonometry",
+          "url": "mch9.html",
+          "keywords": ["trigonometry", "applications", "height", "distance", "elevation", "depression"]
+        },
+        {
+          "id": "mch10",
+          "chapterNumber": 10,
+          "title": "Circles",
+          "url": "mch10.html",
+          "keywords": ["circles", "tangent", "secant", "chord", "geometry"]
+        },
+        {
+          "id": "mch11",
+          "chapterNumber": 11,
+          "title": "Constructions",
+          "url": "mch11.html",
+          "keywords": ["constructions", "compass", "ruler", "tangent", "geometry"]
+        },
+        {
+          "id": "mch12",
+          "chapterNumber": 12,
+          "title": "Areas Related to Circles",
+          "url": "mch12.html",
+          "keywords": ["areas", "circles", "sector", "segment", "perimeter"]
+        },
+        {
+          "id": "mch13",
+          "chapterNumber": 13,
+          "title": "Surface Areas and Volumes",
+          "url": "mch13.html",
+          "keywords": ["surface", "areas", "volumes", "cylinder", "sphere", "cone", "frustum"]
+        },
+        {
+          "id": "mch14",
+          "chapterNumber": 14,
+          "title": "Statistics",
+          "url": "mch14.html",
+          "keywords": ["statistics", "mean", "median", "mode", "data", "ogive"]
+        },
+        {
+          "id": "mch15",
+          "chapterNumber": 15,
+          "title": "Probability",
+          "url": "mch15.html",
+          "keywords": ["probability", "events", "outcomes", "theoretical", "experimental"]
+        }
+      ]
+    },
+    "english": {
+      "subject": "English",
+      "books": {
+        "firstFlight": {
+          "bookName": "First Flight",
+          "prose": [
+            {
+              "id": "ench1",
+              "chapterNumber": 1,
+              "title": "A Letter to God",
+              "url": "Ench1.html",
+              "type": "Prose",
+              "keywords": ["letter", "god", "lencho", "faith", "hailstorm"]
+            },
+            {
+              "id": "ench2",
+              "chapterNumber": 2,
+              "title": "Nelson Mandela: Long Walk to Freedom",
+              "url": "Ench2.html",
+              "type": "Prose",
+              "keywords": ["nelson", "mandela", "freedom", "apartheid", "south africa"]
+            },
+            {
+              "id": "ench3",
+              "chapterNumber": 3,
+              "title": "Two Stories about Flying",
+              "url": "Ench3.html",
+              "type": "Prose",
+              "keywords": ["flying", "stories", "seagull", "pilot", "courage"]
+            },
+            {
+              "id": "ench4",
+              "chapterNumber": 4,
+              "title": "From the Diary of Anne Frank",
+              "url": "Ench4.html",
+              "type": "Prose",
+              "keywords": ["anne", "frank", "diary", "holocaust", "kitty"]
+            },
+            {
+              "id": "ench5",
+              "chapterNumber": 5,
+              "title": "Glimpses of India",
+              "url": "Ench5.html",
+              "type": "Prose",
+              "keywords": ["glimpses", "india", "culture", "traditions", "goa", "coorg"]
+            },
+            {
+              "id": "ench6",
+              "chapterNumber": 6,
+              "title": "Mijbil the Otter",
+              "url": "Ench6.html",
+              "type": "Prose",
+              "keywords": ["mijbil", "otter", "pet", "animal", "maxwell"]
+            },
+            {
+              "id": "ench7",
+              "chapterNumber": 7,
+              "title": "Madam Rides the Bus",
+              "url": "Ench7.html",
+              "type": "Prose",
+              "keywords": ["madam", "bus", "journey", "adventure", "valli"]
+            },
+            {
+              "id": "ench8",
+              "chapterNumber": 8,
+              "title": "The Sermon at Benares",
+              "url": "Ench8.html",
+              "type": "Prose",
+              "keywords": ["sermon", "benares", "buddha", "death", "kisa gotami"]
+            },
+            {
+              "id": "ench9",
+              "chapterNumber": 9,
+              "title": "The Proposal",
+              "url": "Ench9.html",
+              "type": "Prose",
+              "keywords": ["proposal", "marriage", "comedy", "drama", "lomov"]
+            }
+          ],
+          "poetry": [
+            {
+              "id": "ench10",
+              "chapterNumber": 10,
+              "title": "Dust of Snow",
+              "url": "Ench10.html",
+              "type": "Poetry",
+              "poet": "Robert Frost",
+              "keywords": ["dust", "snow", "frost", "mood", "crow"]
+            },
+            {
+              "id": "ench11",
+              "chapterNumber": 11,
+              "title": "Fire and Ice",
+              "url": "Ench11.html",
+              "type": "Poetry",
+              "poet": "Robert Frost",
+              "keywords": ["fire", "ice", "destruction", "desire", "hate"]
+            },
+            {
+              "id": "ench12",
+              "chapterNumber": 12,
+              "title": "A Tiger in the Zoo",
+              "url": "Ench12.html",
+              "type": "Poetry",
+              "poet": "Leslie Norris",
+              "keywords": ["tiger", "zoo", "cage", "freedom", "wildlife"]
+            },
+            {
+              "id": "ench13",
+              "chapterNumber": 13,
+              "title": "How to Tell Wild Animals",
+              "url": "Ench13.html",
+              "type": "Poetry",
+              "poet": "Carolyn Wells",
+              "keywords": ["wild", "animals", "humor", "identification", "tiger", "lion"]
+            },
+            {
+              "id": "ench14",
+              "chapterNumber": 14,
+              "title": "The Ball Poem",
+              "url": "Ench14.html",
+              "type": "Poetry",
+              "poet": "John Berryman",
+              "keywords": ["ball", "poem", "loss", "childhood", "responsibility"]
+            },
+            {
+              "id": "ench15",
+              "chapterNumber": 15,
+              "title": "Amanda!",
+              "url": "Ench15.html",
+              "type": "Poetry",
+              "poet": "Robin Klein",
+              "keywords": ["amanda", "teenager", "freedom", "dreams", "instructions"]
+            },
+            {
+              "id": "ench16",
+              "chapterNumber": 16,
+              "title": "Animals",
+              "url": "Ench16.html",
+              "type": "Poetry",
+              "poet": "Walt Whitman",
+              "keywords": ["animals", "whitman", "nature", "simplicity", "virtues"]
+            },
+            {
+              "id": "ench17",
+              "chapterNumber": 17,
+              "title": "The Trees",
+              "url": "Ench17.html",
+              "type": "Poetry",
+              "poet": "Adrienne Rich",
+              "keywords": ["trees", "forest", "movement", "nature", "freedom"]
+            },
+            {
+              "id": "ench18",
+              "chapterNumber": 18,
+              "title": "Fog",
+              "url": "Ench18.html",
+              "type": "Poetry",
+              "poet": "Carl Sandburg",
+              "keywords": ["fog", "sandburg", "cat", "metaphor", "harbor"]
+            },
+            {
+              "id": "ench19",
+              "chapterNumber": 19,
+              "title": "The Tale of Custard the Dragon",
+              "url": "Ench19.html",
+              "type": "Poetry",
+              "poet": "Ogden Nash",
+              "keywords": ["custard", "dragon", "bravery", "tale", "coward"]
+            },
+            {
+              "id": "ench20",
+              "chapterNumber": 20,
+              "title": "For Anne Gregory",
+              "url": "Ench20.html",
+              "type": "Poetry",
+              "poet": "William Butler Yeats",
+              "keywords": ["anne", "gregory", "beauty", "yeats", "love", "appearance"]
+            }
+          ]
+        },
+        "footprintsWithoutFeet": {
+          "bookName": "Footprints Without Feet",
+          "supplementary": [
+            {
+              "id": "ench21",
+              "chapterNumber": 1,
+              "title": "A Triumph of Surgery",
+              "url": "Ench21.html",
+              "type": "Supplementary",
+              "keywords": ["triumph", "surgery", "dog", "tricki", "veterinary"]
+            },
+            {
+              "id": "ench22",
+              "chapterNumber": 2,
+              "title": "The Thief's Story",
+              "url": "Ench22.html",
+              "type": "Supplementary",
+              "keywords": ["thief", "story", "trust", "friendship", "hari", "anil"]
+            },
+            {
+              "id": "ench23",
+              "chapterNumber": 3,
+              "title": "The Midnight Visitor",
+              "url": "Ench23.html",
+              "type": "Supplementary",
+              "keywords": ["midnight", "visitor", "spy", "thriller", "ausable"]
+            },
+            {
+              "id": "ench24",
+              "chapterNumber": 4,
+              "title": "A Question of Trust",
+              "url": "Ench24.html",
+              "type": "Supplementary",
+              "keywords": ["question", "trust", "safe", "robbery", "horace"]
+            },
+            {
+              "id": "ench25",
+              "chapterNumber": 5,
+              "title": "Footprints Without Feet",
+              "url": "Ench25.html",
+              "type": "Supplementary",
+              "keywords": ["footprints", "invisible", "scientist", "experiment", "griffin"]
+            },
+            {
+              "id": "ench26",
+              "chapterNumber": 6,
+              "title": "The Making of a Scientist",
+              "url": "Ench26.html",
+              "type": "Supplementary",
+              "keywords": ["making", "scientist", "research", "curiosity", "ebright"]
+            },
+            {
+              "id": "ench27",
+              "chapterNumber": 7,
+              "title": "The Necklace",
+              "url": "Ench27.html",
+              "type": "Supplementary",
+              "keywords": ["necklace", "matilda", "pride", "debt", "maupassant"]
+            },
+            {
+              "id": "ench28",
+              "chapterNumber": 8,
+              "title": "The Hack Driver",
+              "url": "Ench28.html",
+              "type": "Supplementary",
+              "keywords": ["hack", "driver", "lawyer", "deception", "lutkins"]
+            },
+            {
+              "id": "ench29",
+              "chapterNumber": 9,
+              "title": "Bholi",
+              "url": "Ench29.html",
+              "type": "Supplementary",
+              "keywords": ["bholi", "education", "confidence", "marriage", "dowry"]
+            },
+            {
+              "id": "ench30",
+              "chapterNumber": 10,
+              "title": "The Book That Saved the Earth",
+              "url": "Ench30.html",
+              "type": "Supplementary",
+              "keywords": ["book", "saved", "earth", "aliens", "nursery", "rhymes"]
+            }
+          ]
+        }
+      }
+    },
+    "science": {
+      "subject": "Science",
+      "branches": {
+        "physics": {
+          "branchName": "Physics",
+          "chapters": [
+            {
+              "id": "phych1",
+              "chapterNumber": 10,
+              "title": "Light - Reflection and Refraction",
+              "url": "lite.html",
+              "keywords": ["light", "reflection", "refraction", "mirrors", "lenses", "ray"]
+            },
+            {
+              "id": "phych2",
+              "chapterNumber": 11,
+              "title": "The Human Eye and the Colourful World",
+              "url": "heacw.html",
+              "keywords": ["human", "eye", "defects", "vision", "dispersion", "scattering", "spectrum"]
+            },
+            {
+              "id": "phych3",
+              "chapterNumber": 12,
+              "title": "Electricity",
+              "url": "elect.html",
+              "keywords": ["electricity", "circuit", "ohm", "resistance", "heating", "power"]
+            },
+            {
+              "id": "phych4",
+              "chapterNumber": 13,
+              "title": "Magnetic Effects of Electric Current",
+              "url": "magnet.html",
+              "keywords": ["magnetism", "electromagnet", "fleming", "motor", "generator", "induction"]
+            }
+          ]
+        },
+        "chemistry": {
+          "branchName": "Chemistry",
+          "chapters": [
+            {
+              "id": "chemch1",
+              "chapterNumber": 1,
+              "title": "Chemical Reactions and Equations",
+              "url": "chem01.html",
+              "keywords": ["chemical", "reactions", "equations", "balance", "oxidation", "reduction"]
+            },
+            {
+              "id": "chemch2",
+              "chapterNumber": 2,
+              "title": "Acids, Bases and Salts",
+              "url": "acid.html",
+              "keywords": ["acids", "bases", "salts", "pH", "indicators", "neutralization"]
+            },
+            {
+              "id": "chemch3",
+              "chapterNumber": 3,
+              "title": "Metals and Non-Metals",
+              "url": "metal.html",
+              "keywords": ["metals", "non-metals", "properties", "reactivity", "alloys", "corrosion"]
+            },
+            {
+              "id": "chemch4",
+              "chapterNumber": 4,
+              "title": "Carbon and its Compounds",
+              "url": "carbon.html",
+              "keywords": ["carbon", "compounds", "covalent", "hydrocarbons", "functional", "groups"]
+            }
+          ]
+        },
+        "biology": {
+          "branchName": "Biology",
+          "chapters": [
+            {
+              "id": "bioch1",
+              "chapterNumber": 6,
+              "title": "Life Processes",
+              "url": "bione.html",
+              "keywords": ["life", "processes", "nutrition", "respiration", "transportation", "excretion"]
+            },
+            {
+              "id": "bioch2",
+              "chapterNumber": 7,
+              "title": "Control and Coordination",
+              "url": "cc.html",
+              "keywords": ["nervous", "system", "hormones", "coordination", "reflex", "brain"]
+            },
+            {
+              "id": "bioch3",
+              "chapterNumber": 8,
+              "title": "How do Organisms Reproduce?",
+              "url": "repro.html",
+              "keywords": ["reproduction", "asexual", "sexual", "human", "puberty"]
+            },
+            {
+              "id": "bioch4",
+              "chapterNumber": 9,
+              "title": "Heredity and Evolution",
+              "url": "here.html",
+              "keywords": ["heredity", "evolution", "mendel", "darwin", "speciation", "genetics"]
+            },
+            {
+              "id": "bioch5",
+              "chapterNumber": 15,
+              "title": "Our Environment",
+              "url": "ouren.html",
+              "keywords": ["environment", "ecosystem", "food", "chain", "pollution", "conservation"]
+            }
+          ]
+        }
+      }
+    },
+"socialScience": {
+      "subject": "Social Science",
+      "branches": {
+        "history": {
+          "branchName": "History - India and the Contemporary World II",
+          "chapters": [
+            {
+              "id": "hch1",
+              "chapterNumber": 1,
+              "title": "The Rise of Nationalism in Europe",
+              "url": "hch1.html",
+              "keywords": ["nationalism", "europe", "revolution", "unification", "germany", "italy"]
+            },
+            {
+              "id": "hch2",
+              "chapterNumber": 2,
+              "title": "Nationalism in India",
+              "url": "hch2.html",
+              "keywords": ["nationalism", "india", "freedom", "movement", "gandhi", "non-cooperation"]
+            },
+            {
+              "id": "hch3",
+              "chapterNumber": 3,
+              "title": "The Making of a Global World",
+              "url": "hch3.html",
+              "keywords": ["global", "world", "trade", "economy", "silk", "routes"]
+            }
+          ]
+        },
+        "geography": {
+          "branchName": "Geography - Contemporary India II",
+          "chapters": [
+            {
+              "id": "geoch1",
+              "chapterNumber": 1,
+              "title": "Resources and Development",
+              "url": "geoch1.html",
+              "keywords": ["resources", "development", "land", "soil", "conservation"]
+            },
+            {
+              "id": "geoch2",
+              "chapterNumber": 2,
+              "title": "Forest and Wildlife Resources",
+              "url": "geoch2.html",
+              "keywords": ["forest", "wildlife", "conservation", "biodiversity", "deforestation"]
+            },
+            {
+              "id": "geoch3",
+              "chapterNumber": 3,
+              "title": "Water Resources",
+              "url": "geoch3.html",
+              "keywords": ["water", "resources", "rain", "harvesting", "scarcity"]
+            },
+            {
+              "id": "geoch4",
+              "chapterNumber": 4,
+              "title": "Agriculture",
+              "url": "geoch4.html",
+              "keywords": ["agriculture", "crops", "farming", "irrigation", "green", "revolution"]
+            },
+            {
+              "id": "geoch5",
+              "chapterNumber": 6,
+              "title": "Manufacturing Industries",
+              "url": "geoch5.html",
+              "keywords": ["manufacturing", "industries", "textile", "iron", "steel"]
+            }
+          ]
+        },
+        "civics": {
+          "branchName": "Civics - Democratic Politics II",
+          "chapters": [
+            {
+              "id": "cch1",
+              "chapterNumber": 1,
+              "title": "Power Sharing",
+              "url": "cch1.html",
+              "keywords": ["power", "sharing", "democracy", "government", "belgium"]
+            },
+            {
+              "id": "cch2",
+              "chapterNumber": 2,
+              "title": "Federalism",
+              "url": "cch2.html",
+              "keywords": ["federalism", "central", "state", "government", "india"]
+            },
+            {
+              "id": "cch3",
+              "chapterNumber": 3,
+              "title": "Democracy and Diversity",
+              "url": "cch3.html",
+              "keywords": ["democracy", "diversity", "differences", "unity", "social"]
+            },
+            {
+              "id": "cch4",
+              "chapterNumber": 4,
+              "title": "Gender, Religion and Caste",
+              "url": "cch4.html",
+              "keywords": ["gender", "religion", "caste", "equality", "discrimination"]
+            },
+            {
+              "id": "cch5",
+              "chapterNumber": 6,
+              "title": "Political Parties",
+              "url": "cch5.html",
+              "keywords": ["political", "parties", "elections", "democracy", "coalition"]
+            }
+          ]
+        },
+        "economics": {
+          "branchName": "Economics - Understanding Economic Development",
+          "chapters": [
+            {
+              "id": "ecoch1",
+              "chapterNumber": 1,
+              "title": "Development",
+              "url": "ecoch1.html",
+              "keywords": ["development", "economic", "growth", "income", "HDI"]
+            },
+            {
+              "id": "ecoch2",
+              "chapterNumber": 2,
+              "title": "Sectors of the Indian Economy",
+              "url": "ecoch2.html",
+              "keywords": ["sectors", "indian", "economy", "primary", "secondary", "tertiary"]
+            },
+            {
+              "id": "ecoch3",
+              "chapterNumber": 3,
+              "title": "Money and Credit",
+              "url": "ecoch3.html",
+              "keywords": ["money", "credit", "banks", "loans", "interest"]
+            },
+            {
+              "id": "ecoch4",
+              "chapterNumber": 4,
+              "title": "Globalisation and the Indian Economy",
+              "url": "ecoch4.html",
+              "keywords": ["globalisation", "indian", "economy", "trade", "MNC"]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "formulas": {
+    "mathematics": [
+      {
+        "id": "trig_formula",
+        "title": "Trigonometry Formulas",
+        "url": "trigonometry.html",
+        "topics": ["sin", "cos", "tan", "identities", "ratios"],
+        "keywords": ["trigonometry", "sin", "cos", "tan", "formula", "identities"]
+      },
+      {
+        "id": "mens_formula",
+        "title": "Mensuration Formulas",
+        "url": "mensuration.html",
+        "topics": ["area", "volume", "perimeter", "surface area"],
+        "keywords": ["mensuration", "area", "volume", "perimeter", "formula"]
+      },
+      {
+        "id": "geom_formula",
+        "title": "Geometry Formulas",
+        "url": "geometry.html",
+        "topics": ["coordinate", "distance", "section", "midpoint"],
+        "keywords": ["geometry", "coordinate", "distance", "formula"]
+      },
+      {
+        "id": "alg_formula",
+        "title": "Algebra Formulas",
+        "url": "algebra.html",
+        "topics": ["identities", "polynomials", "quadratic"],
+        "keywords": ["algebra", "identities", "polynomial", "formula"]
+      },
+      {
+        "id": "stat_formula",
+        "title": "Statistics and Probability",
+        "url": "statics.html",
+        "topics": ["mean", "median", "mode", "probability"],
+        "keywords": ["statistics", "probability", "mean", "median", "formula"]
+      }
+    ],
+    "science": [
+      {
+        "id": "light_formula",
+        "title": "Light - Reflection and Refraction",
+        "url": "phyform.html",
+        "branch": "Physics",
+        "keywords": ["light", "reflection", "refraction", "mirror", "lens", "formula"]
+      },
+      {
+        "id": "elec_formula",
+        "title": "Electricity Formulas",
+        "url": "electform.html",
+        "branch": "Physics",
+        "keywords": ["electricity", "ohm", "resistance", "power", "formula"]
+      },
+      {
+        "id": "eye_formula",
+        "title": "Human Eye and Colourful World",
+        "url": "heacwform.html",
+        "branch": "Physics",
+        "keywords": ["eye", "vision", "power", "lens", "formula"]
+      },
+      {
+        "id": "mag_formula",
+        "title": "Magnetic Effects",
+        "url": "magnetismform.html",
+        "branch": "Physics",
+        "keywords": ["magnetism", "magnetic", "field", "formula"]
+      },
+      {
+        "id": "chem_formula",
+        "title": "Complete Chemistry Formulas",
+        "url": "chemform.html",
+        "branch": "Chemistry",
+        "keywords": ["chemistry", "chemical", "formula", "equations"]
+      },
+      {
+        "id": "bio_formula",
+        "title": "Complete Biology Formulas",
+        "url": "bioform.html",
+        "branch": "Biology",
+        "keywords": ["biology", "life", "formula"]
+      }
+    ]
+  },
+  "previousYearQuestions": {
+    "mathematics": {
+      "complete": [
+        {
+          "id": "m2024",
+          "title": "Mathematics PYQ 2024",
+          "url": "m2024.html",
+          "year": 2024,
+          "type": "complete"
+        },
+        {
+          "id": "m2023",
+          "title": "Mathematics PYQ 2023",
+          "url": "m2023.html",
+          "year": 2023,
+          "type": "complete"
+        },
+        {
+          "id": "m2022",
+          "title": "Mathematics PYQ 2022",
+          "url": "m2022.html",
+          "year": 2022,
+          "type": "complete"
+        }
+      ],
+      "chapterWise": [
+        {
+          "id": "tp2024",
+          "title": "Trigonometry PYQ 2024",
+          "url": "tp2423.html",
+          "chapter": "Trigonometry",
+          "year": 2024
+        },
+        {
+          "id": "tp2023",
+          "title": "Trigonometry PYQ 2023",
+          "url": "tp2323.html",
+          "chapter": "Trigonometry",
+          "year": 2023
+        },
+        {
+          "id": "mp2024",
+          "title": "Mensuration PYQ 2024",
+          "url": "mp2423.html",
+          "chapter": "Mensuration",
+          "year": 2024
+        },
+        {
+          "id": "mp2023",
+          "title": "Mensuration PYQ 2023",
+          "url": "mp2423.html",
+          "chapter": "Mensuration",
+          "year": 2023
+        },
+        {
+          "id": "gp2024",
+          "title": "Geometry PYQ 2024",
+          "url": "gp2423.html",
+          "chapter": "Geometry",
+          "year": 2024
+        },
+        {
+          "id": "gp2023",
+          "title": "Geometry PYQ 2023",
+          "url": "gp2423.html",
+          "chapter": "Geometry",
+          "year": 2023
+        },
+        {
+          "id": "stp2022",
+          "title": "Statistics PYQ 2022",
+          "url": "stp22.html",
+          "chapter": "Statistics",
+          "year": 2022
+        },
+        {
+          "id": "pp2024",
+          "title": "Probability PYQ 2024",
+          "url": "pp24.html",
+          "chapter": "Probability",
+          "year": 2024
+        },
+        {
+          "id": "cp2024",
+          "title": "Construction PYQ 2024",
+          "url": "cp2423.html",
+          "chapter": "Construction",
+          "year": 2024
+        }
+      ]
+    },
+    "science": {
+      "complete": [
+        {
+          "id": "s2024",
+          "title": "Science PYQ 2024",
+          "url": "s2024.html",
+          "year": 2024,
+          "type": "complete"
+        },
+        {
+          "id": "s2023",
+          "title": "Science PYQ 2023",
+          "url": "s2023.html",
+          "year": 2023,
+          "type": "complete"
+        },
+        {
+          "id": "s2022",
+          "title": "Science PYQ 2022",
+          "url": "s2022.html",
+          "year": 2022,
+          "type": "complete"
+        }
+      ],
+      "physics": [
+        {
+          "id": "bb2024",
+          "title": "Physics PYQ 2024",
+          "url": "bb2024.html",
+          "branch": "Physics",
+          "year": 2024
+        },
+        {
+          "id": "php2022",
+          "title": "Physics PYQ 2022",
+          "url": "php2022.html",
+          "branch": "Physics",
+          "year": 2022
+        },
+        {
+          "id": "lp2023",
+          "title": "Light PYQ 2023",
+          "url": "lp2023.html",
+          "branch": "Physics",
+          "chapter": "Light",
+          "year": 2023
+        },
+        {
+          "id": "ep2023",
+          "title": "Electricity PYQ 2023",
+          "url": "ep2023.html",
+          "branch": "Physics",
+          "chapter": "Electricity",
+          "year": 2023
+        },
+        {
+          "id": "mgb2023",
+          "title": "Magnetism PYQ 2022",
+          "url": "mgb2023.html",
+          "branch": "Physics",
+          "chapter": "Magnetism",
+          "year": 2022
+        }
+      ],
+      "chemistry": [
+        {
+          "id": "chp2024",
+          "title": "Chemistry PYQ 2024",
+          "url": "chp2024.html",
+          "branch": "Chemistry",
+          "year": 2024
+        },
+        {
+          "id": "crp2023",
+          "title": "Chemical Reaction PYQ 2023",
+          "url": "crp2023.html",
+          "branch": "Chemistry",
+          "chapter": "Chemical Reactions",
+          "year": 2023
+        },
+        {
+          "id": "2bb2023",
+          "title": "Acid Base PYQ 2023",
+          "url": "2bb2023.html",
+          "branch": "Chemistry",
+          "chapter": "Acids and Bases",
+          "year": 2023
+        },
+        {
+          "id": "mp2022_chem",
+          "title": "Metal PYQ 2022",
+          "url": "mp2022.html",
+          "branch": "Chemistry",
+          "chapter": "Metals",
+          "year": 2022
+        },
+        {
+          "id": "cp2022",
+          "title": "Carbon PYQ 2022",
+          "url": "cp2022.html",
+          "branch": "Chemistry",
+          "chapter": "Carbon",
+          "year": 2022
+        }
+      ],
+      "biology": [
+        {
+          "id": "bp24",
+          "title": "Biology PYQ 2024",
+          "url": "bp24.html",
+          "branch": "Biology",
+          "year": 2024
+        },
+        {
+          "id": "lp23",
+          "title": "Life Process PYQ 2023",
+          "url": "lp23.html",
+          "branch": "Biology",
+          "chapter": "Life Processes",
+          "year": 2023
+        },
+        {
+          "id": "ccp23",
+          "title": "Control and Coordination PYQ 2023",
+          "url": "ccp23.html",
+          "branch": "Biology",
+          "chapter": "Control and Coordination",
+          "year": 2023
+        },
+        {
+          "id": "rp22",
+          "title": "Reproduction PYQ 2022",
+          "url": "rp22.html",
+          "branch": "Biology",
+          "chapter": "Reproduction",
+          "year": 2022
+        },
+        {
+          "id": "hp22",
+          "title": "Heredity PYQ 2022",
+          "url": "hp22.html",
+          "branch": "Biology",
+          "chapter": "Heredity",
+          "year": 2022
+        }
+      ]
+    },
+    "english": {
+      "complete": [
+        {
+          "id": "e2024",
+          "title": "English PYQ 2024",
+          "url": "e2024.html",
+          "year": 2024,
+          "type": "complete"
+        },
+        {
+          "id": "e2023",
+          "title": "English PYQ 2023",
+          "url": "e2023.html",
+          "year": 2023,
+          "type": "complete"
+        }
+      ],
+      "firstFlight": [
+        {
+          "id": "ff2024",
+          "title": "First Flight PYQ 2024",
+          "url": "ff2024.html",
+          "book": "First Flight",
+          "year": 2024
+        },
+        {
+          "id": "ff2023",
+          "title": "First Flight PYQ 2023",
+          "url": "ff2023.html",
+          "book": "First Flight",
+          "year": 2023
+        },
+        {
+          "id": "ff2022",
+          "title": "First Flight PYQ 2022",
+          "url": "ff2022.html",
+          "book": "First Flight",
+          "year": 2022
+        }
+      ],
+      "footprintsWithoutFeet": [
+        {
+          "id": "fp2024",
+          "title": "Footprints Without Feet PYQ 2024",
+          "url": "fp2024.html",
+          "book": "Footprints Without Feet",
+          "year": 2024
+        },
+        {
+          "id": "fp2023",
+          "title": "Footprints Without Feet PYQ 2023",
+          "url": "fp2023.html",
+          "book": "Footprints Without Feet",
+          "year": 2023
+        },
+        {
+          "id": "fp2022",
+          "title": "Footprints Without Feet PYQ 2022",
+          "url": "fp2022.html",
+          "book": "Footprints Without Feet",
+          "year": 2022
+        }
+      ],
+      "poetry": [
+        {
+          "id": "p2024",
+          "title": "Poetry PYQ 2024",
+          "url": "p2024.html",
+          "type": "Poetry",
+          "year": 2024
+        },
+        {
+          "id": "p2023",
+          "title": "Poetry PYQ 2023",
+          "url": "p2023.html",
+          "type": "Poetry",
+          "year": 2023
+        },
+        {
+          "id": "p2022",
+          "title": "Poetry PYQ 2022",
+          "url": "p2022.html",
+          "type": "Poetry",
+          "year": 2022
+        }
+      ]
+    },
+    "socialScience": {
+      "complete": [
+        {
+          "id": "ss2024",
+          "title": "Social Science PYQ 2024",
+          "url": "ss2024.html",
+          "year": 2024,
+          "type": "complete"
+        },
+        {
+          "id": "sstpyq24",
+          "title": "SST Complete PYQ 2024",
+          "url": "sstpyq24.html",
+          "year": 2024,
+          "type": "complete"
+        },
+        {
+          "id": "ss2023",
+          "title": "Social Science PYQ 2023",
+          "url": "ss2023.html",
+          "year": 2023,
+          "type": "complete"
+        },
+        {
+          "id": "sstpyq23",
+          "title": "SST Complete PYQ 2023",
+          "url": "sstpyq23.html",
+          "year": 2023,
+          "type": "complete"
+        },
+        {
+          "id": "sstpyq22",
+          "title": "SST Complete PYQ 2022",
+          "url": "sstpyq22.html",
+          "year": 2022,
+          "type": "complete"
+        }
+      ]
+    }
+  },
+  "quizzes": {
+    "mathematics": {
+      "general": [
+        {
+          "id": "mb",
+          "title": "Math Quiz - Basic",
+          "url": "mb.html",
+          "difficulty": "basic",
+          "description": "Fundamental math concepts and operations"
+        },
+        {
+          "id": "ma",
+          "title": "Math Quiz - Advanced",
+          "url": "ma.html",
+          "difficulty": "advanced",
+          "description": "Complex mathematical problems and concepts"
+        }
+      ],
+      "topicWise": [
+        {
+          "id": "trigquiz",
+          "title": "Math Quiz - Trigonometry",
+          "url": "trigquiz.html",
+          "topic": "Trigonometry",
+          "description": "Trigonometric ratios, identities, and applications"
+        },
+        {
+          "id": "mensquiz",
+          "title": "Mensuration Quiz",
+          "url": "mens.html",
+          "topic": "Mensuration",
+          "description": "Area, volume, and surface area calculations"
+        },
+        {
+          "id": "geomquiz",
+          "title": "Geometry Quiz",
+          "url": "gq.html",
+          "topic": "Geometry",
+          "description": "Coordinate geometry and triangle properties"
+        },
+        {
+          "id": "statquiz",
+          "title": "Statistics and Probability Quiz",
+          "url": "spq.html",
+          "topic": "Statistics & Probability",
+          "description": "Statistical measures and probability problems"
+        }
+      ]
+    },
+"science": [
+      {
+        "id": "phyquiz",
+        "title": "Science Quiz - Physics",
+        "url": "phyquiz.html",
+        "branch": "Physics",
+        "description": "Light, electricity, and magnetism concepts"
+      },
+      {
+        "id": "chemquiz",
+        "title": "Science Quiz - Chemistry",
+        "url": "chemquiz.html",
+        "branch": "Chemistry",
+        "description": "Chemical reactions, acids, bases, and metals"
+      },
+      {
+        "id": "bioquiz",
+        "title": "Science Quiz - Biology",
+        "url": "bioquiz.html",
+        "branch": "Biology",
+        "description": "Life processes, reproduction, and heredity"
+      },
+      {
+        "id": "testquiz",
+        "title": "Chemistry/Biology Quiz",
+        "url": "test.html",
+        "branch": "Mixed",
+        "description": "Combined chemistry and biology concepts"
+      }
+    ],
+    "english": [
+      {
+        "id": "grquiz",
+        "title": "English Quiz - Grammar",
+        "url": "grquiz.html",
+        "type": "Grammar",
+        "description": "Grammar rules, tenses, and sentence structure"
+      },
+      {
+        "id": "litquiz",
+        "title": "English Quiz - Literature",
+        "url": "literaturequiz.html",
+        "type": "Literature",
+        "description": "Prose, poetry, and literary analysis"
+      }
+    ],
+    "socialScience": [
+      {
+        "id": "histquiz",
+        "title": "SST Quiz - History",
+        "url": "historyquiz.html",
+        "branch": "History",
+        "description": "Historical events, nationalism, and world wars"
+      },
+      {
+        "id": "geoquiz",
+        "title": "SST Quiz - Geography",
+        "url": "geoquiz.html",
+        "branch": "Geography",
+        "description": "Resources, agriculture, and manufacturing"
+      },
+      {
+        "id": "ecoquiz",
+        "title": "Economics Quiz",
+        "url": "ecoquiz.html",
+        "branch": "Economics",
+        "description": "Development, sectors, and globalization"
+      },
+      {
+        "id": "civicsquiz",
+        "title": "Civics Quiz",
+        "url": "civicsquiz.html",
+        "branch": "Civics",
+        "description": "Democracy, federalism, and political parties"
+      }
+    ],
+    "special": [
+      {
+        "id": "timer",
+        "title": "Timer",
+        "url": "timer.html",
+        "type": "tool",
+        "description": "Study timer and productivity tracker"
+      },
+      {
+        "id": "tictactoe",
+        "title": "Tic Tac Toe",
+        "url": "tictac.html",
+        "type": "game",
+        "description": "Classic strategy game for brain exercise"
+      },
+      {
+        "id": "iqmeter",
+        "title": "IQ Meter",
+        "url": "iq.html",
+        "type": "assessment",
+        "description": "Intelligence quotient assessment test"
+      }
+    ],
+    "mixed": [
+      {
+        "id": "gkquiz",
+        "title": "General Knowledge Quiz",
+        "url": "gk.html",
+        "type": "general",
+        "description": "Mixed topics from all subjects and current affairs"
+      },
+      {
+        "id": "msubquiz",
+        "title": "Mixed Subject Challenge",
+        "url": "msub.html",
+        "type": "mixed",
+        "description": "Combined questions from Math, Science, English, and SST"
+      },
+      {
+        "id": "logicquiz",
+        "title": "Brain Teaser Quiz",
+        "url": "logic.html",
+        "type": "logic",
+        "description": "Logic puzzles and critical thinking challenges"
+      }
+    ]
+  },
+  "recommendedContent": [
+    {
+      "id": "rec_notes",
+      "title": "Keep Notes",
+      "description": "Organize and save your personal study notes",
+      "url": "library.html",
+      "image": "notes.png",
+      "priority": 1
+    },
+    {
+      "id": "rec_ai",
+      "title": "AI Chatbot Tutor",
+      "description": "Get instant help with your studies",
+      "url": "chatbot.html",
+      "image": "ai.png",
+      "priority": 2
+    },
+    {
+      "id": "rec_quiz",
+      "title": "Interactive Quizzes",
+      "description": "Test your knowledge with engaging quizzes",
+      "url": "quizopt.html",
+      "image": "quiz.png",
+      "priority": 3
+    },
+    {
+      "id": "rec_allnotes",
+      "title": "All Study Notes",
+      "description": "Complete collection of all subject notes",
+      "url": "all-notes.html",
+      "image": "all-notes.png",
+      "priority": 4
+    }
+  ],
+  "searchCategories": {
+    "filters": [
+      {
+        "id": "all",
+        "label": "All Results",
+        "active": true
+      },
+      {
+        "id": "math_notes",
+        "label": "Math Notes"
+      },
+      {
+        "id": "english_notes",
+        "label": "English Notes"
+      },
+      {
+        "id": "sci_notes",
+        "label": "Science Notes"
+      },
+      {
+        "id": "sst_notes",
+        "label": "Social Science"
+      },
+      {
+        "id": "formula",
+        "label": "Formulas"
+      },
+      {
+        "id": "math_pyq",
+        "label": "Math PYQ"
+      },
+      {
+        "id": "english_pyq",
+        "label": "English PYQ"
+      },
+      {
+        "id": "sci_pyq",
+        "label": "Science PYQ"
+      },
+      {
+        "id": "sst_pyq",
+        "label": "SST PYQ"
+      },
+      {
+        "id": "main",
+        "label": "Main Pages"
+      }
+    ],
+    "popularSearches": [
+      "trigonometry",
+      "quadratic equations",
+      "light reflection",
+      "nationalism",
+      "anne frank",
+      "pyq 2024",
+      "pyq 2023",
+      "previous year questions",
+      "math pyq",
+      "science pyq",
+      "english pyq",
+      "sst pyq",
+      "chemistry pyq",
+      "biology pyq",
+      "algebra",
+      "electricity",
+      "federalism",
+      "circles"
+    ]
+  },
+  "uiConfig": {
+    "colors": {
+      "primary": "#FFB74D",
+      "secondary": "#90CAF9",
+      "accent": "#E91E63",
+      "background": "#1E1E2F",
+      "cardBackground": "#1E253D",
+      "text": "#FFFFFF",
+      "textSecondary": "#B0BEC5"
+    },
+    "cardThemes": {
+      "math": {
+        "gradient": "linear-gradient(135deg, #3498DB 0%, #2980B9 100%)",
+        "color": "#3498DB"
+      },
+      "science": {
+        "gradient": "linear-gradient(135deg, #27AE60 0%, #2ECC71 100%)",
+        "color": "#27AE60"
+      },
+      "english": {
+        "gradient": "linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%)",
+        "color": "#8E44AD"
+      },
+      "sst": {
+        "gradient": "linear-gradient(135deg, #E67E22 0%, #D35400 100%)",
+        "color": "#E67E22"
+      },
+      "special": {
+        "gradient": "linear-gradient(135deg, #E91E63 0%, #AD1457 100%)",
+        "color": "#E91E63"
+      },
+      "mixed": {
+        "gradient": "linear-gradient(135deg, #1ABC9C 0%, #16A085 100%)",
+        "color": "#1ABC9C"
+      }
+    }
+  }
+}

@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Science Quiz - Futuristic Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #000a1a 100%);
+            color: #00ffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+        }
+        
+        /* Neon Glow Effects */
+        .neon-text {
+            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+        }
+        
+        .neon-border {
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 10px #00ffff, inset 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Main Menu */
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 40px;
+        }
+        
+        .menu-section {
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .section-title {
+            color: #ff00ff;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-family: sherif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #ff00ff, #ff0080);
+            color: #fff;
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, #00ff00, #80ff00);
+            color: #000;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Quiz Interface */
+        .quiz-container {
+            display: none;
+            padding: 30px;
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .quiz-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        
+        .timer {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff0000;
+            color: #ff4444;
+        }
+        
+        .score {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff00;
+            color: #44ff44;
+        }
+        
+        .question-counter {
+            background: rgba(255, 255, 0, 0.2);
+            border: 1px solid #ffff00;
+            color: #ffff44;
+        }
+        
+        /* Question Card */
+        .question-card {
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .subject-tag {
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .biology { background: linear-gradient(45deg, #00ff00, #80ff80); color: #000; }
+        .chemistry { background: linear-gradient(45deg, #ff8000, #ffff00); color: #000; }
+        
+        .pyq-badge {
+            background: linear-gradient(45deg, #ff0080, #ff00ff);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+        }
+        
+        .option.selected {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .option.correct {
+            background: rgba(0, 255, 0, 0.2);
+            border-color: #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+        
+        .option.incorrect {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .option-label {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        /* Explanation */
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 0, 0.1);
+            border-left: 4px solid #ffff00;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Quiz Controls */
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* Results */
+        .results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .final-score {
+            font-size: 3rem;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+        
+        .performance-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Import/Export */
+        .import-export {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #8000ff, #ff00ff);
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(128, 0, 255, 0.3);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title { font-size: 2rem; }
+            .quiz-header { flex-direction: column; gap: 15px; }
+            .quiz-info { justify-content: center; }
+            .options { grid-template-columns: 1fr; }
+            .quiz-controls { flex-direction: column; }
+            .question-header { flex-direction: column; gap: 10px; }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 255, 255, 0.3);
+            border-top: 3px solid #00ffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Hidden class */
+        .hidden { display: none !important; }
+        
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.success { background: linear-gradient(45deg, #00ff00, #80ff00); color: #000; }
+        .toast.error { background: linear-gradient(45deg, #ff0000, #ff8080); }
+        .toast.info { background: linear-gradient(45deg, #00ffff, #0080ff); color: #000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title neon-text">SCIENCE QUIZ 2025</h1>
+            <p style="color: #ff00ff; font-size: 1.2rem;">Class 10 • Biology & Chemistry • Futuristic Edition</p>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="main-menu glass">
+            <div class="menu-section">
+                <h2 class="section-title neon-text">Choose Game Mode</h2>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="startQuiz('practice')">
+                        🧪 Practice Mode
+                        <small style="display: block; font-size: 0.8em; opacity: 0.8;">Instant feedback & explanations</small>
+                    </button>
+                    <button class="btn btn-secondary" onclick="startQuiz('test')">
+                        ⏱️ Test Mode
+                        <small style="display: block; font-size: 0.8em; opacity: 0.8;">Timed quiz with final score</small>
+                    </button>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2 class="section-title neon-text">Select Subject</h2>
+                <div class="button-group">
+                    <button class="btn btn-success" onclick="setSubject('biology')">
+                        🧬 Biology Only
+                    </button>
+                    <button class="btn btn-success" onclick="setSubject('chemistry')">
+                        ⚗️ Chemistry Only
+                    </button>
+                    <button class="btn btn-success" onclick="setSubject('mixed')">
+                        🔬 Mixed (Both)
+                    </button>
+                </div>
+            </div>
+            <div class="import-export glass">
+                <h3 style="color: #ff00ff; margin-bottom: 15px;">Import/Export Questions</h3>
+                <input type="file" id="importFile" class="file-input" accept=".json,.csv" onchange="importQuestions(event)">
+                <label for="importFile" class="file-label">📁 Import Questions</label>
+                <button class="btn btn-primary" onclick="exportQuestions()">💾 Export Questions</button>
+                <button class="btn btn-secondary" onclick="resetQuestions()">🔄 Reset to Default</button>
+            </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quizContainer" class="quiz-container">
+            <!-- Quiz Header -->
+            <div class="quiz-header glass">
+                <div class="quiz-info">
+                    <div class="info-item question-counter">
+                        <span id="questionCounter">1 / 50</span>
+                    </div>
+                    <div class="info-item score">
+                        Score: <span id="currentScore">0</span>
+                    </div>
+                    <div class="info-item timer" id="timerDisplay" style="display: none;">
+                        Time: <span id="timeLeft">30:00</span>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="exitQuiz()">🏠 Exit Quiz</button>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-card glass">
+                <div class="question-header">
+                    <span class="subject-tag" id="subjectTag">Biology</span>
+                    <span class="pyq-badge" id="pyqBadge" style="display: none;">PYQ 2022</span>
+                </div>
+                
+                <div class="question-text" id="questionText">
+                    Loading question...
+                </div>
+                
+                <div class="options" id="optionsContainer">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+                
+                <div class="explanation" id="explanationContainer">
+                    <strong>💡 Explanation:</strong>
+                    <p id="explanationText"></p>
+                </div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="quiz-controls glass">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>⬅️ Previous</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next ➡️</button>
+                <button class="btn btn-success" id="submitBtn" onclick="submitQuiz()" style="display: none;">🏁 Submit Quiz</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="resultsContainer" class="results glass hidden">
+            <h2 class="neon-text" style="color: #00ffff; margin-bottom: 20px;">🎉 Quiz Complete!</h2>
+            <div class="final-score" id="finalScore">85%</div>
+            <div class="performance-text" id="performanceText">Excellent Work!</div>
+            
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 10px;">
+                    <span style="color: #00ff00;">✅ Correct: </span>
+                    <span id="correctCount">42</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span style="color: #ff0000;">❌ Incorrect: </span>
+                    <span id="incorrectCount">8</span>
+                </div>
+                <div>
+                    <span style="color: #ffff00;">⏱️ Time Taken: </span>
+                    <span id="timeTaken">25:30</span>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="restartQuiz()">🔄 Play Again</button>
+                <button class="btn btn-secondary" onclick="backToMenu()">🏠 Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let currentMode = 'practice';
+        let currentSubject = 'mixed';
+        let currentQuestionIndex = 0;
+        let questions = [];
+        let userAnswers = [];
+        let score = 0;
+        let timer = null;
+        let timeLeft = 1800; // 30 minutes in seconds
+        let startTime = null;
+
+        // Default Question Bank (50 Biology + 50 Chemistry)
+        const defaultQuestions = [
+            // Biology Questions (50)
+            {
+                id: "BIO_01",
+                subject: "biology",
+                question: "Which indicator turns pink in a basic solution?",
+                options: ["Methyl orange", "Phenolphthalein", "Red litmus", "Turmeric"],
+                answerIndex: 1,
+                explanation: "Phenolphthalein turns pink in basic (alkaline) solutions and is colorless in acidic solutions.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_02",
+                subject: "biology",
+                question: "The function of stomata is to:",
+                options: ["Transport water", "Exchange gases", "Store food", "Provide support"],
+                answerIndex: 1,
+                explanation: "Stomata are tiny pores on leaves that allow exchange of gases (oxygen and carbon dioxide) during photosynthesis and respiration.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_03",
+                subject: "biology",
+                question: "Which enzyme breaks down starch into sugar?",
+                options: ["Pepsin", "Amylase", "Lipase", "Trypsin"],
+                answerIndex: 1,
+                explanation: "Amylase enzyme breaks down starch into simple sugars during digestion.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_04",
+                subject: "biology",
+                question: "The basic unit of life is:",
+                options: ["Tissue", "Organ", "Cell", "Organism"],
+                answerIndex: 2,
+                explanation: "Cell is the basic structural and functional unit of all living organisms.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_05",
+                subject: "biology",
+                question: "Chlorophyll is present in:",
+                options: ["Mitochondria", "Nucleus", "Chloroplast", "Ribosome"],
+                answerIndex: 2,
+                explanation: "Chlorophyll, the green pigment responsible for photosynthesis, is present in chloroplasts.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_06",
+                subject: "biology",
+                question: "The process by which plants make their own food is called:",
+                options: ["Respiration", "Photosynthesis", "Transpiration", "Reproduction"],
+                answerIndex: 1,
+                explanation: "Photosynthesis is the process by which green plants make their own food using sunlight, carbon dioxide, and water.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_07",
+                subject: "biology",
+                question: "Which part of the brain controls balance and posture?",
+                options: ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"],
+                answerIndex: 1,
+                explanation: "The cerebellum is responsible for maintaining balance, posture, and coordinating voluntary movements.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_08",
+                subject: "biology",
+                question: "The male reproductive part of a flower is:",
+                options: ["Pistil", "Stamen", "Sepal", "Petal"],
+                answerIndex: 1,
+                explanation: "Stamen is the male reproductive organ of a flower, consisting of anther and filament.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_09",
+                subject: "biology",
+                question: "Which hormone regulates blood sugar level?",
+                options: ["Insulin", "Thyroxine", "Adrenaline", "Growth hormone"],
+                answerIndex: 0,
+                explanation: "Insulin hormone, produced by pancreas, regulates blood glucose levels by facilitating glucose uptake by cells.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_10",
+                subject: "biology",
+                question: "The powerhouse of the cell is:",
+                options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi body"],
+                answerIndex: 1,
+                explanation: "Mitochondria are called the powerhouse of the cell as they produce energy (ATP) through cellular respiration.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_11",
+                subject: "biology",
+                question: "Which blood group is called universal donor?",
+                options: ["A", "B", "AB", "O"],
+                answerIndex: 3,
+                explanation: "Blood group O is called universal donor as it can donate blood to all other blood groups.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_12",
+                subject: "biology",
+                question: "The longest bone in human body is:",
+                options: ["Tibia", "Femur", "Humerus", "Radius"],
+                answerIndex: 1,
+                explanation: "Femur (thigh bone) is the longest and strongest bone in the human body.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "BIO_13",
+                subject: "biology",
+                question: "Photosynthesis occurs in which part of the plant cell?",
+                options: ["Mitochondria", "Nucleus", "Chloroplast", "Vacuole"],
+                answerIndex: 2,
+                explanation: "Photosynthesis occurs in chloroplasts, which contain chlorophyll pigments.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_14",
+                subject: "biology",
+                question: "The study of heredity is called:",
+                options: ["Ecology", "Genetics", "Taxonomy", "Morphology"],
+                answerIndex: 1,
+                explanation: "Genetics is the branch of biology that studies heredity and variation in organisms.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_15",
+                subject: "biology",
+                question: "Which organ purifies blood in human body?",
+                options: ["Heart", "Liver", "Kidney", "Lung"],
+                answerIndex: 2,
+                explanation: "Kidneys filter and purify blood by removing waste products and excess water.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_16",
+                subject: "biology",
+                question: "The process of water movement through a plant is called:",
+                options: ["Photosynthesis", "Respiration", "Transpiration", "Osmosis"],
+                answerIndex: 2,
+                explanation: "Transpiration is the process of water movement through plants and its evaporation from aerial parts.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_17",
+                subject: "biology",
+                question: "Which vitamin is produced by skin when exposed to sunlight?",
+                options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+                answerIndex: 3,
+                explanation: "Vitamin D is produced by skin when exposed to UVB radiation from sunlight.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_18",
+                subject: "biology",
+                question: "The smallest unit that can evolve is:",
+                options: ["Individual", "Population", "Species", "Ecosystem"],
+                answerIndex: 1,
+                explanation: "Population is the smallest unit that can evolve because evolution requires genetic changes across generations.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_19",
+                subject: "biology",
+                question: "Which part of eye controls amount of light entering?",
+                options: ["Cornea", "Lens", "Iris", "Retina"],
+                answerIndex: 2,
+                explanation: "Iris controls the amount of light entering the eye by adjusting the size of the pupil.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "BIO_20",
+                subject: "biology",
+                question: "The functional unit of kidney is:",
+                options: ["Neuron", "Nephron", "Alveoli", "Villus"],
+                answerIndex: 1,
+                explanation: "Nephron is the functional unit of kidney responsible for filtration and urine formation.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_21",
+                subject: "biology",
+                question: "Which gas is released during photosynthesis?",
+                options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+                answerIndex: 1,
+                explanation: "Oxygen is released as a byproduct during photosynthesis when plants make glucose.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_22",
+                subject: "biology",
+                question: "The thread-like structures carrying genes are called:",
+                options: ["Chromosomes", "Ribosomes", "Centrosomes", "Lysosomes"],
+                answerIndex: 0,
+                explanation: "Chromosomes are thread-like structures in the nucleus that carry genes and genetic information.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_23",
+                subject: "biology",
+                question: "Which enzyme is present in saliva?",
+                options: ["Pepsin", "Amylase", "Lipase", "Trypsin"],
+                answerIndex: 1,
+                explanation: "Salivary amylase (ptyalin) is present in saliva and begins starch digestion in the mouth.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_24",
+                subject: "biology",
+                question: "The site of protein synthesis is:",
+                options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi apparatus"],
+                answerIndex: 2,
+                explanation: "Ribosomes are the sites of protein synthesis where amino acids are assembled into proteins.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_25",
+                subject: "biology",
+                question: "Which blood vessel carries blood away from heart?",
+                options: ["Vein", "Artery", "Capillary", "Venule"],
+                answerIndex: 1,
+                explanation: "Arteries carry oxygenated blood away from the heart to various parts of the body.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "BIO_26",
+                subject: "biology",
+                question: "The growth of stem towards light is called:",
+                options: ["Phototropism", "Geotropism", "Hydrotropism", "Thigmotropism"],
+                answerIndex: 0,
+                explanation: "Phototropism is the growth response of plants towards light stimulus.",
+                isPYQ: false,
+                year: null
+            },
+            {
+            id: "BIO_27",
+                subject: "biology",
+                question: "Which part of plant absorbs water and minerals?",
+                options: ["Stem", "Leaves", "Roots", "Flowers"],
+                answerIndex: 2,
+                explanation: "Roots absorb water and minerals from the soil through root hairs.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_28",
+                subject: "biology",
+                question: "The oxygen-carrying protein in blood is:",
+                options: ["Albumin", "Globulin", "Hemoglobin", "Fibrinogen"],
+                answerIndex: 2,
+                explanation: "Hemoglobin is the iron-containing protein in red blood cells that carries oxygen.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_29",
+                subject: "biology",
+                question: "Which organelle is called 'suicide bags' of the cell?",
+                options: ["Mitochondria", "Ribosomes", "Lysosomes", "Vacuoles"],
+                answerIndex: 2,
+                explanation: "Lysosomes are called 'suicide bags' because they digest worn-out organelles and can destroy the cell.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_30",
+                subject: "biology",
+                question: "The process of breakdown of glucose without oxygen is:",
+                options: ["Aerobic respiration", "Anaerobic respiration", "Photosynthesis", "Transpiration"],
+                answerIndex: 1,
+                explanation: "Anaerobic respiration is the breakdown of glucose without oxygen, producing less energy.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_31",
+                subject: "biology",
+                question: "Which gland is known as master gland?",
+                options: ["Thyroid", "Adrenal", "Pituitary", "Pancreas"],
+                answerIndex: 2,
+                explanation: "Pituitary gland is called master gland as it controls other endocrine glands.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_32",
+                subject: "biology",
+                question: "The cell wall of plant cells is made up of:",
+                options: ["Protein", "Cellulose", "Lipid", "Starch"],
+                answerIndex: 1,
+                explanation: "Plant cell walls are primarily made of cellulose, providing structural support.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_33",
+                subject: "biology",
+                question: "Which type of reproduction involves only one parent?",
+                options: ["Sexual", "Asexual", "Binary fission", "Both B and C"],
+                answerIndex: 3,
+                explanation: "Asexual reproduction involves only one parent, and binary fission is a type of asexual reproduction.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "BIO_34",
+                subject: "biology",
+                question: "The largest artery in human body is:",
+                options: ["Pulmonary artery", "Carotid artery", "Aorta", "Coronary artery"],
+                answerIndex: 2,
+                explanation: "Aorta is the largest artery that carries oxygenated blood from the heart to the body.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                   id: "BIO_35",
+                subject: "biology",
+                question: "Which part of the flower develops into fruit?",
+                options: ["Stamen", "Pistil", "Ovary", "Petal"],
+                answerIndex: 2,
+                explanation: "The ovary of the flower develops into fruit after fertilization.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_36",
+                subject: "biology",
+                question: "The maintenance of constant internal environment is called:",
+                options: ["Metabolism", "Homeostasis", "Adaptation", "Evolution"],
+                answerIndex: 1,
+                explanation: "Homeostasis is the maintenance of stable internal conditions in living organisms.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_37",
+                subject: "biology",
+                question: "Which mineral is essential for formation of hemoglobin?",
+                options: ["Calcium", "Iron", "Phosphorus", "Sodium"],
+                answerIndex: 1,
+                explanation: "Iron is essential for the formation of hemoglobin in red blood cells.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_38",
+                subject: "biology",
+                question: "The process of shedding leaves is called:",
+                options: ["Transpiration", "Abscission", "Photosynthesis", "Respiration"],
+                answerIndex: 1,
+                explanation: "Abscission is the natural process by which plants shed their leaves, flowers, or fruits.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_39",
+                subject: "biology",
+                question: "Which component of blood helps in clotting?",
+                options: ["RBC", "WBC", "Platelets", "Plasma"],
+                answerIndex: 2,
+                explanation: "Platelets (thrombocytes) are responsible for blood clotting and wound healing.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "BIO_40",
+                subject: "biology",
+                question: "The opening and closing of stomata is controlled by:",
+                options: ["Epidermal cells", "Guard cells", "Parenchyma cells", "Sclerenchyma cells"],
+                answerIndex: 1,
+                explanation: "Guard cells control the opening and closing of stomata based on water content.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_41",
+                subject: "biology",
+                question: "Which tissue transports water in plants?",
+                options: ["Phloem", "Xylem", "Cambium", "Epidermis"],
+                answerIndex: 1,
+                explanation: "Xylem tissue transports water and minerals from roots to other parts of the plant.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_42",
+                subject: "biology",
+                question: "The brain and spinal cord together form:",
+                options: ["Peripheral nervous system", "Central nervous system", "Autonomic nervous system", "Sympathetic nervous system"],
+                answerIndex: 1,
+                explanation: "The central nervous system consists of the brain and spinal cord.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_43",
+                subject: "biology",
+                question: "Which hormone is responsible for fight or flight response?",
+                options: ["Insulin", "Thyroxine", "Adrenaline", "Growth hormone"],
+                answerIndex: 2,
+                explanation: "Adrenaline (epinephrine) is responsible for the fight or flight response during emergencies.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_44",
+                subject: "biology",
+                question: "The number of chambers in human heart is:",
+                options: ["Two", "Three", "Four", "Five"],
+                answerIndex: 2,
+                explanation: "Human heart has four chambers: two atria and two ventricles.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "BIO_45",
+                subject: "biology",
+                question: "Which part of eye forms image?",
+                options: ["Cornea", "Lens", "Iris", "Retina"],
+                answerIndex: 3,
+                explanation: "Retina contains photoreceptors that form images and send signals to the brain.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "BIO_46",
+                subject: "biology",
+                question: "The waxy layer on leaves that prevents water loss is:",
+                options: ["Epidermis", "Cuticle", "Stomata", "Mesophyll"],
+                answerIndex: 1,
+                explanation: "Cuticle is a waxy protective layer on leaves that reduces water loss.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_47",
+                subject: "biology",
+                question: "Which structure connects muscle to bone?",
+                options: ["Ligament", "Tendon", "Cartilage", "Joint"],
+                answerIndex: 1,
+                explanation: "Tendons are fibrous connective tissues that connect muscles to bones.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "BIO_48",
+                subject: "biology",
+                question: "The process of converting nitrogen gas into compounds is:",
+                options: ["Nitrogen cycle", "Nitrogen fixation", "Nitrification", "Denitrification"],
+                answerIndex: 1,
+                explanation: "Nitrogen fixation is the process of converting atmospheric nitrogen into compounds usable by plants.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "BIO_49",
+                subject: "biology",
+                question: "Which organelle stores water in plant cells?",
+                options: ["Nucleus", "Mitochondria", "Vacuole", "Chloroplast"],
+                answerIndex: 2,
+                explanation: "Large central vacuoles in plant cells store water and maintain turgor pressure.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "BIO_50",
+                subject: "biology",
+                question: "The study of fossils is called:",
+                options: ["Archaeology", "Paleontology", "Anthropology", "Geology"],
+                answerIndex: 1,
+                explanation: "Paleontology is the scientific study of fossils to understand past life forms.",
+                isPYQ: true,
+                year: 2020
+            },
+
+            // Chemistry Questions (50)
+            {
+                id: "CHEM_01",
+                subject: "chemistry",
+                question: "The pH of pure water is:",
+                options: ["6", "7", "8", "9"],
+                answerIndex: 1,
+                explanation: "Pure water has a pH of 7, which is considered neutral on the pH scale.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_02",
+                subject: "chemistry",
+                question: "Which gas is produced when metals react with acids?",
+                options: ["Oxygen", "Carbon dioxide", "Hydrogen", "Nitrogen"],
+                answerIndex: 2,
+                explanation: "When metals react with acids, hydrogen gas is produced along with a salt.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_03",
+                subject: "chemistry",
+                question: "The chemical formula of methane is:",
+                options: ["CH₃", "CH₄", "C₂H₆", "C₂H₄"],
+                answerIndex: 1,
+                explanation: "Methane has the chemical formula CH₄, consisting of one carbon and four hydrogen atoms.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                                id: "CHEM_04",
+                subject: "chemistry",
+                question: "Which element is used in pencils?",
+                options: ["Lead", "Carbon", "Silicon", "Tin"],
+                answerIndex: 1,
+                explanation: "Pencil 'lead' is actually made of graphite, which is a form of carbon.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_05",
+                subject: "chemistry",
+                question: "The process of coating iron with zinc is called:",
+                options: ["Galvanization", "Electroplating", "Anodizing", "Painting"],
+                answerIndex: 0,
+                explanation: "Galvanization is the process of coating iron or steel with zinc to prevent rusting.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_06",
+                subject: "chemistry",
+                question: "Which acid is present in vinegar?",
+                options: ["Hydrochloric acid", "Sulfuric acid", "Acetic acid", "Nitric acid"],
+                answerIndex: 2,
+                explanation: "Vinegar contains acetic acid (CH₃COOH), which gives it its sour taste and smell.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_07",
+                subject: "chemistry",
+                question: "The atomic number represents:",
+                options: ["Number of neutrons", "Number of protons", "Number of electrons", "Atomic mass"],
+                answerIndex: 1,
+                explanation: "Atomic number is the number of protons in the nucleus of an atom.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_08",
+                subject: "chemistry",
+                question: "Which gas turns lime water milky?",
+                options: ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"],
+                answerIndex: 2,
+                explanation: "Carbon dioxide gas turns lime water milky due to formation of calcium carbonate.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_09",
+                subject: "chemistry",
+                question: "The most abundant gas in air is:",
+                options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Argon"],
+                answerIndex: 2,
+                explanation: "Nitrogen makes up about 78% of the Earth's atmosphere.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_10",
+                subject: "chemistry",
+                question: "Which metal is liquid at room temperature?",
+                options: ["Lead", "Mercury", "Tin", "Bismuth"],
+                answerIndex: 1,
+                explanation: "Mercury is the only metal that is liquid at room temperature.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "CHEM_11",
+                subject: "chemistry",
+                question: "The chemical name of baking soda is:",
+                options: ["Sodium carbonate", "Sodium bicarbonate", "Sodium hydroxide", "Sodium chloride"],
+                answerIndex: 1,
+                explanation: "Baking soda is sodium bicarbonate (NaHCO₃), commonly used in cooking and cleaning.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_12",
+                subject: "chemistry",
+                question: "Which process is used to separate salt from seawater?",
+                options: ["Filtration", "Distillation", "Decantation", "Sublimation"],
+                answerIndex: 1,
+                explanation: "Distillation is used to separate salt from seawater by evaporating and condensing water.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_13",
+                subject: "chemistry",
+                question: "The valency of carbon is:",
+                options: ["2", "3", "4", "5"],
+                answerIndex: 2,
+                explanation: "Carbon has a valency of 4, meaning it can form four covalent bonds.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_14",
+                subject: "chemistry",
+                question: "Which compound is known as 'laughing gas'?",
+                options: ["NO", "N₂O", "NO₂", "N₂O₃"],
+                answerIndex: 1,
+                explanation: "Nitrous oxide (N₂O) is commonly known as laughing gas, used as an anesthetic.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_15",
+                subject: "chemistry",
+                question: "The hardest naturally occurring substance is:",
+                options: ["Gold", "Iron", "Diamond", "Quartz"],
+                answerIndex: 2,
+                explanation: "Diamond is the hardest naturally occurring substance with a hardness of 10 on Mohs scale.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_16",
+                subject: "chemistry",
+                question: "Which indicator is red in acidic solution?",
+                options: ["Phenolphthalein", "Methyl orange", "Litmus", "Turmeric"],
+                answerIndex: 1,
+                explanation: "Methyl orange indicator appears red in acidic solutions and yellow in basic solutions.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_17",
+                subject: "chemistry",
+                question: "The chemical formula of water is:",
+                options: ["HO", "H₂O", "H₂O₂", "H₃O"],
+                answerIndex: 1,
+                explanation: "Water has the chemical formula H₂O, consisting of two hydrogen atoms and one oxygen atom.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "CHEM_18",
+                subject: "chemistry",
+                question: "Which type of reaction releases energy?",
+                options: ["Endothermic", "Exothermic", "Neutralization", "Decomposition"],
+                answerIndex: 1,
+                explanation: "Exothermic reactions release energy in the form of heat, light, or sound.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_19",
+                subject: "chemistry",
+                question: "The main ore of aluminum is:",
+                options: ["Hematite", "Bauxite", "Galena", "Cinnabar"],
+                answerIndex: 1,
+                explanation: "Bauxite is the main ore of aluminum, containing aluminum oxide (Al₂O₃).",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_20",
+                subject: "chemistry",
+                question: "Which gas is used in fire extinguishers?",
+                options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+                answerIndex: 2,
+                explanation: "Carbon dioxide is used in fire extinguishers as it is heavier than air and displaces oxygen.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_21",
+                subject: "chemistry",
+                question: "The process of conversion of solid directly to gas is:",
+                options: ["Melting", "Boiling", "Sublimation", "Condensation"],
+                answerIndex: 2,
+                explanation: "Sublimation is the direct conversion of solid to gas without passing through liquid state.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_22",
+                subject: "chemistry",
+                question: "Which element has the chemical symbol 'Au'?",
+                options: ["Silver", "Aluminum", "Gold", "Argon"],
+                answerIndex: 2,
+                explanation: "Gold has the chemical symbol 'Au' derived from its Latin name 'Aurum'.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_23",
+                subject: "chemistry",
+                question: "The pH of lemon juice is approximately:",
+                options: ["2", "7", "9", "12"],
+                answerIndex: 0,
+                explanation: "Lemon juice is acidic with a pH of approximately 2 due to citric acid content.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_24",
+                subject: "chemistry",
+                question: "Which compound is used to make glass?",
+                options: ["Sodium carbonate", "Silicon dioxide", "Calcium carbonate", "All of the above"],
+                answerIndex: 3,
+                explanation: "Glass is made from silicon dioxide (sand), sodium carbonate, and calcium carbonate.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_25",
+                subject: "chemistry",
+                question: "The chemical formula of common salt is:",
+                options: ["NaCl", "KCl", "CaCl₂", "MgCl₂"],
+                answerIndex: 0,
+                explanation: "Common salt (table salt) has the chemical formula NaCl (sodium chloride).",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "CHEM_26",
+                subject: "chemistry",
+                question: "Which metal is extracted from cinnabar ore?",
+                options: ["Iron", "Copper", "Mercury", "Lead"],
+                answerIndex: 2,
+                explanation: "Mercury is extracted from cinnabar ore (HgS) by heating in air.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_27",
+                subject: "chemistry",
+                question: "The number of electrons in a neutral atom equals:",
+                options: ["Number of neutrons", "Number of protons", "Atomic mass", "Mass number"],
+                answerIndex: 1,
+                explanation: "In a neutral atom, the number of electrons equals the number of protons.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_28",
+                subject: "chemistry",
+                question: "Which acid is used in car batteries?",
+                options: ["Hydrochloric acid", "Sulfuric acid", "Nitric acid", "Phosphoric acid"],
+                answerIndex: 1,
+                explanation: "Sulfuric acid (H₂SO₄) is used in car batteries as the electrolyte.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_29",
+                subject: "chemistry",
+                question: "The process of slow eating away of metals is called:",
+                options: ["Rusting", "Corrosion", "Oxidation", "All of the above"],
+                answerIndex: 3,
+                explanation: "Corrosion is the general term; rusting is specific to iron, and oxidation is the chemical process involved.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_30",
+                subject: "chemistry",
+                question: "Which noble gas is used in electric bulbs?",
+                options: ["Helium", "Neon", "Argon", "Krypton"],
+                answerIndex: 2,
+                explanation: "Argon gas is used in electric bulbs to prevent oxidation of the tungsten filament.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_31",
+                subject: "chemistry",
+                question: "The molecular formula of glucose is:",
+                options: ["C₆H₁₂O₆", "C₆H₁₀O₅", "C₅H₁₀O₅", "C₁₂H₂₂O₁₁"],
+                answerIndex: 0,
+                explanation: "Glucose has the molecular formula C₆H₁₂O₆, a simple sugar important for energy.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_32",
+                subject: "chemistry",
+                question: "Which compound is known as 'milk of magnesia'?",
+                options: ["MgO", "Mg(OH)₂", "MgCl₂", "MgSO₄"],
+                answerIndex: 1,
+                explanation: "Milk of magnesia is magnesium hydroxide Mg(OH)₂, used as an antacid.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_33",
+                subject: "chemistry",
+                question: "The lightest metal is:",
+                options: ["Aluminum", "Magnesium", "Lithium", "Beryllium"],
+                answerIndex: 2,
+                explanation: "Lithium is the lightest metal with the lowest density among all metals.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "CHEM_34",
+                subject: "chemistry",
+                question: "Which process is used to purify copper?",
+                options: ["Electrolysis", "Distillation", "Chromatography", "Crystallization"],
+                answerIndex: 0,
+                explanation: "Electrolytic refining (electrolysis) is used to purify impure copper.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_35",
+                subject: "chemistry",
+                question: "The chemical formula of ammonia is:",
+                options: ["NH₂", "NH₃", "NH₄", "N₂H₄"],
+                answerIndex: 1,
+                explanation: "Ammonia has the chemical formula NH₃, consisting of one nitrogen and three hydrogen atoms.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_36",
+                subject: "chemistry",
+                question: "Which compound is used as a preservative?",
+                options: ["Sodium benzoate", "Sodium chloride", "Sodium carbonate", "Sodium hydroxide"],
+                answerIndex: 0,
+                explanation: "Sodium benzoate is commonly used as a food preservative to prevent bacterial growth.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_37",
+                subject: "chemistry",
+                question: "The alloy of copper and zinc is:",
+                options: ["Bronze", "Brass", "Steel", "Pewter"],
+                answerIndex: 1,
+                explanation: "Brass is an alloy made of copper and zinc, commonly used in musical instruments.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                                id: "CHEM_38",
+                subject: "chemistry",
+                question: "Which vitamin is water-soluble?",
+                options: ["Vitamin A", "Vitamin D", "Vitamin C", "Vitamin K"],
+                answerIndex: 2,
+                explanation: "Vitamin C (ascorbic acid) is water-soluble, unlike vitamins A, D, and K which are fat-soluble.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_39",
+                subject: "chemistry",
+                question: "The process of adding chlorine to water is called:",
+                options: ["Chlorination", "Fluoridation", "Ozonation", "Filtration"],
+                answerIndex: 0,
+                explanation: "Chlorination is the process of adding chlorine to water to kill harmful bacteria and pathogens.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_40",
+                subject: "chemistry",
+                question: "Which element is essential for combustion?",
+                options: ["Hydrogen", "Carbon", "Oxygen", "Nitrogen"],
+                answerIndex: 2,
+                explanation: "Oxygen is essential for combustion as it supports burning and oxidation reactions.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "CHEM_41",
+                subject: "chemistry",
+                question: "The chemical formula of ozone is:",
+                options: ["O", "O₂", "O₃", "O₄"],
+                answerIndex: 2,
+                explanation: "Ozone has the chemical formula O₃, consisting of three oxygen atoms.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_42",
+                subject: "chemistry",
+                question: "Which acid is found in ant sting?",
+                options: ["Acetic acid", "Formic acid", "Lactic acid", "Citric acid"],
+                answerIndex: 1,
+                explanation: "Formic acid is found in ant stings and causes the burning sensation.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_43",
+                subject: "chemistry",
+                question: "The metal that does not react with cold water is:",
+                options: ["Sodium", "Calcium", "Magnesium", "Iron"],
+                answerIndex: 3,
+                explanation: "Iron does not react with cold water, unlike sodium and calcium which react vigorously.",
+                isPYQ: true,
+                year: 2021
+            },
+            {
+                id: "CHEM_44",
+                subject: "chemistry",
+                question: "Which compound is used in photosynthesis?",
+                options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+                answerIndex: 1,
+                explanation: "Carbon dioxide is used by plants during photosynthesis to make glucose.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_45",
+                subject: "chemistry",
+                question: "The chemical symbol for sodium is:",
+                options: ["S", "So", "Na", "Sd"],
+                answerIndex: 2,
+                explanation: "Sodium has the chemical symbol 'Na' derived from its Latin name 'Natrium'.",
+                isPYQ: true,
+                year: 2020
+            },
+            {
+                id: "CHEM_46",
+                subject: "chemistry",
+                question: "Which gas is known as 'dry ice' in solid form?",
+                options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+                answerIndex: 2,
+                explanation: "Solid carbon dioxide is known as 'dry ice' and sublimes directly to gas.",
+                isPYQ: false,
+                year: null
+            },
+            {
+              id: "CHEM_47",
+                subject: "chemistry",
+                question: "The process of converting sugar into alcohol is called:",
+                options: ["Distillation", "Fermentation", "Oxidation", "Reduction"],
+                answerIndex: 1,
+                explanation: "Fermentation is the process by which yeast converts sugar into alcohol and carbon dioxide.",
+                isPYQ: true,
+                year: 2019
+            },
+            {
+                id: "CHEM_48",
+                subject: "chemistry",
+                question: "Which element is used in making computer chips?",
+                options: ["Carbon", "Silicon", "Germanium", "Tin"],
+                answerIndex: 1,
+                explanation: "Silicon is widely used in making computer chips and semiconductor devices.",
+                isPYQ: false,
+                year: null
+            },
+            {
+                id: "CHEM_49",
+                subject: "chemistry",
+                question: "The chemical formula of marble is:",
+                options: ["CaCO₃", "MgCO₃", "Na₂CO₃", "K₂CO₃"],
+                answerIndex: 0,
+                explanation: "Marble is primarily composed of calcium carbonate (CaCO₃), formed from limestone.",
+                isPYQ: true,
+                year: 2022
+            },
+            {
+                id: "CHEM_50",
+                subject: "chemistry",
+                question: "Which compound is used to test for starch?",
+                options: ["Methyl orange", "Phenolphthalein", "Iodine solution", "Litmus paper"],
+                answerIndex: 2,
+                explanation: "Iodine solution turns blue-black in the presence of starch, making it a specific test.",
+                isPYQ: true,
+                year: 2021
+            }
+        ];
+
+        // Initialize the application
+        let questionBank = [...defaultQuestions];
+
+        // Utility Functions
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        // Subject Selection
+        function setSubject(subject) {
+            currentSubject = subject;
+            const buttons = document.querySelectorAll('.menu-section:nth-child(2) .btn');
+            buttons.forEach(btn => btn.style.opacity = '0.6');
+            event.target.style.opacity = '1';
+            
+            let message = '';
+            if (subject === 'biology') message = '🧬 Biology selected!';
+            else if (subject === 'chemistry') message = '⚗️ Chemistry selected!';
+            else message = '🔬 Mixed mode selected!';
+            
+            showToast(message, 'success');
+        }
+
+        // Quiz Initialization
+        function startQuiz(mode) {
+            currentMode = mode;
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+
+            // Filter questions based on subject
+            let filteredQuestions = [...questionBank];
+            if (currentSubject === 'biology') {
+                filteredQuestions = questionBank.filter(q => q.subject === 'biology');
+            } else if (currentSubject === 'chemistry') {
+                filteredQuestions = questionBank.filter(q => q.subject === 'chemistry');
+            }
+
+            // Shuffle and select questions
+            questions = shuffleArray(filteredQuestions).slice(0, Math.min(50, filteredQuestions.length));
+            
+            if (questions.length === 0) {
+                showToast('No questions available for selected subject!', 'error');
+                return;
+            }
+
+            // Setup timer for test mode
+            if (mode === 'test') {
+                timeLeft = Math.min(questions.length * 36, 1800); // 36 seconds per question, max 30 minutes
+                startTime = new Date();
+                startTimer();
+                document.getElementById('timerDisplay').style.display = 'block';
+            } else {
+                document.getElementById('timerDisplay').style.display = 'none';
+            }
+
+            // Show quiz interface
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultsContainer').classList.add('hidden');
+
+            loadQuestion();
+            showToast(`${mode === 'practice' ? '🧪 Practice' : '⏱️ Test'} mode started!`, 'success');
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timeLeft').textContent = formatTime(timeLeft);
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            const optionsContainer = document.getElementById('optionsContainer');
+            
+            // Update question counter
+            document.getElementById('questionCounter').textContent = 
+                `${currentQuestionIndex + 1} / ${questions.length}`;
+            
+            // Update subject tag
+            const subjectTag = document.getElementById('subjectTag');
+            subjectTag.textContent = question.subject.charAt(0).toUpperCase() + question.subject.slice(1);
+            subjectTag.className = `subject-tag ${question.subject}`;
+            
+            // Show PYQ badge if applicable
+            const pyqBadge = document.getElementById('pyqBadge');
+            if (question.isPYQ) {
+                pyqBadge.textContent = `PYQ ${question.year}`;
+                pyqBadge.style.display = 'inline-block';
+            } else {
+                pyqBadge.style.display = 'none';
+            }
+            
+            // Set question text
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create option elements
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.onclick = () => selectOption(index);
+                
+                const optionLabel = document.createElement('div');
+                optionLabel.className = 'option-label';
+                optionLabel.textContent = String.fromCharCode(65 + index); // A, B, C, D
+                
+                const optionText = document.createElement('span');
+                optionText.textContent = option;
+                
+                optionElement.appendChild(optionLabel);
+                optionElement.appendChild(optionText);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Hide explanation initially
+            document.getElementById('explanationContainer').classList.remove('show');
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Show previously selected answer if any
+            if (userAnswers[currentQuestionIndex] !== undefined) {
+                const selectedIndex = userAnswers[currentQuestionIndex];
+                const options = document.querySelectorAll('.option');
+                options[selectedIndex].classList.add('selected');
+            }
+        }
+
+        function selectOption(optionIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestionIndex];
+            
+            // Clear previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Mark selected option
+            options[optionIndex].classList.add('selected');
+            userAnswers[currentQuestionIndex] = optionIndex;
+            
+            // Show feedback in practice mode
+            if (currentMode === 'practice') {
+                // Show correct answer
+                options[question.answerIndex].classList.add('correct');
+                
+                // Show incorrect answer if wrong
+                if (optionIndex !== question.answerIndex) {
+                    options[optionIndex].classList.add('incorrect');
+                }
+                
+                // Show explanation
+                document.getElementById('explanationText').textContent = question.explanation;
+                document.getElementById('explanationContainer').classList.add('show');
+                
+                // Update score
+                if (optionIndex === question.answerIndex) {
+                    score++;
+                    showToast('✅ Correct!', 'success');
+                } else {
+                    showToast('❌ Incorrect!', 'error');
+                }
+                
+                document.getElementById('currentScore').textContent = score;
+            }
+            
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Previous button
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            // Next/Submit button logic
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            // Stop timer
+            if (timer) {
+                clearInterval(timer);
+            }
+            
+            // Calculate final score
+            let correctAnswers = 0;
+            for (let i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === questions[i].answerIndex) {
+                    correctAnswers++;
+                }
+            }
+            
+            const percentage = Math.round((correctAnswers / questions.length) * 100);
+            const timeTaken = startTime ? formatTime(Math.floor((new Date() - startTime) / 1000)) : 'N/A';
+            
+            // Update results display
+            document.getElementById('finalScore').textContent = `${percentage}%`;
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('incorrectCount').textContent = questions.length - correctAnswers;
+            document.getElementById('timeTaken').textContent = timeTaken;
+            
+            // Performance message
+            let performanceMessage = '';
+            if (percentage >= 90) performanceMessage = '🏆 Outstanding! You\'re a Science Champion!';
+            else if (percentage >= 80) performanceMessage = '🌟 Excellent Work! Keep it up!';
+            else if (percentage >= 70) performanceMessage = '👍 Good Job! Room for improvement!';
+            else if (percentage >= 60) performanceMessage = '👌 Fair Performance! Study more!';
+            else performanceMessage = '📚 Need More Practice! Don\'t give up!';
+            
+            document.getElementById('performanceText').textContent = performanceMessage;
+            
+            // Show results
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            
+            showToast(`Quiz completed! Score: ${percentage}%`, 'success');
+        }
+
+        function restartQuiz() {
+            startQuiz(currentMode);
+        }
+
+        function exitQuiz() {
+            if (timer) clearInterval(timer);
+            backToMenu();
+        }
+
+        function backToMenu() {
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('hidden');
+            document.getElementById('mainMenu').style.display = 'flex';
+            
+            // Reset variables
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            if (timer) clearInterval(timer);
+        }
+
+        // Import/Export Functions
+        function exportQuestions() {
+            const dataStr = JSON.stringify(questionBank, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'science_questions.json';
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showToast('📁 Questions exported successfully!', 'success');
+        }
+
+        function importQuestions(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (Array.isArray(imported) && imported.length > 0) {
+                        // Validate question format
+                        const valid = imported.every(q => 
+                            q.id && q.subject && q.question && q.options && 
+                            Array.isArray(q.options) && typeof q.answerIndex === 'number'
+                        );
+                        
+                        if (valid) {
+                            questionBank = imported;
+                            showToast(`📥 ${imported.length} questions imported successfully!`, 'success');
+                        } else {
+                            throw new Error('Invalid question format');
+                        }
+                    } else {
+                        throw new Error('Invalid file format');
+                    }
+                } catch (error) {
+                    showToast('❌ Error importing questions: ' + error.message, 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function resetQuestions() {
+            questionBank = [...defaultQuestions];
+            showToast('🔄 Question bank reset to default!', 'info');
+        }
+
+        // Keyboard Support
+    document.addEventListener('keydown', function(e) {
+            if (document.getElementById('quizContainer').style.display === 'block') {
+                if (e.key >= '1' && e.key <= '4') {
+                    const optionIndex = parseInt(e.key) - 1;
+                    if (optionIndex < questions[currentQuestionIndex].options.length) {
+                        selectOption(optionIndex);
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    previousQuestion();
+                } else if (e.key === 'ArrowRight') {
+                    nextQuestion();
+                } else if (e.key === 'Enter') {
+                    if (currentQuestionIndex === questions.length - 1) {
+                        submitQuiz();
+                    } else {
+                        nextQuestion();
+                    }
+                } else if (e.key === 'Escape') {
+                    exitQuiz();
+                }
+            }
+        });
+
+        // Initialize default subject
+        setSubject('mixed');
+
+        // Service Worker for Offline Support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE_NAME = 'science-quiz-v1';
+                    const urlsToCache = ['/'];
+                    
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => response || fetch(event.request))
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], {type: 'application/javascript'});
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(() => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>

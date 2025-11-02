@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDIX - Class 10 Lectures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 4%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #3b82f6;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 50px;
+            padding: 8px 20px;
+            gap: 10px;
+            max-width: 300px;
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            fill: #475569;
+        }
+
+        .search-input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #1e293b;
+            font-size: 0.95em;
+            width: 100%;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 75vh;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 4%;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4em;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .hero-desc {
+            font-size: 1.2em;
+            color: #475569;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-play, .btn-info {
+            padding: 14px 32px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-play {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-play:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-info {
+            background: white;
+            color: #475569;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .btn-info:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-play svg, .btn-info svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Row Section */
+        .row-section {
+            padding: 50px 4%;
+            background: white;
+            margin-bottom: 2px;
+        }
+
+        .row-section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .row-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1e293b;
+        }
+
+        .row-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 15px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        .row-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .row-slider::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .row-slider::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .row-slider::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Video Card */
+        .video-card {
+            min-width: 300px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-img {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .video-card:hover .play-btn {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        .card-info {
+            padding: 15px;
+        }
+
+        .card-info h3 {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 6px;
+            font-size: 0.7em;
+            font-weight: 700;
+        }
+
+        /* Video Player */
+        .player {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 9999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .player.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .player-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player-title {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #1e293b;
+            z-index: 10001;
+            max-width: calc(100% - 150px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .player-menu {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 10001;
+        }
+
+        .menu-btn {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+            transition: all 0.3s;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 65px;
+            right: 0;
+            background: white;
+            border-radius: 16px;
+            padding: 10px;
+            min-width: 200px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .menu-dropdown.show {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            color: #475569;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+
+        .menu-item svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.4s;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        /* Horizontal Mode - Full Width Fixed */
+        .player.mode-horizontal .video-wrapper {
+            padding: 0;
+        }
+
+        .player.mode-horizontal .video-wrapper iframe {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+
+        /* Vertical Mode */
+        .player.mode-vertical .video-wrapper iframe {
+            max-width: 700px;
+            aspect-ratio: 9/16;
+        }
+
+        /* Normal Mode - Center with padding */
+        .player.mode-normal .video-wrapper {
+            padding: 40px;
+        }
+
+        .player.mode-normal .video-wrapper iframe {
+            max-width: 1400px;
+            aspect-ratio: 16/9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .hero-desc {
+                font-size: 1em;
+            }
+            
+            .video-card {
+                min-width: 250px;
+            }
+            
+            .row-title {
+                font-size: 1.4em;
+            }
+
+            .player-title {
+                font-size: 0.9em;
+                max-width: calc(100% - 120px);
+                left: 15px;
+                top: 15px;
+            }
+
+            .player-menu {
+                top: 15px;
+                right: 15px;
+            }
+
+            .menu-btn {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">STUDIX</div>
+        <nav class="nav">
+            <a href="#science">Science</a>
+            <a href="#sst">SST</a>
+            <a href="#revision">Rapid Revision</a>
+        </nav>
+        <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search chapters...">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Master Class 10</h1>
+            <p class="hero-desc">Complete one-shot lectures and rapid revision for Science & SST. Perfect for board exam preparation!</p>
+            <div class="hero-buttons">
+                <button class="btn-play" onclick="scrollToSection('science')">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    One Shot Lectures
+                </button>
+                <button class="btn-info" onclick="scrollToSection('revision')">
+                    <svg viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2.02c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.99z"/></svg>
+                    Rapid Revision
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Physics Section -->
+    <section class="row-section" id="science">
+        <h2 class="row-title">Physics</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('aaak8qN9x4Q', 'Electricity - Complete Chapter')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Electricity</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('ducAISrzA58', 'Electricity - Revision')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Electricity Revision</h3>
+                    <span class="badge">REVISION</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('w1WNkPKGM5E', 'Light - Reflection & Refraction')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Light - Reflection & Refraction</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('DugfjpGoOVs', 'Magnetic Effect of Electric Current')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Magnetic Effect</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('cewRD2JjyJU', 'Complete Physics Revision')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Complete Physics</h3>
+                    <span class="badge">FULL REVISION</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chemistry Section -->
+    <section class="row-section">
+        <h2 class="row-title">Chemistry</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('gQ-X9wV8TXQ', 'Chemical Reactions and Equations')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Chemical Reactions</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('qKl4mieovu0', 'Acids, Bases and Salts')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Acids, Bases and Salts</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('mb3csoFqLGs', 'Carbon and Its Compounds')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Carbon & Compounds</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biology Section -->
+    <section class="row-section">
+        <h2 class="row-title">Biology</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('2anxgj0TUgQ', 'Life Processes')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Life Processes</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('T9DgvXpCnwo', 'Life Processes - Full Chapter')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Life Processes Full</h3>
+                    <span class="badge">FULL CHAPTER</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('JU7GrLUvhHM', 'How do Organisms Reproduce')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Reproduction</h3>
+                    <span class="badge">ONE SHOT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SST History Section -->
+    <section class="row-section" id="sst">
+        <h2 class="row-title">History</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('R9j00yP0Mts', 'The Rise of Nationalism in Europe')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Nationalism in Europe</h3>
+                    <span class="badge">HISTORY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('0Lz8w0M2kP4', 'Nationalism in India')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Nationalism in India</h3>
+                    <span class="badge">HISTORY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('LgyKeZcB4fE', 'The Making of a Global World')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Global World</h3>
+                    <span class="badge">HISTORY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('NLW5161elGs', 'Print Culture and the Modern World')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Print Culture</h3>
+                    <span class="badge">HISTORY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Geography Section -->
+    <section class="row-section">
+        <h2 class="row-title">Geography</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('u171bN-p72g', 'Resources and Development')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Resources & Development</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('lmi3SAXYRVg', 'Forest and Wildlife Resources')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Forest & Wildlife</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('CAs-QPRD5pU', 'Water Resources')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Water Resources</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('s2S2_K7O3pY', 'Agriculture')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Agriculture</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('YU-cDrVvWq0', 'Minerals and Energy')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Minerals & Energy</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('SxmO4c6AfiM', 'Manufacturing Industries')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Manufacturing</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('2EqsPlePId8', 'Lifelines of National Economy')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Lifelines Economy</h3>
+                    <span class="badge">GEOGRAPHY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Civics Section -->
+    <section class="row-section">
+        <h2 class="row-title">Civics</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('yYm-i6QoV6c', 'Power Sharing')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Power Sharing</h3>
+                    <span class="badge">CIVICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('DqHFfTsoWaM', 'Federalism')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Federalism</h3>
+                    <span class="badge">CIVICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('r32cK306V7M', 'Gender, Religion and Caste')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Gender, Religion, Caste</h3>
+                    <span class="badge">CIVICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('408yS94ptqQ', 'Political Parties')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Political Parties</h3>
+                    <span class="badge">CIVICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('lkjO43QScB0', 'Outcomes of Democracy')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Democracy Outcomes</h3>
+                    <span class="badge">CIVICS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Economics Section -->
+    <section class="row-section">
+        <h2 class="row-title">Economics</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('y6tQ7R3n2yY', 'Development')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Development</h3>
+                    <span class="badge">ECONOMICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('z8g-6N1Hn74', 'Sectors of Indian Economy')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Sectors Economy</h3>
+                    <span class="badge">ECONOMICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('uJ795BiDGE0', 'Money and Credit')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Money & Credit</h3>
+                    <span class="badge">ECONOMICS</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('bEH2O6Y1OKw', 'Globalisation')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Globalisation</h3>
+                    <span class="badge">ECONOMICS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rapid Revision Section -->
+    <section class="row-section" id="revision">
+        <h2 class="row-title">⚡ Rapid Revision</h2>
+        <div class="row-slider">
+            <div class="video-card" onclick="playVideo('cewRD2JjyJU', 'Physics Rapid Revision')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Physics in 3 Hours</h3>
+                    <span class="badge">RAPID</span>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="playVideo('P2721m8KdHY', 'Biology Rapid Revision')">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Biology in 3 Hours</h3>
+                    <span class="badge">RAPID</span>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Chemistry Rapid</h3>
+                    <span class="badge">RAPID</span>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="card-img">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>SST Complete Revision</h3>
+                    <span class="badge">RAPID</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Player -->
+    <div class="player" id="player">
+        <div class="player-container">
+            <div class="player-title" id="playerTitle"></div>
+            
+            <div class="player-menu">
+                <button class="menu-btn" onclick="toggleMenu()">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="5" r="2"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <circle cx="12" cy="19" r="2"/>
+                    </svg>
+                </button>
+                <div class="menu-dropdown" id="menuDropdown">
+                    <div class="menu-item" onclick="closePlayer()">
+                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                        Close
+                    </div>
+                    <div class="menu-item" onclick="setMode('normal')">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+                        Normal
+                    </div>
+                    <div class="menu-item active" onclick="setMode('horizontal')">
+                        <svg viewBox="0 0 24 24"><path d="M19 12H5M19 5H5M19 19H5"/></svg>
+                        Horizontal Full
+                    </div>
+                    <div class="menu-item" onclick="setMode('vertical')">
+                        <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7V5h10v14z"/></svg>
+                        Vertical
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-wrapper" id="videoWrapper">
+                <iframe id="videoFrame" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const player = document.getElementById('player');
+        const videoFrame = document.getElementById('videoFrame');
+        const playerTitle = document.getElementById('playerTitle');
+        const menuDropdown = document.getElementById('menuDropdown');
+        const searchInput = document.getElementById('searchInput');
+
+        function playVideo(videoId, title) {
+            videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            playerTitle.textContent = title;
+            player.classList.add('active');
+            player.classList.add('mode-horizontal');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePlayer() {
+            videoFrame.src = '';
+            player.classList.remove('active');
+            player.classList.remove('mode-horizontal', 'mode-vertical', 'mode-normal');
+            document.body.style.overflow = 'auto';
+            menuDropdown.classList.remove('show');
+        }
+
+        function toggleMenu() {
+            menuDropdown.classList.toggle('show');
+        }
+
+        function setMode(mode) {
+            player.classList.remove('mode-horizontal', 'mode-vertical', 'mode-normal');
+            player.classList.add(`mode-${mode}`);
+            
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            menuDropdown.classList.remove('show');
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.player-menu')) {
+                menuDropdown.classList.remove('show');
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (!player.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                closePlayer();
+            }
+            if (e.key === 'h' || e.key === 'H') {
+                setMode('horizontal');
+            }
+            if (e.key === 'n' || e.key === 'N') {
+                setMode('normal');
+            }
+            if (e.key === 'v' || e.key === 'V') {
+                setMode('vertical');
+            }
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.video-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const badge = card.querySelector('.badge').textContent.toLowerCase();
+                if (title.includes(query) || badge.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

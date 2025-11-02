@@ -1,0 +1,85 @@
+{
+  "topics": [
+    {
+      "topic": "Life Processes",
+      "subtopics": [
+        {
+          "subtopic": "Nutrition",
+          "questions": [
+            {
+              "question": "What is nutrition?",
+              "answer": "The process by which living organisms take in and utilize food material for growth, energy and repair is called nutrition."
+            },
+            {
+              "question": "Name the types of heterotrophic nutrition.",
+              "answer": "Saprotrophic, Parasitic and Holozoic nutrition."
+            },
+            {
+              "question": "Which organ in humans secretes bile juice?",
+              "answer": "The liver secretes bile juice which helps in digestion of fats."
+            },
+            {
+              "question": "What is the role of salivary amylase?",
+              "answer": "Salivary amylase converts starch into simple sugars (maltose) in the mouth."
+            }
+          ]
+        },
+        {
+          "subtopic": "Respiration",
+          "questions": [
+            {
+              "question": "Differentiate between aerobic and anaerobic respiration.",
+              "answer": "Aerobic respiration occurs in presence of oxygen and releases more energy, while anaerobic respiration occurs without oxygen and releases less energy."
+            },
+            {
+              "question": "Where does aerobic respiration occur in a cell?",
+              "answer": "In the mitochondria."
+            },
+            {
+              "question": "Write the chemical equation for aerobic respiration.",
+              "answer": "C6H12O6 + 6O2 → 6CO2 + 6H2O + Energy (ATP)."
+            }
+          ]
+        },
+        {
+          "subtopic": "Transportation",
+          "questions": [
+            {
+              "question": "Name the fluid which transports oxygen in human body.",
+              "answer": "Blood, specifically the red blood cells with hemoglobin."
+            },
+            {
+              "question": "What is the role of xylem?",
+              "answer": "Xylem transports water and minerals from roots to all parts of the plant."
+            },
+            {
+              "question": "Which part of the heart pumps deoxygenated blood to lungs?",
+              "answer": "The right ventricle."
+            },
+            {
+              "question": "Name the vein that carries oxygenated blood.",
+              "answer": "Pulmonary vein."
+            }
+          ]
+        },
+        {
+          "subtopic": "Excretion",
+          "questions": [
+            {
+              "question": "What is excretion?",
+              "answer": "The process of removing metabolic waste products from the body."
+            },
+            {
+              "question": "Name the basic functional unit of the kidney.",
+              "answer": "Nephron."
+            },
+            {
+              "question": "How is urine formed?",
+              "answer": "By the process of filtration, reabsorption and secretion in the nephrons of the kidney."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
